@@ -1,0 +1,119 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Roboto', sans-serif;
+}
+
+body {
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #ffffff;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    color: #414141; /* registro y redireccionamiento a iniciar sesion */
+}
+
+.container-form {
+    width: 90%;
+    height: 90vh;
+    display: flex;
+    justify-content: space-around;
+    transition:  all .5s ease-out;
+}
+
+.welcome-back {
+    display: flex;
+    align-items: center;
+    text-align: center;
+}
+
+.message {
+    padding: 1rem;
+}
+
+.message h2 {
+    font-size: 1.7rem;
+    padding: 1rem 0;
+    color: rgb(55, 55, 55); /* chic avenue */
+}
+
+.message button { /* boton, iniciar sesion y registrate */
+    padding: 1rem;
+    font-weight: 400;
+    background-color: #2d2d2c;
+    border-radius: 2rem;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    font-size: .9rem;
+    margin-top: 2rem;
+    transition: all .3s ease-in;
+    color: #fff;
+}
+
+.message button:hover { /* boton, iniciar sesion y registrate al poner el cursor encima */
+    background-color: #4a4a4f;
+}
+
+.formulario {
+    width: 400px;
+    padding: 1rem;
+    margin: 2rem;
+    background-color: rgba(183, 183, 183, 0.9); /* fondo del formulario */
+    text-align: center;
+}
+
+.create-account {
+    padding: 2.7rem 0;
+    font-size: 1.7rem;
+}
+
+
+.formulario input {
+    width: 70%;
+    display: block;
+    margin: auto;
+    margin-bottom: 2rem;
+    background-color: transparent;
+    border: none;
+    border-bottom: white thin solid; /* barra */
+    text-align: left;
+    outline: none;
+    padding: .2rem 0;
+    font-size: .9rem;
+}
+
+.formulario input[type="button"] { /* boton registrarme */
+    width: 60%;
+    margin: auto;
+    border: solid thin rgb(255, 255, 255);
+    padding: .7rem;
+    border-radius: 2rem;
+    background-color: white;
+    text-align: center;
+    font-weight: 600;
+    margin-top: 3rem;
+    font-size: .8rem;
+    cursor: pointer;
+    color: #222;
+}
+
+.sign-in {
+    position: absolute;
+    opacity: 0;
+    visibility: hidden;
+}
+
+.sign-in.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+.sign-up.active {
+    opacity: 0;
+    visibility: hidden;
+}
