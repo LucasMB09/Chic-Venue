@@ -26,11 +26,12 @@
                 </div>
                     </nav>
                 </div>
-                <form>
-                <button class="w-50 btn btn-lg btn-primary mb1 bg-black" type="button">Iniciar sesión</button>
+                <div class="form-signin w-100 m-auto">
+                <p class="text-center">¿Ya tienes una cuenta? Inicia sesión aquí </p>
+                <button class="w-50 btn btn-lg btn-primary mb1 bg-black" type="">Iniciar sesión</button>
                 <p class="mt-5 mb-3 text-body-secondary"></p>
-</form>
-            </div>
+                 </div>
+</div>
             </div>
         </div>
         <main class="form-signin w-100 m-auto">
