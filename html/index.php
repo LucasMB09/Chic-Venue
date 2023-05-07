@@ -20,7 +20,7 @@
         <div class="welcome-back">
             <div class="message">
                 <div class="logo">
-                <img class="Logo de Chic Avenue" src="/assets/logo_CA.PNG" alt="" width="82" height="70">
+                <img class="Logo de Chic Avenue" src="logo.jpg" alt="" width="82" height="70">
                 </div>
                 <h2>CHIC AVENUE</h2>
                 <p>¿Ya tienes una cuenta? inicia sesión aquí </p>
@@ -36,7 +36,7 @@
             <input type="button" value="Registrarme">
         </form>
     </div>
-    <script src="script.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.7/dist/umd/popper.min.js" integrity="sha384-zYPOMqeu1DAVkHiLqWBUTcbYfZ8osu1Nd6Z89ify25QV9guujx43ITvfi12/QExE" crossorigin="anonymous"></script>
 </body>
 
 </html>
