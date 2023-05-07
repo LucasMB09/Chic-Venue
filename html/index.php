@@ -27,7 +27,7 @@
                     </nav>
                 </div>
                 <p class="text-center">¿Ya tienes una cuenta? Inicia sesión aquí </p>
-                <button class="w-100 btn btn-lg btn-primary mb1 bg-black" type="submit">Iniciar sesión</button>
+                <button class="w-50 btn btn-lg btn-primary mb1 bg-black" type="submit">Iniciar sesión</button>
             </div>
         </div>
         <main class="form-signin w-100 m-auto">
