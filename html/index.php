@@ -24,6 +24,7 @@
                     <div class="text-center">
                     <img class="rounded mx-auto d-block" src="logo.jpg" alt="" width="82" height="70">
                 </div>
+</div>
                     </nav>
                 </div>
                 <div class="form-signin w-100 m-auto">
