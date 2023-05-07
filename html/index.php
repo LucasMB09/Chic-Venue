@@ -19,10 +19,12 @@
     <div class="container-form sign-up">
         <div class="welcome-back">
             <div class="message">
+            <nav class="navbar navbar-expand-lg bg-body-tertiary">
                 <div class="logo">
-                <div class="container-fluid">
-                <img class="Logo de Chic Avenue" src="logo.jpg" alt="" width="82" height="70">
-                </div>
+                    <div class="container-fluid">
+                    <img class="Logo de Chic Avenue" src="logo.jpg" alt="" width="82" height="70">
+                    </div>
+                    </nav>
                 </div>
                 <h2>CHIC AVENUE</h2>
                 <p>¿Ya tienes una cuenta? inicia sesión aquí </p>
