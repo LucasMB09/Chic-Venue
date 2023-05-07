@@ -27,7 +27,6 @@
                     </nav>
                 </div>
                 <form>
-                <p class="text-center">¿Ya tienes una cuenta? Inicia sesión aquí </p>
                 <button class="w-50 btn btn-lg btn-primary mb1 bg-black" type="button">Iniciar sesión</button>
                 <p class="mt-5 mb-3 text-body-secondary"></p>
             </div>
