@@ -20,7 +20,9 @@
         <div class="welcome-back">
             <div class="message">
                 <div class="logo">
+                <div class="container-fluid">
                 <img class="Logo de Chic Avenue" src="logo.jpg" alt="" width="82" height="70">
+                </div>
                 </div>
                 <h2>CHIC AVENUE</h2>
                 <p>¿Ya tienes una cuenta? inicia sesión aquí </p>
