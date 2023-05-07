@@ -19,18 +19,14 @@
     <div class="container-form sign-up">
         <div class="welcome-back">
             <div class="message">
-            <nav class="navbar navbar-expand-lg bg-body-tertiary">
-                    <div class="text-center">
-                    <img src="logo.jpg" class="rounded mx-auto d-block"  alt="" width="82" height="70">
-                    </div>
-            </div>
-             </nav>
-        </div>
                 <div class="form-signin w-100 m-auto">
+                <img src="logo.jpg" class="rounded mx-auto d-block"  alt="" width="82" height="70">
                 <p class="text-center">¿Ya tienes una cuenta? Inicia sesión aquí </p>
                 <p class="text-center"><button class="w-25 btn btn-lg btn-primary mb1 bg-black" type="">Iniciar sesión</button></p>
                 <p class="mt-5 mb-3 text-body-secondary"></p>
                  </div>
+                 </div>
+        </div>         
 </div>
             
         <main class="form-signin w-100 m-auto">
