@@ -22,7 +22,7 @@
             <nav class="navbar navbar-expand-lg bg-body-tertiary">
                 <div class="logo">
                     <div class="container-fluid">
-                  <p class=text-center"><img class="Logo de Chic Avenue" src="logo.jpg" alt="" width="82" height="70"></p>
+                    <img class="rounded mx-auto d-block" src="logo.jpg" alt="" width="82" height="70">
                 </div>
                     </nav>
                 </div>
