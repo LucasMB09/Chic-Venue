@@ -21,7 +21,7 @@
             <div class="message">
             <nav class="navbar navbar-expand-lg bg-body-tertiary">
                     <div class="text-center">
-                    <img class="rounded mx-auto d-block" src="logo.jpg" alt="" width="82" height="70">
+                    <img src="logo.jpg" class="rounded mx-auto d-block"  alt="" width="82" height="70">
                     </div>
             </div>
              </nav>
