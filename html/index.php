@@ -23,7 +23,6 @@
                 <div class="logo">
                     <div class="container-fluid">
                     <img class="Logo de Chic Avenue" src="logo.jpg" alt="" width="82" height="70">
-                    <h2>CHIC AVENUE</h2>
                 </div>
                     </nav>
                 </div>
@@ -31,6 +30,7 @@
                 <button class="sign-up-btn">Iniciar Sesion</button>
             </div>
         </div>
+        <main class="form-signin w-100 m-auto">
         <form class="formulario">
             <h2 class="create-account">R E G I S T R O</h2>
             <input type="text" placeholder="Nombre*">
@@ -41,6 +41,7 @@
         </form>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.7/dist/umd/popper.min.js" integrity="sha384-zYPOMqeu1DAVkHiLqWBUTcbYfZ8osu1Nd6Z89ify25QV9guujx43ITvfi12/QExE" crossorigin="anonymous"></script>
+</main>
 </body>
 
 </html>
