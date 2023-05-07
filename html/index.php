@@ -19,7 +19,7 @@
         <div class="welcome-back">
             <div class="message">
                 <div class="logo">
-                    <img src="img\1.jpg" width="170" height="170">
+                    <img src="/assets/logo.jpg" width="170" height="170">
                 </div>
                 <h2>CHIC AVENUE</h2>
                 <p>¿Ya tienes una cuenta? inicia sesión aquí </p>
