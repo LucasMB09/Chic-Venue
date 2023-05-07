@@ -20,21 +20,19 @@
         <div class="welcome-back">
             <div class="message">
             <nav class="navbar navbar-expand-lg bg-body-tertiary">
-                <div class="logo">
                     <div class="text-center">
                     <img class="rounded mx-auto d-block" src="logo.jpg" alt="" width="82" height="70">
-                </div>
-</div>
-                    </nav>
-                </div>
+                    </div>
+            </div>
+             </nav>
+        </div>
                 <div class="form-signin w-100 m-auto">
                 <p class="text-center">¿Ya tienes una cuenta? Inicia sesión aquí </p>
                 <p class="text-center"><button class="w-25 btn btn-lg btn-primary mb1 bg-black" type="">Iniciar sesión</button></p>
                 <p class="mt-5 mb-3 text-body-secondary"></p>
                  </div>
 </div>
-            </div>
-        </div>
+            
         <main class="form-signin w-100 m-auto">
         <form class="text-center">
             <h2 class="create-account">R E G I S T R O</h2>
