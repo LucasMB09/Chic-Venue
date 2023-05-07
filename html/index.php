@@ -35,7 +35,7 @@
             </div>
         </div>
         <main class="form-signin w-100 m-auto">
-        <form class="formulario">
+        <form class="text-center">
             <h2 class="create-account">R E G I S T R O</h2>
             <input type="text" placeholder="Nombre*">
             <input type="text" placeholder="Apellido*">
