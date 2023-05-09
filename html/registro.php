@@ -18,27 +18,26 @@
         <div class="welcome-back">
             <div class="message">
                 <div class="logo">
-                    <img src="/assets/logo_CA.PNG" width="170" height="170"> <!-- LOGO DE NUESTRA EMPRESA-->
+                    <img src="/assets/logo.jpg" width="170" height="170">
                 </div>
                 <h2>CHIC AVENUE</h2>
                 <p>¿Ya es parte de Chic Venue? Inicie sesión aquí </p>
-                <a href="/html/log-in.html">
-                <button class="sign-up-btn">Iniciar Sesion</button>  <!-- REDIRECCION A LA PAGINA DE INICIO-->
-            </a>
+                <button class="sign-up-btn">Iniciar Sesion</button>
             </div>
         </div>
-        <form method="POST">
+        <form class="formulario">
             <h2 class="create-account">R E G I S T R O</h2>
-            <input type="text" id="nombre_usuario" name="nombre_usuario" placeholder="Nombre*"> <!--NOMBRRE-->
-            <input type="text" id="apellido_usuario" name="apellido_usuario" placeholder="Apellido*"><!--APELLIDO -->
-            <input type="email" id="correo_usuario" name="correo_Usuario" placeholder="Correo electrónico*"><!--CORREO -->
-            <input type="password" id="contraseña" name="contrasena"placeholder="Contraseña*"> <!--CONTRASEÑA -->
-            <input type="submit" id="registro" value="Registrarme"> <!-- BOTÓN SUBMIT -->
+            <input type="text" name="nombre" placeholder="Nombre*">
+            <input type="text" name="apellido" placeholder="Apellido*">
+            <input type="email" name="email" placeholder="Correo electrónico*">
+            <input type="password" name="contrasena" placeholder="Contraseña*">
+            <input type="button" name="registro" value="Registrarme">
+            <?php
+            include("aux_registro.php")
+            ?>
         </form>
-        <?php
-        include("aux_registro.php")
-        ?>
     </div>
+    <script src="script.js"></script>
 </body>
 
 </html>
