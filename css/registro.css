@@ -89,7 +89,7 @@ body {
     font-size: .9rem;
 }
 
-.formulario input[type="button"] { /* boton registrarme */
+.boton_registro { /* boton registrarme */
     width: 60%;
     margin: auto;
     border: solid thin rgb(255, 255, 255);
