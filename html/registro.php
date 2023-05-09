@@ -31,7 +31,7 @@
             <input type="text" name="apellido" placeholder="Apellido*">
             <input type="email" name="email" placeholder="Correo electrónico*">
             <input type="password" name="contrasena" placeholder="Contraseña*">
-            <input type="button" name="registro" value="Registrarme">
+            <button class="boton_registro" type="submit" name="registro">Registrarme</button>
             <?php
             include("aux_registro.php")
             ?>
