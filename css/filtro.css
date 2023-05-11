@@ -1,0 +1,103 @@
+*{
+    margin: 5px;
+    padding: 0; 
+ }
+
+ body {
+ font-family: Arial, sans-serif;
+ background-color: #ffffff;
+ color:rgb(255, 255, 255)
+ }
+
+ header{
+     position: fixed;
+     top: 0;
+     left: 0;
+     width: 100%;
+     display: flex;
+     justify-content: space-around;
+     transition: 0.7s;
+     padding: 30 px 20 px;
+     background-color: black;
+ }
+
+ .logo{
+     color: rgb(252, 252, 252);
+     font-weight: Helvetica, Arial, sans-serif;
+     font-size: 2em;
+     letter-spacing: 2px;
+     transition: 1.5s;
+     text-decoration: none;
+     min-height: 50px;
+     display: flex;
+     align-items: center;
+     justify-content: center;
+ }
+
+ nav{
+     display: flex;
+     justify-content: center;
+     align-items: center;
+ }
+
+ h1 {
+ text-align: center;
+ color: rgb(255, 255, 255);
+ }
+
+ #filtro-form {
+ text-align: center;
+ margin-bottom: 20px;
+ }
+
+ #filtro-form label {
+ margin-right: 5px;
+ }
+
+ #productos-lista {
+ list-style-type: none;
+ padding: 0;
+ display: flex;
+ flex-wrap: wrap;
+ justify-content: space-between;
+ }
+
+ .producto {
+ width: 200px;
+ background-color: #FFF;
+ border: 1px solid #DDD;
+ border-radius: 4px;
+ padding: 10px;
+ margin-bottom: 10px;
+ box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+ }
+
+ .s {
+ font-size: 12px;
+ }
+
+ .m {
+ font-size: 14px;
+ }
+
+ .l {
+ font-size: 16px;
+ }
+
+ .xl {
+ font-size: 18px;
+ }
+
+ #filtrar-btn {
+ background-color: #b5aac0;
+ color: rgb(0, 0, 0);
+ border: none;
+ border-radius: 4px;
+ padding: 10px 20px;
+ font-size: 16px;
+ cursor: pointer;
+ }
+
+ #filtrar-btn:hover {
+ background-color: #2918c2;
+ }
