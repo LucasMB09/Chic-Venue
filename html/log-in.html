@@ -165,15 +165,19 @@
       <label>
         <input type="checkbox" value="remember-me"> Recuerdame
       </label>
-      <a class="nav-link" href="registro.php">Crea una nueva cuenta</a>
+   <!--   <a class="nav-link" href="/html/registro.php">Crea una nueva cuenta</a>-->
+   <button onclick="redireccionar()">Ir a página</button>
+
     </div>
     <button class="w-100 btn btn-lg btn-primary mb1 bg-black" type="submit">Iniciar sesión</button>
     <p class="mt-5 mb-3 text-body-secondary"></p>
   </form>
 </main>
-
-
-
-    
+<script>
+  function redireccionar() {
+    window.location.href = "pagina.php";
+  }
+  </script>
   </body>
+  
 </html>
