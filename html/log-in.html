@@ -166,7 +166,7 @@
         <input type="checkbox" value="remember-me"> Recuerdame
       </label>
    <!--   <a class="nav-link" href="/html/registro.php">Crea una nueva cuenta</a>-->
-   <button  class="w-100 btn btn-lg btn-primary mb1 bg-black" onclick="redireccionar()">Crea una cuenta </button>
+   <a href="<?php echo PSF::urlFor('registro.php');?>">Crear una nueva cuenta</a>
 
     </div>
     <br>
@@ -174,11 +174,7 @@
     <p class="mt-5 mb-3 text-body-secondary"></p>
   </form>
 </main>
-<script>
-  function redireccionar() {
-    window.location.href = "registro.php";
-  }
-  </script>
+
   </body>
   
 </html>
