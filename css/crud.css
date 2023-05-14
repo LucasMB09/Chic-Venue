@@ -1,0 +1,29 @@
+body {
+    font-family: Arial, sans-serif;
+  }
+  
+  h1 {
+    color: #333;
+  }
+  
+  table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  table td, table th {
+    padding: 8px;
+    border: 1px solid #ccc;
+  }
+  
+  table th {
+    background-color: #f0f0f0;
+  }
+  
+  form {
+    margin-bottom: 20px;
+  }
+  
+  form input[type="text"], form input[type="submit"] {
+    padding: 6px;
+  }
