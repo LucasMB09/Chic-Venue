@@ -64,24 +64,60 @@
              <!--   <a class="navbar-brand" href="#"> <!-- ACCEDER AL FILTRO
                <img src="/assets/filtro.png" alt="carrito" width="30" height="30" class="d-inline-block align-text-top">
               </a> -->
-              <button type="button" style="background-image: url('/assets/filtro.png'); width: 30; height: 30;" data-toggle="modal" data-target="#exampleModalLong">
+              <button type="button" style="background-image: url('/assets/filtro.png'); width: 30px; height: 30px;" data-toggle="modal" data-target="#exampleModalLong">
               </button>
              <!-- Modal -->
                 <div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
                   <div class="modal-dialog" role="document">
                     <div class="modal-content">
                       <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
+                        <h5 class="modal-title" id="exampleModalLongTitle">¿Buscas algo en especial?</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                           <span aria-hidden="true">&times;</span>
                         </button>
                       </div>
                       <div class="modal-body">
-                        ...
+                        <div id="filtro-form">
+                          <label for="color">Color</label>
+                          <select id="color">
+                            <option value="todos">Todos</option>
+                            <option value="verde">Verde</option>
+                            <option value="azul">Azul</option>
+                            <option value="blanco">Blanco</option>
+                            <option value="negro">Negro</option>
+                            <option value="rosa">Rosa</option>
+                            <option value="café">Café</option>
+                            <option value="morado">Morado</option>
+                          </select>
+                          
+                          <label for="talla">Talla</label>
+                          <select id="talla">
+                            <option value="todas">Todas</option>
+                            <option value="xs">XS</option>
+                            <option value="s">S</option>
+                            <option value="m">M</option>
+                            <option value="l">L</option>
+                            <option value="xl">XL</option>
+                          </select>
+                          
+                          <label for="precio">Precio</label>
+                          <select id="precio">
+                            <option value="ninguno">Ninguno</option>
+                            <option value="ascendente">Del más barato al más caro</option>
+                            <option value="descendente">Del más caro al más barato</option>
+                          </select>
+                          
+                          
+                          <input type="checkbox" id="ofertas">
+                          <label for="ofertas">Mostrar solo ofertas/descuentos</label>
+                          
+                          
+                          <button type="button" id="filtrar-btn">Filtrar</button>
+                        </div>
                       </div>
                       <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                        <button type="button" class="btn btn-primary">Save changes</button>
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">CERRAR</button>
+                        <button type="button" id="busqueda_filtro" class="btn btn-primary">Buscar</button>
                       </div>
                     </div>
                   </div>
