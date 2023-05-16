@@ -1,0 +1,105 @@
+:root{
+    --negro: #000000;
+    --blanco: #ffffff;
+    --gris: #D6D6D6;
+}
+
+.barra-bnav{
+    background-color: var(--negro);
+    padding: .3rem;
+}
+.navbar{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    margin-top: 1rem;
+    text-align: center;
+}
+.navbar-logo{
+    display: inline-block;
+    vertical-align: top;
+    width: 6rem;
+}
+.navbar-logo img{
+    display: flex;
+    width: 100%;
+    height: 5rem;
+}
+.navbar .vinculos{
+    display: table;
+    height:20px;
+}
+.navbar .vinculos a{
+    padding: 1rem;
+    color: var(--negro);
+    text-decoration: none;
+    font-size: 1rem;
+    display: table-cell;
+    vertical-align: text-bottom;
+}
+
+body{
+    font-size: 16px;
+    font-family: 'Assistant', sans-serif;
+}
+h1{
+    text-align: center;
+    font-size: 1.8rem;
+    text-transform: uppercase;
+}
+.contenedor{
+    background-color: var(--gris);
+    width: min(60rem, 100%); /*Utilizar el valor mas pequeño*/
+    margin: 0 auto; /*Utilizar en elementos cuyo padre no es un display flex*/
+    padding: 2rem;
+    border-radius: 1rem;
+    flex-direction: row;
+}
+.caja-principal{
+    width: 100%;
+    background: var(--gris);
+    border-radius: 10px;
+    padding: 10px 20px;
+    display: flex;
+    align-items: center; 
+    justify-content: space-between;
+}
+.imagen{
+    flex-shrink: 0;
+    width: 150px;
+}
+.imagen img{
+    width: 100%;
+}
+.contenedor .caja-principal .texto{
+    margin-left: 35px;
+    text-transform: uppercase;
+    font-weight: bold;
+}
+.contenedor .caja-principal .carrito .boton1{
+    background-color: var(--negro);
+    color: var(--blanco);
+    padding: 1rem 3rem;
+    margin-top: 1rem;
+    font-size: .8rem;
+    text-decoration: none;
+    text-transform: uppercase;
+    font-weight: bold;
+    border-radius: 2rem;
+    width: 80%;
+    text-align: center;
+    border: none;
+}
+
+.contenedor .caja-principal .delete{
+    align-items: center;
+}
+.contenedor .caja-principal .delete p{
+    font-size: 2.5rem;
+}
+.contenedor .caja-principal .delete .boton2{
+    color: var(--negro);
+    text-align: center;
+    text-transform: uppercase;
+}
+
