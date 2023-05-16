@@ -1,0 +1,245 @@
+body {
+    font-family: Arial, sans-serif;
+  }
+  
+  .container {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+  }
+
+  .subtotal-container {
+    display: flex;
+    flex-direction: column;
+    align-items: left;
+  }
+  
+
+  .delete-button {
+    margin-top: 8px;
+    border: none;
+    background-color: transparent;
+    text-decoration: underline;
+    color: inherit;
+    cursor: pointer;
+  }
+
+  .edit-button {
+    margin-top: 35px;
+    margin-left: 30px;
+    border: none;
+    background-color: transparent;
+    text-decoration: underline;
+    color: inherit;
+    cursor: pointer;
+  }
+
+  .left-column {
+    flex: 1;
+    margin-right: 26px;
+    margin-left: 12px;
+  }
+  
+  .save-button {
+    display: flex;
+    justify-content: left;
+    background-color: transparent;
+  }
+
+  .favorite-button {
+    margin-top: 25px;
+    width: 35px;
+    height: 35px;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    border: none;
+    cursor: pointer;
+    background-color: transparent;
+  }
+
+  .favorite-icon {
+    width: 30px; 
+    height: 30px;
+  }
+
+  .right-column {
+    flex: 0 0 30%;
+    text-align: left;
+    margin-left: 20px;
+    margin-right: 12px;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+
+  
+  h2 {
+    margin-top: 0;
+  }
+  
+  table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  th, td {
+    padding: 10px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+  }
+  
+  th {
+    background-color: #f2f2f2;
+    
+  }
+  
+  td img {
+    width: 120px;
+    height: 120px;
+  }
+  
+
+  td .quantity {
+    display: flex;
+    align-items: center;
+  }
+  
+  td .quantity button {
+    border: none;
+    background-color: #f2f2f2;
+    padding: 5px 10px;
+    cursor: pointer;
+    
+    
+  }
+  
+  td .quantity button:hover {
+    background-color: #e0e0e0;
+  }
+  
+  td .quantity input {
+    width: 30px;
+    text-align: center;
+    border: none;
+  }
+  
+  td .subtotal {
+    font-weight: bold;
+  }
+  
+  .right-column h3 {
+    margin-top: 0;
+  }
+  
+  .right-column p {
+    margin-bottom: 5px;
+  }
+  
+  .right-column .total {
+    font-size: 18px;
+    font-weight: bold;
+  }
+  
+  .right-column .buy-button-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+  }
+
+
+  .right-column .buy-button {
+    padding: 10px 80px;
+    background-color: #303030;
+    border: none;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 20px;
+  }
+  
+  .right-column .buy-button:hover {
+    background-color: #7d7d7d;
+  }
+
+  .decrease-button,
+  .increase-button {
+    display: inline-block;
+    margin-left: 8px;
+    padding: 5px 10px;
+    font-size: 16px;
+    font-weight: bold;
+    background-color: #f1f1f1;
+    border: none;
+    cursor: pointer;
+  }
+  
+  .decrease-button:hover,
+  .increase-button:hover {
+    background-color: #e1e1e1;
+  }
+  
+  .decrease-button:active,
+  .increase-button:active {
+    background-color: #d1d1d1;
+  }
+
+  .quantity-input {
+    width: 20px;
+    font-size: 14px;
+    text-align: center; 
+    border: none;
+    margin-left: 4px;
+  }
+
+  .confirmation-popup {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #fff;
+    padding: 20px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+    z-index: 9999;
+    display: none;
+  }
+  
+  .confirm-yes,
+  .confirm-no {
+    display: block;
+    width: 100px;
+    margin: 10px auto;
+    padding: 10px;
+    text-align: center;
+    background-color: #717171;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+
+
+  .confirm-yes {
+    float: right;
+    margin-right: 13px;
+
+  }
+  
+  .confirm-no {
+    float: left;
+    margin-left: 13px;
+  }
+  
+  .confirm-yes:hover,
+  .confirm-no:hover {
+    background-color: #464646;
+  } 
+
+
+  
+  .close-button {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    cursor: pointer;
+  }
