@@ -1,8 +1,8 @@
 <?php
      session_start();
 
-     $email = $_POST["iemail"];
-     $pass = $_POST["ipass"];
+     $email = trim($_POST["iemail"]);
+     $pass = trim($_POST["ipass"]);
 
      $mail = " ";
      $pas = " ";
@@ -31,18 +31,18 @@
                     $resultado2 = mysqli_query($conexion, $query2);
                     /*while($fila2 = mysqli_fetch_assoc($resultado2)){
                          $valor2 = $fila2["contraseña"];*/
-                         $fila2 = mysqli_fetch_array($resultado2);
-                         $valor2 = $fila2[0];
-                         //echo $valor2."<br>";
-                         if($valor2 == $pass){
-                              $pas = $pass;
-                              $con = 1;
-                              //break;
-                         }
-                         else{
-                              $pas = "Incorrecta";
-                              $con = 0;
-                         }
+                    $fila2 = mysqli_fetch_array($resultado2);
+                    $valor2 = $fila2[0];
+                    //echo $valor2."<br>";
+                    if($valor2 == $pass){
+                         $pas = $pass;
+                         $con = 1;
+                         //break;
+                    }
+                    else{
+                         $pas = "Incorrecta";
+                         $con = 0;
+                    }
                     //}
 
                     if($con == 1 or $conmail == 1){

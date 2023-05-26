@@ -1,33 +1,23 @@
-const formulario = document.getElementById("registro");
-const inputs = document.querySelectorAll("#registro input");
+const formulario = document.getElementById("login");
+const inputs = document.querySelectorAll("#login input");
 
 const exp = {
     email: /^[a-zA-Z0-9._+-]+@[a-zA-Z0-9-]+\.[a-zA-Z]{2,}$/,
-    pass: /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*()])[a-zA-Z\d!@#$%^&*()]{8,}$/,
-    nombre: /^[a-zA-ZÀ-ÿ\s]{1,40}$/,
-    apellido: /^[a-zA-ZÀ-ÿ\s]{1,40}$/
+    pass: /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*()])[a-zA-Z\d!@#$%^&*()]{8,}$/
 }
 
 const campos = {
     email: false,
-    pass: false,
-    nombre: false,
-    apellido: false
+    pass: false
 }
 
 const validarFormulario = (e) => {
     switch (e.target.name) {
-        case "email":
-            validarCampo(exp.email, e.target, "email");
+        case "iemail":
+            validarCampo(exp.email, e.target,"email");
         break;
-        case "contrasena":
-            validarCampo(exp.pass, e.target, "pass");
-        break;
-        case "nombre":
-            validarCampo(exp.nombre, e.target, "nombre")
-        break;
-        case "apellido":
-            validarCampo(exp.apellido, e.target, "apellido")
+        case "ipass":
+            validarCampo(exp.pass, e.target,"pass");
         break;
     }
 }
@@ -54,7 +44,7 @@ inputs.forEach((input) => {
 });
 
 formulario.addEventListener('submit', (e) => {
-	if(campos.email && campos.pass && campos.nombre && campos.apellido){
+	if(campos.email && campos.pass){
 	    document.getElementById('formulario_mensaje-exito').classList.add('formulario_mensaje-exito-activo');
 		setTimeout(() => {
 			document.getElementById('formulario_mensaje-exito').classList.remove('formulario_mensaje-exito-activo');
@@ -73,7 +63,3 @@ formulario.addEventListener('submit', (e) => {
 		console.log("llena campos");
     }
 });
-
-function go_login() {
-    window.location.href = 'log-in.html';
-}
