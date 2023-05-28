@@ -1,43 +1,51 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <title>Payment Form</title>
-    <link rel="stylesheet" href="/css/stylecard.css">
-
-
+    <link rel="stylesheet" href="stylecard.css">
 </head>
+
 <body>
-    
+
     <div class="container">
-        <h1>NUEVA TARJETA </h1>
+        <h1>NUEVA TARJETA</h1>
+
         <div class="first-row">
             <div class="owner">
-                <h3>Titular de la tarjeta</h3>
+                <h3>Nombre del titular de la tarjeta</h3>
                 <div class="input-field">
-                    <input type="text">
+                    <input type="text" id="owner-name-input">
+                    <div id="ownerNameErrorMessage" class="error-message"></div>
                 </div>
             </div>
             <div class="cvv">
                 <h3>CVV</h3>
                 <div class="input-field">
-                    <input type="password">
+                    <input type="password" id="cvvInput" maxlength="3">
+                    <div id="cvvErrorMessage" class="error-message"></div>
                 </div>
             </div>
         </div>
+
         <div class="second-row">
             <div class="card-number">
-                <h3>Numero de tarjeta</h3>
+                <h3>Número de la tarjeta</h3>
                 <div class="input-field">
-                    <input type="text">
+                    <input type="text" id="card-number-input" maxlength="16">
+                    <div id="cardNumberErrorMessage" class="error-message"></div>
                 </div>
             </div>
+
         </div>
+
         <div class="third-row">
             <h3>Vencimiento</h3>
             <div class="selection">
                 <div class="date">
                     <select name="months" id="months">
+                        <option value="mes">Mes</option>
                         <option value="Jan">01</option>
                         <option value="Feb">02</option>
                         <option value="Mar">03</option>
@@ -50,8 +58,9 @@
                         <option value="Oct">10</option>
                         <option value="Nov">11</option>
                         <option value="Dec">12</option>
-                      </select>
-                      <select name="years" id="years">
+                    </select>
+                    <select name="years" id="years">
+                        <option value="año">Año</option>
                         <option value="2023">2023</option>
                         <option value="2024">2024</option>
                         <option value="2025">2025</option>
@@ -63,31 +72,127 @@
                         <option value="2031">2031</option>
                         <option value="2032">2032</option>
                         <option value="2033">2033</option>
-                      </select>
+                        <option value="2034">2034</option>
+                        <option value="2035">2035</option>
+                    </select>
                 </div>
                 <div class="cards">
-                    <img src="/assets/mc.png" alt="">
-                    <img src="/assets/vi.png" alt="">
-                    <img src="/assets/pp.png" alt="">
+                    <img src="mc.png" alt="">
+                    <img src="vi.png" alt="">
+                    <img src="pp.png" alt="">
                 </div>
-            </div>    
+            </div>
+            <div id="expirationErrorMessage" class="error-message"></div>
         </div>
         <a href="#" id="addCardBtn">Añadir tarjeta</a>
     </div>
 
     <script>
-        document.getElementById('addCardBtn').addEventListener('click', function(event) {
-            event.preventDefault(); // Prevenir el comportamiento predeterminado del enlace
+        // Validación del CVV
+        var cvvInput = document.getElementById("cvvInput");
+        var cvvErrorMessage = document.getElementById("cvvErrorMessage");
 
-            var message = document.createElement('div');
-            message.className = 'message';
-            message.textContent = 'La tarjeta fue añadida exitosamente';
-            document.body.appendChild(message);
+        cvvInput.addEventListener("input", function () {
+            var cvvValue = cvvInput.value.trim();
+            var numbersOnly = cvvValue.replace(/\D/g, '');
 
-            setTimeout(function() {
-                message.remove();
-            }, 3000);
+            if (numbersOnly.length === 3) {
+                cvvInput.value = numbersOnly;
+                cvvErrorMessage.textContent = '';
+            } else {
+                cvvInput.value = numbersOnly;
+                cvvErrorMessage.textContent = "El CVV no es válido";
+            }
+        });
+
+        // Validación del número de tarjeta
+        var cardNumberInput = document.getElementById('card-number-input');
+        var cardNumberErrorMessage = document.getElementById('cardNumberErrorMessage');
+
+        cardNumberInput.addEventListener('input', function () {
+            var cardNumber = cardNumberInput.value.trim();
+            var numericCardNumber = cardNumber.replace(/\D/g, '');
+
+            if (numericCardNumber.length === 16) {
+                cardNumberInput.value = numericCardNumber;
+                cardNumberErrorMessage.textContent = '';
+            } else {
+                cardNumberInput.value = numericCardNumber;
+                cardNumberErrorMessage.textContent = 'El número de tarjeta no es válido';
+            }
+        });
+
+        // Validación del nombre del titular de la tarjeta
+        var ownerNameInput = document.getElementById('owner-name-input');
+        var ownerNameErrorMessage = document.getElementById('ownerNameErrorMessage');
+
+        ownerNameInput.addEventListener('input', function () {
+            var ownerName = ownerNameInput.value.trim();
+            var regex = /^[A-Za-z\s]+$/; // Expresión regular para letras y espacios
+
+            if (!regex.test(ownerName)) {
+                ownerNameInput.value = ownerName.replace(/[^A-Za-z\s]/g, ''); // Eliminar caracteres no permitidos
+            }
+        });
+
+        // Botón añadir tarjeta
+        document.getElementById('addCardBtn').addEventListener('click', function (event) {
+            event.preventDefault();
+
+            var ownerName = ownerNameInput.value.trim();
+            var cvvValue = cvvInput.value.trim();
+            var cardNumber = cardNumberInput.value.trim();
+            var monthsSelect = document.getElementById('months');
+            var yearsSelect = document.getElementById('years');
+            var selectedMonth = monthsSelect.value;
+            var selectedYear = yearsSelect.value;
+
+            var errorCount = 0; // Contador de errores
+
+            if (ownerName.length === 0) {
+                ownerNameErrorMessage.textContent = 'Por favor, introduzca el nombre del titular de la tarjeta';
+                ownerNameErrorMessage.style.color = 'red';
+                errorCount++;
+            } else {
+                ownerNameErrorMessage.textContent = '';
+            }
+
+            if (cardNumber.length === 0) {
+                cardNumberErrorMessage.textContent = 'Por favor, introduzca el número de tarjeta';
+                cardNumberErrorMessage.style.color = 'red';
+                errorCount++;
+            } else {
+                cardNumberErrorMessage.textContent = '';
+            }
+
+            if (cvvValue.length === 0) {
+                cvvErrorMessage.textContent = 'Por favor, introduzca el CVV';
+                cvvErrorMessage.style.color = 'red';
+                errorCount++;
+            } else {
+                cvvErrorMessage.textContent = '';
+            }
+
+            if (selectedMonth === 'mes' || selectedYear === 'año') {
+                expirationErrorMessage.textContent = 'Por favor, seleccione la fecha de vencimiento';
+                expirationErrorMessage.style.color = 'red';
+                errorCount++;
+            } else {
+                expirationErrorMessage.textContent = '';
+            }
+
+            if (errorCount === 0) {
+                var message = document.createElement('div');
+                message.className = 'message';
+                message.textContent = 'La tarjeta fue añadida exitosamente';
+                document.body.appendChild(message);
+
+                setTimeout(function () {
+                    message.remove();
+                }, 3000);
+            }
         });
     </script>
 </body>
+
 </html>
