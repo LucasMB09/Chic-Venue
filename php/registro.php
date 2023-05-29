@@ -35,18 +35,22 @@
             $consulta = "INSERT INTO cliente(nombre,apellido,correo_electronico,contraseña) VALUES ('$nombre','$apellido','$email','$contrasena')";
             $resultado = mysqli_query($conexion,$consulta);
             if($resultado){
-                ?>
+                /*?>
                 <h3 class="ok">¡Te has registrado correctamente!</h3>
-                <?php
+                <?php*/
+                header("Location: ../html/log-in.html");
+                include "./html/registro.html";
             } else {
-                ?>
+                /*?>
                 <h3 class="bad">¡Ups ha ocurrido un error!</h3>
-                <?php
+                <?php*/
+                header("Location: ../html/registro.html");
+                
             } 
         } else {
-            ?>
+            /*?>
             <h3 class="bad">¡Por favor completa los campos!</h3>
-            <?php
+            <?php*/
         }
     }
 
