@@ -13,7 +13,7 @@ class CreateDb
 
         // class constructor
     public function __construct(
-        $dbname = "chic_venue",
+        $dbname = "chicvenue",
         $tablename = "articulo",
         $servername = "localhost",
         $username = "root",
