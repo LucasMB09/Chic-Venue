@@ -8,11 +8,24 @@ const exp = {
     apellido: /^[a-zA-ZÀ-ÿ\s]{1,40}$/
 }
 
+const contra = {
+    carac: /[a-zA-Z\d!@#$%^&*()]{8,}/,
+    mayus:/(?=.*[A-Z])[a-zA-Z\d!@#$%^&*()]/,
+    minus:/(?=.*[a-z])[a-zA-Z\d!@#$%^&*()]/,
+    car:/(?=.*[!@#$%^&*()])[a-zA-Z\d!@#$%^&*()]/,
+    num:/(?=.*\d)[\d!@#$%^&*()]/
+}
+
 const campos = {
     email: false,
     pass: false,
     nombre: false,
-    apellido: false
+    apellido: false,
+    carac: false,
+    mayus: false,
+    minus: false,
+    car: false,
+    num: false
 }
 
 const validarFormulario = (e) => {
@@ -22,6 +35,17 @@ const validarFormulario = (e) => {
         break;
         case "contrasena":
             validarCampo(exp.pass, e.target, "pass");
+            valcontra(contra.carac,e.target, "carac");
+            valcontra(contra.mayus,e.target, "mayus");
+            valcontra(contra.minus,e.target, "minus");
+            valcontra(contra.car,e.target, "car");
+            valcontra(contra.num,e.target, "num");
+            if(campos.carac && campos.mayus && campos.minus && campos.car && campos.num){
+                contenedor.style.display = "none";
+            }
+            else{
+                contenedor.style.display = "block";
+            }
         break;
         case "nombre":
             validarCampo(exp.nombre, e.target, "nombre")
@@ -29,6 +53,17 @@ const validarFormulario = (e) => {
         case "apellido":
             validarCampo(exp.apellido, e.target, "apellido")
         break;
+    }
+}
+
+const valcontra = (expresion, input, campo) => {
+    if(expresion.test(input.value)){
+        document.getElementById(`${campo}`).style.display = 'none';
+        campos[campo]=true;
+    }
+    else{
+        document.getElementById(`${campo}`).style.display = 'block';
+        campos[campo]=false;
     }
 }
 
