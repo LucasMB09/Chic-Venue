@@ -11,7 +11,7 @@
     <link rel="canonical" href="https://getbootstrap.com/docs/5.3/examples/sign-in/">
     <!-- Enlaces a los archivos CSS y JavaScript de Font Awesome alojados en línea -->
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
-    <link rel="stylesheet" href="/css/formulario.css">
+    <link rel="stylesheet" href="css/formulario.css">
 
     
 
@@ -150,6 +150,10 @@
 
     
     <main class="form-signin w-100 m-auto">
+      <div>
+        <button class="boton_regreso" onclick="go_login()" type="submit">Regreso</button>
+        <p class="mt-5 mb-3 text-body-secondary"></p>
+      </div>
       <!--Empieza formulario-->
       <form id="login" action="/con_db.php" method= "POST" enctype="multipart/form-data">
         <img class="Logo de Chic Avenue" src="/assets/logo_CA.PNG" alt="" width="82" height="70">
@@ -175,29 +179,25 @@
         <a class="nav-link" href="registro.html"><strong><u>Crea una nueva cuenta</u></strong></a>
       <!-- <a href="<?php echo PSF::urlFor('/workspaces/Chic-Venue/html/registro.php');?>">Crear una nueva cuenta</a>-->
 
-    <div class="checkbox mb-3">
-      <label>
-        <input type="checkbox" value="remember-me">Recuerdame
-      </label>
-      <a class="nav-link" href="/html/registro.php"><strong><u>Crea una nueva cuenta</u></strong></a>
-      <!-- <a href="<?php echo PSF::urlFor('/workspaces/Chic-Venue/html/registro.php');?>">Crear una nueva cuenta</a>-->
-
     </div>
     <br>
     <button class="w-100 btn btn-lg btn-primary mb1 bg-black" type="submit">Iniciar sesión</button>
     <p class="mt-5 mb-3 text-body-secondary"></p>
+    <div class="formulario_mensaje" id="formulario_mensaje">
+      <p><i class="fas fa-exclamation-triangle"></i> <b>Error: </b>Se deben completar todos los campos obligatorios.</p>
+    </div>
+  </form>
+  <form class="campo_validaciones" >
+    <div class="contenedor" id="requiere">
+      <h3>La contraseña requiere:</h3>
+      <h4 class="text_validaciones">8 carácteres</h4>
+      <h4 class="text_validaciones">1 mayúscula</h4>
+      <h4 class="text_validaciones">1 minúscula</h4>
+      <h4 class="text_validaciones">1 carácter especial</h4>
+      <h4 class="text_validaciones">1 número</h4>  
+    </div>
   </form>
 </main>
-        </div>
-        <br>
-        <button class="w-100 btn btn-lg btn-primary mb1 bg-black" type="submit" value="siguiente" id="Senviar">Iniciar sesión</button>
-        <p class="mt-5 mb-3 text-body-secondary"></p> 
-        <br><br>
-        <div class="formulario_mensaje" id="formulario_mensaje">
-          <p><i class="fas fa-exclamation-triangle"></i> <b>Error: </b>Se deben completar todos los campos obligatorios.</p>
-        </div>
-      </form>
-    </main>
     <script src="/js/login_verificar.js"></script>
   </body>
   

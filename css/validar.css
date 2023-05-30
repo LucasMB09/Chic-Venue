@@ -1,0 +1,136 @@
+*{
+    box-sizing: border-box;
+}
+
+body{
+    max-width: 1200px;
+    font-family: 'Roboto', sans-serif;
+    background: #F4F4F4;
+}
+
+main fieldset legend{
+    color: #DCD0C0;
+    background: #373737;
+    padding: 10px;
+    border-radius: 20px;
+    font-size: 15px;
+    font-weight: bold;
+    box-shadow: 1px 1px 1px 1px #333535;
+}
+
+.formulario_boton_enviar{
+    height: 45px;
+	line-height: 45px;
+	width: 30%;
+	background: #414141;
+	color: #fff;
+	font-weight: bold;
+	border: none;
+	border-radius: 3px;
+	cursor: pointer;
+	transition: .1s ease all;
+}
+
+fieldset{
+    gap: 20px;
+    border-radius: 10px;
+}
+
+#tablaMain{
+    margin: 150px 40px 60px 5px;
+    width: 600px;
+}
+table{
+    background-color: white;
+    text-align: center;
+    width: 100%;
+}
+
+th,td{
+    border: solid 1px black;
+    padding: 15px;
+}
+
+thead{
+    background-color: #414141;
+    color: white;
+    border-bottom: solid 5px black;
+}
+
+tr:nth-child(even){
+    background-color: #ddd;
+}
+
+tr:hover td{
+    background-color: #aca9a9;
+    color: white;
+}
+
+*{
+    box-sizing: border-box;
+}
+
+body{
+    max-width: 1200px;
+    font-family: 'Roboto', sans-serif;
+    background: #F4F4F4;
+}
+
+main fieldset legend{
+    color: #DCD0C0;
+    background: #373737;
+    padding: 10px;
+    border-radius: 20px;
+    font-size: 15px;
+    font-weight: bold;
+    box-shadow: 1px 1px 1px 1px #333535;
+}
+
+.formulario_boton_enviar{
+    height: 45px;
+	line-height: 45px;
+	width: 30%;
+	background: #414141;
+	color: #fff;
+	font-weight: bold;
+	border: none;
+	border-radius: 3px;
+	cursor: pointer;
+	transition: .1s ease all;
+}
+
+fieldset{
+    gap: 20px;
+    border-radius: 10px;
+}
+
+#tablaMain{
+    margin: 150px 40px 60px 5px;
+    width: 600px;
+}
+table{
+    background-color: white;
+    text-align: center;
+    width: 100%;
+}
+
+th,td{
+    border: solid 1px black;
+    padding: 15px;
+}
+
+thead{
+    background-color: #414141;
+    color: white;
+    border-bottom: solid 5px black;
+}
+
+tr:nth-child(even){
+    background-color: #ddd;
+}
+
+tr:hover td{
+    background-color: #aca9a9;
+    color: white;
+}
+

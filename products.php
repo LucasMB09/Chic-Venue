@@ -107,7 +107,7 @@
             <?php
                 $result = $database->getData();
                 while ($row = mysqli_fetch_assoc($result)){
-                    component($row['id_articulo'], $row['precio'], $row['nombre_articulo'], $row['descripcion']);
+                    component($row['id_articulo'], $row['precio'], $row['nombre_articulo'], $row['descripcion'],$row['imagen']);
                 }
             ?>
         </div>

@@ -1,5 +1,6 @@
 const formulario = document.getElementById("login");
 const inputs = document.querySelectorAll("#login input");
+const contenedor = document.getElementById("contenedor");
 
 const exp = {
     email: /^[a-zA-Z0-9._+-]+@[a-zA-Z0-9-]+\.[a-zA-Z]{2,}$/,
@@ -62,4 +63,10 @@ formulario.addEventListener('submit', (e) => {
 		document.getElementById('formulario_mensaje').classList.add('formulario_mensaje-activo');
 		console.log("llena campos");
     }
+    
 });
+
+function go_login() {
+    window.location.href = 'index.html';
+}
+

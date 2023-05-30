@@ -1,13 +1,13 @@
 <?php
 
-function component($id_articulo, $precio, $nombre_articulo, $descripcion){
+function component($id_articulo, $precio, $nombre_articulo, $descripcion,$imagen){
     $element = "
     
     <div class=\"col-md-3 col-sm-6 my-3 my-md-0\">
                 <form action=\"index.php\" method=\"post\">
                     <div class=\"card shadow\">
                         <div>
-                            <img src=\"assets/blusa1.PNG\" alt=\"Image1\" class=\"img-fluid card-img-top\">
+                            <img src=\"$imagen\" alt=\"Image1\" class=\"img-fluid card-img-top\">
                         </div>
                         <div class=\"card-body\">
                             <h5 class=\"card-title\">$nombre_articulo</h5>
@@ -67,20 +67,3 @@ function cartElement($productimg, $productname, $productprice, $productid){
     ";
     echo  $element;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
