@@ -125,7 +125,7 @@ formulario.addEventListener('submit', (e) => {
 });
 
 function go_login() {
-    window.location.href = 'log-in.html';
+    window.location.href = 'log-in.php';
 }
 
 //console.log(mensaje.textContent);

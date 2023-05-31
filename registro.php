@@ -31,7 +31,7 @@
                     <div class="logo">
                         <img src="/assets/logo.jpg" width="170" height="170">
                     </div>
-                    <h2>CHIC AVENUE</h2>
+                    <h2>CHIC VENUE</h2>
                     <p>¿Ya es parte de Chic Venue? Inicie sesión aquí</p>
                     <button class="sign-up-btn" type="button" onclick="go_login()" id="regreso" value="Atras">Iniciar Sesion</button>
                     <!--<button id="boton-alerta">Try me</button>-->
