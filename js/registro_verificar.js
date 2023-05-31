@@ -41,17 +41,24 @@ const validarFormulario = (e) => {
             valcontra(contra.car,e.target, "car");
             valcontra(contra.num,e.target, "num");
             if(campos.carac && campos.mayus && campos.minus && campos.car && campos.num){
-                contenedor.style.display = "none";
+                contenedor.classList.remove('contenedor');
+                contenedor.classList.add('contenedor_correc');
+                document.getElementById("texcorrec").style.display = 'block';
+                document.getElementById("uwu").style.display = 'none';
             }
             else{
                 contenedor.style.display = "block";
+                contenedor.classList.remove('contenedor_correc');
+                contenedor.classList.add('contenedor');
+                document.getElementById("texcorrec").style.display = 'none';
+                document.getElementById("uwu").style.display = 'block';
             }
         break;
         case "nombre":
-            validarCampo(exp.nombre, e.target, "nombre")
+            validarCampo(exp.nombre, e.target, "nombre");
         break;
         case "apellido":
-            validarCampo(exp.apellido, e.target, "apellido")
+            validarCampo(exp.apellido, e.target, "apellido");
         break;
     }
 }
@@ -104,7 +111,7 @@ formulario.addEventListener('submit', (e) => {
     
     else{
         e.preventDefault();
-		document.getElementById('formulario_mensaje').classList.add('formulario_mensaje-activo');
+		//document.getElementById('formulario_mensaje').classList.add('formulario_mensaje-activo');
 		console.log("llena campos");
     }
 });
@@ -112,3 +119,12 @@ formulario.addEventListener('submit', (e) => {
 function go_login() {
     window.location.href = 'log-in.html';
 }
+
+document.getElementById("regis").addEventListener("click", function() {
+    Swal.fire({
+      title: 'Error!',
+      text: 'Se deben completar todos los campos obligatorios.',
+      icon: 'error',
+      showConfirmButton: 'Aceptar'
+    });
+  });

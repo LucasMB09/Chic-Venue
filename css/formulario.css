@@ -204,9 +204,14 @@ select{
 }
 
 .text_validaciones{
-    color: #bb2929;
+    color: red;
     font-size: 14px;
     text-align: left;
+}
+
+.text_correc{
+    color: green;
+    text-align: center;
 }
 
 .contenedor{
@@ -214,5 +219,13 @@ select{
     padding: 10px;
     align-items: center;
     border: 3px solid red;
+    border-radius: 10px;
+}
+
+.contenedor_correc{
+    margin: 10px;
+    padding: 10px;
+    align-items: center;
+    border: 3px solid green;
     border-radius: 10px;
 }

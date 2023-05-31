@@ -12,7 +12,7 @@
     <!-- Enlaces a los archivos CSS y JavaScript de Font Awesome alojados en línea -->
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
     <link rel="stylesheet" href="css/formulario.css">
-
+    <script src="/sweetalert/dist/sweetalert2.all.min.js"></script>
     
 
     <link href="/assets/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -176,19 +176,18 @@
           <label>
             <input type="checkbox" value="remember-me">Recuerdame
           </label>
-        <a class="nav-link" href="registro.html"><strong><u>Crea una nueva cuenta</u></strong></a>
-      <!-- <a href="<?php echo PSF::urlFor('/workspaces/Chic-Venue/html/registro.php');?>">Crear una nueva cuenta</a>-->
-
-    </div>
-    <br>
-    <button class="w-100 btn btn-lg btn-primary mb1 bg-black" type="submit">Iniciar sesión</button>
-    <p class="mt-5 mb-3 text-body-secondary"></p>
-    <div class="formulario_mensaje" id="formulario_mensaje">
-      <p><i class="fas fa-exclamation-triangle"></i> <b>Error: </b>Se deben completar todos los campos obligatorios.</p>
-    </div>
-  </form>
+          <a class="nav-link" href="registro.html"><strong><u>Crea una nueva cuenta</u></strong></a>
+          <!-- <a href="<?php echo PSF::urlFor('/workspaces/Chic-Venue/html/registro.php');?>">Crear una nueva cuenta</a>-->
+        </div>
+        <br>
+        <button class="w-100 btn btn-lg btn-primary mb1 bg-black" type="submit" id="log">Iniciar sesión</button>
+        <p class="mt-5 mb-3 text-body-secondary"></p>
+        <!--<div class="formulario_mensaje" id="formulario_mensaje">
+          <p><i class="fas fa-exclamation-triangle"></i> <b>Error: </b>Se deben completar todos los campos obligatorios.</p>
+        </div>-->
+      </form>
   
-</main>
+  </main>
     <script src="/js/login_verificar.js"></script>
   </body>
   

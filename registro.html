@@ -16,9 +16,11 @@
         <title>REGISTRO DE USUARIO A LA TIENDA</title>
         <link rel="stylesheet" href="/css/formulario.css">
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+        <!--SweetAlert-->
+        <script src="/sweetalert/dist/sweetalert2.all.min.js"></script>
     </head>
 
-     <body>
+    <body>
         <div class="container-form sign-up">
             <div class="welcome-back">
                 <div class="message">
@@ -28,6 +30,7 @@
                     <h2>CHIC AVENUE</h2>
                     <p>¿Ya es parte de Chic Venue? Inicie sesión aquí</p>
                     <button class="sign-up-btn" type="button" onclick="go_login()" id="regreso" value="Atras">Iniciar Sesion</button>
+                    <!--<button id="boton-alerta">Try me</button>-->
                 </div>
             </div>
             <form class="formulario" id="registro" action="/registro.php" method= "POST" enctype="multipart/form-data">
@@ -48,17 +51,18 @@
                     <input type="password" name="contrasena" placeholder="Contraseña*">
                     <i class="formulacion_validacion-estado fas fa-times-circle"></i>
                 </div>
-                <button class="boton_registro" type="submit" name="registro">Registrarme</button>
+                <button class="boton_registro" type="submit" name="registro" id="regis">Registrarme</button>
                 <br><br>
-                <div class="formulario_mensaje" id="formulario_mensaje">
+                <!--<div class="formulario_mensaje" id="formulario_mensaje">
                     <p><i class="fas fa-exclamation-triangle"></i> <b>Error: </b>Se deben completar todos los campos obligatorios.</p>
-                </div>
+                </div>-->
             </form>
         </div>
         <!--Cuadro de validaciones-->
         <form class="campo_validaciones" >
             <div class="contenedor" id="contenedor">
-            <h3>La contraseña requiere:</h3>
+            <div id="uwu"><h3 >La contraseña requiere:</h3></div>
+            <div id="texcorrec" style="display: none;"><h4 class="text_correc">La contraseña cumple con<br>los requerimentos</h4></div>
             <ul class="text_validaciones" id="lista">
                 <div id="carac"><li><h4 class="text_validaciones">8 carácteres</h4></li></div>
                 <div id="mayus"><li><h4 class="text_validaciones">1 mayúscula</h4></li></div>
@@ -66,12 +70,12 @@
                 <div id="car"><li><h4 class="text_validaciones">1 carácter especial</h4></li></div>
                 <div id="num"><li><h4 class="text_validaciones">1 número</h4></li></div>
             </ul>
+            
             </div>
+            
+            
         </form>
-        
-    
         <script src="js/registro_verificar.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     </body>
 </html>
 
