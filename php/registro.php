@@ -1,5 +1,5 @@
 <?php
-    $conexion = mysqli_connect("localhost", "root", "", "chic_venue");
+    $conexion = mysqli_connect("localhost", "root", "", "chicvenue");
     $mail = "";
     $conmail = 0;
 
