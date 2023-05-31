@@ -61,7 +61,13 @@ formulario.addEventListener('submit', (e) => {
     
     else{
         e.preventDefault();
-		document.getElementById('formulario_mensaje').classList.add('formulario_mensaje-activo');
+		//document.getElementById('formulario_mensaje').classList.add('formulario_mensaje-activo');
+        Swal.fire({
+            title: 'Error!',
+            text: 'Se deben completar todos los campos obligatorios.',
+            icon: 'error',
+            showConfirmButton: 'Aceptar'
+          });
 		console.log("llena campos");
     }
     
@@ -71,11 +77,19 @@ function go_login() {
     window.location.href = 'index.html';
 }
 
-document.getElementById("log").addEventListener("click", function() {
-  Swal.fire({
-    title: 'Error!',
-    text: 'Se deben completar todos los campos obligatorios.',
-    icon: 'error',
-    showConfirmButton: 'Aceptar'
-  });
-});
+
+if((mensaje.textContent).length > 0 ){
+    switch (mensaje.textContent) {
+        case "¡Te has registrado correctamente!":
+            Swal.fire({
+                title: 'Exito!',
+                text: '¡Te has registrado correctamente!',
+                icon: 'success',
+                showConfirmButton: 'Aceptar'
+            });
+            break;
+        default:
+            break;
+    }
+    
+}

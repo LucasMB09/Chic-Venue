@@ -1,5 +1,6 @@
 const formulario = document.getElementById("registro");
 const inputs = document.querySelectorAll("#registro input");
+const mensaje = document.getElementById("mensaje");
 
 const exp = {
     email: /^[a-zA-Z0-9._+-]+@[a-zA-Z0-9-]+\.[a-zA-Z]{2,}$/,
@@ -113,6 +114,13 @@ formulario.addEventListener('submit', (e) => {
         e.preventDefault();
 		//document.getElementById('formulario_mensaje').classList.add('formulario_mensaje-activo');
 		console.log("llena campos");
+        Swal.fire({
+            title: 'Error!',
+            text: 'Se deben completar todos los campos obligatorios.',
+            icon: 'error',
+            showConfirmButton: 'Aceptar'
+        });
+        
     }
 });
 
@@ -120,11 +128,36 @@ function go_login() {
     window.location.href = 'log-in.html';
 }
 
-document.getElementById("regis").addEventListener("click", function() {
-    Swal.fire({
-      title: 'Error!',
-      text: 'Se deben completar todos los campos obligatorios.',
-      icon: 'error',
-      showConfirmButton: 'Aceptar'
-    });
-  });
+//console.log(mensaje.textContent);
+
+if((mensaje.textContent).length > 0 ){
+    switch (mensaje.textContent) {
+        case "¡Este correo ya esta asociado a una cuenta!":
+            Swal.fire({
+                title: 'Error!',
+                text: '¡Este correo ya esta asociado a una cuenta!',
+                icon: 'error',
+                showConfirmButton: 'Aceptar'
+            });
+            break;
+        case "¡Te has registrado correctamente!":
+            Swal.fire({
+                title: 'Exito!',
+                text: '¡Te has registrado correctamente!',
+                icon: 'success',
+                showConfirmButton: 'Aceptar'
+            });
+            break;
+        case "¡Ups ha ocurrido un error!":
+            Swal.fire({
+                title: 'Upss!',
+                text: 'Ha habido un error con la página, vuelva a intentarlo',
+                icon: 'warning',
+                showConfirmButton: 'Aceptar'
+            });
+            break;
+        default:
+            break;
+    }
+    
+}

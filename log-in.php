@@ -1,3 +1,7 @@
+<?php
+  session_start();
+?>
+
 <!doctype html>
 <html lang="en" data-bs-theme="auto">
   <head><script src="../assets/js/color-modes.js"></script>
@@ -155,8 +159,8 @@
         <p class="mt-5 mb-3 text-body-secondary"></p>
       </div>
       <!--Empieza formulario-->
-      <form id="login" action="/con_db.php" method= "POST" enctype="multipart/form-data">
-        <img class="Logo de Chic Avenue" src="/assets/logo_CA.PNG" alt="" width="82" height="70">
+      <form id="login" action="/php/con_db.php" method= "POST" enctype="multipart/form-data">
+        <img class="Logo de Chic Avenue" src="/assets/logo_CA.PNG" alt="LOGO" width="82" height="70">
         <h1 class="h3 mb-3 fw-normal">Inicio de sesión</h1>
         
         <!--Correo Electronico-->
@@ -176,8 +180,8 @@
           <label>
             <input type="checkbox" value="remember-me">Recuerdame
           </label>
-          <a class="nav-link" href="registro.html"><strong><u>Crea una nueva cuenta</u></strong></a>
-          <!-- <a href="<?php echo PSF::urlFor('/workspaces/Chic-Venue/html/registro.php');?>">Crear una nueva cuenta</a>-->
+          <a class="nav-link" href="registro.php"><strong><u>Crea una nueva cuenta</u></strong></a>
+          <!-- <a href="<?php //echo PSF::urlFor('/workspaces/Chic-Venue/html/registro.php');?>">Crear una nueva cuenta</a>-->
         </div>
         <br>
         <button class="w-100 btn btn-lg btn-primary mb1 bg-black" type="submit" id="log">Iniciar sesión</button>
@@ -185,6 +189,15 @@
         <!--<div class="formulario_mensaje" id="formulario_mensaje">
           <p><i class="fas fa-exclamation-triangle"></i> <b>Error: </b>Se deben completar todos los campos obligatorios.</p>
         </div>-->
+        <?php
+                if (isset($_SESSION['mensaje'])) {
+                    $mensaje = $_SESSION['mensaje'];
+                    ?>
+                    <div><h3 id="mensaje" style="display: none;"><?php echo "$mensaje";?></h3></div>
+                    <?php
+                    unset($_SESSION['mensaje']); // Limpiamos la variable de sesión
+                }
+                ?>
       </form>
   
   </main>
