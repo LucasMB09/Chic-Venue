@@ -1,5 +1,6 @@
 const formulario = document.getElementById("login");
 const inputs = document.querySelectorAll("#login input");
+const mensaje = document.getElementById("mensaje");
 
 const exp = {
     email: /^[a-zA-Z0-9._+-]+@[a-zA-Z0-9-]+\.[a-zA-Z]{2,}$/,
@@ -85,6 +86,22 @@ if((mensaje.textContent).length > 0 ){
                 title: 'Exito!',
                 text: '¡Te has registrado correctamente!',
                 icon: 'success',
+                showConfirmButton: 'Aceptar'
+            });
+            break;
+        case "La contraseña es incorrecta":
+            Swal.fire({
+                title: 'Error!',
+                text: mensaje.textContent,
+                icon: 'error',
+                showConfirmButton: 'Aceptar'
+            });
+            break;
+        case "No existe ninguna cuenta asociada a ese correo":
+            Swal.fire({
+                title: 'Error!',
+                text: mensaje.textContent,
+                icon: 'error',
                 showConfirmButton: 'Aceptar'
             });
             break;

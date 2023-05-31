@@ -190,14 +190,14 @@
           <p><i class="fas fa-exclamation-triangle"></i> <b>Error: </b>Se deben completar todos los campos obligatorios.</p>
         </div>-->
         <?php
-                if (isset($_SESSION['mensaje'])) {
-                    $mensaje = $_SESSION['mensaje'];
-                    ?>
-                    <div><h3 id="mensaje" style="display: none;"><?php echo "$mensaje";?></h3></div>
-                    <?php
-                    unset($_SESSION['mensaje']); // Limpiamos la variable de sesión
-                }
-                ?>
+          if (isset($_SESSION['mensaje'])) {
+              $mensaje = $_SESSION['mensaje'];
+              ?>
+              <div><h3 id="mensaje" style="display: none;"><?php echo "$mensaje";?></h3></div>
+              <?php
+              unset($_SESSION['mensaje']); // Limpiamos la variable de sesión
+          }
+        ?>
       </form>
   
   </main>

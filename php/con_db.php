@@ -61,21 +61,36 @@
 
      if($mail != "No hay" ){
           if($pas != "Incorrecta"){
-               echo "La cuenta existe"."<br>";
+               /*echo "La cuenta existe"."<br>";
                echo "Correo: $mail"."<br>";
-               echo "Contraseña: $pas"."<br>";
+               echo "Contraseña: $pas"."<br>";*/
+               $_SESSION['mensaje']  = "Inicio de sesión exitoso";
+               header("Location: ../index.php");
+               // Liberar recursos y cerrar conexión
+               mysqli_free_result($resultado);
+               mysqli_close($conexion);
+               return;
           }
           else{
-               echo "La contraseña no es correcta"."<br>";
+               //echo "La contraseña no es correcta"."<br>";
+               $_SESSION['mensaje']  = "La contraseña es incorrecta";
+               header("Location: ../log-in.php");
+               // Liberar recursos y cerrar conexión
+               mysqli_free_result($resultado);
+               mysqli_close($conexion);
+               return;
           }
      }
      else{
-          echo "No existe ninguna cuenta asociada a ese correo"."<br>";
+          //echo "No existe ninguna cuenta asociada a ese correo"."<br>";
+          $_SESSION['mensaje']  = "No existe ninguna cuenta asociada a ese correo";
+          header("Location: ../log-in.php");
+          // Liberar recursos y cerrar conexión
+          mysqli_free_result($resultado);
+          mysqli_close($conexion);
+          return;
      }
 
-     // Liberar recursos y cerrar conexión
-     mysqli_free_result($resultado);
-     mysqli_close($conexion);
      
 
 ?>
