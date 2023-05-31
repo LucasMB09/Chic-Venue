@@ -140,14 +140,6 @@ if((mensaje.textContent).length > 0 ){
                 showConfirmButton: 'Aceptar'
             });
             break;
-        case "¡Te has registrado correctamente!":
-            Swal.fire({
-                title: 'Exito!',
-                text: '¡Te has registrado correctamente!',
-                icon: 'success',
-                showConfirmButton: 'Aceptar'
-            });
-            break;
         case "¡Ups ha ocurrido un error!":
             Swal.fire({
                 title: 'Upss!',
