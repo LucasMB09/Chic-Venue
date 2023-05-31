@@ -74,7 +74,7 @@ formulario.addEventListener('submit', (e) => {
 });
 
 function go_login() {
-    window.location.href = 'index.html';
+    window.location.href = 'index.php';
 }
 
 
