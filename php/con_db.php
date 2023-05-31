@@ -3,6 +3,7 @@
 
      $email = trim($_POST["iemail"]);
      $pass = trim($_POST["ipass"]);
+     $recuerda = $_POST["recuerda"];
 
      $mail = " ";
      $pas = " ";
@@ -65,6 +66,22 @@
                echo "Correo: $mail"."<br>";
                echo "Contraseña: $pas"."<br>";*/
                $_SESSION['mensaje']  = "Inicio de sesión exitoso";
+               $_SESSION['email'] = $mail;
+               $_SESSION['recuerda'] = $recuerda;
+               $querynombre = "SELECT nombre FROM cliente";
+               $resulnombre = mysqli_query($conexion, $querynombre);
+
+               if($resulnombre){
+                    $fila3 = mysqli_fetch_array($resulnombre);
+                    $valnom = $fila3[0];
+                    $_SESSION['user'] = $valnom;
+               }
+               else{
+                    return;
+               }
+               
+
+               
                header("Location: ../index.php");
                // Liberar recursos y cerrar conexión
                mysqli_free_result($resultado);

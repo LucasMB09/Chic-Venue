@@ -158,6 +158,7 @@
         <button class="boton_regreso" onclick="go_login()" type="submit">Regreso</button>
         <p class="mt-5 mb-3 text-body-secondary"></p>
       </div>
+      
       <!--Empieza formulario-->
       <form id="login" action="/php/con_db.php" method= "POST" enctype="multipart/form-data">
         <img class="Logo de Chic Avenue" src="/assets/logo_CA.PNG" alt="LOGO" width="82" height="70">
@@ -177,9 +178,10 @@
         </div>
 
         <div class="checkbox mb-3">
-          <label>
-            <input type="checkbox" value="remember-me">Recuerdame
-          </label>
+          
+          <input type="checkbox" name="recuerda" value="remember-me" id="recuerda">
+          <label for="recuerda">Recuerdame</label>
+
           <a class="nav-link" href="registro.php"><strong><u>Crea una nueva cuenta</u></strong></a>
           <!-- <a href="<?php //echo PSF::urlFor('/workspaces/Chic-Venue/html/registro.php');?>">Crear una nueva cuenta</a>-->
         </div>

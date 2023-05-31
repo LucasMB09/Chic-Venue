@@ -1,5 +1,11 @@
 <?php
   session_start();
+  if(isset($_COOKIE['usuario'])){
+    $_SESSION['user'] = $_COOKIE['usuario'];
+    $_SESSION['email'] = $_COOKIE['email'];
+    $user = $_SESSION['user'];
+    $email = $_SESSION['email'];
+  }
 ?>
 
 <!doctype html>
@@ -13,21 +19,35 @@
     <title>Chic Venue</title>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
     <script src="/sweetalert/dist/sweetalert2.all.min.js"></script>
+    <link href="/css/formulario.css" rel="stylesheet">
   </head>
   <body class="p-3 m-0 border-0 bd-example">
-    <?php
-      if (isset($_SESSION['mensaje'])) {
-        $mensaje = $_SESSION['mensaje'];
-        ?>
-        <div><h3 id="mensaje" style="display: none;"><?php echo "$mensaje";?></h3></div>
-        <?php
-        unset($_SESSION['mensaje']); // Limpiamos la variable de sesión
-    }
-    ?>
     <!-- LINEA NEGRA -->
     <nav class="navbar bg-dark" data-bs-theme="dark">
        <div class="container-fluid">
       <br><br>
+      <?php
+      if (isset($_SESSION['mensaje'])) {
+        $mensaje = $_SESSION['mensaje'];
+        $user = $_SESSION['user'];
+        $email = $_SESSION['email'];
+        if(isset($_SESSION['recuerda'])){
+          $recuerda = $_SESSION['recuerda'];
+          setcookie('usuario', $user, time()+86400, '/');
+          setcookie('email', $email, time()+86400, '/');
+        }  
+        ?>
+        <div><h3 id="mensaje" style="display: none;"><?php echo "$mensaje";?></h3></div>
+        <h3 class="text_validaciones">Hola, <?php echo "$user";?></h1>
+        <?php
+        unset($_SESSION['mensaje']); // Limpiamos la variable de sesión
+      }
+      elseif(isset($_SESSION['email']) && isset($_SESSION['user'])){
+        ?>
+        <h3 class="text_validaciones">Hola, <?php echo "$user";?></h1>
+        <?php
+      }
+      ?>
     </div>
     </nav>
     <!--FIN LINEA NEGRA -->
