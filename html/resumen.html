@@ -7,8 +7,10 @@
     <meta name="description" content="">
     <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
     <meta name="generator" content="Hugo 0.111.3">
-    <title>Chic Avenue</title>
-
+    <title class="titulo">Chic Venue</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://getbootstrap.com/docs/5.3/assets/css/docs.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
     <link rel="canonical" href="https://getbootstrap.com/docs/5.3/examples/pricing/">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     
@@ -105,6 +107,7 @@
     <link href="pricing.css" rel="stylesheet">
   </head>
   <body>
+ 
     <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
       <symbol id="check2" viewBox="0 0 16 16">
         <path d="M13.854 3.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6.5 10.293l6.646-6.647a.5.5 0 0 1 .708 0z"/>
@@ -164,49 +167,189 @@
   </symbol>
 </svg>
 
-<div class="container py-3">
+<!-- <div class="container py-3"> -->
   <header>
-    <div class="d-flex flex-column flex-md-row align-items-center pb-3 mb-4 border-bottom">
-      <a href="/" class="d-flex align-items-center link-body-emphasis text-decoration-none">
-        <img class="logo" src="/assets/logo_CA.PNG"  width="50" height="50" alt="Logotipo de Chic Avenue" >
-       <span class="fs-4">Chic Avenue</span>
-      </a>
+    
+<div class="barra-negra"></div>
+    <div class=" flex-column flex-md-row align-items-center pb-6 mb-4 border-bottom">
+      <!-- <a href="/" class="d-flex align-items-center link-body-emphasis text-decoration-none"> -->
+          
+    <!-- MENU DE NAVEGACION -->
+    <nav class="navbar navbar-expand-lg bg-body-tertiary">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="/html/index.html">
+          <img src="logo_CA.PNG" class="rounded mx-auto d-block"  alt="" width="82" height="70">
+        </a>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="letra-texto">
+              <a class="nav-link " aria-current="page" href="/html/products.html">Novedades</a> <!-- PESTAÑA NOVEDADES -->
+            </li>
+            <li class="letra-texto">
+              <a class="nav-link" href="/html/products.html">Rebajas</a> <!-- RESTAÑA REBAJAS -->
+            </li>
+            <li class="letra-texto">
+              <a class="nav-link" href="/html/products.html">Un poco de todo </a> <!-- PESTAÑA PARA REVISAR ARTICULOS -->
+            </li>
+            <li class="letra-texto">
+              <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Ropa
+              </a>
+              <ul class="dropdown-menu"> <!-- PARA MOSTRAR DISTINTAS CATEGORIAS -->
+                <li><a class="dropdown-item" href="#">Mezclilla</a></li> <!---->
+                <li><a class="dropdown-item" href="#">Sudaderas</a></li>
+                <li><a class="dropdown-item" href="#">Vestidos</a></li>
+                <li><a class="dropdown-item" href="#">Conjuntos</a></li>
+                <li><a class="dropdown-item" href="#">Ropa de descanso</a></li>
+                <li><hr class="dropdown-divider"></li>
+                <li><a class="dropdown-item" href="#">¡TEMPORADA DE VERANO!</a></li> <!-- TEMPORADAS -->
+              </ul>
+            </li>
+          </ul>
+          <form class="d-flex" role="search">
+            <input  class="form-control me-2"  type="search" id="busqueda_text" placeholder="" aria-label="Search"> <!-- input SEARCH con id="busqueda_text"-->
+            <button class="btn btn-outline-success" id="busqueda" type="submit">Buscar</button> <!-- Botón para buscar -->
+          </form>
+          <ul class="nav">
+            <li class="nav-item">
+              &nbsp;&nbsp;&nbsp;&nbsp;
+             <!--   <a class="navbar-brand" href="#"> <!-- 
+               <img src="/assets/filtro.png" alt="carrito" width="30" height="30" class="d-inline-block align-text-top">
+              </a> -
+              <button type="button" style="background-image: url('/assets/filtro.png'); width: 10px; height: 10px;" data-toggle="modal" data-target="#exampleModalLong">
+              </button>-->
+              <a class="navbar-brand" href="#" data-toggle="modal" data-target="#exampleModalLong"> 
+                <img src="filtro.png" alt="carrito" width="30" height="30" class="d-inline-block align-text-top">
+               </a> 
+             <!-- Modal -->
+                <div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+                  <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLongTitle">¿Buscas algo en especial?</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                          <span aria-hidden="true">&times;</span>
+                        </button>
+                      </div>
+                      <div class="modal-body">
+                        <div class="form-group" id="filtro-form">
+                          <form>
+                            <div class="input-group mb-3">
+                              <div class="input-group-prepend">
+                                <label class="input-group-text" for="color">Color</label>
+                              </div>
+                              <select class="custom-select" id="color">
+                                <option value="todos">Todos</option>
+                                <option value="verde">Verde</option>
+                                <option value="azul">Azul</option>
+                                <option value="blanco">Blanco</option>
+                                <option value="negro">Negro</option>
+                                <option value="rosa">Rosa</option>
+                                <option value="café">Café</option>
+                                <option value="morado">Morado</option>
+                              </select>
+                            </div>
+                          
+                            <div class="input-group mb-3">
+                              <div class="input-group-prepend">
+                                <label class="input-group-text" for="talla">Talla</label>
+                              </div>
+                              <select class="custom-select" id="talla">
+                                <option value="todas">Todas</option>
+                                <option value="xs">XS</option>
+                                <option value="s">S</option>
+                                <option value="m">M</option>
+                                <option value="l">L</option>
+                                <option value="xl">XL</option>
+                              </select>
+                            </div>
+                          
+                            <div class="input-group mb-3">
+                              <div class="input-group-prepend">
+                                <label class="input-group-text" for="Precio">Precio</label>
+                              </div>
+                              <select class="custom-select" id="Precio">
+                                <option value="ninguno">Ninguno</option>
+                                <option value="ascendente">Del más barato al más caro</option>
+                                <option value="descendente">Del más caro al más barato</option>
+                              </select>
+                            </div>
+                          
+                          
+                          <input type="checkbox" id="ofertas">
+                          <label for="ofertas">Mostrar solo ofertas/descuentos</label>
+                          
+                        </form>
+                        </div>
+                      </div>
+                      <div class="modal-footer">
+                        <button type="button" id="busqueda_filtro" class="btn btn-primary">Filtrar</button>
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                        
+                      </div>
+                    </div>
+                  </div>
+                </div>
+            </li>
+            <li class="nav-item">
+             <li class="nav-item">
+              &nbsp;&nbsp;&nbsp;&nbsp;
+               <a class="navbar-brand" href="./log-in.html"> <!-- INCIAR SESION -->
+               <img src="usuario (1).png" alt="carrito" width="30" height="30" class="d-inline-block align-text-top">
+              </a>
+            </li>
+            <li class="nav-item">
+              &nbsp;&nbsp;&nbsp;&nbsp;
+               <a class="navbar-brand" href="./favoritos.html"> <!-- ACCEDER A FAVORITOS-->
+               <img src="favoritos.PNG" alt="carrito" width="30" height="30" class="d-inline-block align-text-top">
+              </a>
+            </li>
+            <li class="nav-item">
+              &nbsp;&nbsp;&nbsp;&nbsp;
+              <a class="navbar-brand" href="./carrito.html"> <!-- ACCEDER AL CARRITO-->
+              <img src="carrito.png" alt="carrito" width="30" height="30" class="d-inline-block align-text-top">
+             </a>
+            </li>
+          </ul>
+          </div>
+        </div>
+      </div>
+    </nav>
 
-      <nav class="d-inline-flex mt-2 mt-md-0 ms-md-auto">
-        <a class="me-3 py-2 link-body-emphasis text-decoration-none" href="#">Inicio</a>
-        <img class="carrito" src="/assets/filtro.png"  width="20" height="20" alt="filtro" href="#">
-        <img class="carrito" src="/assets/usuario.png"  width="20" height="20" alt="usuario" href="#" >
-        <img class="carrito" src="/assets/favoritos.PNG"  width="20" height="20" alt="favoritos" href="#" >
-        <img class="carrito" src="/assets/carrito.png"  width="20" height="20" alt="carrito" href="#">
-      </nav>
+    
+    <!-- FIN MENU DE NAVEGACIÓN -->
     </div>
 
+    <div class="container py-3">
     <div class="pricing-header">
-      <p class="fs-7 text-body-secondary">Ulises Gomez. Se ha realizado su compra con exito.</p>
+      <p class="letra-subtitulo">Ulises Gomez. Se ha realizado su compra con exito.</p>
     </div>
   </header>
+</div>
 
   <main>
+    <div class="container py-3">
 <!-- cuadro 1 -->
       <div class="col">
         <div class="card mb-4 rounded-3 shadow-lg" style= "width: 97%; height: 50%;" >
           <div class="card-header py-3">
-            <h4 class="my-0 fw-normal ">Producto(s)</h4>
+            <h4 class="letra-subtitulo ">Producto(s)</h4>
           </div>
+
           <div class="card-body">
-            <h3 class="card-title pricing-card-title">Compraste</h3>
+            <h3 class="letra-subtitulo"><b>Compraste</b></h3>
           </ul>
-            <ul ">
-              <li>Producto</li>
+            <ul>
+              <li class="letra-texto">Producto</li>
               <br>
-              <ul class="lista-dos-columnas">
-              <li> <img class="logo" src="/assets/blusa1.PNG"  width="150" height="210" alt="Logotipo de Chic Avenue" style="float: bottom" ></li>
+              <ul class="lista-dos-columnas-uno">
+              <li> <img class="logo" src="blusa1.PNG"  width="150" height="210" alt="Logotipo de Chic Avenue" style="float: bottom" ></li>
               <br>
-              <li class="letra">Blusa corazón</li>
-              <li>Color: rosa | Tela 100% Algodón</li>
-              <li>Talla G</li>
-              <li>Bordado de flores</li>
-              <li>$320.00 x unidad</li>
+              <li class="letra-texto">Blusa corazón</li>
+              <li class="letra-texto">Color: rosa | Tela 100% Algodón</li>
+              <li class="letra-texto">Talla G</li>
+              <li class="letra-texto">Bordado de flores</li>
+              <li class="letra-texto">$320.00 x unidad</li>
             </ul>
           </div>
         </div>
@@ -219,28 +362,28 @@
       <div class="col">
         <div class="card mb-4 rounded-3 shadow-sm">
           <div class="card-header py-3">
-            <h4 class="my-0 fw-normal">Resumen de compra</h4>
+            <h4 class="letra-subtitulo">Resumen de compra</h4>
           </div>
           <div class="card-body">
-            <h7>19 de Mayo | #3453637386</h7>
+            <h7 class="letra-texto">19 de Mayo | #3453637386</h7>
             <br>
             <br>
-            <ul class="lista-dos-columnas">
-              <li>Descripción del producto</li>
-              <li>Envio</li>
-              <li>Subtotal</li>
-              <li>$320.00</li>
-              <li>$    0.00</li>
-              <li>$320.00</li>
+            <h7 class="letra-subtitulo"><b>Descripción del producto</b></h7>
+            <ul class="lista-dos-columnas-dos">
+              
+              <li class="letra-texto">Envio</li>
+              <li class="letra-texto">Subtotal</li>
+              <li class="letra-texto">$320.00</li>
+              <li class="letra-texto">$   0.00</li>
             </ul>
             <div class="linea-horizontal" ></div>
-            <ul class="lista-dos-columnas">
-              <li>Tu pago</li>
-              <li>$320.00</li>      
+            <ul class="lista-dos-columnas-dos">
+              <li class="letra-texto">Tu pago</li>
+              <li class="letra-texto">$320.00</li>      
             </ul>
             <br>
             <i class="fas fa-check"></i>
-            <h7>Usted solicito una factura correctamente.</h7> 
+            <h7 class="letra-texto">Usted solicito una factura correctamente.</h7> 
           </div>
         </div>
       </div>
@@ -253,16 +396,16 @@
         <div class="col">
           <div class="card mb-4 rounded-3 shadow-sm">
             <div class="card-header py-3">
-              <h4 class="my-0 fw-normal">Información de pago</h4>
+              <h4 class="letra-subtitulo">Información de pago</h4>
             </div>
 
             <div class="card-body">
-              <h6 class="card-title pricing-card-title">Nombre de la tarjeta terminada en *345</h6>
+              <h6 class="letra-texto"><b>Nombre de la tarjeta terminada en *345</b></h6>
               <div class="contenedor">
-              <img class="filtro" src="/assets/tarjeta.png"  width="60" height="40" alt="filtro" >
+              <img class="filtro" src="tarjeta.png"  width="60" height="40" alt="filtro" >
               <ul class="lista">
-                <li>Transacción acreditada por BBVA  </li>
-                <li>Pago #3453637386 del 19 de mayo </li> 
+                <li class="letra-texto" >Transacción acreditada por BBVA  </li>
+                <li class="letra-texto">Pago #3453637386 del 19 de mayo </li> 
               </ul>
             
           </div>
@@ -273,38 +416,41 @@
   <footer class="pt-4 my-md-5 pt-md-5 border-top">
     <div class="row">
       <div class="col-12 col-md">
-        <img class="logo" src="/assets/logo_CA.PNG"  width="24" height="19" alt="Logotipo de Chic Avenue" >
-        <small class="d-block mb-3 text-body-secondary">&copy; 2022–2023</small>
+        <img class="logo" src="logo_CA.PNG"  width="24" height="19" alt="Logotipo de Chic Avenue" >
+        <small class="d-block mb-3 letra-texto">&copy; 2022–2023</small>
       </div>
       <div class="col-6 col-md">
-        <h5>Nosotros</h5>
+        <h5 class="letra-texto"><b>Nosotros</b></h5>
         <ul class="list-unstyled text-small">
-          <li class="mb-1"><a class="link-secondary text-decoration-none" href="#">Historia</a></li>
-          <li class="mb-1"><a class="link-secondary text-decoration-none" href="#">Random feature</a></li>
+          <li class="letra-texto"><a class="link-secondary text-decoration-none" href="#">Historia</a></li>
+        </ul>
+      </div>
 
+      
+      <div class="col-6 col-md">
+        <h5 class="letra-texto"><b>Catalogo</b></h5>
+        <ul class="list-unstyled text-small">
+          <li class="letra-texto"><a class="link-secondary text-decoration-none" href="#">Tendencia</a></li>
+          <li class="letra-texto"><a class="link-secondary text-decoration-none" href="#">Descuentos</a></li>
+          <li class="letra-texto"><a class="link-secondary text-decoration-none" href="#">Promociones</a></li>
         </ul>
       </div>
       <div class="col-6 col-md">
-        <h5>Catalogo</h5>
+        <h5 class="letra-texto"><b>Atencion a cliente</b></h5>
         <ul class="list-unstyled text-small">
-          <li class="mb-1"><a class="link-secondary text-decoration-none" href="#">Tendencia</a></li>
-          <li class="mb-1"><a class="link-secondary text-decoration-none" href="#">Descuentos</a></li>
-          <li class="mb-1"><a class="link-secondary text-decoration-none" href="#">Promociones</a></li>
-        </ul>
-      </div>
-      <div class="col-6 col-md">
-        <h5>Atencion a cliente</h5>
-        <ul class="list-unstyled text-small">
-          <li class="mb-1"><a class="link-secondary text-decoration-none" href="#">Contactos</a></li>
-          <li class="mb-1"><a class="link-secondary text-decoration-none" href="#">Ubicacion</a></li>
-          <li class="mb-1"><a class="link-secondary text-decoration-none" href="#"></a></li>
-          <li class="mb-1"><a class="link-secondary text-decoration-none" href="#"></a></li>
+          <li class="letra-texto"><a class="link-secondary text-decoration-none" href="#">Contactos</a></li>
+          <li class="letra-texto"><a class="link-secondary text-decoration-none" href="#">Ubicacion</a></li>
+          <li class="letra-texto"><a class="link-secondary text-decoration-none" href="#"></a></li>
+          <li class="letra-texto"><a class="link-secondary text-decoration-none" href="#"></a></li>
         </ul>
       </div>
     </div>
   </footer>
 </div>
 
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
+ 
 
     
   </body>
