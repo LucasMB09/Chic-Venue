@@ -1,6 +1,34 @@
+.titulo{
+  font-family:"Britannic";
+  font-size: 3rem;
+}
+
 body {
   background-image: linear-gradient(180deg, var(--bs-body-secondary-bg), var(--bs-body-bg) 100px, var(--bs-body-bg));
 }
+
+.barra-negra{
+  width: 100%;
+  height: 64px;
+  background-color:#212529;
+  display: flex;
+  flex-wrap: inherit;
+  align-items: center;
+  justify-content: space-between;
+  --bs-gutter-x: 1.5rem;
+  --bs-gutter-y: 0;
+  width: 100%;
+  padding-right: calc(var(--bs-gutter-x) * .5);
+  padding-left: calc(var(--bs-gutter-x) * .5);
+  margin-right: auto;
+  margin-left: auto;
+
+}
+
+.input-con-espacio {
+  padding-right: 40px; /* Espacio de 20 píxeles a la derecha */
+}
+
 
 .container {
   max-width: 800px;
@@ -14,8 +42,13 @@ body {
   margin-right: 10px;
 }
 
-.lista-dos-columnas {
+.lista-dos-columnas-uno {
   column-count: 2;
+  column-gap: 0px; /* Espacio entre columnas */
+}
+.lista-dos-columnas-dos {
+  column-count: 2;
+
 }
 
 .linea-horizontal {
@@ -53,9 +86,19 @@ body {
 }
 
 
-.letra{
-  font-family: 'Lobster Two',"cursive";
+.letra-titulo{
+  font-family:"Candara";
   font-size: 2rem;
+}
+
+.letra-subtitulo{
+  font-family:"Candara";
+  font-size: 1.5rem;
+}
+
+.letra-texto{
+  font-family:"Candara";
+  font-size: 1.2em;
 }
 
 
