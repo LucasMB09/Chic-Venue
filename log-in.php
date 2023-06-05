@@ -160,7 +160,7 @@
       </div>
       
       <!--Empieza formulario-->
-      <form id="login" action="/php/con_db.php" method= "POST" enctype="multipart/form-data">
+      <form id="login" action="php/con_db.php" method= "POST" enctype="multipart/form-data">
         <img class="Logo de Chic Avenue" src="/assets/logo_CA.PNG" alt="LOGO" width="82" height="70">
         <h1 class="h3 mb-3 fw-normal">Inicio de sesión</h1>
         

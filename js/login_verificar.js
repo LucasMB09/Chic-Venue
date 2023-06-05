@@ -92,7 +92,7 @@ if((mensaje.textContent).length > 0 ){
         case "La contraseña es incorrecta":
             Swal.fire({
                 title: 'Error!',
-                text: mensaje.textContent,
+                text: 'Contraseña incorrecta',
                 icon: 'error',
                 showConfirmButton: 'Aceptar'
             });
@@ -100,7 +100,7 @@ if((mensaje.textContent).length > 0 ){
         case "No existe ninguna cuenta asociada a ese correo":
             Swal.fire({
                 title: 'Error!',
-                text: mensaje.textContent,
+                text: 'Correo inválido o no registrado',
                 icon: 'error',
                 showConfirmButton: 'Aceptar'
             });

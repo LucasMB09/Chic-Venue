@@ -229,3 +229,21 @@ select{
     border: 3px solid green;
     border-radius: 10px;
 }
+
+.text_user{
+    color: white;
+    font-size: 20px;
+    text-align: left;
+}
+
+.text_toast{
+    color: black;
+    font-size: 15px;
+    text-align: justify;
+}
+
+.subir_icon{
+    top: -50px;
+    left: -50px;
+}
+

@@ -1,11 +1,33 @@
 <?php
   session_start();
+
+  if(isset($_GET['valor'])){
+    $valor = $_GET['valor'];
+  }
+  else{
+    $valor = $_SESSION['valor'];
+  }
+
   if(isset($_COOKIE['usuario'])){
     $_SESSION['user'] = $_COOKIE['usuario'];
     $_SESSION['email'] = $_COOKIE['email'];
     $user = $_SESSION['user'];
     $email = $_SESSION['email'];
   }
+  elseif($valor == 0){
+    $user = "No";
+    $email = "No";  
+  }
+  elseif($valor == 1){
+    $user = ":v";
+    $email = ":v";
+  }
+  else{
+    $valor = 1;
+    $_SESSION['valor'] = $valor;
+  }
+  
+ 
 ?>
 
 <!doctype html>
@@ -24,10 +46,10 @@
   <body class="p-3 m-0 border-0 bd-example">
     <!-- LINEA NEGRA -->
     <nav class="navbar bg-dark" data-bs-theme="dark">
-       <div class="container-fluid">
+    <div class="container-fluid">
       <br><br>
       <?php
-      if (isset($_SESSION['mensaje'])) {
+      if ($_SESSION['mensaje'] == "Inicio de sesión exitoso") {
         $mensaje = $_SESSION['mensaje'];
         $user = $_SESSION['user'];
         $email = $_SESSION['email'];
@@ -38,15 +60,27 @@
         }  
         ?>
         <div><h3 id="mensaje" style="display: none;"><?php echo "$mensaje";?></h3></div>
-        <h3 class="text_validaciones">Hola, <?php echo "$user";?></h1>
+        <h3 class="text_user" style="display:none;">Hola, <?php echo "$user";?></h1>
         <?php
         unset($_SESSION['mensaje']); // Limpiamos la variable de sesión
       }
-      elseif(isset($_SESSION['email']) && isset($_SESSION['user'])){
+      elseif($_SESSION['email'] != "No" && $_SESSION['user'] != "No"){
         ?>
-        <h3 class="text_validaciones">Hola, <?php echo "$user";?></h1>
+        <h3 class="text_user" style="display:none;">Hola, <?php echo "$user";?></h1>
         <?php
+        if($valor == 0 ){
+          if($_GET['valor'] == 0){
+            setcookie('usuario', "", time()-86400, '/');
+            setcookie('email', "", time()-86400, '/');
+            $_SESSION['valor'] = 1;
+            header("Location: index.php?valor=1");
+          }
+        }
+        else{
+          
+        }
       }
+      
       ?>
     </div>
     </nav>
@@ -172,22 +206,45 @@
             </li>
             <li class="nav-item">
              <li class="nav-item">
-              &nbsp;&nbsp;&nbsp;&nbsp;
-               <a class="navbar-brand" href="log-in.php"> <!-- INCIAR SESION -->
-               <img src="assets/usuario.png" alt="carrito" width="30" height="30" class="d-inline-block align-text-top">
-              </a>
+              
+              <?php
+              if($email != ":v" && $user != ":v"){
+
+                ?>
+
+                  <h3 id="usuario" style="display:none;"> <?php echo "$user";?></h3>
+                  <h3 id="correo" style="display:none;"> <?php echo "$email";?></h3>
+                  <a class="navbar-brand" onclick="user()" id="change"> <!-- INCIAR SESION -->
+                    <img src="assets/usuario.png" alt="carrito" width="30" height="30" class="d-inline-block align-text-top">
+                  </a>
+                  
+                  <?php
+                  
+                
+              }
+              else{
+                ?>
+                <a class="navbar-brand" href="log-in.php"> <!-- INCIAR SESION -->
+                <img src="assets/usuario.png" alt="carrito" width="30" height="30" class="d-inline-block align-text-top">
+                </a>
+                <?php
+              }
+              ?>
+              
             </li>
             <li class="nav-item">
-              &nbsp;&nbsp;&nbsp;&nbsp;
-               <a class="navbar-brand" href="#"> <!-- ACCEDER A FAVORITOS-->
-               <img src="assets/favoritos.JPG" alt="carrito" width="30" height="30" class="d-inline-block align-text-top">
-              </a>
+              
+                <a class="navbar-brand" href="#"> <!-- ACCEDER A FAVORITOS-->
+                <img src="assets/favoritos.JPG" alt="carrito" width="30" height="30" class="d-inline-block align-text-top">
+                </a>
+              
             </li>
             <li class="nav-item">
-              &nbsp;&nbsp;&nbsp;&nbsp;
-              <a class="navbar-brand" href="#"> <!-- ACCEDER AL CARRITO-->
-              <img src="assets/carrito.png" alt="carrito" width="30" height="30" class="d-inline-block align-text-top">
-             </a>
+              
+                <a class="navbar-brand" href="#"> <!-- ACCEDER AL CARRITO-->
+                <img src="assets/carrito.png" alt="carrito" width="30" height="30" class="d-inline-block align-text-top">
+                </a>
+              
             </li>
           </ul>
           </div>

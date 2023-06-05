@@ -68,13 +68,14 @@
                $_SESSION['mensaje']  = "Inicio de sesión exitoso";
                $_SESSION['email'] = $mail;
                $_SESSION['recuerda'] = $recuerda;
-               $querynombre = "SELECT nombre FROM cliente";
+               $querynombre = "SELECT nombre FROM cliente WHERE correo_electronico = '$valor'";
                $resulnombre = mysqli_query($conexion, $querynombre);
 
                if($resulnombre){
                     $fila3 = mysqli_fetch_array($resulnombre);
                     $valnom = $fila3[0];
                     $_SESSION['user'] = $valnom;
+                    $_SESSION['valor']= 1;
                }
                else{
                     return;
