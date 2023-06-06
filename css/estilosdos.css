@@ -74,16 +74,15 @@ h2{
 
 .enviar{
     background:white;
-    font-family: 'Montserrat', sans-serif;
     border-radius: 10px;
     padding:5px 15px;
-    color:black;
+    color:rgb(255, 255, 255);
     border:groove;
     font-size: 14px;
 }
 
 .enviar:hover{
-    background: rgb(255, 255, 255);
-    color:rgb(255, 255, 255);
+    background: rgb(61, 61, 61);
+    color:rgb(37, 37, 37);
 
 }
