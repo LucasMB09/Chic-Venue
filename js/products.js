@@ -1,23 +1,6 @@
+
 const usuario = document.getElementById("usuario");
 const email = document.getElementById("correo");
-const mensaje = document.getElementById("mensaje");
-
-if((mensaje.textContent).length > 0 ){
-    switch (mensaje.textContent) {
-        case "Inicio de sesión exitoso":
-            Swal.fire({
-                title: 'Exito!',
-                text: mensaje.textContent,
-                icon: 'success',
-                showConfirmButton: 'Aceptar'
-            });
-            break;
-        default:
-            break;
-    }
-    
-}
-
 
 function user() {
     const Toast = Swal.mixin({
@@ -27,8 +10,10 @@ function user() {
         position: 'top-end',
         showConfirmButton: true,
         showDenyButton:true,
+        // showCancelButton:true,
         confirmButtonText: 'OK',
-        denyButtonText: 'Cerrar Sesión'
+        denyButtonText: 'Cerrar Sesión'//,
+        // cancelButtonText: 'Datos'
     })
     
     Toast.fire({
@@ -43,7 +28,7 @@ function user() {
         }
         else{
             var valor = 0;
-            location.href = "index.php?valor=" + encodeURIComponent(valor);   
+            location.href = "products.php?valor=" + encodeURIComponent(valor);
         }
     })
     
