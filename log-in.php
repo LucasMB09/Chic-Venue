@@ -160,13 +160,8 @@
       </div>
       
       <!--Empieza formulario-->
-<<<<<<< HEAD:log-in.html
-      <form id="login" action="/con_db.php" method= "POST" enctype="multipart/form-data">
-        <img class="Logo de Chic Avenue" src="../assets/logo_CA.PNG" alt="" width="82" height="70">
-=======
       <form id="login" action="php/con_db.php" method= "POST" enctype="multipart/form-data">
         <img class="Logo de Chic Avenue" src="/assets/logo_CA.PNG" alt="LOGO" width="82" height="70">
->>>>>>> 945645f06e9a30f189f6d9dc1486599c97fedf7a:log-in.php
         <h1 class="titulo">Inicio de sesión</h1>
         
         <!--Correo Electronico-->

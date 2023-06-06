@@ -2,6 +2,10 @@ html,
 body {
   height: 100%;
 }
+.titulo{
+  font-family:"Britannic";
+  font-size: 3rem;
+}
 
 body {
   display: flex;
