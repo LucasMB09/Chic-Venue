@@ -32,30 +32,30 @@
                         <img src="/assets/logo.jpg" width="170" height="170">
                     </div>
                     <h2>CHIC VENUE</h2>
-                    <p>¿Ya es parte de Chic Venue? Inicie sesión aquí</p>
-                    <button class="sign-up-btn" type="button" onclick="go_login()" id="regreso" value="Atras">Iniciar Sesion</button>
+                    <p class="letra-texto">¿Ya es parte de Chic Venue? Inicie sesión aquí</p>
+                    <button class="letra-texto" type="button" onclick="go_login()" id="regreso" value="Atras">Iniciar Sesión</button>
                     <!--<button id="boton-alerta">Try me</button>-->
                 </div>
             </div>
             <form class="formulario" id="registro" action="/php/registro.php" method= "POST" enctype="multipart/form-data">
                 <h2 class="create-account">R E G I S T R O</h2>
                 <div class="form-floating formulario_grupo formulario_grupo-input" id="nombre">
-                    <input type="text" name="nombre" placeholder="Nombre*">
+                    <input type="text" class="letra-texto" name="nombre" placeholder="Nombre*">
                     <i class="formulacion_validacion-estado fas fa-times-circle"></i>
                 </div>
                 <div class="form-floating formulario_grupo formulario_grupo-input" id="apellido">
-                    <input type="text" name="apellido" placeholder="Apellido*">
+                    <input type="text" class="letra-texto" name="apellido" placeholder="Apellido*">
                     <i class="formulacion_validacion-estado fas fa-times-circle"></i>
                 </div>
                 <div class="form-floating formulario_grupo formulario_grupo-input" id="email">
-                    <input type="email" name="email" placeholder="Correo electrónico*">
+                    <input type="email"  class="letra-texto" name="email" placeholder="Correo electrónico*">
                     <i class="formulacion_validacion-estado fas fa-times-circle"></i>
                 </div>
                 <div class="form-floating formulario_grupo formulario_grupo-input" id="pass">
-                    <input type="password" name="contrasena" placeholder="Contraseña*">
+                    <input type="password"  class="letra-texto" name="contrasena" placeholder="Contraseña*">
                     <i class="formulacion_validacion-estado fas fa-times-circle"></i>
                 </div>
-                <button class="boton_registro" type="submit" name="registro" id="regis">Registrarme</button>
+                <button class="boton_registro" class="letra-texto" type="submit" name="registro" id="regis">Registrarme</button>
                 <br><br>
                 <!--<div class="formulario_mensaje" id="formulario_mensaje">
                     <p><i class="fas fa-exclamation-triangle"></i> <b>Error: </b>Se deben completar todos los campos obligatorios.</p>
@@ -74,14 +74,14 @@
         <!--Cuadro de validaciones-->
         <form class="campo_validaciones" >
             <div class="contenedor" id="contenedor">
-            <div id="uwu"><h3 >La contraseña requiere:</h3></div>
-            <div id="texcorrec" style="display: none;"><h4 class="text_correc">La contraseña cumple con<br>los requerimentos</h4></div>
+            <div id="uwu"><h3 class="letra-texto" >La contraseña requiere:</h3></div>
+            <div id="texcorrec" style="display: none;"><h4 class="letra-texto">La contraseña cumple con<br>los requerimentos</h4></div>
             <ul class="text_validaciones" id="lista">
-                <div id="carac"><li><h4 class="text_validaciones">8 carácteres</h4></li></div>
-                <div id="mayus"><li><h4 class="text_validaciones">1 mayúscula</h4></li></div>
-                <div id="minus"><li><h4 class="text_validaciones">1 minúscula</h4></li></div>
-                <div id="car"><li><h4 class="text_validaciones">1 carácter especial</h4></li></div>
-                <div id="num"><li><h4 class="text_validaciones">1 número</h4></li></div>
+                <div id="carac"><li><h4 class="letra-texto">8 carácteres</h4></li></div>
+                <div id="mayus"><li><h4 class="letra-texto">1 mayúscula</h4></li></div>
+                <div id="minus"><li><h4 class="letra-texto">1 minúscula</h4></li></div>
+                <div id="car"><li><h4 class="letra-texto">1 carácter especial</h4></li></div>
+                <div id="num"><li><h4 class="letra-texto">1 número</h4></li></div>
             </ul>
             
             </div>
