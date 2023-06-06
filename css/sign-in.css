@@ -38,3 +38,56 @@ body {
   border-top-left-radius: 0;
   border-top-right-radius: 0;
 }
+
+.boton_regreso{
+  align-content: center;
+
+}
+
+.letra-titulo{
+  font-family:"Candara";
+  font-size: 2rem;
+}
+
+.letra-subtitulo{
+  font-family:"Candara";
+  font-size: 1.5rem;
+}
+
+.letra-texto{
+  font-family:"Candara";
+  font-size: 1.2em;
+}
+
+
+button {
+  --width: 180px;
+  --timing: 2s;
+  border: 0;
+  width: var(--width);
+  padding-block: 0.5em;
+  color: #fff;
+  font-weight: bold;
+  font-size: 1em;
+  background: rgb(3, 5, 4);
+  transition: all 0.2s;
+  border-radius: 5px;
+}
+
+button:hover {
+  background-image: linear-gradient(to right, rgb(250, 82, 82), rgb(250, 82, 82) 16.65%, rgb(190, 75, 219) 16.65%, rgb(190, 75, 219) 33.3%, rgb(76, 110, 245) 33.3%, rgb(76, 110, 245) 49.95%, rgb(64, 192, 87) 49.95%, rgb(64, 192, 87) 66.6%, rgb(250, 176, 5) 66.6%, rgb(250, 176, 5) 83.25%, rgb(253, 126, 20) 83.25%, rgb(253, 126, 20) 100%, rgb(250, 82, 82) 100%);
+  animation: var(--timing) linear dance6123 infinite;
+  transform: scale(1.1) translateY(-1px);
+}
+
+@keyframes dance6123 {
+  to {
+    background-position: var(--width);
+  }
+}
+
+.nav-link{
+  font-family:"Candara";
+  font-size: 1.2em;
+
+}
