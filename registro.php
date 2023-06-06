@@ -73,17 +73,35 @@
         </div>
         <!--Cuadro de validaciones-->
         <form class="campo_validaciones" >
-            <div class="contenedor" id="contenedor">
-            <div id="uwu"><h3 class="letra-texto" >La contraseña requiere:</h3></div>
-            <div id="texcorrec" style="display: none;"><h4 class="letra-texto">La contraseña cumple con<br>los requerimentos</h4></div>
-            <ul class="text_validaciones" id="lista">
-                <div id="carac"><li><h4 class="letra-texto">8 carácteres</h4></li></div>
-                <div id="mayus"><li><h4 class="letra-texto">1 mayúscula</h4></li></div>
-                <div id="minus"><li><h4 class="letra-texto">1 minúscula</h4></li></div>
-                <div id="car"><li><h4 class="letra-texto">1 carácter especial</h4></li></div>
-                <div id="num"><li><h4 class="letra-texto">1 número</h4></li></div>
-            </ul>
+            <div class="contenedor" id="cont_nom" style="display: none;" >
+                <div id="uwu1"><h3 class="letra-texto" >El nombre requiere:</h3></div>
+                <!-- <div id="texcorrec" style="display: none;"><h4 class="letra-texto">La contraseña cumple con<br>los requerimentos</h4></div> -->
+                <div id="nomb"><h4 class="letra-texto text_validaciones">Tienen que ser solamente letras</h4></div>
+            </div>
             
+            <div class="contenedor" id="cont_ape" style="display: none;" >
+                <div id="uwu1"><h3 class="letra-texto" >El apellido requiere:</h3></div>
+                <div id="nomb"><h4 class="letra-texto text_validaciones">Tienen que ser solamente letras</h4></div>
+            </div>
+
+            <div class="contenedor" id="cont_cor" style="display: none;" >
+                <div id="uwu1"><h3 class="letra-texto" >El correo requiere:</h3></div>
+                <ul class="text_validaciones" id="lista1">
+                    <div id="arroba"><li><h4 class="letra-texto">Le falta el arroba (@)</h4></li></div>
+                    <div id="punto"><li><h4 class="letra-texto">Le falta el punto</h4></li></div>
+                </ul>
+            </div>
+
+            <div class="contenedor" id="contenedor" style="display:none;">
+                <div id="uwu"><h3 class="letra-texto" >La contraseña requiere:</h3></div>
+                <div id="texcorrec" style="display: none;"><h4 class="letra-texto">La contraseña cumple con<br>los requerimentos</h4></div>
+                <ul class="text_validaciones" id="lista">
+                    <div id="carac"><li><h4 class="letra-texto">8 carácteres</h4></li></div>
+                    <div id="mayus"><li><h4 class="letra-texto">1 mayúscula</h4></li></div>
+                    <div id="minus"><li><h4 class="letra-texto">1 minúscula</h4></li></div>
+                    <div id="car"><li><h4 class="letra-texto">1 carácter especial</h4></li></div>
+                    <div id="num"><li><h4 class="letra-texto">1 número</h4></li></div>
+                </ul>
             </div>
             
 
