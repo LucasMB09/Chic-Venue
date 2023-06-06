@@ -197,22 +197,53 @@ select{
 
 .campo_validaciones{
     position: relative;
-    left: 350px;
-    top: -310px;   
+    left: -50px;
+    top: 0px;   
     border: none;
 	border-radius: 3px;
 }
 
 .text_validaciones{
-    color: #bb2929;
+    color: red;
     font-size: 14px;
     text-align: left;
+}
+
+.text_correc{
+    color: green;
+    text-align: center;
 }
 
 .contenedor{
     margin: 10px;
     padding: 10px;
     align-items: center;
-    border: 3px solid black;
+    border: 3px solid red;
     border-radius: 10px;
 }
+
+.contenedor_correc{
+    margin: 10px;
+    padding: 10px;
+    align-items: center;
+    border: 3px solid green;
+    border-radius: 10px;
+}
+
+.text_user{
+    color: white;
+    font-size: 20px;
+    text-align: left;
+}
+
+.text_toast{
+    color: black;
+    font-size: 15px;
+    text-align: justify;
+}
+
+.subir_icon{
+    top: -50px;
+    left: -50px;
+}
+

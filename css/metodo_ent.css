@@ -1,5 +1,5 @@
 :root{
-  --negro: #000000;
+  --negro: #646464c0;
   --blanco: #ffffff;
   --gris: #D6D6D6;
 }
@@ -11,7 +11,7 @@ body {
   
   .h1ME {
     font-weight: bold;
-    color: var(--blanco);
+    color:  #000000;
     text-align: left;
     margin: 2rem;
     position: absolute;
@@ -19,7 +19,6 @@ body {
   }
 
   .formulario {
-    background-image: url(../assets/generic3.jpg); /*Dos puntos para salir de la carpeta actual (css)*/
     background-repeat: no-repeat;
     background-size: cover;
     height: 850px;
@@ -35,7 +34,7 @@ body {
     width: min(30rem, 100%); /*Utilizar el valor mas pequeño*/
     margin: 0 auto; /*Utilizar en elementos cuyo padre no es un display flex*/
     padding: 2rem;
-    border-radius: 1rem;
+    border-radius: .5rem;
     flex-direction: row;
   }
   
@@ -63,7 +62,7 @@ body {
   }
   
   input[type="submit"] {
-    background-color: #4CAF50;
+    background-color: #1d1d1d;
     color: white;
     padding: 10px 20px;
     border: none;
@@ -74,8 +73,8 @@ body {
     display: block;
   }
 
-  input[type="mas"] {
-    background-color: #4CAF50;
+  input[type="button"] {
+    background-color: #1d1d1d;
     color: white;
     padding: 5px 10px;
     border: none;
@@ -86,7 +85,11 @@ body {
   }
   
   input[type="submit"]:hover {
-    background-color: #45a049;
+    background-color: #242424;
   }
   
+
+  .error-message {
+    color: red;
+  }
   

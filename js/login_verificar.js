@@ -1,6 +1,6 @@
 const formulario = document.getElementById("login");
 const inputs = document.querySelectorAll("#login input");
-const contenedor = document.getElementById("contenedor");
+const mensaje = document.getElementById("mensaje");
 
 const exp = {
     email: /^[a-zA-Z0-9._+-]+@[a-zA-Z0-9-]+\.[a-zA-Z]{2,}$/,
@@ -19,9 +19,11 @@ const validarFormulario = (e) => {
         break;
         case "ipass":
             validarCampo(exp.pass, e.target,"pass");
+            
         break;
     }
 }
+
 
 const validarCampo = (expresion, input, campo) => {
     if(expresion.test(input.value)){
@@ -60,13 +62,51 @@ formulario.addEventListener('submit', (e) => {
     
     else{
         e.preventDefault();
-		document.getElementById('formulario_mensaje').classList.add('formulario_mensaje-activo');
+		//document.getElementById('formulario_mensaje').classList.add('formulario_mensaje-activo');
+        Swal.fire({
+            title: 'Error!',
+            text: 'Se deben completar todos los campos obligatorios.',
+            icon: 'error',
+            showConfirmButton: 'Aceptar'
+          });
 		console.log("llena campos");
     }
     
 });
 
 function go_login() {
-    window.location.href = 'index.html';
+    window.location.href = 'index.php';
 }
 
+
+if((mensaje.textContent).length > 0 ){
+    switch (mensaje.textContent) {
+        case "¡Te has registrado correctamente!":
+            Swal.fire({
+                title: 'Exito!',
+                text: '¡Te has registrado correctamente!',
+                icon: 'success',
+                showConfirmButton: 'Aceptar'
+            });
+            break;
+        case "La contraseña es incorrecta":
+            Swal.fire({
+                title: 'Error!',
+                text: 'Contraseña incorrecta',
+                icon: 'error',
+                showConfirmButton: 'Aceptar'
+            });
+            break;
+        case "No existe ninguna cuenta asociada a ese correo":
+            Swal.fire({
+                title: 'Error!',
+                text: 'Correo inválido o no registrado',
+                icon: 'error',
+                showConfirmButton: 'Aceptar'
+            });
+            break;
+        default:
+            break;
+    }
+    
+}

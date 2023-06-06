@@ -37,7 +37,7 @@
     <!-- MENU DE NAVEGACION -->
     <nav class="navbar navbar-expand-lg bg-body-tertiary">
       <div class="container-fluid">
-        <a class="navbar-brand" href="index.html">
+        <a class="navbar-brand" href="index.php">
           <img src="assets/logo.jpg" class="rounded mx-auto d-block"  alt="" width="82" height="70">
         </a>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">

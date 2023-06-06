@@ -2,6 +2,7 @@
     --negro: #000000;
     --blanco: #ffffff;
     --gris: #D6D6D6;
+    --grisosc: #646464c0;
   }
   
   body {
@@ -19,7 +20,6 @@
     }
   
     .formulario {
-      background-image: url(../assets/generic1.jpg); /*Dos puntos para salir de la carpeta actual (css)*/
       background-repeat: no-repeat;
       background-size: cover;
       height: 1000px;
@@ -31,14 +31,12 @@
       position: absolute;
       right: 410px;
       top: 110px;
-      background-color: var(--negro);
+      background-color: var(--grisosc);
       width: min(30rem, 100%); /*Utilizar el valor mas pequeño*/
-      height: 750px;
       margin: 0 auto; /*Utilizar en elementos cuyo padre no es un display flex*/
       padding: 2rem;
-      border-radius: 1rem;
+      border-radius: .5rem;
       flex-direction: row;
-      border-radius: 3rem;
     }
 
     .contenidoform p{
@@ -56,6 +54,10 @@
       margin-top: 10px;
       color: var(--blanco);
     }
+
+    ::placeholder{
+      color: var(--negro);
+    }
     
     input[type="text"],
     input[type="tel"],
@@ -70,7 +72,7 @@
     }
     
     input[type="submit"] {
-      background-color: #4CAF50;
+      background-color: #1d1d1d;
       color: white;
       padding: 10px 20px;
       border: none;
@@ -83,5 +85,9 @@
     
     input[type="submit"]:hover {
       background-color: #45a049;
+    }
+
+    .error-message {
+      color: red;
     }
     

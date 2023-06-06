@@ -1,3 +1,35 @@
+<?php
+  session_start();
+
+  if(isset($_GET['valor'])){
+    $valor = $_GET['valor'];
+  }
+  else{
+    $valor = $_SESSION['valor'];
+  }
+
+  if(isset($_COOKIE['usuario'])){
+    $_SESSION['user'] = $_COOKIE['usuario'];
+    $_SESSION['email'] = $_COOKIE['email'];
+    $user = $_SESSION['user'];
+    $email = $_SESSION['email'];
+  }
+  elseif($valor == 0){
+    $user = "No";
+    $email = "No";  
+  }
+  elseif($valor == 1){
+    $user = ":v";
+    $email = ":v";
+  }
+  else{
+    $valor = 1;
+    $_SESSION['valor'] = $valor;
+  }
+  
+ 
+?>
+
 <!doctype html>
 <html lang="en">
   <head>
@@ -6,16 +38,50 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://getbootstrap.com/docs/5.3/assets/css/docs.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
-  </head>
     <title>Chic Venue</title>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="/sweetalert/dist/sweetalert2.all.min.js"></script>
+    <link href="/css/formulario.css" rel="stylesheet">
   </head>
   <body class="p-3 m-0 border-0 bd-example">
-
     <!-- LINEA NEGRA -->
     <nav class="navbar bg-dark" data-bs-theme="dark">
-       <div class="container-fluid">
+    <div class="container-fluid">
       <br><br>
+      <?php
+      if ($_SESSION['mensaje'] == "Inicio de sesión exitoso") {
+        $mensaje = $_SESSION['mensaje'];
+        $user = $_SESSION['user'];
+        $email = $_SESSION['email'];
+        if(isset($_SESSION['recuerda'])){
+          $recuerda = $_SESSION['recuerda'];
+          setcookie('usuario', $user, time()+86400, '/');
+          setcookie('email', $email, time()+86400, '/');
+        }  
+        ?>
+        <div><h3 id="mensaje" style="display: none;"><?php echo "$mensaje";?></h3></div>
+        <h3 class="text_user" style="display:none;">Hola, <?php echo "$user";?></h1>
+        <?php
+        unset($_SESSION['mensaje']); // Limpiamos la variable de sesión
+      }
+      elseif($_SESSION['email'] != "No" && $_SESSION['user'] != "No"){
+        ?>
+        <h3 class="text_user" style="display:none;">Hola, <?php echo "$user";?></h1>
+        <?php
+        if($valor == 0 ){
+          if($_GET['valor'] == 0){
+            setcookie('usuario', "", time()-86400, '/');
+            setcookie('email', "", time()-86400, '/');
+            $_SESSION['valor'] = 1;
+            header("Location: index.php?valor=1");
+          }
+        }
+        else{
+          
+        }
+      }
+      
+      ?>
     </div>
     </nav>
     <!--FIN LINEA NEGRA -->
@@ -60,7 +126,7 @@
           <ul class="nav">
             <li class="nav-item">
               &nbsp;&nbsp;&nbsp;&nbsp;
-             <!--   <a class="navbar-brand" href="#"> <!-- 
+             <!--   <a class="navbar-brand" href="#">  
                <img src="/assets/filtro.png" alt="carrito" width="30" height="30" class="d-inline-block align-text-top">
               </a> -
               <button type="button" style="background-image: url('/assets/filtro.png'); width: 10px; height: 10px;" data-toggle="modal" data-target="#exampleModalLong">
@@ -140,22 +206,45 @@
             </li>
             <li class="nav-item">
              <li class="nav-item">
-              &nbsp;&nbsp;&nbsp;&nbsp;
-               <a class="navbar-brand" href="log-in.html"> <!-- INCIAR SESION -->
-               <img src="assets/usuario.png" alt="carrito" width="30" height="30" class="d-inline-block align-text-top">
-              </a>
+              
+              <?php
+              if($email != ":v" && $user != ":v"){
+
+                ?>
+
+                  <h3 id="usuario" style="display:none;"> <?php echo "$user";?></h3>
+                  <h3 id="correo" style="display:none;"> <?php echo "$email";?></h3>
+                  <a class="navbar-brand" onclick="user()" id="change"> <!-- INCIAR SESION -->
+                    <img src="assets/usuario.png" alt="carrito" width="30" height="30" class="d-inline-block align-text-top">
+                  </a>
+                  
+                  <?php
+                  
+                
+              }
+              else{
+                ?>
+                <a class="navbar-brand" href="log-in.php"> <!-- INCIAR SESION -->
+                <img src="assets/usuario.png" alt="carrito" width="30" height="30" class="d-inline-block align-text-top">
+                </a>
+                <?php
+              }
+              ?>
+              
             </li>
             <li class="nav-item">
-              &nbsp;&nbsp;&nbsp;&nbsp;
-               <a class="navbar-brand" href="#"> <!-- ACCEDER A FAVORITOS-->
-               <img src="assets/favoritos.JPG" alt="carrito" width="30" height="30" class="d-inline-block align-text-top">
-              </a>
+              
+                <a class="navbar-brand" href="#"> <!-- ACCEDER A FAVORITOS-->
+                <img src="assets/favoritos.JPG" alt="carrito" width="30" height="30" class="d-inline-block align-text-top">
+                </a>
+              
             </li>
             <li class="nav-item">
-              &nbsp;&nbsp;&nbsp;&nbsp;
-              <a class="navbar-brand" href="#"> <!-- ACCEDER AL CARRITO-->
-              <img src="assets/carrito.png" alt="carrito" width="30" height="30" class="d-inline-block align-text-top">
-             </a>
+              
+                <a class="navbar-brand" href="#"> <!-- ACCEDER AL CARRITO-->
+                <img src="assets/carrito.png" alt="carrito" width="30" height="30" class="d-inline-block align-text-top">
+                </a>
+              
             </li>
           </ul>
           </div>
@@ -202,8 +291,10 @@
   </footer>
 
   <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
-  </body>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
+  <script src="/js/index.js"></script>
+</body>
+
 </html>
 
 

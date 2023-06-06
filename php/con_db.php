@@ -3,6 +3,7 @@
 
      $email = trim($_POST["iemail"]);
      $pass = trim($_POST["ipass"]);
+     $recuerda = $_POST["recuerda"];
 
      $mail = " ";
      $pas = " ";
@@ -61,21 +62,53 @@
 
      if($mail != "No hay" ){
           if($pas != "Incorrecta"){
-               echo "La cuenta existe"."<br>";
+               /*echo "La cuenta existe"."<br>";
                echo "Correo: $mail"."<br>";
-               echo "Contraseña: $pas"."<br>";
+               echo "Contraseña: $pas"."<br>";*/
+               $_SESSION['mensaje']  = "Inicio de sesión exitoso";
+               $_SESSION['email'] = $mail;
+               $_SESSION['recuerda'] = $recuerda;
+               $querynombre = "SELECT nombre FROM cliente WHERE correo_electronico = '$valor'";
+               $resulnombre = mysqli_query($conexion, $querynombre);
+
+               if($resulnombre){
+                    $fila3 = mysqli_fetch_array($resulnombre);
+                    $valnom = $fila3[0];
+                    $_SESSION['user'] = $valnom;
+                    $_SESSION['valor']= 1;
+               }
+               else{
+                    return;
+               }
+               
+
+               
+               header("Location: ../index.php");
+               // Liberar recursos y cerrar conexión
+               mysqli_free_result($resultado);
+               mysqli_close($conexion);
+               return;
           }
           else{
-               echo "La contraseña no es correcta"."<br>";
+               //echo "La contraseña no es correcta"."<br>";
+               $_SESSION['mensaje']  = "La contraseña es incorrecta";
+               header("Location: ../log-in.php");
+               // Liberar recursos y cerrar conexión
+               mysqli_free_result($resultado);
+               mysqli_close($conexion);
+               return;
           }
      }
      else{
-          echo "No existe ninguna cuenta asociada a ese correo"."<br>";
+          //echo "No existe ninguna cuenta asociada a ese correo"."<br>";
+          $_SESSION['mensaje']  = "No existe ninguna cuenta asociada a ese correo";
+          header("Location: ../log-in.php");
+          // Liberar recursos y cerrar conexión
+          mysqli_free_result($resultado);
+          mysqli_close($conexion);
+          return;
      }
 
-     // Liberar recursos y cerrar conexión
-     mysqli_free_result($resultado);
-     mysqli_close($conexion);
      
 
 ?>
