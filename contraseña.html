@@ -25,18 +25,76 @@
     </div>
     
     <div class="container">
-    <h1>Recuperar contraseña</h1>
-        <h2>Ingrese el correo con el que se ha registrado</h2>
+        <h1>Recuperar contraseña</h1>
+        <h2 class="titulo">Ingrese la dirección de correo electrónico y se enviarán instrucciones para restablecer la contraseña.</h2>
         <form action="" class="form">
             <div class="form__correo">
-                <input type="email" placeholder="Ingrese su correo electronico" class="correo">
+                <input type="email" placeholder="Ingrese su correo electrónico" class="correo">
             </div>
             <div class="form__button">
                 <button class="enviar">Enviar link</button>
             </div>
         </form>
-     <h2><a href="log-in:history.back()">Volver a la página anterior</a></h2> 
+        <h2><a href="log-in:history.back()">Volver a la página anterior</a></h2> 
     </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            var enviarButton = document.querySelector(".enviar");
+            enviarButton.addEventListener("click", function(event) {
+                event.preventDefault();
+
+                var correoInput = document.querySelector(".correo");
+                var correoValue = correoInput.value.trim();
+
+                var errorElement = document.createElement("p");
+                errorElement.className = "error-message";
+
+                var correoContainer = document.querySelector(".form__correo");
+                var existingError = document.querySelector(".error-message");
+
+                if (correoValue === "") {
+                    errorElement.textContent = "Por favor, ingrese su correo electrónico";
+                    if (!existingError) {
+                        correoContainer.appendChild(errorElement);
+                    }
+                } else if (!isValidEmail(correoValue)) {
+                    errorElement.textContent = "Correo electrónico no válido";
+                    if (!existingError) {
+                        correoContainer.appendChild(errorElement);
+                    }
+                } else if (existingError) {
+                    existingError.remove();
+                    showSuccessMessage();
+                } else {
+                    showSuccessMessage();
+                }
+            });
+        });
+
+        function isValidEmail(email) {
+            var emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            return emailPattern.test(email);
+        }
+
+        function showSuccessMessage() {
+            var successMessage = document.createElement("div");
+            successMessage.className = "success-message";
+            successMessage.textContent = "Gracias por enviar su dirección de correo. Le enviamos un correo electrónico con la información necesaria para restablecer su contraseña. El correo electrónico puede tardar un par de minutos en llegar.";
+
+            var container = document.querySelector(".container");
+            container.insertBefore(successMessage, container.firstChild);
+
+            var closeButton = document.createElement("button");
+            closeButton.className = "close-button";
+            closeButton.textContent = "X";
     
+            successMessage.appendChild(closeButton);
+    
+            closeButton.addEventListener("click", function() {
+                successMessage.remove();
+            });
+        }
+    </script>
 </body>
 </html>
