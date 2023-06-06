@@ -194,7 +194,7 @@ select{
 }
 
 .boton_regreso{
-    position: relative;
+    position: center;
     left: -630px;
     top: -30;
 }

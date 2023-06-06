@@ -79,7 +79,16 @@
         --bd-violet-rgb: 112.520718, 44.062154, 249.437846;
 
         --bs-btn-font-weight: 600;
-    
+        --bs-btn-color: var(--bs-white);
+        --bs-btn-bg: var(--bd-violet-bg);
+        --bs-btn-border-color: var(--bd-violet-bg);
+        --bs-btn-hover-color: var(--bs-white);
+        --bs-btn-hover-bg: #6528e0;
+        --bs-btn-hover-border-color: #6528e0;
+        --bs-btn-focus-shadow-rgb: var(--bd-violet-rgb);
+        --bs-btn-active-color: var(--bs-btn-hover-color);
+        --bs-btn-active-bg: #5a23c8;
+        --bs-btn-active-border-color: #5a23c8;
       }
       .bd-mode-toggle {
         z-index: 1500;
@@ -143,43 +152,47 @@
       </ul>
     </div>
 
-    
+   <!-- <div class="container">
+      <div class="row">
+        <div class="col"><img class="rounded float-left" src="assets/generic1.jpg"  width="200%" height="200%"alt="Baner1"></div>
+        <div class="col"></div>
+        <div class="col"></div>
+      </div>
+      </div>
+    -->
     <main class="form-signin w-100 m-auto">
-      
       <!--Empieza formulario-->
       <form id="login" action="php/con_db.php" method= "POST" enctype="multipart/form-data">
         <img class="Logo de Chic Avenue" src="../assets/logo_CA.PNG" alt="LOGO" width="82" height="70">
-        <h1 class="titulo">Inicio de sesión</h1>
+        <h1 class="texto">Inicio de sesión</h1>
         
         <!--Correo Electronico-->
         <div class="form-floating formulario_grupo formulario_grupo-input" id="email">
           <input type="email" class="form-control" id="iemail" placeholder="name@example.com" name="iemail">
           <i class="formulacion_validacion-estado fas fa-times-circle"></i>
-          <label class="letra-texto" for="floatingInput">Correo electr&oacute;nico</label>
+          <label for="floatingInput">Correo electr&oacute;nico</label>
         </div>
         <!--Contraseña-->
         <div class="form-floating formulario_grupo formulario_grupo-input" id="pass">
           <input type="password" class="form-control" id="ipass" placeholder="Password" name="ipass">
           <i class="formulacion_validacion-estado fas fa-times-circle"></i>
-          <label class="letra-texto" for="floatingPassword">Contraseña</label>
+          <label for="floatingPassword">Contraseña</label>
         </div>
 
         <div class="checkbox mb-3">
           
           <input type="checkbox" name="recuerda" value="remember-me" id="recuerda">
-          <label  class="letra-texto" for="recuerda">Recuerdame</label>
+          <label for="recuerda">Recuerdame</label>
 
-          <a class="nav-link" href="registro.php"><u>Crea una nueva cuenta</u></a>
+          <a class="nav-link" href="registro.php"><strong><u>Crea una nueva cuenta</u></strong></a>
           <!-- <a href="<?php //echo PSF::urlFor('/workspaces/Chic-Venue/html/registro.php');?>">Crear una nueva cuenta</a>-->
         </div>
         <br>
-        <button  class="letra-texto" type="submit" id="log">Iniciar sesión</button>
+        <button class="w-100 btn btn-lg btn-primary mb1 bg-black" type="submit" id="log">Iniciar sesión</button>
         <p class="mt-5 mb-3 text-body-secondary"></p>
         <!--<div class="formulario_mensaje" id="formulario_mensaje">
           <p><i class="fas fa-exclamation-triangle"></i> <b>Error: </b>Se deben completar todos los campos obligatorios.</p>
         </div>-->
-        
-
         <?php
           if (isset($_SESSION['mensaje'])) {
               $mensaje = $_SESSION['mensaje'];
@@ -191,11 +204,9 @@
         ?>
       </form>
       <div>
-        <a class="nav-link" onclick="go_login()" type="submit">Regresar atras</a>
-        <p class="nav-link"></p>
+        <button class="boton_regreso" onclick="go_login()" type="submit">Regresar</button>
+        <p class="mt-5 mb-3 text-body-secondary"></p>
       </div>
-     
-  
   </main>
     <script src="/js/login_verificar.js"></script>
   </body>

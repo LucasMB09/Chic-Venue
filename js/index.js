@@ -44,7 +44,7 @@ function user() {
         }
         else{
             var valor = 0;
-            location.href = "index.php?valor=" + encodeURIComponent(valor);      
+            location.href = "index.php?valor=" + encodeURIComponent(valor);   
         }
     })
     
