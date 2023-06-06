@@ -234,14 +234,14 @@
             </li>
             <li class="nav-item">
               
-                <a class="navbar-brand" href="#"> <!-- ACCEDER A FAVORITOS-->
+                <a class="navbar-brand" href="favoritos.html"> <!-- ACCEDER A FAVORITOS-->
                 <img src="assets/favoritos.JPG" alt="carrito" width="30" height="30" class="d-inline-block align-text-top">
                 </a>
               
             </li>
             <li class="nav-item">
               
-                <a class="navbar-brand" href="#"> <!-- ACCEDER AL CARRITO-->
+                <a class="navbar-brand" href="carrito.html"> <!-- ACCEDER AL CARRITO-->
                 <img src="assets/carrito.png" alt="carrito" width="30" height="30" class="d-inline-block align-text-top">
                 </a>
               
