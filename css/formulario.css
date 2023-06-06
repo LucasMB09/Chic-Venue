@@ -1,9 +1,13 @@
 *{
     box-sizing: border-box;
 }
+.titulo{
+    font-family:"Britannic";
+    font-size: 3rem;
+  }
 
 body{
-    font-family: 'Roboto', sans-serif;
+    font-family:"Britannic";
     background: #F4F4F4;
 }
 
