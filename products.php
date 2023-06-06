@@ -15,10 +15,10 @@
     $user = $_SESSION['user'];
     $email = $_SESSION['email'];
   }
-  // elseif(isset($_SESSION['email'])){
-  //   $user = $_SESSION['user'];
-  //   $email = $_SESSION['email'];
-  // }
+  elseif(isset($_SESSION['email'])){
+    $user = $_SESSION['user'];
+    $email = $_SESSION['email'];
+  }
   elseif($valor == 0){
     $user = "No";
     $email = "No";  
@@ -70,8 +70,8 @@
             if($_GET['valor'] == 0){
               setcookie('usuario', "", time()-86400, '/');
               setcookie('email', "", time()-86400, '/');
-              // $_SESSION['email'] = "";
-              // $_SESSION['user'] = "";
+              unset($_SESSION['email']);
+              unset($_SESSION['user']);
               $_SESSION['valor'] = 1;
               header("Location: products.php?valor=1");
             }

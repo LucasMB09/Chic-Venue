@@ -10,10 +10,10 @@ function user() {
         position: 'top-end',
         showConfirmButton: true,
         showDenyButton:true,
-        // showCancelButton:true,
-        confirmButtonText: 'OK',
-        denyButtonText: 'Cerrar Sesión'//,
-        // cancelButtonText: 'Datos'
+        showCancelButton:true,
+        confirmButtonText: 'Ir al perfil',
+        denyButtonText: 'Cerrar Sesión',
+        cancelButtonText: 'Ok'
     })
     
     Toast.fire({
@@ -21,14 +21,16 @@ function user() {
         title: 'Cuenta'
     }).then((result) => {
         if (result.isConfirmed){
-            var valor = 2;
+            location.href = "perfil_usuario.php";
         }
         else if (result.idDenied){
+            var valor = 0;
+            location.href = "products.php?valor=" + encodeURIComponent(valor);
+        }
+        else if(result.isDismissed){
             var valor = 3;
         }
         else{
-            var valor = 0;
-            location.href = "products.php?valor=" + encodeURIComponent(valor);
         }
     })
     

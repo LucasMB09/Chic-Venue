@@ -1,3 +1,39 @@
+<?php
+  session_start();
+
+  if(isset($_GET['valor'])){
+    $valor = $_GET['valor'];
+  }
+  else{
+    $valor = $_SESSION['valor'];
+  }
+
+  if(isset($_COOKIE['usuario'])){
+    $_SESSION['user'] = $_COOKIE['usuario'];
+    $_SESSION['email'] = $_COOKIE['email'];
+    $user = $_SESSION['user'];
+    $email = $_SESSION['email'];
+  }
+  elseif(isset($_SESSION['email'])){
+    $user = $_SESSION['user'];
+    $email = $_SESSION['email'];
+  }
+  elseif($valor == 0){
+    $user = "No";
+    $email = "No";  
+  }
+  elseif($valor == 1){
+    $user = ":v";
+    $email = ":v";
+  }
+  else{
+    $valor = 1;
+    $_SESSION['valor'] = $valor;
+  }
+  
+ 
+?>
+
 <!doctype html>
 <html lang="en">
   <head>
@@ -19,6 +55,23 @@
     <nav class="navbar bg-dark" data-bs-theme="dark">
        <div class="container-fluid">
       <br><br>
+      <?php
+        if($_SESSION['email'] != "No" && $_SESSION['user'] != "No"){
+          ?>
+          <h3 class="text_user" style="display:none;">Hola, <?php echo "$user";?></h1>
+          <?php
+          if($valor == 0 ){
+            if($_GET['valor'] == 0){
+              setcookie('usuario', "", time()-86400, '/');
+              setcookie('email', "", time()-86400, '/');
+              unset($_SESSION['email']);
+              unset($_SESSION['user']);
+              $_SESSION['valor'] = 1;
+              header("Location: index.php?valor=1");
+            }
+          }
+        }
+      ?>
     </div>
     </nav>
     <!--FIN LINEA NEGRA -->
