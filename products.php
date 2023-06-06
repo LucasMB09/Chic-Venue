@@ -15,6 +15,10 @@
     $user = $_SESSION['user'];
     $email = $_SESSION['email'];
   }
+  elseif(isset($_SESSION['email'])){
+    $user = $_SESSION['user'];
+    $email = $_SESSION['email'];
+  }
   elseif($valor == 0){
     $user = "No";
     $email = "No";  
@@ -48,6 +52,8 @@
   </head>
     <title>Chic Venue</title>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="/sweetalert/dist/sweetalert2.all.min.js"></script>
+    <link href="/css/formulario.css" rel="stylesheet">
   </head>
   <body class="p-3 m-0 border-0 bd-example">
 
@@ -55,6 +61,23 @@
     <nav class="navbar bg-dark" data-bs-theme="dark">
        <div class="container-fluid">
       <br><br>
+      <?php
+        if($_SESSION['email'] != "No" && $_SESSION['user'] != "No"){
+          ?>
+          <h3 class="text_user" style="display:none;">Hola, <?php echo "$user";?></h1>
+          <?php
+          if($valor == 0 ){
+            if($_GET['valor'] == 0){
+              setcookie('usuario', "", time()-86400, '/');
+              setcookie('email', "", time()-86400, '/');
+              unset($_SESSION['email']);
+              unset($_SESSION['user']);
+              $_SESSION['valor'] = 1;
+              header("Location: products.php?valor=1");
+            }
+          }
+        }
+      ?>
     </div>
     </nav>
     <!--FIN LINEA NEGRA -->
@@ -96,28 +119,45 @@
             <input class="form-control me-2" type="search" placeholder="" aria-label="Search">
             <button class="btn btn-outline-success" type="submit">Buscar</button>
           </form>
+          &nbsp;&nbsp;&nbsp;&nbsp;
           <ul class="nav">
             <li class="nav-item">
-              &nbsp;&nbsp;&nbsp;&nbsp;
                <a class="navbar-brand" href="#">
                <img src="assets/filtro.png" alt="carrito" width="30" height="30" class="d-inline-block align-text-top">
               </a>
             </li>
             <li class="nav-item">
              <li class="nav-item">
-              &nbsp;&nbsp;&nbsp;&nbsp;
-               <a class="navbar-brand" href="log-in.php">
-               <img src="assets/usuario.png" alt="carrito" width="30" height="30" class="d-inline-block align-text-top">
-              </a>
+              <?php
+              if($email != ":v" && $user != ":v"){
+
+                ?>
+
+                  <h3 id="usuario" style="display:none;"> <?php echo "$user";?></h3>
+                  <h3 id="correo" style="display:none;"> <?php echo "$email";?></h3>
+                  <a class="navbar-brand" onclick="user()" id="change"> <!-- INCIAR SESION -->
+                    <img src="assets/usuario.png" alt="carrito" width="30" height="30" class="d-inline-block align-text-top">
+                  </a>
+                  
+                  <?php
+                  
+                
+              }
+              else{
+                ?>
+                <a class="navbar-brand" href="log-in.php"> <!-- INCIAR SESION -->
+                <img src="assets/usuario.png" alt="carrito" width="30" height="30" class="d-inline-block align-text-top">
+                </a>
+                <?php
+              }
+              ?>
             </li>
             <li class="nav-item">
-              &nbsp;&nbsp;&nbsp;&nbsp;
                <a class="navbar-brand" href="#">
                <img src="assets/favoritos.JPG" alt="carrito" width="30" height="30" class="d-inline-block align-text-top">
               </a>
             </li>
             <li class="nav-item">
-              &nbsp;&nbsp;&nbsp;&nbsp;
               <a class="navbar-brand" href="#">
               <img src="assets/carrito.png" alt="carrito" width="30" height="30" class="d-inline-block align-text-top">
              </a>
@@ -138,7 +178,8 @@
             ?>
         </div>
     </div>
-
-
+    <script src="/js/products.js"></script>
+  </body>
+</html>
     
     <!-- FIN MENU DE NAVEGACIÓN -->

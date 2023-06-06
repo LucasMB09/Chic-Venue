@@ -1,10 +1,10 @@
 
-
 *{
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: 'Roboto', sans-serif;
+    font-family:"Britannic";
+  
 }
 
 body {
@@ -102,6 +102,7 @@ body {
     font-size: .8rem;
     cursor: pointer;
     color: #222;
+    font-family:"Candara";
 }
 
 .sign-in {
@@ -119,3 +120,18 @@ body {
     opacity: 0;
     visibility: hidden;
 }
+
+.letra-titulo{
+    font-family:"Candara";
+    font-size: 2rem;
+  }
+  
+  .letra-subtitulo{
+    font-family:"Candara";
+    font-size: 1.5rem;
+  }
+  
+  .letra-texto{
+    font-family:"Candara";
+    font-size: 1.2em;
+  }

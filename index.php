@@ -14,6 +14,10 @@
     $user = $_SESSION['user'];
     $email = $_SESSION['email'];
   }
+  elseif(isset($_SESSION['email'])){
+    $user = $_SESSION['user'];
+    $email = $_SESSION['email'];
+  }
   elseif($valor == 0){
     $user = "No";
     $email = "No";  
@@ -72,6 +76,8 @@
           if($_GET['valor'] == 0){
             setcookie('usuario', "", time()-86400, '/');
             setcookie('email', "", time()-86400, '/');
+            unset($_SESSION['email']);
+            unset($_SESSION['user']);
             $_SESSION['valor'] = 1;
             header("Location: index.php?valor=1");
           }
@@ -234,14 +240,14 @@
             </li>
             <li class="nav-item">
               
-                <a class="navbar-brand" href="#"> <!-- ACCEDER A FAVORITOS-->
+                <a class="navbar-brand" href="favoritos.html"> <!-- ACCEDER A FAVORITOS-->
                 <img src="assets/favoritos.JPG" alt="carrito" width="30" height="30" class="d-inline-block align-text-top">
                 </a>
               
             </li>
             <li class="nav-item">
               
-                <a class="navbar-brand" href="#"> <!-- ACCEDER AL CARRITO-->
+                <a class="navbar-brand" href="carrito.html"> <!-- ACCEDER AL CARRITO-->
                 <img src="assets/carrito.png" alt="carrito" width="30" height="30" class="d-inline-block align-text-top">
                 </a>
               
