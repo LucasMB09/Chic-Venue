@@ -83,7 +83,7 @@ h2{
 }
 
 .enviar:hover{
-    background: linear-gradient(to right, rgb(128, 95, 117), rgb(219, 200, 203));
+    background: rgb(255, 255, 255);
     color:rgb(255, 255, 255);
 
 }
