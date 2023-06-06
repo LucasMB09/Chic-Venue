@@ -27,10 +27,12 @@
     <div class="container">
         <h1>Generar nueva contraseña</h1>
         <form action="" class="form">
-            <div class="form__correo">
-                <input type="password" placeholder="Nueva contraseña" id="contrasena1" class="correo">
+
+                <p id="mensajeValidacion" style="color: gray;">La contraseña requiere:<br>- 8 caracteres<br>- Una mayúscula<br>- Una minúscula<br>- Un carácter especial<br>- Un número</p>
+                <div class="form__correo" style="margin-top: 20px;">
+                <input type="password" placeholder="Nueva contraseña" id="contrasena1" class="correo" onkeyup="verificarContrasena()">
             </div>
-            <div class="form__correo">
+            <div class="form__correo" style="margin-top: 20px;">
                 <input type="password" placeholder="Repetir contraseña" id="contrasena2" class="correo">
                 <p id="mensajeError"></p> 
             </div>
@@ -42,12 +44,52 @@
     </div>
 
     <script>
+        function verificarContrasena() {
+            var contrasena = document.getElementById("contrasena1").value;
+            var mensajeValidacion = document.getElementById("mensajeValidacion");
+            var contrasenaValida = true;
+
+            // Verificar longitud mínima
+            if (contrasena.length < 8) {
+                mensajeValidacion.style.color = "red";
+                contrasenaValida = false;
+            } else {
+                mensajeValidacion.style.color = "gray";
+            }
+
+            // Verificar si hay una mayúscula
+            if (!/[A-Z]/.test(contrasena)) {
+                contrasenaValida = false;
+            }
+
+            // Verificar si hay una minúscula
+            if (!/[a-z]/.test(contrasena)) {
+                contrasenaValida = false;
+            }
+
+            // Verificar si hay un carácter especial
+            if (!/[!@#$%^&*()_+\-=[\]{};':"\\|,.<>/?]/.test(contrasena)) {
+                contrasenaValida = false;
+            }
+
+            // Verificar si hay un número
+            if (!/\d/.test(contrasena)) {
+                contrasenaValida = false;
+            }
+
+            if (contrasenaValida) {
+                mensajeValidacion.style.color = "green";
+            } else {
+                mensajeValidacion.style.color = "red";
+            }
+        }
+
         function verificarContrasenas() {
             var contrasena1 = document.getElementById("contrasena1").value;
             var contrasena2 = document.getElementById("contrasena2").value;
+            var mensajeError = document.getElementById("mensajeError");
 
             if (contrasena1 !== contrasena2) {
-                var mensajeError = document.getElementById("mensajeError");
                 mensajeError.textContent = "Las contraseñas no coinciden";
                 mensajeError.style.color = "red";
                 return false;
@@ -56,5 +98,4 @@
     </script>
 
 </body>
-
 </html>
