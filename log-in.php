@@ -1,6 +1,11 @@
+<?php
+  session_start();
+?>
+
 <!doctype html>
 <html lang="en" data-bs-theme="auto">
-  <head>
+  <head><script src="../assets/js/color-modes.js"></script>
+
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
@@ -8,6 +13,14 @@
     <title>Chic Avenue</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
     <link rel="canonical" href="https://getbootstrap.com/docs/5.3/examples/sign-in/">
+    <!-- Enlaces a los archivos CSS y JavaScript de Font Awesome alojados en línea -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/formulario.css">
+    <script src="/sweetalert/dist/sweetalert2.all.min.js"></script>
+    
+
+    <link href="/assets/dist/css/bootstrap.min.css" rel="stylesheet">
+
     <style>
       .bd-placeholder-img {
         font-size: 1.125rem;
@@ -84,8 +97,9 @@
 
     
     <!-- Custom styles for this template -->
-    <link href="css/sign-in.css" rel="stylesheet">
+    <link href="/css/sign-in.css" rel="stylesheet">
   </head>
+
   <body class="text-center">
     <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
       <symbol id="check2" viewBox="0 0 16 16">
@@ -138,35 +152,63 @@
       </ul>
     </div>
 
-    
-<main class="form-signin w-100 m-auto">
-  <form>
-    <img class="Logo de Chic Avenue" src="assets/logo_CA.PNG" alt="" width="82" height="70">
-    <h1 class="h3 mb-3 fw-normal">Inicio de sesión</h1>
+   <!-- <div class="container">
+      <div class="row">
+        <div class="col"><img class="rounded float-left" src="assets/generic1.jpg"  width="200%" height="200%"alt="Baner1"></div>
+        <div class="col"></div>
+        <div class="col"></div>
+      </div>
+      </div>
+    -->
+    <main class="form-signin w-100 m-auto">
+      <!--Empieza formulario-->
+      <form id="login" action="php/con_db.php" method= "POST" enctype="multipart/form-data">
+        <img class="Logo de Chic Avenue" src="../assets/logo_CA.PNG" alt="LOGO" width="82" height="70">
+        <h1 class="texto">Inicio de sesión</h1>
+        
+        <!--Correo Electronico-->
+        <div class="form-floating formulario_grupo formulario_grupo-input" id="email">
+          <input type="email" class="form-control" id="iemail" placeholder="name@example.com" name="iemail">
+          <i class="formulacion_validacion-estado fas fa-times-circle"></i>
+          <label for="floatingInput">Correo electr&oacute;nico</label>
+        </div>
+        <!--Contraseña-->
+        <div class="form-floating formulario_grupo formulario_grupo-input" id="pass">
+          <input type="password" class="form-control" id="ipass" placeholder="Password" name="ipass">
+          <i class="formulacion_validacion-estado fas fa-times-circle"></i>
+          <label for="floatingPassword">Contraseña</label>
+        </div>
 
-    <div class="form-floating">
-      <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com">
-      <label for="floatingInput">Correo electronico</label>
-    </div>
-    <div class="form-floating">
-      <input type="password" class="form-control" id="floatingPassword" placeholder="Password">
-      <label for="floatingPassword">Contraseña</label>
-    </div>
+        <div class="checkbox mb-3">
+          
+          <input type="checkbox" name="recuerda" value="remember-me" id="recuerda">
+          <label for="recuerda">Recuerdame</label>
 
-    <div class="checkbox mb-3">
-      <label>
-        <input type="checkbox" value="remember-me">Recuerdame
-      </label>
-    <a class="nav-link" href="registro.html">Crea una nueva cuenta</a>
-   <!-- <a href="<?php echo PSF::urlFor('/workspaces/Chic-Venue/html/registro.php');?>">Crear una nueva cuenta</a>-->
-
-    </div>
-    <br>
-    <button class="w-100 btn btn-lg btn-primary mb1 bg-black" type="submit">Iniciar sesión</button>
-    <p class="mt-5 mb-3 text-body-secondary"></p>
-  </form>
-</main>
-
+          <a class="nav-link" href="registro.php"><strong><u>Crea una nueva cuenta</u></strong></a>
+          <!-- <a href="<?php //echo PSF::urlFor('/workspaces/Chic-Venue/html/registro.php');?>">Crear una nueva cuenta</a>-->
+        </div>
+        <br>
+        <button class="w-100 btn btn-lg btn-primary mb1 bg-black" type="submit" id="log">Iniciar sesión</button>
+        <p class="mt-5 mb-3 text-body-secondary"></p>
+        <!--<div class="formulario_mensaje" id="formulario_mensaje">
+          <p><i class="fas fa-exclamation-triangle"></i> <b>Error: </b>Se deben completar todos los campos obligatorios.</p>
+        </div>-->
+        <?php
+          if (isset($_SESSION['mensaje'])) {
+              $mensaje = $_SESSION['mensaje'];
+              ?>
+              <div><h3 id="mensaje" style="display: none;"><?php echo "$mensaje";?></h3></div>
+              <?php
+              unset($_SESSION['mensaje']); // Limpiamos la variable de sesión
+          }
+        ?>
+      </form>
+      <div>
+        <button class="boton_regreso" onclick="go_login()" type="submit">Regresar</button>
+        <p class="mt-5 mb-3 text-body-secondary"></p>
+      </div>
+  </main>
+    <script src="/js/login_verificar.js"></script>
   </body>
   
 </html>
