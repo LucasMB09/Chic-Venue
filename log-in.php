@@ -161,7 +161,7 @@
       
       <!--Empieza formulario-->
       <form id="login" action="php/con_db.php" method= "POST" enctype="multipart/form-data">
-        <img class="Logo de Chic Avenue" src="/assets/logo_CA.PNG" alt="LOGO" width="82" height="70">
+        <img class="Logo de Chic Avenue" src="../assets/logo_CA.PNG" alt="LOGO" width="82" height="70">
         <h1 class="texto">Inicio de sesión</h1>
         
         <!--Correo Electronico-->
