@@ -154,10 +154,6 @@
 
     
     <main class="form-signin w-100 m-auto">
-      <div>
-        <button class="boton_regreso" onclick="go_login()" type="submit">Regreso</button>
-        <p class="mt-5 mb-3 text-body-secondary"></p>
-      </div>
       
       <!--Empieza formulario-->
       <form id="login" action="php/con_db.php" method= "POST" enctype="multipart/form-data">
@@ -201,6 +197,10 @@
           }
         ?>
       </form>
+      <div>
+        <button class="boton_regreso" onclick="go_login()" type="submit">Regresar atras</button>
+        <p class="mt-5 mb-3 text-body-secondary"></p>
+      </div>
   
   </main>
     <script src="/js/login_verificar.js"></script>
