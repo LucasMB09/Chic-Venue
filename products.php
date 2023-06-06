@@ -80,7 +80,7 @@
             <li class="nav-item">
              <li class="nav-item">
               &nbsp;&nbsp;&nbsp;&nbsp;
-               <a class="navbar-brand" href="log-in.html">
+               <a class="navbar-brand" href="log-in.php">
                <img src="assets/usuario.png" alt="carrito" width="30" height="30" class="d-inline-block align-text-top">
               </a>
             </li>
