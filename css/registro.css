@@ -16,12 +16,14 @@ body {
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
+    border-radius: 10rem;
     color: #414141; /* registro y redireccionamiento a iniciar sesion */
 }
 
 .container-form {
     width: 90%;
     height: 90vh;
+    border-radius: 10rem;
     display: flex;
     justify-content: space-around;
     transition:  all .5s ease-out;
@@ -67,6 +69,7 @@ body {
     margin: 2rem;
     background-color: rgba(183, 183, 183, 0.9); /* fondo del formulario */
     text-align: center;
+    border-radius: 2rem;
 }
 
 .create-account {
@@ -134,4 +137,39 @@ body {
   .letra-texto{
     font-family:"Candara";
     font-size: 1.2em;
+  }
+
+  .letra-ad{
+    font-family:"Candara";
+    font-size: 0.8em;
+  }
+
+  .recuadro {
+    position:absolute;
+    width: 30px;
+    height: 20px;
+    align-content:end;
+
+  }
+  
+  .mensaje-emergente {
+    width: 300px;
+    height: 150px;
+    font-family:"Candara";
+    font-size: 1em;
+    position: absolute;
+    top: 50%;
+    left: 220%;
+    transform: translate(10%, -45%);
+    background-color: rgb(238, 238, 238);
+    color:rgb(78, 78, 78);
+    border-color: 10px #4a4a4f ;
+    border-radius: 3%;
+    padding: 10px;
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out;
+  }
+  
+  .recuadro:hover .mensaje-emergente {
+    opacity: 2;
   }
