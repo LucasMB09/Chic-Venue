@@ -162,7 +162,7 @@
       <!--Empieza formulario-->
       <form id="login" action="php/con_db.php" method= "POST" enctype="multipart/form-data">
         <img class="Logo de Chic Avenue" src="/assets/logo_CA.PNG" alt="LOGO" width="82" height="70">
-        <h1 class="titulo">Inicio de sesión</h1>
+        <h1 class="texto">Inicio de sesión</h1>
         
         <!--Correo Electronico-->
         <div class="form-floating formulario_grupo formulario_grupo-input" id="email">
