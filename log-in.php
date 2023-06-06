@@ -145,7 +145,11 @@
 
     
     <main class="form-signin w-100 m-auto">
-      
+      <div class="container">
+        <div class="row">
+          <div class="column">
+          <img class="d-block w-100" src="assets/generic1.jpg" alt="Baner1">
+          </div>
       <!--Empieza formulario-->
       <form id="login" action="php/con_db.php" method= "POST" enctype="multipart/form-data">
         <img class="Logo de Chic Avenue" src="../assets/logo_CA.PNG" alt="LOGO" width="82" height="70">
@@ -194,8 +198,8 @@
         <a class="nav-link" onclick="go_login()" type="submit">Regresar atras</a>
         <p class="nav-link"></p>
       </div>
-     
-  
+      </div>
+      </div>
   </main>
     <script src="/js/login_verificar.js"></script>
   </body>
