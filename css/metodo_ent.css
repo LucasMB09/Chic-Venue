@@ -1,11 +1,14 @@
 :root{
-  --negro: #646464c0;
+  --negro: #000000;
   --blanco: #ffffff;
   --gris: #D6D6D6;
+  --grisosc: rgb(89, 89, 89);
+  --beige: rgb(216, 216, 216);
 }
 
 body {
-    font-family: Arial, sans-serif;
+    font-family: Candara,Calibri,Segoe,Segoe UI,Optima,Arial,sans-serif;
+    font: size 12px;
     margin: 20px;
   }
   
@@ -19,8 +22,6 @@ body {
   }
 
   .formulario {
-    background-repeat: no-repeat;
-    background-size: cover;
     height: 850px;
     position: relative;
     margin-bottom: 2rem;
@@ -30,7 +31,7 @@ body {
     position: absolute;
     right: 410px;
     top: 110px;
-    background-color: var(--negro);
+    background-color: var(--beige);
     width: min(30rem, 100%); /*Utilizar el valor mas pequeño*/
     margin: 0 auto; /*Utilizar en elementos cuyo padre no es un display flex*/
     padding: 2rem;
@@ -46,7 +47,7 @@ body {
   label {
     display: block;
     margin-top: 10px;
-    color: var(--blanco);
+    color: var(--negro);
   }
   
   input[type="text"],

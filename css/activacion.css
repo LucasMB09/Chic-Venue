@@ -1,0 +1,47 @@
+:root{
+    --negro: #1d1d1d;
+    --grisosc: rgb(89, 89, 89);
+}
+
+body {
+    font-family: Candara,Calibri,Segoe,Segoe UI,Optima,Arial,sans-serif;
+    font: size 12px;
+    background-color: #f2f2f2;
+    margin: 20px;
+    padding: 0;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+}
+
+.container {
+    background-color: #fff;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+    margin-top: 50px;
+    width: 600px;
+    padding: 45px;
+    text-align: center;
+}
+
+h1 {
+    color: #333;
+}
+
+p {
+    color: #666;
+}
+
+.btn {
+    display: inline-block;
+    background-color: var(--negro);
+    color: #fff;
+    border-radius: 4px;
+    padding: 10px 20px;
+    text-decoration: none;
+    margin-top: 20px;
+}
+
+.btn:hover {
+    background-color: var(--grisosc);
+}
