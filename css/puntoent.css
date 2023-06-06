@@ -2,11 +2,13 @@
     --negro: #000000;
     --blanco: #ffffff;
     --gris: #D6D6D6;
-    --grisosc: #646464c0;
+    --grisosc: rgb(89, 89, 89);
+    --beige: rgb(216, 216, 216);
   }
   
   body {
-      font-family: Arial, sans-serif;
+      font-family: Candara,Calibri,Segoe,Segoe UI,Optima,Arial,sans-serif;
+      font: size 12px;
       margin: 20px;
     }
     
@@ -31,7 +33,7 @@
       position: absolute;
       right: 410px;
       top: 110px;
-      background-color: var(--grisosc);
+      background-color: var(--beige);
       width: min(30rem, 100%); /*Utilizar el valor mas pequeño*/
       margin: 0 auto; /*Utilizar en elementos cuyo padre no es un display flex*/
       padding: 2rem;
@@ -40,7 +42,7 @@
     }
 
     .contenidoform p{
-        color: var(--blanco);
+        color: var(--negro);
         font-weight: bold;
     }
     
@@ -52,7 +54,7 @@
     label {
       display: block;
       margin-top: 10px;
-      color: var(--blanco);
+      color: var(--negro);
     }
 
     ::placeholder{
@@ -84,10 +86,19 @@
     }
     
     input[type="submit"]:hover {
-      background-color: #45a049;
+      background-color: var(--grisosc);
     }
 
     .error-message {
       color: red;
     }
+
+    input[type="email"]{
+      border: none;
+      height: 35px;
+      width: 398px;
+      border-radius: 4px;
+    }
+    
+    
     
