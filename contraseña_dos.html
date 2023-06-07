@@ -26,8 +26,8 @@
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
-            background-color: #dff0d8;
-            color: #3c763d;
+            background-color: #c2c2c2;
+            color: #3b3b3b;
             padding: 10px 20px;
             border-radius: 5px;
             text-align: center;
@@ -111,32 +111,33 @@
             var contrasena2 = document.getElementById("contrasena2").value;
             var mensajeError = document.getElementById("mensajeError");
             var mensajeExito = document.getElementById("mensajeExito");
-
+        
             if (contrasena1 !== contrasena2) {
                 mensajeError.textContent = "Las contraseñas no coinciden";
                 mensajeError.style.color = "red";
+                mensajeExito.style.display = "none"; 
                 return false;
             }
+        
             // Verificar condiciones adicionales
             verificarContrasena();
-
+        
             var mensajeValidacion = document.getElementById("mensajeValidacion");
             var contrasenaValida = mensajeValidacion.style.color !== "red";
-
+        
             if (!contrasenaValida) {
-                mensajeExito.style.display = "none";
+                mensajeExito.style.display = 'none';
                 return false;
             }
-
-            // Mostrar mensaje de éxito
+     
             mensajeExito.style.display = "block";
-
-            // Ocultar mensaje después de 5 segundos
             setTimeout(function () {
                 mensajeExito.style.display = "none";
-            }, 5000);
-
-            return true;
+            }, 3500);
+            document.getElementById("contrasena1").value = ""; 
+            document.getElementById("contrasena2").value = ""; 
+        
+            return false;
         }
     </script>
 

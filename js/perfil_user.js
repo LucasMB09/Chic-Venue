@@ -1,23 +1,5 @@
 const usuario = document.getElementById("usuario");
 const email = document.getElementById("correo");
-const mensaje = document.getElementById("mensaje");
-
-if((mensaje.textContent).length > 0 ){
-    switch (mensaje.textContent) {
-        case "Inicio de sesión exitoso":
-            Swal.fire({
-                title: 'Exito!',
-                text: mensaje.textContent,
-                icon: 'success',
-                showConfirmButton: 'Aceptar'
-            });
-            break;
-        default:
-            break;
-    }
-    
-}
-
 
 function user() {
     const Toast = Swal.mixin({
@@ -40,7 +22,7 @@ function user() {
         if (result.isConfirmed){
             location.href = "perfil_usuario.php";
         }
-        else if (result.isDenied){
+        if (result.isDenied){
             var valor = 0;
             location.href = "index.php?valor=" + encodeURIComponent(valor);
         }

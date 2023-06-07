@@ -53,7 +53,8 @@
     <div class="container-fluid">
       <br><br>
       <?php
-      if ($_SESSION['mensaje'] == "Inicio de sesión exitoso") {
+      if(isset($_SESSION['mensaje'])){ 
+        if ($_SESSION['mensaje'] == "Inicio de sesión exitoso") {
         $mensaje = $_SESSION['mensaje'];
         $user = $_SESSION['user'];
         $email = $_SESSION['email'];
@@ -67,26 +68,25 @@
         <h3 class="text_user" style="display:none;">Hola, <?php echo "$user";?></h1>
         <?php
         unset($_SESSION['mensaje']); // Limpiamos la variable de sesión
+        }
       }
-      elseif($_SESSION['email'] != "No" && $_SESSION['user'] != "No"){
-        ?>
-        <h3 class="text_user" style="display:none;">Hola, <?php echo "$user";?></h1>
-        <?php
-        if($valor == 0 ){
-          if($_GET['valor'] == 0){
-            setcookie('usuario', "", time()-86400, '/');
-            setcookie('email', "", time()-86400, '/');
-            unset($_SESSION['email']);
-            unset($_SESSION['user']);
-            $_SESSION['valor'] = 1;
-            header("Location: index.php?valor=1");
+      elseif(isset($_SESSION['email'])){
+        if($_SESSION['email'] != "No" && $_SESSION['user'] != "No"){
+          ?>
+          <h3 class="text_user" style="display:none;">Hola, <?php echo "$user";?></h1>
+          <?php
+          if($valor == 0 ){
+            if($_GET['valor'] == 0){
+              setcookie('usuario', "", time()-86400, '/');
+              setcookie('email', "", time()-86400, '/');
+              unset($_SESSION['email']);
+              unset($_SESSION['user']);
+              $_SESSION['valor'] = 1;
+              header("Location: index.php?valor=1");
+            }
           }
         }
-        else{
-          
-        }
       }
-      
       ?>
     </div>
     </nav>
