@@ -112,10 +112,10 @@
                 <div id="uwu"><h3 class="letra-texto" >La contraseña requiere:</h3></div>
                 <div id="texcorrec" style="display: none;"><h4 class="letra-texto">La contraseña cumple con<br>los requerimentos</h4></div>
                 <ul class="text_validaciones" id="lista">
-                    <div id="carac"><li><h4 class="letra-texto">8 carácteres</h4></li></div>
+                    <div id="carac"><li><h4 class="letra-texto">8 caracteres</h4></li></div>
                     <div id="mayus"><li><h4 class="letra-texto">1 mayúscula</h4></li></div>
                     <div id="minus"><li><h4 class="letra-texto">1 minúscula</h4></li></div>
-                    <div id="car"><li><h4 class="letra-texto">1 carácter especial</h4></li></div>
+                    <div id="car"><li><h4 class="letra-texto">1 caracter especial</h4></li></div>
                     <div id="num"><li><h4 class="letra-texto">1 número</h4></li></div>
                 </ul>
             </div>
