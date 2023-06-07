@@ -40,14 +40,12 @@ function user() {
         if (result.isConfirmed){
             location.href = "perfil_usuario.php";
         }
-        else if (result.idDenied){
+        else if (result.isDenied){
             var valor = 0;
             location.href = "index.php?valor=" + encodeURIComponent(valor);
         }
         else if(result.isDismissed){
             var valor = 3;
-        }
-        else{
         }
     })
     

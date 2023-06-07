@@ -138,24 +138,36 @@
             <li class="nav-item">
               &nbsp;&nbsp;&nbsp;&nbsp;
                <a class="navbar-brand" href="#">
-               <img src="/assets/filtro.png" alt="carrito" width="30" height="30" class="d-inline-block align-text-top">
+               <img src="/assets/filtro.png" alt="filtro" width="30" height="30" class="d-inline-block align-text-top">
               </a>
             </li>
             <li class="nav-item">
              <li class="nav-item">
-              &nbsp;&nbsp;&nbsp;&nbsp;
-               <a class="navbar-brand" href="/html/log-in.html">
-               <img src="/assets/usuario.png" alt="carrito" width="30" height="30" class="d-inline-block align-text-top">
-              </a>
+             <?php
+              if($email != ":v" && $user != ":v"){
+                ?>
+                  <h3 id="usuario" style="display:none;"> <?php echo "$user";?></h3>
+                  <h3 id="correo" style="display:none;"> <?php echo "$email";?></h3>
+                  <a class="navbar-brand" onclick="user()" id="change"> <!-- INCIAR SESION -->
+                    <img src="assets/usuario.png" alt="carrito" width="30" height="30" class="d-inline-block align-text-top">
+                  </a>
+                  <?php
+              }
+              else{
+                ?>
+                <a class="navbar-brand" href="log-in.php"> <!-- INCIAR SESION -->
+                <img src="assets/usuario.png" alt="carrito" width="30" height="30" class="d-inline-block align-text-top">
+                </a>
+                <?php
+              }
+              ?>
             </li>
             <li class="nav-item">
-              &nbsp;&nbsp;&nbsp;&nbsp;
                <a class="navbar-brand" href="#">
-               <img src="/assets/favoritos.JPG" alt="carrito" width="30" height="30" class="d-inline-block align-text-top">
+               <img src="/assets/favoritos.JPG" alt="favoritos" width="30" height="30" class="d-inline-block align-text-top">
               </a>
             </li>
             <li class="nav-item">
-              &nbsp;&nbsp;&nbsp;&nbsp;
               <a class="navbar-brand" href="#">
               <img src="/assets/carrito.png" alt="carrito" width="30" height="30" class="d-inline-block align-text-top">
              </a>
@@ -309,13 +321,7 @@
                                           <h5>Entregado el <?php echo $fecha;?></h5>
                                       </div>
                                       <div class="col-sm-1">
-                                        <form id="recomprar" action="/php/recomprar.php" method= "POST" enctype="multipart/form-data">
-                                          <h3 style="display:none" id="<?php echo $num_cliente;?>"><?php echo $num_cliente;?></h3>
-                                          <h3 style="display:none" id="<?php echo $id_Arti;?>"><?php echo $id_Arti;?></h3>
-                                          <h3 style="display:none" id="<?php echo $num_cliente;?>"><?php echo $num_cliente;?></h3>
-                                          <button class="btn btn-bd-primary position-relative" >Volver a comprar</button><br><br>
-                                        </form>
-                                          <button class="btn btn-bd-light position-relative" onclick="ver()">Ver compra</button>
+                                          <button class="btn btn-bd-primary position-relative" >Ver compra</button>
                                       </div>
                                     </div>
                                     <hr>
@@ -402,6 +408,7 @@
                     </div>               
             
             </div>
+<!---------------------------------------------CONFIGURACION-------------------------------------------------------------->
             <div class="tab-pane fade" id="configuracion-tab" role="tabpanel" aria-labelledby="v-pills-settings-tab">
                 <div class="btn-group-vertical gap-5 col-11" role="group" aria-label="Vertical button group">
                     <a class="btn btn-outline-dark btn-lg" href="#" data-toggle="modal" data-target="#modalModificar">
@@ -448,5 +455,6 @@
 </main>
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
+<script src="js/perfil_user.js"></script>
 </body>
 </html>
