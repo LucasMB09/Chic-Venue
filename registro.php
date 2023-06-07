@@ -39,16 +39,10 @@
             </div>
             <form class="formulario" id="registro" action="/php/registro.php" method= "POST" enctype="multipart/form-data">
                 <h2 class="create-account">R E G I S T R O</h2>
-
                 <div class="form-floating formulario_grupo formulario_grupo-input" id="nombre">
                     <input type="text" class="letra-texto" name="nombre" placeholder="Nombre*">
                     <i class="formulacion_validacion-estado fas fa-times-circle"></i>
                 </div>
-
-            <!--  mensaje emergente-->
-            
-
-
                 <div class="form-floating formulario_grupo formulario_grupo-input" id="apellido">
                     <input type="text" class="letra-texto" name="apellido" placeholder="Apellido*">
                     <i class="formulacion_validacion-estado fas fa-times-circle"></i>
@@ -60,17 +54,6 @@
                 <div class="form-floating formulario_grupo formulario_grupo-input" id="pass">
                     <input type="password"  class="letra-texto" name="contrasena" placeholder="Contraseña*">
                     <i class="formulacion_validacion-estado fas fa-times-circle"></i>
-                    <div class="recuadro">
-                        <span class="mensaje-emergente">La contraseña requiere:
-                        <ul ">
-                <li class="letra-ad">8 carácteres</li>
-                <li class="letra-ad">1 mayúscula</li>
-                <li class="letra-ad">1 minúscula</li>
-                <li class="letra-ad">1 carácter especial</li>
-                <li class="letra-ad">1 número</li>
-            </ul> 
-                        </span>
-                    </div>
                 </div>
                 <button class="boton_registro" class="letra-texto" type="submit" name="registro" id="regis">Registrarme</button>
                 <br><br>
@@ -88,9 +71,6 @@
                 ?>
             </form>
         </div>
-
-
-
         <!--Cuadro de validaciones-->
         <form class="campo_validaciones" >
             <div class="contenedor" id="contenedor">
@@ -102,14 +82,13 @@
                 <div id="minus"><li><h4 class="letra-texto">1 minúscula</h4></li></div>
                 <div id="car"><li><h4 class="letra-texto">1 carácter especial</h4></li></div>
                 <div id="num"><li><h4 class="letra-texto">1 número</h4></li></div>
-            </ul>      
-            </div>   
+            </ul>
+            
+            </div>
+            
+
+            
         </form>
-
-
-
         <script src="js/registro_verificar.js"></script>
-
     </body>
 </html>
-

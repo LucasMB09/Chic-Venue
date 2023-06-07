@@ -17,6 +17,11 @@ const contra = {
     num:/(?=.*\d)[\d!@#$%^&*()]/
 }
 
+const ema = {
+    arroba: /@/,
+    punto: /\./
+}
+
 const campos = {
     email: false,
     pass: false,
@@ -26,13 +31,23 @@ const campos = {
     mayus: false,
     minus: false,
     car: false,
-    num: false
+    num: false,
+    arroba: false,
+    punto: false
 }
 
 const validarFormulario = (e) => {
     switch (e.target.name) {
         case "email":
             validarCampo(exp.email, e.target, "email");
+            valcontra(ema.arroba,e.target,"arroba");
+            valcontra(ema.punto,e.target,"punto");
+            if(campos.arroba && campos.punto){
+                document.getElementById('cont_cor').style.display = 'none';
+            }
+            else{
+                document.getElementById('cont_cor').style.display = 'block';
+            }
         break;
         case "contrasena":
             validarCampo(exp.pass, e.target, "pass");
@@ -45,21 +60,34 @@ const validarFormulario = (e) => {
                 contenedor.classList.remove('contenedor');
                 contenedor.classList.add('contenedor_correc');
                 document.getElementById("texcorrec").style.display = 'block';
-                document.getElementById("uwu").style.display = 'none';
+                document.getElementById("contenedor").style.display = 'none';
             }
             else{
                 contenedor.style.display = "block";
                 contenedor.classList.remove('contenedor_correc');
                 contenedor.classList.add('contenedor');
                 document.getElementById("texcorrec").style.display = 'none';
-                document.getElementById("uwu").style.display = 'block';
+                document.getElementById("contenedor").style.display = 'block';
             }
+            
         break;
         case "nombre":
             validarCampo(exp.nombre, e.target, "nombre");
+            if(campos.nombre){
+                document.getElementById('cont_nom').style.display = 'none';
+            }
+            else{
+                document.getElementById('cont_nom').style.display = 'block';
+            }
         break;
         case "apellido":
             validarCampo(exp.apellido, e.target, "apellido");
+            if(campos.apellido){
+                document.getElementById('cont_ape').style.display = 'none';
+            }
+            else{
+                document.getElementById('cont_ape').style.display = 'block';
+            }
         break;
     }
 }
