@@ -101,6 +101,9 @@
   </head>
 
   <body class="text-center">
+    <div class="barra fixed-top" style="background-color: black; height: 40px; width: 100%;">
+    <br>
+    <br>
     <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
       <symbol id="check2" viewBox="0 0 16 16">
         <path d="M13.854 3.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6.5 10.293l6.646-6.647a.5.5 0 0 1 .708 0z"/>
@@ -178,16 +181,18 @@
           <i class="formulacion_validacion-estado fas fa-times-circle"></i>
           <label for="floatingPassword">Contraseña</label>
         </div>
-
+        <!-- Checkbox Recuerdame y Enlace "Olvidé mi contraseña" -->
         <div class="checkbox mb-3">
-          
-          <input type="checkbox" name="recuerda" value="remember-me" id="recuerda">
-          <label for="recuerda">Recuerdame</label>
-
-          <a class="nav-link" href="registro.php"><strong><u>Crea una nueva cuenta</u></strong></a>
-          <!-- <a href="<?php //echo PSF::urlFor('/workspaces/Chic-Venue/html/registro.php');?>">Crear una nueva cuenta</a>-->
+          <div class="d-flex align-items-center">
+            <input type="checkbox" name="recuerda" value="remember-me" id="recuerda">
+            <label for="recuerda" class="text-dark" style="margin-left: 0.1px;">Recordar mi contraseña</label>
+            <a href="contraseña.html" class="font-weight-bold text-decoration-none text-dark">Olvidé mi contraseña</a>
+          </div>
         </div>
+
+        <a class="nav-link" href="registro.php"><strong><u>Crea una nueva cuenta</u></strong></a>
         <br>
+        <!-- Botón Iniciar sesión -->
         <button class="w-100 btn btn-lg btn-primary mb1 bg-black" type="submit" id="log">Iniciar sesión</button>
         <p class="mt-5 mb-3 text-body-secondary"></p>
         <!--<div class="formulario_mensaje" id="formulario_mensaje">
@@ -204,11 +209,13 @@
         ?>
       </form>
       <div>
-        <button class="boton_regreso" onclick="go_login()" type="submit">Regresar</button>
+        <button class="boton_regreso" onclick="go_login()" type="submit">Cancelar</button>
         <p class="mt-5 mb-3 text-body-secondary"></p>
       </div>
+      
   </main>
     <script src="/js/login_verificar.js"></script>
+    </div>
   </body>
   
 </html>
