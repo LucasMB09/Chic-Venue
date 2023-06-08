@@ -35,7 +35,7 @@
                 <button class="enviar">Enviar link</button>
             </div>
         </form>
-        <h2><a href="log-in:history.back()">Volver a la página anterior</a></h2> 
+        <h2><a href="log-in.php">Volver al inicio de sesión </a></h2> 
     </div>
 
     <script>
@@ -80,7 +80,7 @@
         function showSuccessMessage() {
             var successMessage = document.createElement("div");
             successMessage.className = "success-message";
-            successMessage.textContent = "Gracias por enviar su dirección de correo. Le enviamos un correo electrónico con la información necesaria para restablecer su contraseña. El correo electrónico puede tardar un par de minutos en llegar.";
+            successMessage.textContent = "Le enviamos un correo electrónico con la información necesaria para restablecer su contraseña. El correo electrónico puede tardar un par de minutos en llegar.";
 
             var container = document.querySelector(".container");
             container.insertBefore(successMessage, container.firstChild);
