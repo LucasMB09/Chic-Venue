@@ -100,8 +100,6 @@
                 <div id="num"><li><h4 class="letra-texto">1 número</h4></li></div>
             </ul>
             
-<<<<<<< HEAD
-=======
             <div class="contenedor" id="cont_ape" style="display: none;" >
                 <div id="uwu1"><h3 class="letra-texto" >El apellido requiere:</h3></div>
                 <div id="nomb"><h4 class="letra-texto text_validaciones">Tienen que ser solamente letras</h4></div>
@@ -125,7 +123,7 @@
                     <div id="car"><li><h4 class="letra-texto">1 caracter especial</h4></li></div>
                     <div id="num"><li><h4 class="letra-texto">1 número</h4></li></div>
                 </ul>
->>>>>>> b9bdd9868942f3193f0b477c9644d502eb726722
+
             </div>
             
 
