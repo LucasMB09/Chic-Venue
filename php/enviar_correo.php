@@ -1,7 +1,7 @@
 <?php
-    require 'Exception.php';
-    require 'PHPMailer.php';
-    require 'SMTP.php';
+    require 'PHPMailer/src/Exception.php';
+    require 'PHPMailer/src/PHPMailer.php';
+    require 'PHPMailer/src/SMTP.php';
     include("con_db.php");
 
     use PHPMailer\PHPMailer\PHPMailer;
@@ -28,9 +28,10 @@
 
             $mail->isHTML(true);
             // Aqui solo seria darle estilo al correo de confirmación ok
+            $codigo_confirmacion = rand();
             $mail->Subject = 'Confirmación de cuenta';
-            $mail->Body = '¡Gracias por registrarte en nuestro sitio! Haz clic en el siguiente enlace para confirmar tu cuenta: ' .
-                '<a href="http://localhost/chic-venue/log-in.php#' . $codigo_confirmacion . '">Confirmar cuenta</a>';
+            $mail->Body = '¡Gracias por registrarte en nuestro sitio! Ingresa el siguiente codigo: ' .
+                '<h3>' . $codigo_confirmacion . '"</h3>';
 
             $mail->send();
         } catch (Exception $e) {

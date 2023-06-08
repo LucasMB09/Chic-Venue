@@ -45,6 +45,7 @@
                 <h3 class="ok">¡Te has registrado correctamente!</h3>
                 <?php*/
                 $_SESSION['mensaje']  = "¡Te has registrado correctamente!";
+                
                 header("Location: ../log-in.php");
                 //include "../registro.php";
             } else {
