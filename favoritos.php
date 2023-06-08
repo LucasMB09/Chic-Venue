@@ -1,3 +1,39 @@
+<?php
+  session_start();
+
+  if(isset($_GET['valor'])){
+    $valor = $_GET['valor'];
+  }
+  else{
+    $valor = $_SESSION['valor'];
+  }
+
+  if(isset($_COOKIE['usuario'])){
+    $_SESSION['user'] = $_COOKIE['usuario'];
+    $_SESSION['email'] = $_COOKIE['email'];
+    $user = $_SESSION['user'];
+    $email = $_SESSION['email'];
+  }
+  elseif(isset($_SESSION['email'])){
+    $user = $_SESSION['user'];
+    $email = $_SESSION['email'];
+  }
+  elseif($valor == 0){
+    $user = "No";
+    $email = "No";  
+  }
+  elseif($valor == 1){
+    $user = ":v";
+    $email = ":v";
+  }
+  else{
+    $valor = 1;
+    $_SESSION['valor'] = $valor;
+  }
+  
+ 
+?>
+
 <!DOCTYPE html>
 <html lang="es">
     <head>
@@ -7,10 +43,12 @@
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet">
         <link href="https://getbootstrap.com/docs/5.3/assets/css/docs.css" rel="stylesheet">
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
-        <link rel="stylesheet" href="../css/favoritos.css">
+        <link rel="stylesheet" href="css/favoritos.css">
       </head>
         <title>Chic Venue</title>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
+        <script src="/sweetalert/dist/sweetalert2.all.min.js"></script>
+        <link href="/css/fav.css" rel="stylesheet">
       </head>
       <body class="p-3 m-0 border-0 bd-example">
     
@@ -18,6 +56,23 @@
         <nav class="navbar bg-dark" data-bs-theme="dark">
            <div class="container-fluid">
           <br><br>
+          <?php
+          if($_SESSION['email'] != "No" && $_SESSION['user'] != "No"){
+            ?>
+            <h3 class="text_user" style="display:none;">Hola, <?php echo "$user";?></h1>
+            <?php
+            if($valor == 0 ){
+              if($_GET['valor'] == 0){
+                setcookie('usuario', "", time()-86400, '/');
+                setcookie('email', "", time()-86400, '/');
+                unset($_SESSION['email']);
+                unset($_SESSION['user']);
+                $_SESSION['valor'] = 1;
+                header("Location: products.php?valor=1");
+              }
+            }
+          }
+        ?>
         </div>
         </nav>
         <!--FIN LINEA NEGRA -->
@@ -27,18 +82,18 @@
         <nav class="navbar navbar-expand-lg bg-body-tertiary">
           <div class="container-fluid">
             <a class="navbar-brand" href="#">
-              <img src="logo.jpg" class="rounded mx-auto d-block"  alt="" width="82" height="70">
+              <img src="/assets/logo.jpg" class="rounded mx-auto d-block"  alt="" width="82" height="70">
             </a>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
               <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                 <li class="nav-item">
-                  <a class="nav-link active" aria-current="page" href="/html/products.html">Novedades</a> <!-- PESTAÑA NOVEDADES -->
+                  <a class="nav-link active" aria-current="page" href="products.php">Novedades</a> <!-- PESTAÑA NOVEDADES -->
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" href="/html/products.html">Rebajas</a> <!-- PESTAÑA REBAJAS -->
+                  <a class="nav-link" href="products.php">Rebajas</a> <!-- PESTAÑA REBAJAS -->
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" href="/html/products.html">Un poco de todo </a> <!-- PESTAÑA PARA REVISAR ARTICULOS -->
+                  <a class="nav-link" href="products.php">Un poco de todo </a> <!-- PESTAÑA PARA REVISAR ARTICULOS -->
                 </li>
                 <li class="nav-item dropdown">
                   <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -62,7 +117,7 @@
               <ul class="nav">
                 <li class="nav-item">
                   &nbsp;&nbsp;&nbsp;&nbsp;
-                 <!--   <a class="navbar-brand" href="#"> <!-- ACCEDER AL FILTRO
+                 <!--   <a class="navbar-brand" href="#">  ACCEDER AL FILTRO
                    <img src="/assets/filtro.png" alt="carrito" width="30" height="30" class="d-inline-block align-text-top">
                   </a> -
                   <button type="button" style="background-image: url('/assets/filtro.png'); width: 10px; height: 10px;" data-toggle="modal" data-target="#exampleModalLong">
@@ -141,20 +196,35 @@
                     </div>
                 </li>
                 <li class="nav-item">
-                 <li class="nav-item">
-                  &nbsp;&nbsp;&nbsp;&nbsp;
-                   <a class="navbar-brand" href="/html/log-in.html"> <!-- INCIAR SESION -->
-                   <img src="/assets/usuario.png" alt="carrito" width="30" height="30" class="d-inline-block align-text-top">
+                <?php
+              if($email != ":v" && $user != ":v"){
+
+                ?>
+
+                  <h3 id="usuario" style="display:none;"> <?php echo "$user";?></h3>
+                  <h3 id="correo" style="display:none;"> <?php echo "$email";?></h3>
+                  <a class="navbar-brand" onclick="user()" id="change"> <!-- INCIAR SESION -->
+                    <img src="assets/usuario.png" alt="carrito" width="30" height="30" class="d-inline-block align-text-top">
                   </a>
-                </li>
+                  
+                  <?php
+                  
+                
+              }
+              else{
+                ?>
+                <a class="navbar-brand" href="log-in.php"> <!-- INCIAR SESION -->
+                  <img src="assets/usuario.png" alt="carrito" width="30" height="30" class="d-inline-block align-text-top">
+                </a>
+                <?php
+              }
+              ?>
                 <li class="nav-item">
-                  &nbsp;&nbsp;&nbsp;&nbsp;
                    <a class="navbar-brand" href="#"> <!-- ACCEDER A FAVORITOS-->
                    <img src="/assets/favoritos.JPG" alt="carrito" width="30" height="30" class="d-inline-block align-text-top">
                   </a>
                 </li>
                 <li class="nav-item">
-                  &nbsp;&nbsp;&nbsp;&nbsp;
                   <a class="navbar-brand" href="#"> <!-- ACCEDER AL CARRITO-->
                   <img src="/assets/carrito.png" alt="carrito" width="30" height="30" class="d-inline-block align-text-top">
                  </a>
@@ -187,5 +257,6 @@
                 </div>
             </div>
         </section>
+  <script src="/js/favoritos.js"></script>
 </body>
 </html>
