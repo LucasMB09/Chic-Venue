@@ -7,7 +7,7 @@ function user() {
         html: `<h3 class="text_toast"> <b>Nombre:</b> ${usuario.textContent}</h3><br>
             <h3 class="text_toast"> <b>Correo:</b> ${email.textContent}</h3>`,
         position: 'top-end',
-        showConfirmButton: true,
+        showConfirmButton: false,
         showDenyButton:true,
         showCancelButton:true,
         confirmButtonText: 'Ir al perfil',
@@ -19,9 +19,9 @@ function user() {
         icon: 'info',
         title: 'Cuenta'
     }).then((result) => {
-        if (result.isConfirmed){
-            location.href = "perfil_usuario.php";
-        }
+        // if (result.isConfirmed){
+        //     location.href = "perfil_usuario.php";
+        // }
         if (result.isDenied){
             var valor = 0;
             location.href = "index.php?valor=" + encodeURIComponent(valor);
