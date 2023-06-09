@@ -6,7 +6,7 @@
 <body>
     <header>
         <div>
-            <a href="#" class="logo">CHIC VENUE</a>
+            <a href="index.php" class="logo">CHIC VENUE</a>
         </div>
         <nav>
             <ul>

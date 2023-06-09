@@ -10,6 +10,8 @@
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
   <link rel="stylesheet" href="css/puntoent.css">
+  <script src="/sweetalert/dist/sweetalert2.all.min.js"></script>
+
 
 </head>
 <title>Nueva dirección</title>
@@ -26,13 +28,13 @@
   <!-- MENU DE NAVEGACION -->
   <nav class="navbar navbar-expand-lg bg-body-tertiary">
     <div class="container-fluid">
-      <a class="navbar-brand" href="/html/index.html">
+      <a class="navbar-brand" href="index.php">
         <img src="/assets/logo.jpg" class="rounded mx-auto d-block" alt="" width="82" height="70">
       </a>
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
           <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="/html/products.html">Novedades</a>
+            <a class="nav-link active" aria-current="page" href="products.php">Novedades</a>
             <!-- PESTAÑA NOVEDADES -->
           </li>
           <li class="nav-item">

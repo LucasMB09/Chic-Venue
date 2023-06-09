@@ -195,10 +195,9 @@
                             </div>
                           
                           
-                          <input type="checkbox" id="ofertas">
-                          <label for="ofertas">Mostrar solo ofertas/descuentos</label>
-                          
-                        </form>
+                            <input type="checkbox" id="ofertas">
+                            <label for="ofertas">Mostrar solo ofertas/descuentos</label>
+                          </form>
                         </div>
                       </div>
                       <div class="modal-footer">
