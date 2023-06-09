@@ -105,6 +105,22 @@ if((mensaje.textContent).length > 0 ){
                 showConfirmButton: 'Aceptar'
             });
             break;
+        case "No se ha activado la cuenta":
+            Swal.fire({
+                title: 'Error!',
+                text: 'No se ha activado la cuenta',
+                icon: 'error',
+                showConfirmButton: 'Aceptar'
+            });
+            break;
+        case "Hubo un error":
+            Swal.fire({
+                title: 'Error!',
+                text: 'No se ha activado la cuenta',
+                icon: 'error',
+                showConfirmButton: 'Aceptar'
+            });
+            break;    
         default:
             break;
     }

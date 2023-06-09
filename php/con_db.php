@@ -32,6 +32,14 @@
                     $resultado2 = mysqli_query($conexion, $query2);
                     /*while($fila2 = mysqli_fetch_assoc($resultado2)){
                          $valor2 = $fila2["contraseña"];*/
+                    $query3 = "SELECT activado FROM cliente WHERE correo_electronico = '$valor'";
+                    $resul = mysqli_query($conexion,$query3);
+
+                    if($resul){
+                         $activado = mysqli_fetch_array($resul);
+                         $activado = $activado[0];
+                    }
+
                     $fila2 = mysqli_fetch_array($resultado2);
                     $valor2 = $fila2[0];
                     //echo $valor2."<br>";
@@ -60,53 +68,65 @@
           echo "Error en la consulta: " . mysqli_error($conexion);
      }
 
-     if($mail != "No hay" ){
-          if($pas != "Incorrecta"){
-               /*echo "La cuenta existe"."<br>";
-               echo "Correo: $mail"."<br>";
-               echo "Contraseña: $pas"."<br>";*/
-               $_SESSION['mensaje']  = "Inicio de sesión exitoso";
-               $_SESSION['email'] = $mail;
-               $_SESSION['recuerda'] = $recuerda;
-               $querynombre = "SELECT nombre FROM cliente WHERE correo_electronico = '$valor'";
-               $resulnombre = mysqli_query($conexion, $querynombre);
-
-               if($resulnombre){
-                    $fila3 = mysqli_fetch_array($resulnombre);
-                    $valnom = $fila3[0];
-                    $_SESSION['user'] = $valnom;
-                    $_SESSION['valor']= 1;
-               }
-               else{
+     if($activado == 1){
+          if($mail != "No hay" ){
+               if($pas != "Incorrecta"){
+                    /*echo "La cuenta existe"."<br>";
+                    echo "Correo: $mail"."<br>";
+                    echo "Contraseña: $pas"."<br>";*/
+                    $_SESSION['mensaje']  = "Inicio de sesión exitoso";
+                    $_SESSION['email'] = $mail;
+                    $_SESSION['recuerda'] = $recuerda;
+                    $querynombre = "SELECT nombre FROM cliente WHERE correo_electronico = '$valor'";
+                    $resulnombre = mysqli_query($conexion, $querynombre);
+     
+                    if($resulnombre){
+                         $fila3 = mysqli_fetch_array($resulnombre);
+                         $valnom = $fila3[0];
+                         $_SESSION['user'] = $valnom;
+                         $_SESSION['valor']= 1;
+                    }
+                    else{
+                         return;
+                    }
+                    
+     
+                    
+                    header("Location: ../index.php");
+                    // Liberar recursos y cerrar conexión
+                    mysqli_free_result($resultado);
+                    mysqli_close($conexion);
                     return;
                }
-               
-
-               
-               header("Location: ../index.php");
-               // Liberar recursos y cerrar conexión
-               mysqli_free_result($resultado);
-               mysqli_close($conexion);
-               return;
+               else{
+                    //echo "La contraseña no es correcta"."<br>";
+                    $_SESSION['mensaje']  = "La contraseña es incorrecta";
+                    header("Location: ../log-in.php");
+                    // Liberar recursos y cerrar conexión
+                    mysqli_free_result($resultado);
+                    mysqli_close($conexion);
+                    return;
+               }
           }
           else{
-               //echo "La contraseña no es correcta"."<br>";
-               $_SESSION['mensaje']  = "La contraseña es incorrecta";
+               //echo "No existe ninguna cuenta asociada a ese correo"."<br>";
+               $_SESSION['mensaje']  = "No existe ninguna cuenta asociada a ese correo";
                header("Location: ../log-in.php");
                // Liberar recursos y cerrar conexión
                mysqli_free_result($resultado);
                mysqli_close($conexion);
                return;
           }
+
+     }
+     elseif($activado == 0){
+          $_SESSION['mensaje']  = "No se ha activado la cuenta";
+          $_SESSION['activado'] = $activado;
+          header("Location: ../log-in.php");
      }
      else{
-          //echo "No existe ninguna cuenta asociada a ese correo"."<br>";
-          $_SESSION['mensaje']  = "No existe ninguna cuenta asociada a ese correo";
+          $_SESSION['mensaje']  = "Hubo un error";
           header("Location: ../log-in.php");
-          // Liberar recursos y cerrar conexión
-          mysqli_free_result($resultado);
-          mysqli_close($conexion);
-          return;
      }
 
      
