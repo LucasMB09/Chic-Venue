@@ -1,14 +1,12 @@
 <?php
     session_start();
     require 'PHPMailer/src/Exception.php';
-    require 'PHPMailer/src/PHPMailer.php';
-    require 'PHPMailer/src/SMTP.php';
-    include("con_db.php");
 
-    use PHPMailer\PHPMailer\PHPMailer;
-    use PHPMailer\PHPMailer\Exception;
+    include("PHPMailer/class.phpmailer.php");
+    include("PHPMailer/class.smtp.php");
 
-    $mail = $_SESSION['email'];
+
+    $email = $_SESSION['email'];
     // Función para enviar correo de confirmación
     $mail = new PHPMailer(true);
 
@@ -18,27 +16,30 @@
         $mail->isSMTP();
         $mail->Host = 'smtp.gmail.com'; // Especifica tu servidor SMTP
         $mail->SMTPAuth = true;
-        $mail->Username = 'cchicvenue@gmail.com'; // Especifica tu dirección de correo electrónico
-        $mail->Password = 'fmobmxhuobktfvky'; // Especifica tu contraseña
+        $mail->Username = "cochs7534@gmail.com"; // Especifica tu dirección de correo electrónico
+        $mail->Password = "khykpqkvqsfvorcs"; // Especifica tu contraseña
         $mail->SMTPSecure = 'tls';
         $mail->Port = 587;
+        
 
-        $mail->setFrom('cchicvenue@gmail.com', 'Nombre remitente');
+        $mail->setFrom($mail->Username, 'ChicVenue');
         $mail->addAddress($email); // Agrega la dirección de correo electrónico del destinatario
 
-        $mail->isHTML(true);
         // Aqui solo seria darle estilo al correo de confirmación ok
-        $codigo_confirmacion = rand();
+        $mail->IsHTML(true);
+        $codigo_confirmacion = rand(10000, 99999);
         $mail->Subject = 'Confirmación de cuenta';
         $mail->Body = '¡Gracias por registrarte en nuestro sitio! Ingresa el siguiente codigo: ' .
-            '<h3>' . $codigo_confirmacion . '"</h3>';
+            '<h3>' . $codigo_confirmacion . '</h3>';
 
         $mail->send();
-    } catch (Exception $e) {
-        echo "Error al enviar el correo: {$mail->ErrorInfo}";
+    } 
+    catch (Exception $e) {
+        echo "Error al enviar el correo: {$mail->ErrorInfo}\n";
     }
     finally{
         $_SESSION['codigo'] = $codigo_confirmacion;
+        // echo $email, " ", $codigo_confirmacion;
         header("Location: cod_correo.php");
     }
 

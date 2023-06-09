@@ -1,13 +1,6 @@
 <?php
-    session_start();
-
-    $codigopag = $_SESSION['codigo'];
-    if(isset($_POST['codigo'])){
-        $codigousu = $_POST['codigo'];
-    }
-
-    $conexion = mysqli_connect("localhost", "root", "", "chicvenue");
-
+  session_start();
+  $_SESSION['codigo'];
 ?>
 
 <!DOCTYPE html>
@@ -25,7 +18,7 @@
   <script src="../sweetalert/dist/sweetalert2.all.min.js"></script>
 
 </head>
-<title>Activación de cuenta exitosa</title>
+<title>Activación de cuenta</title>
 
 <body class="p-3 m-0 border-0 bd-example">
   <!-- LINEA NEGRA-->
@@ -33,34 +26,11 @@
     <div class="container-fluid">
       <br><br>
       <?php 
-        if(isset($_POST['codigo'])){
-            ?>
-            <h3 style="display:block;"><?php echo "codigo enviado",$codigopag, "codigo usuario", $codigousu;?></h3>
-            <?php
-            if($codigopag == $codigousu){
-                $_SESSION['mensaje']  = "¡Te has registrado correctamente!";
-                $email = $_SESSION['email'];
-
-                $query = "UPDATE cliente SET activado = 1 WHERE id_cliente = '$email'";
-                $resul = mysqli_query($conexion,$query);
-                if($resul){
-                    header("Location: ../activacion.php");
-                }
-                else{
-                    $_SESSION['mensaje']  = "Ha habido un problema";
-                    header("Location: cod_correo.php");
-                }
-            }
-            else{
-                $_SESSION['mensaje'] = "Los códigos no coinciden";
-                header("Location: cod_correo.php");
-            }
-        }
-
+        echo $_SESSION['codigo'];
         if(isset($_SESSION['mensaje'])){
-            $mensaje = $_SESSION['email'];
+            $mensaje = $_SESSION['mensaje'];
             ?>
-                <h3 id="uwu" style="display:none;"><?php echo $email;?></h3>
+                <h3 id="uwu" style="display:none;"><?php echo $mensaje;?></h3>
             <?php
         }
       ?>
@@ -230,16 +200,16 @@
     <div class="checked">
         <h2>Por favor ingresa el código que ha sido enviado a tu correo electrónico.</h2>
         <!-- <p></p> -->
-        <form id = "codi" action="cod_correo.php" method= "POST" enctype="multipart/form-data">
-            <input type="text"  class="letra-texto" name="cod" id="codigo" placeholder="Código*"><br>
-            <a href="log-in.php" class="btn">Iniciar sesión</a>
+        <form id = "codi" action="validar_codigo.php" method= "POST" enctype="multipart/form-data">
+            <input type="text"  class="letra-texto" name="cod" id="cod" placeholder="Código*"><br>
+            <button type="submit" class="btn">Validar cuenta</button>
         </form>
     </div>
   </div>
 
  
 
-
+<script src="../js/cod_correo.js"></script>
 </body>
 
 </html>

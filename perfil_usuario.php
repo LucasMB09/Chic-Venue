@@ -35,7 +35,7 @@
   $conexion = mysqli_connect("localhost", "root", "", "chicvenue");
   
   // Consulta SQL para obtener los valores de una columna
-  $query = "SELECT apellido FROM cliente";
+  $query = "SELECT apellido FROM cliente WHERE correo_electronico = '$email'";
      
   // Ejecutar consulta
   $resultado = mysqli_query($conexion, $query);
@@ -107,13 +107,13 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav me-auto mb-2 mb-lg-0">
             <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="#">Novedades</a>
+              <a class="nav-link active" aria-current="page" href="/products.php">Novedades</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#">Rebajas</a>
+              <a class="nav-link" href="/products.php">Rebajas</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#">Básicos</a>
+              <a class="nav-link" href="/products.php">Básicos</a>
             </li>
             <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -329,6 +329,9 @@
                                   }
                                 }
                             ?>
+                            <div>
+                                <button class="btn btn-bd-primary btn-lg" href="/products.php">Agregar nueva compra</button><br><br>
+                            </div>
                             </div>
                         </div>
                         </div>

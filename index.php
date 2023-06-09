@@ -4,7 +4,7 @@
   if(isset($_GET['valor'])){
     $valor = $_GET['valor'];
   }
-  else{
+  elseif(isset($_SESSION['valor'])){
     $valor = $_SESSION['valor'];
   }
 
@@ -18,17 +18,21 @@
     $user = $_SESSION['user'];
     $email = $_SESSION['email'];
   }
-  elseif($valor == 0){
-    $user = "No";
-    $email = "No";  
-  }
-  elseif($valor == 1){
-    $user = ":v";
-    $email = ":v";
+  elseif(isset($valor)){
+    if($valor == 0){
+      $user = "No";
+      $email = "No";  
+    }
+    elseif($valor == 1){
+      $user = ":v";
+      $email = ":v";
+   }
   }
   else{
     $valor = 1;
     $_SESSION['valor'] = $valor;
+    $email = ":v";
+    $user = ":v";
   }
   
  
