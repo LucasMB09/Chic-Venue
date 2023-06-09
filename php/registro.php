@@ -38,7 +38,7 @@
                 return;
             }
             
-            $consulta = "INSERT INTO cliente(nombre,apellido,correo_electronico,contraseña) VALUES ('$nombre','$apellido','$email','$contrasena')";
+            $consulta = "INSERT INTO cliente(nombre,apellido,correo_electronico,contraseña,activado) VALUES ('$nombre','$apellido','$email','$contrasena',0)";
             $resultado = mysqli_query($conexion,$consulta);
             if($resultado){
                 /*?>
@@ -46,7 +46,7 @@
                 <?php*/
                 $_SESSION['mensaje']  = "¡Te has registrado correctamente!";
                 
-                header("Location: ../log-in.php");
+                header("Location: enviar_correo.php");
                 //include "../registro.php";
             } else {
                 /*?>
