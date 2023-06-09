@@ -186,7 +186,7 @@
           <div class="d-flex align-items-center">
             <input type="checkbox" name="recuerda" value="remember-me" id="recuerda">
             <label for="recuerda" class="text-dark" style="margin-left: 0.1px;">Recordar mi contraseña</label>
-            <a href="contraseña.html" class="font-weight-bold text-decoration-none text-dark">Olvidé mi contraseña</a>
+            <a href="contraseña.php" class="font-weight-bold text-decoration-none text-dark">Olvidé mi contraseña</a>
           </div>
         </div>
 

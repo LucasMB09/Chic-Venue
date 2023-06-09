@@ -9,6 +9,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <script src="https://kit.fontawesome.com/03a89292db.js" crossorigin="anonymous"></script>
     <link rel="stylesheet"  href="css/estilos.css">
+    <script src="/sweetalert/dist/sweetalert2.all.min.js"></script>
     
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@200&display=swap');
@@ -34,6 +35,7 @@
             <div class="form__button">
                 <button class="enviar">Enviar link</button>
             </div>
+            
         </form>
         <h2><a href="log-in.php">Volver al inicio de sesión </a></h2> 
     </div>
@@ -54,12 +56,23 @@
                 var existingError = document.querySelector(".error-message");
 
                 if (correoValue === "") {
-                    errorElement.textContent = "Por favor, ingrese su correo electrónico";
+                    Swal.fire({
+            title: '¡Error!',
+            text: 'Se deben completar todos los campos obligatorios.',
+            icon: 'error',
+            showConfirmButton: 'Aceptar'
+                            });
                     if (!existingError) {
                         correoContainer.appendChild(errorElement);
+                        
                     }
                 } else if (!isValidEmail(correoValue)) {
-                    errorElement.textContent = "Correo electrónico no válido";
+                    Swal.fire({
+                                title: '¡Error!',
+                                text: 'Correo inválido o no registrado',
+                                icon: 'error',
+                                showConfirmButton: 'Aceptar'
+                            });
                     if (!existingError) {
                         correoContainer.appendChild(errorElement);
                     }
