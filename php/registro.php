@@ -4,7 +4,7 @@
     $conexion = mysqli_connect("localhost", "root", "", "chicvenue");
     $mail = "";
     $conmail = 0;
-
+    $activado = 0;
 
 
     if(isset($_POST['registro'])){
@@ -38,14 +38,15 @@
                 return;
             }
             
-            $consulta = "INSERT INTO cliente(nombre,apellido,correo_electronico,contraseña,activado) VALUES ('$nombre','$apellido','$email','$contrasena',0)";
+            $consulta = "INSERT INTO cliente(nombre,apellido,correo_electronico,contraseña,activado) VALUES ('$nombre','$apellido','$email','$contrasena','$activado')";
             $resultado = mysqli_query($conexion,$consulta);
             if($resultado){
                 /*?>
                 <h3 class="ok">¡Te has registrado correctamente!</h3>
                 <?php*/
                 $_SESSION['mensaje']  = "¡Te has registrado correctamente!";
-                
+                $_SESSION['email'] = $email;
+                $_SESSION['activado'] = $activado;
                 header("Location: enviar_correo.php");
                 //include "../registro.php";
             } else {

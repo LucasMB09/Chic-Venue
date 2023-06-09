@@ -1,3 +1,7 @@
+<?php
+  
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -14,7 +18,7 @@
 </head>
 <title>Activación de cuenta exitosa</title>
 
-<body>
+<body class="p-3 m-0 border-0 bd-example">
   <!-- LINEA NEGRA-->
   <nav class="navbar bg-dark" data-bs-theme="dark">
     <div class="container-fluid">
