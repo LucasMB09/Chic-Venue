@@ -32,7 +32,7 @@
   }
   
   // Conexión a la base de datos
-  $conexion = mysqli_connect("localhost", "root", "", "chicvenue");
+  $conexion = mysqli_connect("localhost:3307", "root", "", "chicvenue");
   
   // Consulta SQL para obtener los valores de una columna
   $query = "SELECT apellido FROM cliente WHERE correo_electronico = '$email'";
@@ -417,7 +417,11 @@
                     <a class="btn btn-outline-dark btn-lg" href="#" data-toggle="modal" data-target="#modalModificar">
                     Modificar mis datos personales
                     </a>
-                    <button type="button" class="btn btn-outline-dark btn-lg ">Modificar contraseña</button>
+                    <!-- MODIFICAR CONTRASEÑA --------------------------------------------------------->
+                    <a class="btn btn-outline-dark btn-lg" href="../contraseña_dos.php">
+                    Cambiar mi contraseña
+                    </a>
+                    <!-- -->
                     <button type="button" class="btn btn-outline-dark btn-lg ">Privacidad</button>
                     <button type="button" class="btn btn-outline-dark btn-lg ">Seguridad</button>
                     <button type="button" class="btn btn-outline-dark btn-lg ">Ayuda</button>
@@ -446,10 +450,19 @@
 
                             <label for="apellido">Apellido:</label>
                             <input type="text" id="apellido" name="apellido" required>-->
+                            <form id="personalDataForm">
+                                    <label for="nombre">Nombre:</label>
+                                    <input type="text" id="nombre" name="nombre" required>
+                                    
+                                    <label for="apellido">Apellido:</label>
+                                    <input type="text" id="apellido" name="apellido" required>
+                                    
+                                    <button type="submit">Guardar</button>
+                                  </form>
                 </div>
                 <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-                <button type="submit" class="btn btn-primary">Guardar cambios</button>
+                <a class="btn btn-outline-dark" href="#">  Guardar cambios</a>
+                <button type="submit" class="btn btn-primary" data-bs-dismiss="modal" >Cancelar</button>
                 </div>
             </div>
             </div>
