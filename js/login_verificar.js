@@ -64,7 +64,7 @@ formulario.addEventListener('submit', (e) => {
         e.preventDefault();
 		//document.getElementById('formulario_mensaje').classList.add('formulario_mensaje-activo');
         Swal.fire({
-            title: 'Error!',
+            title: '¡Error!',
             text: 'Se deben completar todos los campos obligatorios.',
             icon: 'error',
             showConfirmButton: 'Aceptar'
@@ -91,7 +91,7 @@ if((mensaje.textContent).length > 0 ){
             break;
         case "La contraseña es incorrecta":
             Swal.fire({
-                title: 'Error!',
+                title: '¡Error!',
                 text: 'Contraseña incorrecta',
                 icon: 'error',
                 showConfirmButton: 'Aceptar'
@@ -99,7 +99,7 @@ if((mensaje.textContent).length > 0 ){
             break;
         case "No existe ninguna cuenta asociada a ese correo":
             Swal.fire({
-                title: 'Error!',
+                title: '¡Error!',
                 text: 'Correo inválido o no registrado',
                 icon: 'error',
                 showConfirmButton: 'Aceptar'
@@ -107,10 +107,12 @@ if((mensaje.textContent).length > 0 ){
             break;
         case "No se ha activado la cuenta":
             Swal.fire({
-                title: 'Error!',
-                text: 'No se ha activado la cuenta',
+                title: '¡Error!',
+              //  text: 'No se ha activado la cuenta',
+                html: '<p>No se ha activado la cuenta.</p>' +
+              '<p><a href="../php/enviar_correo.php">¿Confirmar correo electrónico?</a></p>',
                 icon: 'error',
-                showConfirmButton: 'Aceptar'
+                confirmButtonText: 'Cancelar'
             });
             break;
         case "Hubo un error":

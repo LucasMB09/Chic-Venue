@@ -10,7 +10,7 @@
      $conmail = 0;
      $con = 0;
      // Conexión a la base de datos
-     $conexion = mysqli_connect("localhost", "root", "", "chicvenue");
+     $conexion = mysqli_connect("localhost:3307", "root", "", "chicvenue");
 
      // Consulta SQL para obtener los valores de una columna
      $query = "SELECT correo_electronico FROM cliente";
@@ -67,9 +67,8 @@
           // Manejar el caso de consulta fallida
           echo "Error en la consulta: " . mysqli_error($conexion);
      }
-
+     if($mail != "No hay" ){
      if($activado == 1){
-          if($mail != "No hay" ){
                if($pas != "Incorrecta"){
                     /*echo "La cuenta existe"."<br>";
                     echo "Correo: $mail"."<br>";
@@ -109,20 +108,21 @@
                }
           }
           else{
-               //echo "No existe ninguna cuenta asociada a ese correo"."<br>";
-               $_SESSION['mensaje']  = "No existe ninguna cuenta asociada a ese correo";
+               $_SESSION['mensaje']  = "No se ha activado la cuenta";
+               $_SESSION['activado'] = $activado;
                header("Location: ../log-in.php");
-               // Liberar recursos y cerrar conexión
-               mysqli_free_result($resultado);
-               mysqli_close($conexion);
-               return;
           }
+         
 
      }
-     elseif($activado == 0){
-          $_SESSION['mensaje']  = "No se ha activado la cuenta";
-          $_SESSION['activado'] = $activado;
-          header("Location: ../log-in.php");
+     elseif($mail == "No hay"){
+         //echo "No existe ninguna cuenta asociada a ese correo"."<br>";
+         $_SESSION['mensaje']  = "No existe ninguna cuenta asociada a ese correo";
+         header("Location: ../log-in.php");
+         // Liberar recursos y cerrar conexión
+         mysqli_free_result($resultado);
+         mysqli_close($conexion);
+         return;
      }
      else{
           $_SESSION['mensaje']  = "Hubo un error";
@@ -132,3 +132,4 @@
      
 
 ?>
+
