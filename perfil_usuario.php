@@ -108,22 +108,18 @@
 <!doctype html>
 <html lang="en">
   <head>
-    <script src="/docs/5.3/assets/js/color-modes.js"></script>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://getbootstrap.com/docs/5.3/assets/css/docs.css" rel="stylesheet">
     <title>Mi perfil</title>
     <link rel="canonical" href="https://getbootstrap.com/docs/5.0/examples/sidebars/">
-    <script src="/sweetalert/dist/sweetalert2.all.min.js"></script>
     <link href="/css/perfil.css" rel="stylesheet">
     <!-- Bootstrap core CSS -->
-<link href="/docs/5.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-<script src="/sweetalert/dist/sweetalert2.all.min.js"></script>
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
     <script src="/sweetalert/dist/sweetalert2.all.min.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.0.min.js" integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g=" crossorigin="anonymous"></script> 
   </head>
 
 
@@ -554,7 +550,7 @@
                     <!--Ayuda -->
                     <a class="btn btn-outline-dark btn-lg fondoBonito" href="../preguntas.php">Ayuda</a>
                     <!-- ELIMINAR CUENTA-->
-                    <button type="button" class="btn btn-outline-danger btn-lg" onclick="aviso(<?php echo $aidi?>)">Eliminar cuenta</button>
+                    <button type="button" class="btn btn-outline-danger btn-lg" onclick="aviso(<?php echo $aidi?>);">Eliminar cuenta</button>
                     <script>
                       function aviso(codigo) {
                       
@@ -567,20 +563,25 @@
                           cancelButtonText: 'Cancelar'
                         }).then((result) => {
                           if (result.isConfirmed) {
-                            mandarPHP(codigo);
+                            
+                                Swal.fire({
+                              title: 'Operación exitosa',
+                              text: 'Se ha eliminado tu cuenta',
+                              confirmButtonText: 'De acuerdo',
+                            }).then((result) => {
+                              if (result.isConfirmed) {
+                            document.location.href = "/php/modificarDatos.php?id=<?php echo $aidi?>"
+                            location.href = "index.php?valor=" + encodeURIComponent(0);
                           }
                         });
-                    }
+                        }
+                  });
+                }
 
                     function mandarPHP(codigo)
                     {
-                      parametros = { id: codigo };
-                      $.ajax({
-                        data: parametros,
-                        url: "../php/modificarDatos.php",
-                        type: "POST"
-                      });
-                      alert(codigo);
+                      parametros = { 'id': codigo };
+                     
                     }
                       </script>
 
