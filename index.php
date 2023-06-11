@@ -289,13 +289,93 @@
         <span class="sr-only">Next</span>
       </a>
     </div>
-    <!-- FIN CARRUSEL -->
+    <!-- FIN CARRUSEL--------------------------------------------------------------------------- -->
+  <style>
+    @import url('https://fonts.googleapis.com/css?family=Lato:300');
+    .rainbow-letter{
+  font-size: 2em;
+}
+
+.rainbow-text {
+  background-image: linear-gradient(to left, violet, indigo, blue, green, yellow, orange, red);   
+  -webkit-background-clip: text;
+  color: transparent;
+}
+
+.fondo-gei{
+background: linear-gradient(to left, violet, indigo, blue, green, yellow, orange, red);  
+}
+
+</style>
+<br><br>
+<div class="container">
+  <h1 class="rainbow-text">CELEBRA EL #PRIDE EN CHIC VENUE</h1>
+</div>
+
+<div class="container-fluid">
+          <div class="row" style="margin-right: 0">
+          <div class="col-4">
+          <picture>
+              <img src="https://images.pexels.com/photos/4611976/pexels-photo-4611976.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" height="500px" alt="gei">
+            </picture>
+              </div>
+              
+              <div class="col-4">
+              <picture>
+              <img src="https://images.pexels.com/photos/4611971/pexels-photo-4611971.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" height="500px" alt="gei">
+            </picture>
+              </div>
+              <div class="col-4">
+              <picture>
+              <img src="https://images.pexels.com/photos/4611959/pexels-photo-4611959.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" height="500px" alt="gei">
+            </picture>
+              </div>
+          </div>
+
+      </div>
+    
+
+
+
   </main>
   <!-- FOOTER -->
   <footer class="container">
-    <p class="float-end"><a href="#">Volver al inicio</a></p>
-    <p>&copy; 2023 Chic Venue, Inc. &middot; <a href="#">Privacidad</a> &middot; <a href="#">Términos</a></p>
-  </footer>
+  <nav class="navbar bg-dark" data-bs-theme="dark">
+    <div class="container-fluid">
+    </div>
+    </nav>
+    <br>
+    <div class="row">
+      <div class="col-12 col-md">
+        <img class="logo" src="/assets/logo_CA.PNG"  width="24" height="19" alt="Logotipo de Chic Avenue" >
+        <small class="d-block mb-3 text-body-secondary">&copy; 2022–2023</small>
+      </div>
+      <div class="col-6 col-md">
+        <h5>Nosotros</h5>
+        <ul class="list-unstyled text-small">
+          <li class="mb-1"><a class="link-secondary text-decoration-none" href="./preguntas.php">Preguntas frecuentes</a></li>
+          <li class="mb-1"><a class="link-secondary text-decoration-none" href="./products.php">Random feature</a></li>
+
+        </ul>
+      </div>
+      <div class="col-6 col-md">
+        <h5>Catálogo</h5>
+        <ul class="list-unstyled text-small">
+          <li class="mb-1"><a class="link-secondary text-decoration-none" href="../products.php">Tendencia</a></li>
+          <li class="mb-1"><a class="link-secondary text-decoration-none" href="./products.php">Descuentos</a></li>
+          <li class="mb-1"><a class="link-secondary text-decoration-none" href="./products.php">Promociones</a></li>
+        </ul>
+      </div>
+      <div class="col-6 col-md">
+        <h5>Atención a cliente</h5>
+        <ul class="list-unstyled text-small">
+          <li class="mb-1"><a class="link-secondary text-decoration-none" href="./preguntas.php">Contactos</a></li>
+          <li class="mb-1"><a class="link-secondary text-decoration-none" href="./preguntas.php">Ubicación</a></li>
+          <li class="mb-1"><a class="link-secondary text-decoration-none" href="#"></a></li>
+          <li class="mb-1"><a class="link-secondary text-decoration-none" href="#"></a></li>
+        </ul>
+      </div>
+    </div></footer>
 
   <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
