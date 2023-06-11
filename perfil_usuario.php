@@ -51,6 +51,58 @@
     $num_cliente = $num[0];
   }
 
+  $query_id = "SELECT id_cliente FROM cliente where correo_electronico = '$email'";
+  $resul = mysqli_query($conexion,$query_id);
+  if($resul){
+    $ids=mysqli_fetch_array($resul);
+    $aidi= $ids[0];
+  }
+
+
+
+
+  
+  if(isset($_POST['modificar'])){
+    if(strlen($_POST['nombre']) >= 1 && strlen($_POST['apellido']) >= 1){
+        $nombre = trim($_POST['nombre']);
+        $apep = trim($_POST['apellido']);
+        $query_id = "SELECT id_cliente FROM cliente where correo_electronico = '$email'";
+        $resul = mysqli_query($conexion,$query_id);
+        if($resul){
+          $ids=mysqli_fetch_array($resul);
+          $aidi= $ids[0];
+
+          $consulta1 = "UPDATE cliente SET nombre = '$nombre' WHERE id_cliente ='$aidi'";  
+          $consulta2 = "UPDATE cliente SET apellido = '$apep' WHERE id_cliente = '$aidi'";  
+          mysqli_query($conexion,$consulta1);
+          $cambio = mysqli_query($conexion,$consulta2);
+             if($cambio){
+                 /*?>
+                 <h3 class="ok">¡Te has registrado correctamente!</h3>
+                 <?php*/
+                 $_SESSION['mensaje']  = "Se han modificado tus datos";
+                 //include "../registro.php";
+             } else {
+                 /*?>
+                 <h3 class="bad">¡Ups ha ocurrido un error!</h3>
+                 <?php*/
+                 $_SESSION['mensaje']  = "¡Ups, ha ocurrido un error!";
+                 
+             }
+         } else {
+             /*?>
+             <h3 class="bad">¡Por favor completa los campos!</h3>
+             <?php*/
+         }
+          
+        }
+       // $query = "SELECT correo_electronico FROM cliente";
+        //$resul = mysqli_query($conexion,$query);
+
+     //   $consulta = "INSERT INTO cliente(nombre,apellido,correo_electronico,contraseña,activado) VALUES ('$nombre','$apellido','$email','$contrasena','$activado')";
+    
+}
+
 ?>
 
 <!doctype html>
@@ -67,10 +119,86 @@
     <link href="/css/perfil.css" rel="stylesheet">
     <!-- Bootstrap core CSS -->
 <link href="/docs/5.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-
+<script src="/sweetalert/dist/sweetalert2.all.min.js"></script>
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="/sweetalert/dist/sweetalert2.all.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
   </head>
+
+
+<style>
+  body{
+    font-family:"Britannic";
+    background: #F4F4F4;
+}
+.titulo{
+    font-family:"Candara";
+    font-size: 3rem;
+  }
+
+  .boton_registro { /* boton registrarme */
+    width: 60%;
+    margin: auto;
+    border: solid thin rgb(255, 255, 255);
+    padding: .7rem;
+    border-radius: 2rem;
+    background-color: white;
+    text-align: center;
+    font-weight: 600;
+    margin-top: 3rem;
+    font-size: .8rem;
+    cursor: pointer;
+    color: #222;
+    font-family:"Candara";
+}
+
+.letra-titulo{
+    font-family:"Candara";
+    font-size: 2rem;
+    text-align: justify;
+  }
+  
+  .letra-subtitulo{
+    font-family:"Candara";
+    font-size: 1.5rem;
+    text-align: justify;
+  }
+  
+  .letra-texto{
+    font-family:"Candara";
+    font-size: 1.2em;
+    text-align: justify;
+  }
+
+  .letra-ad{
+    font-family:"Candara";
+    font-size: 0.8em;
+    text-align: justify;
+  }
+
+  .fondoBonito{
+    background: #ADB3E3;
+  }
+
+  .significaPeligro{
+    background: #FF8167;
+  }
+
+  
+
+  fieldset {
+	border: medium none !important;
+	margin: 0 0 10px;
+	min-width: 100%;
+	padding: 0;
+	width: 100%;
+}
+
+</style>
+
   <body class="p-3 m-0 border-0 bd-example">
+
 
     <!-- LINEA NEGRA -->
     <nav class="navbar bg-dark" data-bs-theme="dark">
@@ -184,7 +312,7 @@
 
   <nav class="navbar bg-body">
     <div class="container-xl">
-      <span class="navbar-expand mb-0 h1">Mi perfil</span>
+      <span class="navbar-expand mb-0"><h1 class="titulo">Mi perfil</h1></span>
 
 
     </div>
@@ -219,7 +347,7 @@
 
 <!-----------------------------------DATOS-------------------------------------->
     <div class="col" id="lelele">
-            
+            <br><br>
         <div class="tab-content" id="v-pills-tabContent">
             <div class="tab-pane fade show active" id="informacion-tab" role="tabpanel" aria-labelledby="v-pills-home-tab">
                 
@@ -229,7 +357,7 @@
                         <div class="col">
                             <div class="card ">
                                 <div class="card-body">
-                                  <h5 class="card-title">Nombre</h5>
+                                  <h5 class="card-title letra-titulo">Nombre</h5>
                                   <span class="input-group-text" id="nombreUsuario"><?php echo $user;?></span>
                                 </div>
                               </div>
@@ -238,7 +366,7 @@
                         <div class="col">
                             <div class="card ">
                                 <div class="card-body">
-                                  <h5 class="card-title">Apellido(s)</h5>
+                                  <h5 class="card-title letra-titulo">Apellido(s)</h5>
                                   <span class="input-group-text" id="apellidoUsuario"><?php echo $apellido;?></span>
                                 </div>
                               </div>
@@ -251,7 +379,7 @@
                         <div class="col">
                             <div class="card ">
                                 <div class="card-body">
-                                  <h5 class="card-title">Correo</h5>
+                                  <h5 class="card-title letra-titulo">Correo </h5>
                                   <span class="input-group-text" id="correoUsuario"><?php echo $email;?></span>
                                 </div>
                               </div>
@@ -414,18 +542,59 @@
 <!---------------------------------------------CONFIGURACION-------------------------------------------------------------->
             <div class="tab-pane fade" id="configuracion-tab" role="tabpanel" aria-labelledby="v-pills-settings-tab">
                 <div class="btn-group-vertical gap-5 col-11" role="group" aria-label="Vertical button group">
-                    <a class="btn btn-outline-dark btn-lg" href="#" data-toggle="modal" data-target="#modalModificar">
+                    <a class="btn btn-outline-dark btn-lg fondoBonito" href="#" data-toggle="modal" data-target="#exampleModalCenter">
                     Modificar mis datos personales
                     </a>
                     <!-- MODIFICAR CONTRASEÑA --------------------------------------------------------->
-                    <a class="btn btn-outline-dark btn-lg" href="../contraseña_dos.php">
-                    Cambiar mi contraseña
-                    </a>
-                    <!-- -->
-                    <button type="button" class="btn btn-outline-dark btn-lg ">Privacidad</button>
-                    <button type="button" class="btn btn-outline-dark btn-lg ">Seguridad</button>
-                    <button type="button" class="btn btn-outline-dark btn-lg ">Ayuda</button>
-                    <button type="button" class="btn btn-outline-danger btn-lg ">Eliminar cuenta</button>
+                    <a class="btn btn-outline-dark btn-lg fondoBonito" href="../contraseña_dos.php">Cambiar mi contraseña</a>
+                    <!--AVISO DE PRIVACIDAD ---------------------------------------------------------- -->
+                    <a class="btn btn-outline-dark btn-lg fondoBonito" data-toggle="modal" data-target="#exampleModalLong">Privacidad</a>
+                    <!--SEGURIDAD -->
+                 <!--   <button type="button" class="btn btn-outline-dark btn-lg ">Seguridad</button>-->
+                    <!--Ayuda -->
+                    <a class="btn btn-outline-dark btn-lg fondoBonito" href="../preguntas.php">Ayuda</a>
+                    <!-- ELIMINAR CUENTA-->
+                    <button type="button" class="btn btn-outline-danger btn-lg" onclick="aviso(<?php echo $aidi?>)">Eliminar cuenta</button>
+                    <script>
+                      function aviso(codigo) {
+                      
+                        Swal.fire({
+                          icon: 'warning',
+                          title: 'Confirmar acción',
+                          text: '¿Estás seguro de eliminar tu cuenta en Chic Venue?',
+                          showCancelButton: true,
+                          confirmButtonText: 'Eliminar cuenta',
+                          cancelButtonText: 'Cancelar'
+                        }).then((result) => {
+                          if (result.isConfirmed) {
+                            mandarPHP(codigo);
+                          }
+                        });
+                    }
+
+                    function mandarPHP(codigo)
+                    {
+                      parametros = {id: codigo};
+                      $.ajax({
+                        data: parametros,
+                        url: "../php/modificarDatos.php",
+                        type: "POST",
+                        success: function()
+                        {
+                          Swal.fire({
+                            title: 'Exito',
+                            text: 'Cuenta eliminada',
+                            confirmButtonText: 'De acuerdo'
+                        }).then((result) => {
+                          if (result) {
+                           window.location.href = "index.php";
+                          }
+                        });
+                        }
+                      })
+                    }
+                      </script>
+
                   </div>
             </div>
           </div>
@@ -435,38 +604,112 @@
 </div>
 </div>
 
-            <div class="modal fade" id="modalModificar" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content">
-                <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Modificar datos personales</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                   <!--
-                        <form class="form-control form-control-lg row g-3" action="actualizar_usuario.php" method="post">
-                            <label for="nombre">Nombre:</label>
-                            <input type="text" id="nombre" name="nombre" required>
+<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title letra-titulo" id="exampleModalLongTitle">Modificar datos personales</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        
 
-                            <label for="apellido">Apellido:</label>
-                            <input type="text" id="apellido" name="apellido" required>-->
-                            <form id="personalDataForm">
-                                    <label for="nombre">Nombre:</label>
-                                    <input type="text" id="nombre" name="nombre" required>
-                                    
-                                    <label for="apellido">Apellido:</label>
-                                    <input type="text" id="apellido" name="apellido" required>
-                                    
-                                    <button type="submit">Guardar</button>
-                                  </form>
-                </div>
-                <div class="modal-footer">
-                <a class="btn btn-outline-dark" href="#">  Guardar cambios</a>
-                <button type="submit" class="btn btn-primary" data-bs-dismiss="modal" >Cancelar</button>
-                </div>
-            </div>
-            </div>
-            </div>
+          <form id="modificar" action="../perfil_usuario.php" method="post" enctype="multipart/form-data">
+        <h4 class="letra-subtitulo">Por favor, agregue sus nuevos datos</h4>
+        <div class="form-floating formulario_grupo formulario_grupo-input">
+          <fieldset>
+            <input class="form-control" placeholder=<?php echo $user;?> type="text" name="nombre" required>
+          </fieldset>
+        </div>
+        <div class="form-floating formulario_grupo formulario_grupo-input">
+          <fieldset>
+            <input class="form-control" placeholder=<?php echo $apellido;?> type="text" name="apellido" required>
+          </fieldset>
+        </div>
+        <div class="modal-footer">
+      <button type="submit" class="btn btn-primary" name="modificar">Guardar cambios</button>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+      </div>
+        <?php
+                if (isset($_SESSION['mensaje'])) {
+                    $mensaje = $_SESSION['mensaje'];
+                    ?>
+                    <div><h3 id="mensaje" style="display: none;"><?php echo "$mensaje";?></h3></div>
+                    <?php
+                    unset($_SESSION['mensaje']); // Limpiamos la variable de sesión
+                }
+                ?>
+      </form>
+
+
+      </div>
+  
+    </div>
+  </div>
+</div>
+
+
+<!-- -------------------------------------------------------------------------------------------- -->
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title letra-titulo" id="exampleModalLongTitle">Aviso de Privacidad - Chic Venue</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+
+        <p class="letra-texto">En Chic Venue, valoramos y respetamos tu privacidad. Este aviso de privacidad explica cómo recopilamos, utilizamos, almacenamos y protegemos la información personal que nos proporcionas al utilizar nuestros servicios y visitar nuestro sitio web. Nos comprometemos 
+          a cumplir con las leyes y regulaciones aplicables en materia de protección de datos.</p>
+      <br>
+      <h5 class="letra-subtitulo">Recopilación de información:</h5>
+      <p  class="letra-texto">Recopilamos información personal que nos proporcionas directamente, como tu nombre, dirección de correo electrónico y número de teléfono. También podemos recopilar información automáticamente a través de cookies 
+        y otras tecnologías de seguimiento cuando visitas nuestro sitio web.</p>
+      <br>
+      <h5 class="letra-subtitulo">Uso de la información:</h5>
+      <p  class="letra-texto">Utilizamos la información recopilada para brindarte nuestros servicios y mejorar tu experiencia como cliente. Podemos utilizar tus datos personales para procesar tus pedidos, proporcionarte información sobre nuestros productos, responder a tus consultas,
+         mejorar nuestro sitio web y personalizar tu experiencia de compra.</p>
+       
+      <br>
+      <h5 class="letra-subtitulo">Divulgación de información:</h5>
+      <p  class="letra-texto">Nos comprometemos a no vender, alquilar ni compartir tu información personal con terceros, excepto en las siguientes circunstancias: cuando sea necesario para proporcionarte los servicios solicitados, cumplir con la ley, proteger nuestros derechos legales,
+         prevenir fraudes o abusos, o con tu consentimiento expreso.</p>   
+      
+      <br>
+      <h5 class="letra-subtitulo">Cambios al aviso de privacidad:</h5>
+      <p  class="letra-texto">Nos reservamos el derecho de actualizar o modificar este aviso de privacidad en cualquier momento. Te recomendamos revisar periódicamente este aviso para estar informado sobre cualquier cambio. Cualquier modificación entrará en vigencia a partir
+         de su publicación en nuestro sitio web..</p>  
+      
+      <br>
+      <h5 class="letra-subtitulo">Chic Venue:</h5>
+      <p  class="letra-texto">
+              <b>Dirección:</b>Av. Juan de Dios Bátiz, Nueva Industrial Vallejo, Gustavo A. Madero, 07320 Ciudad de México, CDMX<br>
+              <b>Teléfono:</b> +52 1 55 7112 6400<br>
+              <b>Correo electónico:</b> cochs7534@gmail.com<br>
+              <b>Fecha de vigencia:</b> 21-06-2023
+              </b>
+              <br>
+                
+              <p class="letra-texto">  Este aviso de privacidad se aplica únicamente a la información recopilada por Chic Venue. Al utilizar nuestros servicios o proporcionarnos tu información personal, aceptas los términos y condiciones descritos en este aviso.
+              </p>
+            <br>
+            <p class="letra-texto">
+              Gracias por confiar en Chic Venue. Estamos comprometidos en proteger tu privacidad 
+              y brindarte una experiencia de compra segura y satisfactoria.</p>        
+  
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">De acuerdo</button>
+      </div>
+    </div>
+  </div>
+</div>
+
 
 </main>
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>

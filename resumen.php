@@ -9,9 +9,13 @@
     <meta name="generator" content="Hugo 0.111.3">
     <title>Chic Avenue</title>
 
-    <link rel="canonical" href="https://getbootstrap.com/docs/5.3/examples/pricing/">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://getbootstrap.com/docs/5.3/assets/css/docs.css" rel="stylesheet">
+    <link href="/docs/5.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+<script src="/sweetalert/dist/sweetalert2.all.min.js"></script>
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="/sweetalert/dist/sweetalert2.all.min.js"></script>
 
 <link href="../assets/dist/css/bootstrap.min.css" rel="stylesheet">
 
@@ -168,16 +172,16 @@
   <header>
     <div class="d-flex flex-column flex-md-row align-items-center pb-3 mb-4 border-bottom">
       <a href="/" class="d-flex align-items-center link-body-emphasis text-decoration-none">
-        <img class="logo" src="logo_CA.PNG"  width="50" height="50" alt="Logotipo de Chic Avenue" >
+        <img class="logo" src="../assets/logo_CA.PNG"  width="50" height="50" alt="Logotipo de Chic Avenue" >
        <span class="fs-4">Chic Avenue</span>
       </a>
 
       <nav class="d-inline-flex mt-2 mt-md-0 ms-md-auto">
         <a class="me-3 py-2 link-body-emphasis text-decoration-none" href="#">Inicio</a>
-        <img class="carrito" src="filtro.png"  width="20" height="20" alt="filtro" href="#">
-        <img class="carrito" src="usuario (1).png"  width="20" height="20" alt="usuario" href="#" >
-        <img class="carrito" src="favoritos.PNG"  width="20" height="20" alt="favoritos" href="#" >
-        <img class="carrito" src="carrito.png"  width="20" height="20" alt="carrito" href="#">
+        <img class="carrito" src="../assets/filtro.png"  width="20" height="20" alt="filtro" href="#">
+        <img class="carrito" src="../assets/usuario (1).png"  width="20" height="20" alt="usuario" href="#" >
+        <img class="carrito" src="../assets/favoritos.PNG"  width="20" height="20" alt="favoritos" href="#" >
+        <img class="carrito" src="../assets/carrito.png"  width="20" height="20" alt="carrito" href="#">
       </nav>
     </div>
 
@@ -200,7 +204,7 @@
               <li>Producto</li>
               <br>
               <ul class="lista-dos-columnas">
-              <li> <img class="logo" src="blusa1.PNG"  width="150" height="210" alt="Logotipo de Chic Avenue" style="float: bottom" ></li>
+              <li> <img class="logo" src="../assets/blusa1.PNG"  width="150" height="210" alt="Logotipo de Chic Avenue" style="float: bottom" ></li>
               <br>
               <li class="letra">Blusa corazón</li>
               <li>Color: rosa | Tela 100% Algodón</li>
@@ -259,7 +263,7 @@
             <div class="card-body">
               <h6 class="card-title pricing-card-title">Nombre de la tarjeta terminada en *345</h6>
               <div class="contenedor">
-              <img class="filtro" src="tarjeta.png"  width="60" height="40" alt="filtro" >
+              <img class="filtro" src="../assets/tarjeta.png"  width="60" height="40" alt="filtro" >
               <ul class="lista">
                 <li>Transacción acreditada por BBVA  </li>
                 <li>Pago #3453637386 del 19 de mayo </li> 
@@ -273,7 +277,7 @@
   <footer class="pt-4 my-md-5 pt-md-5 border-top">
     <div class="row">
       <div class="col-12 col-md">
-        <img class="logo" src="logo_CA.PNG"  width="24" height="19" alt="Logotipo de Chic Avenue" >
+        <img class="logo" src="../assets/logo_CA.PNG"  width="24" height="19" alt="Logotipo de Chic Avenue" >
         <small class="d-block mb-3 text-body-secondary">&copy; 2022–2023</small>
       </div>
       <div class="col-6 col-md">
