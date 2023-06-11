@@ -97,7 +97,7 @@ function component($id_articulo, $precio, $nombre_articulo, $descripcion, $image
                             <img src=\"$imagen\" alt=\"Image1\">
                             <div class=\"overlay\">
                                 <button type=\"submit\" class=\"btn btn-warning my-3 btn-circle btn-white\" name=\"add\"><img src=\"assets/carrito.png\" alt=\"Carrito\"></button>
-                                <button type=\"submit\" class=\"btn btn-info my-3 btn-circle btn-white\" name=\"favorite\"><img src=\"assets/favoritos.png\" alt=\"Favoritos\"></button>
+                                <button type=\"button\" class=\"btn btn-info my-3 btn-circle btn-white\" name=\"favorite\" onClick=\"favoriteClicked(event, '$nombre_articulo', $precio)\"><img src=\"assets/favoritos.png\" alt=\"Favoritos\"></button>
                             </div>
                         </div>
                         <h5 class=\"title\">$nombre_articulo</h5>
@@ -112,14 +112,24 @@ function component($id_articulo, $precio, $nombre_articulo, $descripcion, $image
             </form>
         </div>
         
+        <script src=\"https://cdn.jsdelivr.net/npm/sweetalert2@11\"></script>
+        
         <script>
         // Agregar evento de clic a los botones
         var buttons = document.querySelectorAll('.btn-circle');
         buttons.forEach(function(button) {
             button.addEventListener('click', function(e) {
                 e.preventDefault(); // Evita que el formulario se envíe automáticamente
-                button.classList.toggle('active'); // Alternar la clase 'active' en el botón clicado
-                button.blur(); // Quitar el enfoque del botón para evitar la apariencia de selección
+                if (!isLoggedIn()) {
+                    if (button.getAttribute('name') === 'add') {
+                        showAddToCartAlert();
+                    } else if (button.getAttribute('name') === 'favorite') {
+                        showAddToFavoritesAlert();
+                    }
+                } else {
+                    button.classList.toggle('active'); // Alternar la clase 'active' en el botón clicado
+                    button.blur(); // Quitar el enfoque del botón para evitar la apariencia de selección
+                }
             });
         });
         
@@ -134,6 +144,58 @@ function component($id_articulo, $precio, $nombre_articulo, $descripcion, $image
             var overlay = element.querySelector('.overlay');
             overlay.style.opacity = 0;
         }
+        
+        // Función para verificar si el usuario ha iniciado sesión
+        function isLoggedIn() {
+            // Aquí debes agregar tu lógica para verificar si el usuario ha iniciado sesión
+            // Por ejemplo, puedes utilizar una variable de sesión o comprobar si el usuario tiene una cookie de autenticación
+            // Retorna true si el usuario ha iniciado sesión, de lo contrario retorna false
+            return false; // Cambia esto con tu lógica real
+        }
+        
+        // Función para mostrar la alerta de agregar a carrito
+        function showAddToCartAlert() {
+            Swal.fire({
+                title: 'Alerta',
+                text: 'Se requiere iniciar sesión con una cuenta activada para realizar una compra.',
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Iniciar sesión'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    // Aquí puedes agregar la lógica para redirigir al usuario a la página de inicio de sesión
+                    // Por ejemplo, puedes utilizar window.location.href = 'ruta-de-inicio-de-sesion';
+                    alert('Redirigir al usuario a la página de inicio de sesión.');
+                }
+            });
+        }
+        
+        // Función para mostrar la alerta de agregar a favoritos
+        function showAddToFavoritesAlert() {
+            Swal.fire({
+                title: 'Alerta',
+                text: 'Se requiere iniciar sesión con una cuenta activada para añadir a favoritos.',
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Iniciar sesión'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    // Aquí puedes agregar la lógica para redirigir al usuario a la página de inicio de sesión
+                    // Por ejemplo, puedes utilizar window.location.href = 'ruta-de-inicio-de-sesion';
+                    alert('Redirigir al usuario a la página de inicio de sesión.');
+                }
+            });
+        }
+        
+        // Función para manejar el evento de clic en el botón de favoritos
+        function favoriteClicked(event, nombre, precio) {
+            event.stopPropagation(); // Evitar que el evento de clic se propague a la imagen y muestre los botones nuevamente
+            showAddToCartAlert();
+        }
         </script>
     ";
     echo $element;
@@ -145,13 +207,15 @@ function component($id_articulo, $precio, $nombre_articulo, $descripcion, $image
 <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
 
 <script>
-
-
 $(document).ready(function() {
     $('.btn-circle').click(function(e) {
         e.preventDefault(); // Evita que el formulario se envíe automáticamente
-        $(this).closest('form').submit(); // Envía el formulario más cercano al botón clicado
-        $(this).addClass('active'); // Agrega la clase 'active' al botón clicado
+        if (!isLoggedIn()) {
+            showAlert();
+        } else {
+            $(this).closest('form').submit(); // Envía el formulario más cercano al botón clicado
+            $(this).addClass('active'); // Agrega la clase 'active' al botón clicado
+        }
     });
 });
 </script>

@@ -55,7 +55,7 @@
     <!-- LINEA NEGRA -->
     <nav class="navbar bg-dark" data-bs-theme="dark">
     <div class="container-fluid">
-      <br><br>
+      <br><br><br>
       <?php
       if(isset($_SESSION['mensaje'])){ 
         if ($_SESSION['mensaje'] == "Inicio de sesión exitoso") {
