@@ -168,17 +168,105 @@
       </div>
     </nav>
 
-    <div class="container">
-        <div class="row text-center py-5">
-            <?php
-                $result = $database->getData();
-                while ($row = mysqli_fetch_assoc($result)){
-                    component($row['id_articulo'], $row['precio'], $row['nombre_articulo'], $row['descripcion'],$row['imagen']);
-                }
-            ?>
-        </div>
-    </div>
+<!-- Carrusel de imágenes -->
+<?php
+$query = "SELECT COUNT(imagen) AS num_images FROM articulo";
+$result = mysqli_query($database->con, $query);
+$row = mysqli_fetch_assoc($result);
+$num_images = $row['num_images'];
+?>
+
+<!-- Carrusel de imágenes -->
+<div id="manualCarousel" class="carousel slide" data-bs-ride="false">
+  <div class="carousel-inner">
+    <?php
+    $result = $database->getData();
+    $count = 0;
+
+    // Mostrar las primeras 3 imágenes
+    while ($row = mysqli_fetch_assoc($result)) {
+      $count++;
+      $img_id = $row['id_articulo'];
+      $img_name = $row['nombre_articulo'];
+      $img_description = $row['descripcion'];
+      $img_price = $row['precio'];
+      $img_url = $row['imagen'];
+
+      if ($count == 1) {
+        echo '<div class="carousel-item active">';
+        echo '<div class="container">';
+        echo '<div class="row text-center py-5 justify-content-center">';
+      }
+
+      // Aquí se muestra la información de la imagen
+      component($img_id, $img_price, $img_name, $img_description, $img_url);
+
+      if ($count % 3 == 0) {
+        echo '</div>';
+        echo '</div>';
+        echo '</div>';
+
+        // Mostrar el siguiente conjunto de 3 imágenes en un nuevo carrusel-item
+        if ($count != $num_images) {
+          echo '<div class="carousel-item">';
+          echo '<div class="container">';
+          echo '<div class="row text-center py-5 justify-content-center">';
+        }
+      }
+    }
+    ?>
+  </div>
+
+  <?php
+  $num_images = mysqli_num_rows($result);
+
+  if ($num_images > 3) {
+    echo '
+    <button class="carousel-control-prev" type="button" data-bs-target="#manualCarousel" data-bs-slide="prev">
+      <img src="assets/slider_izq.png" class="slider-icon" alt="Slider Izquierdo">
+      <span class="visually-hidden">Anterior</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#manualCarousel" data-bs-slide="next">
+      <img src="assets/slider_der.png" class="slider-icon" alt="Slider Derecho">
+      <span class="visually-hidden">Siguiente</span>
+    </button>';
+
+    // Botones de slider adicionales
+    $num_slider_buttons = ceil($num_images / 3) - 1;
+    if ($num_slider_buttons > 0) {
+      echo '<ol class="carousel-indicators">';
+      for ($i = 0; $i < $num_slider_buttons; $i++) {
+        echo '<li data-bs-target="#manualCarousel" data-bs-slide-to="'.($i+1).'"></li>';
+      }
+      echo '</ol>';
+    }
+  }
+  ?>
+</div>
+
+<script>
+  // Activar el carrusel manualmente
+  var carousel = document.querySelector('#manualCarousel');
+  var carouselInstance = new bootstrap.Carousel(carousel, {
+    interval: false
+  });
+
+  // Manejar los botones de slider adicionales
+  var sliderButtons = document.querySelectorAll('.carousel-indicators li');
+  sliderButtons.forEach(function(button, index) {
+    button.addEventListener('click', function() {
+      var slideIndex = parseInt(button.getAttribute('data-bs-slide-to')) + 1;
+      carouselInstance.to(slideIndex);
+    });
+  });
+</script>
+
+
+
+
     <script src="/js/products.js"></script>
+  
+  
   </body>
 </html>
     
