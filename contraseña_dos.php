@@ -9,7 +9,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <script src="https://kit.fontawesome.com/03a89292db.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="css/estilosdos.css">
-
+    <script src="/sweetalert/dist/sweetalert2.all.min.js"></script>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@200&display=swap');
     </style>
@@ -111,11 +111,27 @@
             var contrasena2 = document.getElementById("contrasena2").value;
             var mensajeError = document.getElementById("mensajeError");
             var mensajeExito = document.getElementById("mensajeExito");
-        
+            if(contrasena1=='' || contrasena2=='')
+            {
+                Swal.fire({
+                title: '¡Error!',
+                text: 'Se deben completar todos los campos obligatorios',
+                icon: 'error',
+                showConfirmButton: 'Aceptar'
+            });
+            return false;
+            }
+            else{
             if (contrasena1 !== contrasena2) {
-                mensajeError.textContent = "Las contraseñas no coinciden";
-                mensajeError.style.color = "red";
-                mensajeExito.style.display = "none"; 
+             //   mensajeError.textContent = "Las contraseñas no coinciden";
+             //   mensajeError.style.color = "red";
+             //   mensajeExito.style.display = "none"; 
+             Swal.fire({
+                title: '¡Error!',
+                text: 'Las contraseñas no coinciden',
+                icon: 'error',
+                showConfirmButton: 'Aceptar'
+            });
                 return false;
             }
         
@@ -126,7 +142,13 @@
             var contrasenaValida = mensajeValidacion.style.color !== "red";
         
             if (!contrasenaValida) {
-                mensajeExito.style.display = 'none';
+               // mensajeExito.style.display = 'none';
+               Swal.fire({
+                title: '¡Error!',
+                text: 'Formato de contraseña incorrecto',
+                icon: 'error',
+                showConfirmButton: 'Aceptar'
+            });
                 return false;
             }
      
@@ -139,6 +161,7 @@
         
             return false;
         }
+    }
     </script>
 
 </body>

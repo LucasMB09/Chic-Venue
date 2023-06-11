@@ -33,7 +33,7 @@
                 <input type="email" placeholder="Ingrese su correo electrónico" class="correo">
             </div>
             <div class="form__button">
-                <button class="enviar">Enviar link</button>
+                <button class="enviar">Enviar Código</button>
             </div>
             
         </form>
