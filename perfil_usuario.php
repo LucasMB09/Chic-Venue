@@ -32,7 +32,7 @@
   }
   
   // Conexión a la base de datos
-  $conexion = mysqli_connect("localhost", "root", "", "chicvenue");
+  $conexion = mysqli_connect("localhost:3307", "root", "", "chicvenue");
   
   // Consulta SQL para obtener los valores de una columna
   $query = "SELECT apellido FROM cliente WHERE correo_electronico = '$email'";
@@ -706,4 +706,43 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
 <script src="js/perfil_user.js"></script>
 </body>
+<footer class="pt-4 my-md-5 pt-md-5 border-top">
+<nav class="navbar bg-dark" data-bs-theme="dark">
+    <div class="container-fluid">
+    
+    </div>
+    </nav>
+    <br>
+    <div class="row">
+      <div class="col-12 col-md">
+        <img class="logo" src="/assets/logo_CA.PNG"  width="24" height="19" alt="Logotipo de Chic Avenue" >
+        <small class="d-block mb-3 text-body-secondary">&copy; 2022–2023</small>
+      </div>
+      <div class="col-6 col-md">
+        <h5>Nosotros</h5>
+        <ul class="list-unstyled text-small">
+          <li class="mb-1"><a class="link-secondary text-decoration-none" href="#">Historia</a></li>
+          <li class="mb-1"><a class="link-secondary text-decoration-none" href="#">Random feature</a></li>
+
+        </ul>
+      </div>
+      <div class="col-6 col-md">
+        <h5>Catalogo</h5>
+        <ul class="list-unstyled text-small">
+          <li class="mb-1"><a class="link-secondary text-decoration-none" href="#">Tendencia</a></li>
+          <li class="mb-1"><a class="link-secondary text-decoration-none" href="#">Descuentos</a></li>
+          <li class="mb-1"><a class="link-secondary text-decoration-none" href="#">Promociones</a></li>
+        </ul>
+      </div>
+      <div class="col-6 col-md">
+        <h5>Atencion a cliente</h5>
+        <ul class="list-unstyled text-small">
+          <li class="mb-1"><a class="link-secondary text-decoration-none" href="#">Contactos</a></li>
+          <li class="mb-1"><a class="link-secondary text-decoration-none" href="#">Ubicacion</a></li>
+          <li class="mb-1"><a class="link-secondary text-decoration-none" href="#"></a></li>
+          <li class="mb-1"><a class="link-secondary text-decoration-none" href="#"></a></li>
+        </ul>
+      </div>
+    </div>
+  </footer>
 </html>
