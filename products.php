@@ -98,7 +98,7 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav me-auto mb-2 mb-lg-0">
             <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="#">Novedades</a>
+              <a class="nav-link active" aria-current="page" href="index.php">Novedades</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="#">Rebajas</a>
@@ -136,9 +136,7 @@
              <li class="nav-item">
               <?php
               if($email != ":v" && $user != ":v"){
-
                 ?>
-
                   <h3 id="usuario" style="display:none;"> <?php echo "$user";?></h3>
                   <h3 id="correo" style="display:none;"> <?php echo "$email";?></h3>
                   <a class="navbar-brand" onclick="user()" id="change"> <!-- INCIAR SESION -->
@@ -146,8 +144,6 @@
                   </a>
                   
                   <?php
-                  
-                
               }
               else{
                 ?>
@@ -159,12 +155,14 @@
               ?>
             </li>
             <li class="nav-item">
-               <a class="navbar-brand" href="#">
-               <img src="assets/favoritos.JPG" alt="carrito" width="30" height="30" class="d-inline-block align-text-top">
-              </a>
+              
+                <a class="navbar-brand" href="favoritos.php"> <!-- ACCEDER A FAVORITOS-->
+                <img src="assets/favoritos.JPG" alt="carrito" width="30" height="30" class="d-inline-block align-text-top">
+                </a>
+              
             </li>
             <li class="nav-item">
-              <a class="navbar-brand" href="#">
+              <a class="navbar-brand" href="carrito.php"><!-- ACCEDER A CARRITO-->
               <img src="assets/carrito.png" alt="carrito" width="30" height="30" class="d-inline-block align-text-top">
              </a>
             </li>

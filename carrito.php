@@ -37,7 +37,7 @@
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
           <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="products.php">Novedades</a>
+            <a class="nav-link active" aria-current="page" href="index.php">Novedades</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="products.php">Rebajas</a>
@@ -68,7 +68,7 @@
         &nbsp;&nbsp;&nbsp;
         <ul class="nav">
           <li class="nav-item">
-             <a class="navbar-brand" href="#">
+             <a class="navbar-brand" href="carrito.php">
              <img src="/assets/filtro.png" alt="carrito" width="30" height="30" class="d-inline-block align-text-top">
             </a>
           </li>
@@ -80,12 +80,12 @@
             </a>
           </li>
           <li class="nav-item">
-             <a class="navbar-brand" href="#">
+             <a class="navbar-brand" href="favoritos.php">
              <img src="/assets/favoritos.PNG" alt="carrito" width="30" height="30" class="d-inline-block align-text-top">
             </a>
           </li>
           <li class="nav-item">
-            <a class="navbar-brand" href="carrito.html">
+            <a class="navbar-brand" href="carrito.php">
             <img src="/assets/carrito.png" alt="carrito" width="30" height="30" class="d-inline-block align-text-top">
            </a>
           </li>

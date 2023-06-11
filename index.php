@@ -243,17 +243,15 @@
             </li>
             <li class="nav-item">
               
-                <a class="navbar-brand" href="favoritos.html"> <!-- ACCEDER A FAVORITOS-->
+                <a class="navbar-brand" href="favoritos.php"> <!-- ACCEDER A FAVORITOS-->
                 <img src="assets/favoritos.JPG" alt="carrito" width="30" height="30" class="d-inline-block align-text-top">
                 </a>
               
             </li>
             <li class="nav-item">
-              
-                <a class="navbar-brand" href="carrito.html"> <!-- ACCEDER AL CARRITO-->
-                <img src="assets/carrito.png" alt="carrito" width="30" height="30" class="d-inline-block align-text-top">
-                </a>
-              
+              <a class="navbar-brand" href="carrito.php"><!-- ACCEDER A CARRITO-->
+              <img src="assets/carrito.png" alt="carrito" width="30" height="30" class="d-inline-block align-text-top">
+             </a>
             </li>
           </ul>
           </div>
