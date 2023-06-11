@@ -77,9 +77,6 @@
                 </div>
                 <button class="boton_registro" class="letra-texto" type="submit" name="registro" id="regis">Registrarme</button>
                 <br><br>
-                <!--<div class="formulario_mensaje" id="formulario_mensaje">
-                    <p><i class="fas fa-exclamation-triangle"></i> <b>Error: </b>Se deben completar todos los campos obligatorios.</p>
-                </div>-->
                 <?php
                 if (isset($_SESSION['mensaje'])) {
                     $mensaje = $_SESSION['mensaje'];

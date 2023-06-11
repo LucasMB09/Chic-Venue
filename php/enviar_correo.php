@@ -17,7 +17,7 @@
         $mail->Host = 'smtp.gmail.com'; // Especifica tu servidor SMTP
         $mail->SMTPAuth = true;
         $mail->Username = "cchicvenue@gmail.com"; // Especifica tu dirección de correo electrónico
-        $mail->Password = "khykpqkvqsfvorcs"; // Especifica tu contraseña
+        $mail->Password = "fmobmxhuobktfvky"; // Especifica tu contraseña
         $mail->SMTPSecure = 'tls';
         $mail->Port = 587;
         
