@@ -61,7 +61,7 @@
                 <button class="enviar" onclick="return verificarContrasenas()">Cambiar contraseña</button>
             </div>
         </form>
-        <h2><a href="log-in.php">Volver al inicio de sesión</a></h2>
+        <h2><a href="perfil_usuario.php">Volver</a></h2>
         <div id="mensajeExito">Modificación de contraseña exitosa</div>
     </div>
 
