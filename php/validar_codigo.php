@@ -1,6 +1,6 @@
 <?php
     session_start();
-    $conexion = mysqli_connect("localhost:3307", "root", "", "chicvenue");
+    $conexion = mysqli_connect("localhost", "root", "", "chicvenue");
 
     if(isset($_SESSION['codigo'])){
         $codigopag = $_SESSION['codigo'];
