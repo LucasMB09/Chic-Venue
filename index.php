@@ -309,7 +309,7 @@ background: linear-gradient(to left, violet, indigo, blue, green, yellow, orange
 </style>
 <br><br>
 <div class="container">
-  <h1 class="rainbow-text">CELEBRA EL #PRIDE EN CHIC VENUE</h1>
+  <h1 class="rainbow-text">CELEBRA EL   #PRIDE EN CHIC VENUE</h1>
 </div>
 
 <div class="container-fluid">
