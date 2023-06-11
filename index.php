@@ -3,7 +3,7 @@
 
   if(isset($_GET['valor'])){
     $valor = $_GET['valor'];
-  }
+  } 
   elseif(isset($_SESSION['valor'])){
     $valor = $_SESSION['valor'];
   }
