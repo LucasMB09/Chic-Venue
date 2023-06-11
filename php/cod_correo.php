@@ -232,7 +232,7 @@
         </ul>
       </div>
       <div class="col-6 col-md">
-        <h5>Catalogo</h5>
+        <h5>Catálogo</h5>
         <ul class="list-unstyled text-small">
           <li class="mb-1"><a class="link-secondary text-decoration-none" href="../products.php">Tendencia</a></li>
           <li class="mb-1"><a class="link-secondary text-decoration-none" href="./products.php">Descuentos</a></li>
@@ -240,7 +240,7 @@
         </ul>
       </div>
       <div class="col-6 col-md">
-        <h5>Atencion a cliente</h5>
+        <h5>Atención a cliente</h5>
         <ul class="list-unstyled text-small">
           <li class="mb-1"><a class="link-secondary text-decoration-none" href="./preguntas.php">Contactos</a></li>
           <li class="mb-1"><a class="link-secondary text-decoration-none" href="./preguntas.php">Ubicación</a></li>

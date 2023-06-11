@@ -121,4 +121,42 @@
         </form>
         <script src="js/registro_verificar.js"></script>
     </body>
+ <!-- FOOTER -->
+ <footer class="container">
+  <nav class="navbar bg-dark" data-bs-theme="dark">
+    <div class="container-fluid">
+    </div>
+    </nav>
+    <br>
+    <div class="row">
+      <div class="col-12 col-md">
+        <img class="logo" src="/assets/logo_CA.PNG"  width="24" height="19" alt="Logotipo de Chic Avenue" >
+        <small class="d-block mb-3 text-body-secondary">&copy; 2022–2023</small>
+      </div>
+      <div class="col-6 col-md">
+        <h5>Nosotros</h5>
+        <ul class="list-unstyled text-small">
+          <li class="mb-1"><a class="link-secondary text-decoration-none" href="./preguntas.php">Preguntas frecuentes</a></li>
+          <li class="mb-1"><a class="link-secondary text-decoration-none" href="./products.php">Random feature</a></li>
+
+        </ul>
+      </div>
+      <div class="col-6 col-md">
+        <h5>Catálogo</h5>
+        <ul class="list-unstyled text-small">
+          <li class="mb-1"><a class="link-secondary text-decoration-none" href="../products.php">Tendencia</a></li>
+          <li class="mb-1"><a class="link-secondary text-decoration-none" href="./products.php">Descuentos</a></li>
+          <li class="mb-1"><a class="link-secondary text-decoration-none" href="./products.php">Promociones</a></li>
+        </ul>
+      </div>
+      <div class="col-6 col-md">
+        <h5>Atención a cliente</h5>
+        <ul class="list-unstyled text-small">
+          <li class="mb-1"><a class="link-secondary text-decoration-none" href="./preguntas.php">Contactos</a></li>
+          <li class="mb-1"><a class="link-secondary text-decoration-none" href="./preguntas.php">Ubicación</a></li>
+          <li class="mb-1"><a class="link-secondary text-decoration-none" href="#"></a></li>
+          <li class="mb-1"><a class="link-secondary text-decoration-none" href="#"></a></li>
+        </ul>
+      </div>
+    </div></footer>
 </html>
