@@ -287,12 +287,12 @@
               ?>
             </li>
             <li class="nav-item">
-               <a class="navbar-brand" href="#">
+               <a class="navbar-brand" href="favoritos.php">
                <img src="/assets/favoritos.JPG" alt="favoritos" width="30" height="30" class="d-inline-block align-text-top">
               </a>
             </li>
             <li class="nav-item">
-              <a class="navbar-brand" href="#">
+              <a class="navbar-brand" href="carrito.php">
               <img src="/assets/carrito.png" alt="carrito" width="30" height="30" class="d-inline-block align-text-top">
              </a>
             </li>
