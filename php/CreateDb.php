@@ -15,7 +15,7 @@ class CreateDb
     public function __construct(
         $dbname = "chicvenue",
         $tablename = "articulo",
-        $servername = "localhost:3370",
+        $servername = "localhost",
         $username = "root",
         $password = ""
     )

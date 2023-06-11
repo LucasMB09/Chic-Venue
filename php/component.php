@@ -1,69 +1,157 @@
 <?php
 
-function component($id_articulo, $precio, $nombre_articulo, $descripcion,$imagen){
+function component($id_articulo, $precio, $nombre_articulo, $descripcion, $imagen)
+{
     $element = "
+        <style>
+        .circle-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
     
-    <div class=\"col-md-3 col-sm-6 my-3 my-md-0\">
-                <form action=\"index.php\" method=\"post\">
-                    <div class=\"card shadow\">
-                        <div>
-                            <img src=\"$imagen\" alt=\"Image1\" class=\"img-fluid card-img-top\">
+        .circle {
+            position: relative;
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            overflow: hidden;
+        }
+    
+        .circle img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center;
+        }
+    
+        .overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.6);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+    
+        .circle:hover .overlay {
+            opacity: 1;
+        }
+    
+        .btn-circle {
+            border-radius: 50%;
+            margin: 5px;
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: rgba(255, 255, 255, 0.3);
+            border: none;
+            transition: background-color 0.3s ease;
+        }
+    
+        .btn-circle img {
+            width: 24px;
+            height: 24px;
+        }
+    
+        .btn-circle:hover {
+            background-color: rgba(255, 255, 255, 0.8);
+        }
+        
+        .btn-circle.active {
+            background-color: white;
+            color: black;
+            border-color: white;
+        }
+        
+        .btn-circle.active:hover {
+            background-color: white;
+        }
+        
+        .title {
+            font-size: 16px;
+            font-weight: bold;
+            text-align: center;
+        }
+    
+        .price {
+            font-size: 18px;
+            font-weight: bold;
+            text-align: center;
+        }
+        
+        </style>
+    
+        <div class=\"col-md-3 col-sm-6 my-3 my-md-0\">
+            <form action=\"index.php\" method=\"post\">
+                <div class=\"text-center\">
+                    <div class=\"circle-container\">
+                        <div class=\"circle\" onmouseover=\"showButtons(this)\" onmouseout=\"hideButtons(this)\">
+                            <img src=\"$imagen\" alt=\"Image1\">
+                            <div class=\"overlay\">
+                                <button type=\"submit\" class=\"btn btn-warning my-3 btn-circle btn-white\" name=\"add\"><img src=\"assets/carrito.png\" alt=\"Carrito\"></button>
+                                <button type=\"submit\" class=\"btn btn-info my-3 btn-circle btn-white\" name=\"favorite\"><img src=\"assets/favoritos.png\" alt=\"Favoritos\"></button>
+                            </div>
                         </div>
-                        <div class=\"card-body\">
-                            <h5 class=\"card-title\">$nombre_articulo</h5>
-                            <h6>
-                                <i class=\"fas fa-star\"></i>
-                                <i class=\"fas fa-star\"></i>
-                                <i class=\"fas fa-star\"></i>
-                                <i class=\"fas fa-star\"></i>
-                                <i class=\"far fa-star\"></i>
-                            </h6>
-                            <p class=\"card-text\">
-                                $descripcion
-                            </p>
-                            <h5>
-                                <span class=\"price\">$$precio</span>
-                            </h5>
-
-                            <button type=\"submit\" class=\"btn btn-warning my-3\" name=\"add\">Add to Cart <i class=\"fas fa-shopping-cart\"></i></button>
-                             <input type='hidden' name='product_id' value='$id_articulo'>
-                        </div>
+                        <h5 class=\"title\">$nombre_articulo</h5>
+                        <h5 class=\"price\">
+                            <span>$$precio</span>
+                        </h5>
                     </div>
-                </form>
-            </div>
+                </div>
+                <div class=\"card-body text-center\">
+                    <input type='hidden' name='product_id' value='$id_articulo'>
+                </div>
+            </form>
+        </div>
+        
+        <script>
+        // Agregar evento de clic a los botones
+        var buttons = document.querySelectorAll('.btn-circle');
+        buttons.forEach(function(button) {
+            button.addEventListener('click', function(e) {
+                e.preventDefault(); // Evita que el formulario se envíe automáticamente
+                button.classList.toggle('active'); // Alternar la clase 'active' en el botón clicado
+                button.blur(); // Quitar el enfoque del botón para evitar la apariencia de selección
+            });
+        });
+        
+        // Función para mostrar los botones al pasar el cursor sobre la imagen
+        function showButtons(element) {
+            var overlay = element.querySelector('.overlay');
+            overlay.style.opacity = 1;
+        }
+        
+        // Función para ocultar los botones al quitar el cursor de la imagen
+        function hideButtons(element) {
+            var overlay = element.querySelector('.overlay');
+            overlay.style.opacity = 0;
+        }
+        </script>
     ";
     echo $element;
-
-  
 }
 
-function cartElement($productimg, $productname, $productprice, $productid){
-    $element = "
-    
-    <form action=\"cart.php?action=remove&id=$productid\" method=\"post\" class=\"cart-items\">
-                    <div class=\"border rounded\">
-                        <div class=\"row bg-white\">
-                            <div class=\"col-md-3 pl-0\">
-                                <img src=$productimg alt=\"Image1\" class=\"img-fluid\">
-                            </div>
-                            <div class=\"col-md-6\">
-                                <h5 class=\"pt-2\">$productname</h5>
-                                <small class=\"text-secondary\">Seller: dailytuition</small>
-                                <h5 class=\"pt-2\">$$productprice</h5>
-                                <button type=\"submit\" class=\"btn btn-warning\">Save for Later</button>
-                                <button type=\"submit\" class=\"btn btn-danger mx-2\" name=\"remove\">Remove</button>
-                            </div>
-                            <div class=\"col-md-3 py-5\">
-                                <div>
-                                    <button type=\"button\" class=\"btn bg-light border rounded-circle\"><i class=\"fas fa-minus\"></i></button>
-                                    <input type=\"text\" value=\"1\" class=\"form-control w-25 d-inline\">
-                                    <button type=\"button\" class=\"btn bg-light border rounded-circle\"><i class=\"fas fa-plus\"></i></button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </form>
-    
-    ";
-    echo  $element;
-}
+?>
+
+<!-- Asegúrate de incluir jQuery en tu página -->
+<script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
+
+<script>
+
+
+$(document).ready(function() {
+    $('.btn-circle').click(function(e) {
+        e.preventDefault(); // Evita que el formulario se envíe automáticamente
+        $(this).closest('form').submit(); // Envía el formulario más cercano al botón clicado
+        $(this).addClass('active'); // Agrega la clase 'active' al botón clicado
+    });
+});
+</script>

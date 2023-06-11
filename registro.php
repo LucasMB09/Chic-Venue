@@ -71,11 +71,12 @@
                     <input type="password"  class="letra-texto" name="contrasena" placeholder="Contraseña*">
                     <i class="formulacion_validacion-estado fas fa-times-circle"></i>
                 </div>
+                <div class="form-floating formulario_grupo formulario_grupo-input" id="pass">
+                    <input type="password"  class="letra-texto" name="contrasena" placeholder="Confirmar Contraseña*">
+                    <i class="formulacion_validacion-estado fas fa-times-circle"></i>
+                </div>
                 <button class="boton_registro" class="letra-texto" type="submit" name="registro" id="regis">Registrarme</button>
                 <br><br>
-                <!--<div class="formulario_mensaje" id="formulario_mensaje">
-                    <p><i class="fas fa-exclamation-triangle"></i> <b>Error: </b>Se deben completar todos los campos obligatorios.</p>
-                </div>-->
                 <?php
                 if (isset($_SESSION['mensaje'])) {
                     $mensaje = $_SESSION['mensaje'];
