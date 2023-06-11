@@ -32,7 +32,7 @@
   }
   
   // Conexión a la base de datos
-  $conexion = mysqli_connect("localhost", "root", "", "chicvenue");
+  $conexion = mysqli_connect("localhost:3307", "root", "", "chicvenue");
   
   // Consulta SQL para obtener los valores de una columna
   $query = "SELECT apellido FROM cliente WHERE correo_electronico = '$email'";
@@ -574,24 +574,13 @@
 
                     function mandarPHP(codigo)
                     {
-                      parametros = {id: codigo};
+                      parametros = { id: codigo };
                       $.ajax({
                         data: parametros,
                         url: "../php/modificarDatos.php",
-                        type: "POST",
-                        success: function()
-                        {
-                          Swal.fire({
-                            title: 'Exito',
-                            text: 'Cuenta eliminada',
-                            confirmButtonText: 'De acuerdo'
-                        }).then((result) => {
-                          if (result) {
-                           window.location.href = "index.php";
-                          }
-                        });
-                        }
-                      })
+                        type: "POST"
+                      });
+                      alert(codigo);
                     }
                       </script>
 
