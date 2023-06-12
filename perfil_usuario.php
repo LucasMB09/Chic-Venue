@@ -32,8 +32,15 @@
   }
   
   // Conexión a la base de datos
-  $conexion = mysqli_connect("localhost:3307", "root", "", "chicvenue");
+  $conexion = mysqli_connect("localhost", "root", "", "chicvenue");
   
+  $query_fullname = "SELECT nombre FROM cliente WHERE correo_electronico = '$email'";
+  $resul_fullname = mysqli_query($conexion, $query_fullname);
+  if($resul_fullname){
+    $fullnam = mysqli_fetch_array($resul_fullname);
+    $fullname = $fullnam[0];
+  }
+
   // Consulta SQL para obtener los valores de una columna
   $query = "SELECT apellido FROM cliente WHERE correo_electronico = '$email'";
      
@@ -354,7 +361,7 @@
                             <div class="card ">
                                 <div class="card-body">
                                   <h5 class="card-title letra-titulo">Nombre</h5>
-                                  <span class="input-group-text" id="nombreUsuario"><?php echo $user;?></span>
+                                  <span class="input-group-text" id="nombreUsuario"><?php echo $fullname;?></span>
                                 </div>
                               </div>
                         </div>
@@ -545,39 +552,6 @@
                     <a class="btn btn-outline-dark btn-lg fondoBonito" href="../preguntas.php">Ayuda</a>
                     <!-- ELIMINAR CUENTA-->
                     <button type="button" class="btn btn-outline-danger btn-lg" onclick="aviso(<?php echo $aidi?>);">Eliminar cuenta</button>
-                    <script>
-                      function aviso(codigo) {
-                      
-                        Swal.fire({
-                          icon: 'warning',
-                          title: 'Confirmar acción',
-                          text: '¿Estás seguro de eliminar tu cuenta en Chic Venue?',
-                          showCancelButton: true,
-                          confirmButtonText: 'Eliminar cuenta',
-                          cancelButtonText: 'Cancelar'
-                        }).then((result) => {
-                          if (result.isConfirmed) {
-                            
-                                Swal.fire({
-                              title: 'Operación exitosa',
-                              text: 'Se ha eliminado tu cuenta',
-                              confirmButtonText: 'De acuerdo',
-                            }).then((result) => {
-                              if (result.isConfirmed) {
-                            document.location.href = "/php/modificarDatos.php?id=<?php echo $aidi?>"
-                            location.href = "index.php?valor=" + encodeURIComponent(0);
-                          }
-                        });
-                        }
-                  });
-                }
-
-                    function mandarPHP(codigo)
-                    {
-                      parametros = { 'id': codigo };
-                     
-                    }
-                      </script>
 
                   </div>
             </div>
@@ -701,72 +675,6 @@
 <script src="js/perfil_user.js"></script>
 <!-- Agrega este código JavaScript al final del archivo -->
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-<script>
-    function agregarTarjeta() {
-        Swal.fire({
-            title: 'Agregar nueva tarjeta',
-            html: `
-                <input id="numero_tarjeta" class="swal2-input" placeholder="Número de tarjeta" required>
-                <input id="vencimiento" class="swal2-input" placeholder="Vencimiento (MM/AA)" required>
-                <input id="cvv" class="swal2-input" placeholder="CVV" required>
-                <input id="nom_banco" class="swal2-input" placeholder="Banco" required>
-            `,
-            confirmButtonText: 'Agregar',
-            showCancelButton: true,
-            cancelButtonText: 'Cancelar',
-            preConfirm: () => {
-                const numeroTarjeta = Swal.getPopup().querySelector('#numero_tarjeta').value;
-                const vencimiento = Swal.getPopup().querySelector('#vencimiento').value;
-                const cvv = Swal.getPopup().querySelector('#cvv').value;
-                const nomBanco = Swal.getPopup().querySelector('#nom_banco').value;
-
-                if (!numeroTarjeta || !vencimiento || !cvv || !nomBanco) {
-                    Swal.showValidationMessage('Por favor, completa todos los campos');
-                    return false;
-                }
-
-                // Aquí puedes hacer la inserción en la base de datos
-                const url = 'php/agregar_tarjeta.php';
-                const data = {
-                    numero_tarjeta: numeroTarjeta,
-                    vencimiento: vencimiento,
-                    cvv: cvv,
-                    id_cliente: '<?php echo $num_cliente; ?>',
-                    nom_banco: nomBanco
-                };
-
-                return fetch(`${url}?numero_tarjeta=${numeroTarjeta}&vencimiento=${vencimiento}&cvv=${cvv}&id_cliente=${data.id_cliente}&nom_banco=${nomBanco}`, {
-                    method: 'GET',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                })
-                .then(response => {
-                    if (!response.ok) {
-                        throw new Error(response.statusText);
-                    }
-                    return response.json();
-                })
-                .catch(error => {
-                    Swal.showValidationMessage(`Se produjo un error: ${error}`);
-                });
-            }
-        })
-        .then(result => {
-            if (result.isConfirmed) {
-                Swal.fire({
-                    title: 'Tarjeta agregada',
-                    icon: 'success'
-                }).then(() => {
-                    // Actualizar la página o hacer cualquier otra acción necesaria
-                    window.location.reload()
-
-                    //ahi ta, quien sabe porque no agarra el $_POST, pero chingue su ,adre por get, al final funciono jajaj omaigaGracias ah bb simon, ahi estamos
-                });
-            }
-        });
-    }
-</script>
 </body>
 <footer class="pt-4 my-md-5 pt-md-5 border-top">
 <nav class="navbar bg-dark" data-bs-theme="dark">
@@ -778,7 +686,7 @@
     <div class="row">
       <div class="col-12 col-md">
         <img class="logo" src="/assets/logo_CA.PNG"  width="24" height="19" alt="Logotipo de Chic Avenue" >
-        <small class="d-block mb-3 text-body-secondary">&copy; 2022–2023</small>
+        <small class="d-block mb-3 text-body-secondary">&copy; 2022-2023</small>
       </div>
       <div class="col-6 col-md">
         <h5>Nosotros</h5>
