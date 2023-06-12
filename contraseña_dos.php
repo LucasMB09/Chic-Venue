@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Chic Avenue</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <script src="https://kit.fontawesome.com/03a89292db.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
     <link rel="stylesheet" href="css/estilosdos.css">
     <script src="/sweetalert/dist/sweetalert2.all.min.js"></script>
     <style>
@@ -45,124 +45,34 @@
     </div>
     <div class="container">
         <h1>Generar nueva contraseña</h1>
-        <form action="" class="form">
-
-            <p id="mensajeValidacion" style="color: gray;">La contraseña requiere:<br>- 8 caracteres<br>- Una
-                mayúscula<br>- Una minúscula<br>- Un carácter especial<br>- Un número</p>
-            <div class="form__correo" style="margin-top: 20px;">
-                <input type="password" placeholder="Nueva contraseña" id="contrasena1" class="correo"
-                    onkeyup="verificarContrasena()">
+        <form action="/php/cambio_contra.php" method="post" class="form" id="formulario">
+            <div style="color: gray;" id="contenedor">
+                <div id="uwu"><p>La contraseña requiere:</p></div>
+                <ul id="lista">
+                    <div id="carac"><li><p class="letra-texto">8 caracteres</p></li></div>
+                    <div id="mayus"><li><p class="letra-texto">1 mayúscula</p></li></div>
+                    <div id="minus"><li><p class="letra-texto">1 minúscula</p></li></div>
+                    <div id="car"><li><p class="letra-texto">1 caracter especial</p></li></div>
+                    <div id="num"><li><p class="letra-texto">1 número</p></li></div>
+                </ul>
             </div>
-            <div class="form__correo" style="margin-top: 20px;">
-                <input type="password" placeholder="Repetir contraseña" id="contrasena2" class="correo">
-                <p id="mensajeError"></p>
+            <div class="form__correo" style="margin-top: 20px;" id="pass1">
+                <input type="password" placeholder="Nueva contraseña" name="contra1" id="con1" class="correo">
+                <i class="formulacion_validacion-estado fas fa-times-circle"></i>
+            </div>
+            <div class="form__correo" style="margin-top: 20px;" id="pass2">
+                <input type="password" placeholder="Repetir contraseña" name="contra2" id="con2" class="correo">
+                <i class="formulacion_validacion-estado fas fa-times-circle"></i>
             </div>
             <div class="form__button">
-                <button class="enviar" onclick="return verificarContrasenas()">Cambiar contraseña</button>
+                <button class="enviar" type="submit">Cambiar contraseña</button>
             </div>
         </form>
-        <h2><a href="perfil_usuario.php">Volver</a></h2>
+        <!-- <h2><a href="perfil_usuario.php">Volver</a></h2> -->
         <div id="mensajeExito">Modificación de contraseña exitosa</div>
     </div>
 
-    <script>
-        function verificarContrasena() {
-            var contrasena = document.getElementById("contrasena1").value;
-            var mensajeValidacion = document.getElementById("mensajeValidacion");
-            var contrasenaValida = true;
-
-            // Verificar longitud mínima
-            if (contrasena.length < 8) {
-                mensajeValidacion.style.color = "red";
-                contrasenaValida = false;
-            } else {
-                mensajeValidacion.style.color = "gray";
-            }
-
-            // Verificar si hay una mayúscula
-            if (!/[A-Z]/.test(contrasena)) {
-                contrasenaValida = false;
-            }
-
-            // Verificar si hay una minúscula
-            if (!/[a-z]/.test(contrasena)) {
-                contrasenaValida = false;
-            }
-
-            // Verificar si hay un carácter especial
-            if (!/[!@#$%^&*()_+\-=[\]{};':"\\|,.<>/?]/.test(contrasena)) {
-                contrasenaValida = false;
-            }
-
-            // Verificar si hay un número
-            if (!/\d/.test(contrasena)) {
-                contrasenaValida = false;
-            }
-
-            if (contrasenaValida) {
-                mensajeValidacion.style.color = "green";
-            } else {
-                mensajeValidacion.style.color = "red";
-            }
-        }
-
-        function verificarContrasenas() {
-            var contrasena1 = document.getElementById("contrasena1").value;
-            var contrasena2 = document.getElementById("contrasena2").value;
-            var mensajeError = document.getElementById("mensajeError");
-            var mensajeExito = document.getElementById("mensajeExito");
-            if(contrasena1=='' || contrasena2=='')
-            {
-                Swal.fire({
-                title: '¡Error!',
-                text: 'Se deben completar todos los campos obligatorios',
-                icon: 'error',
-                showConfirmButton: 'Aceptar'
-            });
-            return false;
-            }
-            else{
-            if (contrasena1 !== contrasena2) {
-             //   mensajeError.textContent = "Las contraseñas no coinciden";
-             //   mensajeError.style.color = "red";
-             //   mensajeExito.style.display = "none"; 
-             Swal.fire({
-                title: '¡Error!',
-                text: 'Las contraseñas no coinciden',
-                icon: 'error',
-                showConfirmButton: 'Aceptar'
-            });
-                return false;
-            }
-        
-            // Verificar condiciones adicionales
-            verificarContrasena();
-        
-            var mensajeValidacion = document.getElementById("mensajeValidacion");
-            var contrasenaValida = mensajeValidacion.style.color !== "red";
-        
-            if (!contrasenaValida) {
-               // mensajeExito.style.display = 'none';
-               Swal.fire({
-                title: '¡Error!',
-                text: 'Formato de contraseña incorrecto',
-                icon: 'error',
-                showConfirmButton: 'Aceptar'
-            });
-                return false;
-            }
-     
-            mensajeExito.style.display = "block";
-            setTimeout(function () {
-                mensajeExito.style.display = "none";
-            }, 3500);
-            document.getElementById("contrasena1").value = ""; 
-            document.getElementById("contrasena2").value = ""; 
-        
-            return false;
-        }
-    }
-    </script>
+    <script src="/js/contraseña_dos.js"></script>
 
 </body>
 
