@@ -65,7 +65,7 @@ body {
 
 .formulario {
     width: 400px;
-    padding: 1rem;
+    padding: -1rem;
     margin: 2rem;
     background-color: rgba(183, 183, 183, 0.9); /* fondo del formulario */
     text-align: center;
@@ -101,7 +101,8 @@ body {
     background-color: white;
     text-align: center;
     font-weight: 600;
-    margin-top: 3rem;
+    margin-top: 0rem;
+    top: -20px;
     font-size: .8rem;
     cursor: pointer;
     color: #222;

@@ -36,3 +36,11 @@ function user() {
     
     
 }
+
+// Activar el carrusel automáticamente
+var carousel = document.querySelector('#manualCarousel');
+var carouselInstance = new bootstrap.Carousel(carousel, {
+  interval: 5000, // Cambiar a 5000 (5 segundos)
+  wrap: true, // Permitir repetir las imágenes
+  perPage: 3 // Mostrar 3 imágenes a la vez
+});

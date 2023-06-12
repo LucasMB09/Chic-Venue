@@ -216,7 +216,7 @@ $num_images = $row['num_images'];
 
       // Mostrar las imágenes en el grupo actual
       for ($j = $i; $j < min($i + 3, $num_images); $j++) {
-        component($images[$j]['id'], $images[$j]['price'], $images[$j]['name'], $images[$j]['description'], $images[$j]['url']);
+        component($images[$j]['id'], $images[$j]['price'], $images[$j]['name'], $images[$j]['description'], $images[$j]['url'],$email);
       }
 
       echo '</div>';
@@ -241,21 +241,10 @@ $num_images = $row['num_images'];
   ?>
 </div>
 
-<script>
-  // Activar el carrusel automáticamente
-  var carousel = document.querySelector('#manualCarousel');
-  var carouselInstance = new bootstrap.Carousel(carousel, {
-    interval: 5000, // Cambiar a 5000 (5 segundos)
-    wrap: true, // Permitir repetir las imágenes
-    perPage: 3 // Mostrar 3 imágenes a la vez
-  });
-</script>
-
-
-    <script src="/js/products.js"></script>
+  <script src="/js/products.js"></script>
   
   
-  </body>
+</body>
    <!-- FOOTER -->
    <footer class="container">
   <nav class="navbar bg-dark" data-bs-theme="dark">
