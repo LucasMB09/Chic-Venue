@@ -1,6 +1,8 @@
 const formulario = document.getElementById("registro");
 const inputs = document.querySelectorAll("#registro input");
 const mensaje = document.getElementById("mensaje");
+const con1 = document.getElementById("con1");
+const con2 = document.getElementById("con2");
 
 const exp = {
     email: /^[a-zA-Z0-9._+-]+@[a-zA-Z0-9-]+\.[a-zA-Z]{2,}$/,
@@ -25,6 +27,7 @@ const ema = {
 const campos = {
     email: false,
     pass: false,
+    pass2: false,
     nombre: false,
     apellido: false,
     carac: false,
@@ -71,6 +74,9 @@ const validarFormulario = (e) => {
             }
             
         break;
+        case "contrasena2":
+            contraigual(con1,con2);
+        break;
         case "nombre":
             validarCampo(exp.nombre, e.target, "nombre");
             if(campos.nombre){
@@ -89,6 +95,23 @@ const validarFormulario = (e) => {
                 document.getElementById('cont_ape').style.display = 'block';
             }
         break;
+    }
+}
+
+const contraigual = (c1, c2) => {
+    if(c1.value == c2.value){
+        document.getElementById('pass2').classList.remove('formulario_grupo-incorrecto');
+        document.getElementById('pass2').classList.add('formulario_grupo-correcto');
+		document.querySelector('#pass2 i').classList.add('fa-check-circle');
+		document.querySelector('#pass2 i').classList.remove('fa-times-circle');
+        campos["pass2"] = true; 
+    }
+    else{
+        document.getElementById('pass2').classList.add('formulario_grupo-incorrecto');
+        document.getElementById('pass2').classList.remove('formulario_grupo-correcto');
+		document.querySelector('#pass2 i').classList.add('fa-times-circle');
+		document.querySelector('#pass2 i').classList.remove('fa-check-circle');
+        campos["pass2"] = false
     }
 }
 
@@ -125,7 +148,7 @@ inputs.forEach((input) => {
 });
 
 formulario.addEventListener('submit', (e) => {
-	if(campos.email && campos.pass && campos.nombre && campos.apellido){
+	if(campos.email && campos.pass && campos.nombre && campos.apellido && campos.pass2){
 	    document.getElementById('formulario_mensaje-exito').classList.add('formulario_mensaje-exito-activo');
 		setTimeout(() => {
 			document.getElementById('formulario_mensaje-exito').classList.remove('formulario_mensaje-exito-activo');

@@ -1,3 +1,7 @@
+<?php
+    session_start();
+?>
+
 <!DOCTYPE html>
 <html lang="es">
 
@@ -42,6 +46,15 @@
 <body>
 
     <div class="barra" style="background-color: black; height: 50px; width: 100%;">
+    <?php
+          if (isset($_SESSION['mensaje'])) {
+              $mensaje = $_SESSION['mensaje'];
+              ?>
+              <div><h3 id="mensaje" style="display: none;"><?php echo "$mensaje";?></h3></div>
+              <?php
+              unset($_SESSION['mensaje']); // Limpiamos la variable de sesión
+          }
+        ?>
     </div>
     <div class="container">
         <h1>Generar nueva contraseña</h1>

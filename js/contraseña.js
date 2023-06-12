@@ -12,19 +12,20 @@ document.addEventListener("DOMContentLoaded", function() {
         var existingError = document.querySelector(".error-message");
 
         if (correoValue === "") {
+            event.preventDefault();
             Swal.fire({
-    title: '¡Error!',
-    text: 'Se deben completar todos los campos obligatorios.',
-    icon: 'error',
-    showConfirmButton: 'Aceptar'
+                        title: '¡Error!',
+                        text: 'Se deben completar todos los campos obligatorios.',
+                        icon: 'error',
+                        showConfirmButton: 'Aceptar'
                     });
-        event.preventDefault();
             
             if (!existingError) {
                 correoContainer.appendChild(errorElement);
                 
             }
         } else if (!isValidEmail(correoValue)) {
+            event.preventDefault();
             Swal.fire({
                         title: '¡Error!',
                         text: 'Correo inválido o no registrado',
@@ -48,22 +49,22 @@ function isValidEmail(email) {
     return emailPattern.test(email);
 }
 
-function showSuccessMessage() {
-    var successMessage = document.createElement("div");
-    successMessage.className = "success-message";
-    successMessage.textContent = "Le enviamos un correo electrónico con la información necesaria para restablecer su contraseña. El correo electrónico puede tardar un par de minutos en llegar.";
+// function showSuccessMessage() {
+//     var successMessage = document.createElement("div");
+//     successMessage.className = "success-message";
+//     successMessage.textContent = "Le enviamos un correo electrónico con la información necesaria para restablecer su contraseña. El correo electrónico puede tardar un par de minutos en llegar.";
 
-    var container = document.querySelector(".container");
-    container.insertBefore(successMessage, container.firstChild);
+//     var container = document.querySelector(".container");
+//     container.insertBefore(successMessage, container.firstChild);
 
-    var closeButton = document.createElement("button");
-    closeButton.className = "close-button";
-    closeButton.textContent = "X";
+//     var closeButton = document.createElement("button");
+//     closeButton.className = "close-button";
+//     closeButton.textContent = "X";
 
-    successMessage.appendChild(closeButton);
+//     successMessage.appendChild(closeButton);
 
-    closeButton.addEventListener("click", function() {
-        successMessage.remove();
-    });
+//     closeButton.addEventListener("click", function() {
+//         successMessage.remove();
+//     });
     
-}
+// }

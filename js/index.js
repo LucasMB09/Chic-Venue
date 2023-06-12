@@ -12,6 +12,14 @@ if((mensaje.textContent).length > 0 ){
                 showConfirmButton: 'Aceptar'
             });
             break;
+        case "Contraseña cambiada":
+            Swal.fire({
+                title: 'Exito!',
+                text: 'Contraseña cambiada existosamente',
+                icon: 'success',
+                showConfirmButton: 'Aceptar'
+            });
+            break;
         default:
             break;
     }

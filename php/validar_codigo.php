@@ -15,7 +15,6 @@
         $query = "UPDATE cliente SET activado = '1' WHERE correo_electronico = '$email'";
         
         $resul = mysqli_query($conexion,$query);
-        echo $resul;
         if($resul){
             unset($_SESSION['user']);
             unset($_SESSION['email']);

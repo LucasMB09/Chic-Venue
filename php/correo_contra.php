@@ -7,6 +7,7 @@
 
     
     $email = $_POST['email'];
+    $_SESSION['correo'] = $email;
     // Función para enviar correo de confirmación
     $mail = new PHPMailer(true);
 

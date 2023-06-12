@@ -135,28 +135,20 @@ function go_login() {
 
 //console.log(mensaje.textContent);
 
-// if((mensaje.textContent).length > 0 ){
-//     switch (mensaje.textContent) {
-//         case "¡Este correo ya esta asociado a una cuenta!":
-//             Swal.fire({
-//                 title: 'Error!',
-//                 text: '¡Este correo ya esta asociado a una cuenta!',
-//                 icon: 'error',
-//                 showConfirmButton: 'Aceptar'
-//             });
-//             break;
-//         case "¡Ups ha ocurrido un error!":
-//             Swal.fire({
-//                 title: 'Upss!',
-//                 text: 'Ha habido un error con la página, vuelva a intentarlo',
-//                 icon: 'warning',
-//                 showConfirmButton: 'Aceptar'
-//             });
-//             break;
-//         default:
-//             break;
-//     }
+if((mensaje.textContent).length > 0 ){
+    switch (mensaje.textContent) {
+        case "Ha habido un problema":
+            Swal.fire({
+                title: 'Upss!',
+                text: 'Ha habido un error con la página, vuelva a intentarlo',
+                icon: 'warning',
+                showConfirmButton: 'Aceptar'
+            });
+            break;
+        default:
+            break;
+    }
     
-// }
+}
 
 
