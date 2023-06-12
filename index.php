@@ -224,7 +224,7 @@
                   <h3 id="usuario" style="display:none;"> <?php echo "$user";?></h3>
                   <h3 id="correo" style="display:none;"> <?php echo "$email";?></h3>
                   <a class="navbar-brand" onclick="user()" id="change"> <!-- INCIAR SESION -->
-                    <img src="assets/usuario.png" alt="carrito" width="30" height="30" class="d-inline-block align-text-top">
+                    <img src="assets/usuario.png" alt="inicioSesión" width="30" height="30" class="d-inline-block align-text-top">
                   </a>
                   
                   <?php
@@ -234,7 +234,7 @@
               else{
                 ?>
                 <a class="navbar-brand" href="log-in.php"> <!-- INCIAR SESION -->
-                <img src="assets/usuario.png" alt="carrito" width="30" height="30" class="d-inline-block align-text-top">
+                <img src="assets/usuario.png" alt="inicioSesión" width="30" height="30" class="d-inline-block align-text-top">
                 </a>
                 <?php
               }
@@ -244,7 +244,7 @@
             <li class="nav-item">
               
                 <a class="navbar-brand" href="favoritos.php"> <!-- ACCEDER A FAVORITOS-->
-                <img src="assets/favoritos.JPG" alt="carrito" width="30" height="30" class="d-inline-block align-text-top">
+                <img src="assets/favoritos.JPG" alt="favoritos" width="30" height="30" class="d-inline-block align-text-top">
                 </a>
               
             </li>
@@ -298,7 +298,7 @@
 
 .rainbow-text {
   background-image: linear-gradient(to left, violet, indigo, blue, green, yellow, orange, red);   
-  -webkit-background-clip: text;
+  /* -webkit-background-clip: text; */
   color: transparent;
 }
 
@@ -348,7 +348,7 @@ background: linear-gradient(to left, violet, indigo, blue, green, yellow, orange
     <div class="row">
       <div class="col-12 col-md">
         <img class="logo" src="/assets/logo_CA.PNG"  width="24" height="19" alt="Logotipo de Chic Avenue" >
-        <small class="d-block mb-3 text-body-secondary">&copy; 2022–2023</small>
+        <small class="d-block mb-3 text-body-secondary">&copy; 2022-2023</small>
       </div>
       <div class="col-6 col-md">
         <h5>Nosotros</h5>

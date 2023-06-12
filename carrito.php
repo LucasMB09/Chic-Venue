@@ -1,3 +1,43 @@
+<?php
+  session_start();
+
+  if(isset($_GET['valor'])){
+    $valor = $_GET['valor'];
+  }
+  elseif(isset($_SESSION['valor'])){
+    $valor = $_SESSION['valor'];
+  }
+
+  if(isset($_COOKIE['usuario'])){
+    $_SESSION['user'] = $_COOKIE['usuario'];
+    $_SESSION['email'] = $_COOKIE['email'];
+    $user = $_SESSION['user'];
+    $email = $_SESSION['email'];
+  }
+  elseif(isset($_SESSION['email'])){
+    $user = $_SESSION['user'];
+    $email = $_SESSION['email'];
+  }
+  elseif(isset($valor)){
+    if($valor == 0){
+      $user = "No";
+      $email = "No";  
+    }
+    elseif($valor == 1){
+      $user = ":v";
+      $email = ":v";
+   }
+  }
+  else{
+    $valor = 1;
+    $_SESSION['valor'] = $valor;
+    $email = ":v";
+    $user = ":v";
+  }
+  
+ 
+?>
+
 <!DOCTYPE html>
 <html>
 <!--hola-->
@@ -13,6 +53,8 @@
         <link href="https://getbootstrap.com/docs/5.3/assets/css/docs.css" rel="stylesheet">
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
         <title>Chic Venue</title>
+        <link href="/css/formulario.css" rel="stylesheet">
+        <script src="/sweetalert/dist/sweetalert2.all.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
 </head>
 
@@ -68,20 +110,39 @@
         &nbsp;&nbsp;&nbsp;
         <ul class="nav">
           <li class="nav-item">
-             <a class="navbar-brand" href="carrito.php">
-             <img src="/assets/filtro.png" alt="carrito" width="30" height="30" class="d-inline-block align-text-top">
+             <a class="navbar-brand" href="filtro.php">
+             <img src="/assets/filtro.png" alt="filtro" width="30" height="30" class="d-inline-block align-text-top">
             </a>
           </li>
           
           <li class="nav-item">
-           <li class="nav-item">
-             <a class="navbar-brand" href="log-in.php">
-             <img src="/assets/usuario.png" alt="carrito" width="30" height="30" class="d-inline-block align-text-top">
-            </a>
+          <?php
+              if($email != ":v" && $user != ":v"){
+
+                ?>
+
+                  <h3 id="usuario" style="display:none;"> <?php echo "$user";?></h3>
+                  <h3 id="correo" style="display:none;"> <?php echo "$email";?></h3>
+                  <a class="navbar-brand" onclick="user()" id="change"> <!-- INCIAR SESION -->
+                    <img src="assets/usuario.png" alt="inicioSesión" width="30" height="30" class="d-inline-block align-text-top">
+                  </a>
+                  
+                  <?php
+                  
+                
+              }
+              else{
+                ?>
+                <a class="navbar-brand" href="log-in.php"> <!-- INCIAR SESION -->
+                <img src="assets/usuario.png" alt="inicioSesión" width="30" height="30" class="d-inline-block align-text-top">
+                </a>
+                <?php
+              }
+              ?>
           </li>
           <li class="nav-item">
              <a class="navbar-brand" href="favoritos.php">
-             <img src="/assets/favoritos.PNG" alt="carrito" width="30" height="30" class="d-inline-block align-text-top">
+             <img src="/assets/favoritos.PNG" alt="favoritos" width="30" height="30" class="d-inline-block align-text-top">
             </a>
           </li>
           <li class="nav-item">

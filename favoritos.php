@@ -204,7 +204,7 @@
                   <h3 id="usuario" style="display:none;"> <?php echo "$user";?></h3>
                   <h3 id="correo" style="display:none;"> <?php echo "$email";?></h3>
                   <a class="navbar-brand" onclick="user()" id="change"> <!-- INCIAR SESION -->
-                    <img src="assets/usuario.png" alt="carrito" width="30" height="30" class="d-inline-block align-text-top">
+                    <img src="assets/usuario.png" alt="inicioSesión" width="30" height="30" class="d-inline-block align-text-top">
                   </a>
                   
                   <?php
@@ -214,18 +214,18 @@
               else{
                 ?>
                 <a class="navbar-brand" href="log-in.php"> <!-- INCIAR SESION -->
-                  <img src="assets/usuario.png" alt="carrito" width="30" height="30" class="d-inline-block align-text-top">
+                  <img src="assets/usuario.png" alt="inicioSesión" width="30" height="30" class="d-inline-block align-text-top">
                 </a>
                 <?php
               }
               ?>
                 <li class="nav-item">
-                   <a class="navbar-brand" href="#"> <!-- ACCEDER A FAVORITOS-->
-                   <img src="/assets/favoritos.JPG" alt="carrito" width="30" height="30" class="d-inline-block align-text-top">
+                   <a class="navbar-brand" href="favoritos.php"> <!-- ACCEDER A FAVORITOS-->
+                   <img src="/assets/favoritos.JPG" alt="favoritos" width="30" height="30" class="d-inline-block align-text-top">
                   </a>
                 </li>
                 <li class="nav-item">
-                  <a class="navbar-brand" href="#"> <!-- ACCEDER AL CARRITO-->
+                  <a class="navbar-brand" href="carrito.php"> <!-- ACCEDER AL CARRITO-->
                   <img src="/assets/carrito.png" alt="carrito" width="30" height="30" class="d-inline-block align-text-top">
                  </a>
                 </li>
