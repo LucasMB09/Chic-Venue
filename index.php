@@ -97,6 +97,7 @@
     <!--FIN LINEA NEGRA -->
 <!-- diego estuvo aqui  de nuevo-->
 <!-- Ulises estuvo aqui-->
+<!-- :v -->
     <!-- MENU DE NAVEGACION -->
     <nav class="navbar navbar-expand-lg bg-body-tertiary">
       <div class="container-fluid">
@@ -214,7 +215,6 @@
                 </div>
             </li>
             <li class="nav-item">
-             <li class="nav-item">
               
               <?php
               if($email != ":v" && $user != ":v"){
@@ -298,7 +298,7 @@
 
 .rainbow-text {
   background-image: linear-gradient(to left, violet, indigo, blue, green, yellow, orange, red);   
-  /* -webkit-background-clip: text; */
+  -webkit-background-clip: text;
   color: transparent;
 }
 
