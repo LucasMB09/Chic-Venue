@@ -2,9 +2,6 @@
     session_start();
     
     $conexion = mysqli_connect("localhost", "root", "", "chicvenue");
- 
-
-
         $eliminar = $_GET['id'];
 
         $query = "DELETE FROM cliente WHERE id_cliente = $eliminar";
@@ -12,9 +9,6 @@
 
         header('Location: ../log-in.php');
         
-
-    
-
 
 ?>
 

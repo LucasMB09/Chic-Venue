@@ -77,3 +77,51 @@ a {
     margin-top: 20px;
     font-weight: arial;
 }
+
+.text_correc{
+    color: green;
+}
+
+.text_incorrec{
+    color: red;
+}
+
+.formulacion_validacion-estado{
+	right: 10px;
+	bottom: 15px;
+	z-index: 100;
+	font-size: 16px;
+    opacity: 0;
+}
+
+.formulario_grupo-incorrecto .formulario_label{
+	color: #bb2929;
+}
+
+.formulario_grupo-incorrecto .formulacion_validacion-estado{
+	color: #bb2929;
+	opacity: 1;
+}
+
+.formulario_grupo-incorrecto .formulario_input {
+	border: 3px solid #bb2929;
+}
+
+.formulario_grupo-correcto .formulacion_validacion-estado {
+	color: #1ed12d;
+	opacity: 1;
+}
+
+.formulario_mensaje-exito {
+	font-size: 14px;
+	color: #119200;
+	display: none;
+}
+
+.formulario_mensaje-exito-activo {
+	display: block;
+}
+
+.formulario_mensaje-activo{
+    display: block;
+}

@@ -463,78 +463,72 @@
                     </div>
                 </div>
 <!-----------------------------------TARJETAS-------------------------------------->
-
-
-            <div class="tab-pane fade" id="tarjetas-tab" role="tabpanel" aria-labelledby="v-pills-messages-tab">
-                
+<!-----------------------------------TARJETAS-------------------------------------->
+<div class="tab-pane fade" id="tarjetas-tab" role="tabpanel" aria-labelledby="v-pills-messages-tab">
+    <div class="container">
+        <div class="row">
+            <div class="jumbotron jumbotron-fluid">
                 <div class="container">
-                    <div class="row">
-                        <div class="jumbotron jumbotron-fluid">
-                            <div class="container">
-                              <h1 class="display-4">Tarjetas</h1>
-                              <p class="lead"></p>
-                            </div>
-                          </div>
-                    </div>
-                        <hr>
-                    <div class="row" id="infoTarjetas">
-                        <!-- AQUI ENTRAN LA INFORMACIÓN DE LAS TARJETAS-->
-                        <div class="page-item">
-                            <!--CONTENEDOR DE LAS TARJETAS-->
-                            <div class="container" id="contenedor_tarjetas">
-                                <?php
-
-                                $query_tarjeta = "SELECT numero_tarjeta FROM tarjeta_bancaria WHERE id_cliente = '$num_cliente'";
-                                $resul = mysqli_query($conexion,$query_tarjeta);
-                                if($resul){
-                                  $tar = mysqli_fetch_all($resul);
-
-                                  $query_banco = "SELECT nom_banco FROM tarjeta_bancaria WHERE id_cliente = '$num_cliente'";
-                                  // Ejecutar consulta
-                                  $resultado = mysqli_query($conexion, $query_banco);
-                                  if ($resultado) {
-                                    $banco = mysqli_fetch_all($resultado);
-                                  }
-
-                                  $query_vencimiento = "SELECT vencimiento FROM tarjeta_bancaria WHERE id_cliente = '$num_cliente'";
-                                  $result = mysqli_query($conexion,$query_vencimiento);
-                                  if($result){
-                                    $ven = mysqli_fetch_all($result);
-                                  }
-     
-                                  
-                                
-                                  for ($i=0; $i < count($tar); $i++) {
-                                    $tarjeta = $tar[$i][0];
-                                    $tarjeta = substr($tarjeta,-4);
-                                    $nomBanco = $banco[$i][0];
-                                    $vencimiento = $ven[$i][0];
-                                    $vencimiento = substr($vencimiento, 0,7);
-                                    ?>
-                                    <div class="row ">
-                                        <div class="col-8">
-                                            <h2><?php echo $nomBanco;?></h2>
-                                            <h3>****-****-****-<?php echo $tarjeta;?></h3>
-                                            <h5>Vence el <?php echo $vencimiento;?></h5>
-                                        </div>
-                                        <div class="col-1">
-                                            <button class="btn btn-danger btn-lg">Eliminar</button><br><br>
-                                        </div>
-                                      </div>
-                                      <hr>
-                                    <?php
-                                  }
-                                }
-                                ?>
-                            <div>
-                                <button class="btn btn-bd-primary btn-lg">Agregar nueva tarjeta</button><br><br>
-                            </div>
-                            </div>
-                        </div>
-                        </div>
-                    </div>               
-            
+                    <h1 class="display-4">Tarjetas</h1>
+                    <p class="lead"></p>
+                </div>
             </div>
+        </div>
+        <hr>
+        <div class="row" id="infoTarjetas">
+            <!-- AQUI ENTRAN LA INFORMACIÓN DE LAS TARJETAS-->
+            <div class="page-item">
+                <!--CONTENEDOR DE LAS TARJETAS-->
+                <div class="container" id="contenedor_tarjetas">
+                    <?php
+                    $query_tarjeta = "SELECT numero_tarjeta FROM tarjeta_bancaria WHERE id_cliente = '$num_cliente'";
+                    $resul = mysqli_query($conexion,$query_tarjeta);
+                    if($resul){
+                        $tar = mysqli_fetch_all($resul);
+
+                        $query_banco = "SELECT nom_banco FROM tarjeta_bancaria WHERE id_cliente = '$num_cliente'";
+                        // Ejecutar consulta
+                        $resultado = mysqli_query($conexion, $query_banco);
+                        if ($resultado) {
+                            $banco = mysqli_fetch_all($resultado);
+                        }
+
+                        $query_vencimiento = "SELECT vencimiento FROM tarjeta_bancaria WHERE id_cliente = '$num_cliente'";
+                        $result = mysqli_query($conexion,$query_vencimiento);
+                        if($result){
+                            $ven = mysqli_fetch_all($result);
+                        }
+                        
+                        for ($i=0; $i < count($tar); $i++) {
+                            $tarjeta = $tar[$i][0];
+                            $tarjeta = substr($tarjeta,-4);
+                            $nomBanco = $banco[$i][0];
+                            $vencimiento = $ven[$i][0];
+                            $vencimiento = substr($vencimiento, 0,7);
+                            ?>
+                            <div class="row ">
+                                <div class="col-8">
+                                    <h2><?php echo $nomBanco;?></h2>
+                                    <h3>****-****-****-<?php echo $tarjeta;?></h3>
+                                    <h5>Vence el <?php echo $vencimiento;?></h5>
+                                </div>
+                                <div class="col-1">
+                                    <button class="btn btn-danger btn-lg">Eliminar</button><br><br>
+                                </div>
+                            </div>
+                            <hr>
+                            <?php
+                        }
+                    }
+                    ?>
+                    <div>
+                        <button class="btn btn-bd-primary btn-lg" onclick="agregarTarjeta()">Agregar nueva tarjeta</button><br><br>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 <!---------------------------------------------CONFIGURACION-------------------------------------------------------------->
             <div class="tab-pane fade" id="configuracion-tab" role="tabpanel" aria-labelledby="v-pills-settings-tab">
                 <div class="btn-group-vertical gap-5 col-11" role="group" aria-label="Vertical button group">
@@ -705,6 +699,74 @@
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
 <script src="js/perfil_user.js"></script>
+<!-- Agrega este código JavaScript al final del archivo -->
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script>
+    function agregarTarjeta() {
+        Swal.fire({
+            title: 'Agregar nueva tarjeta',
+            html: `
+                <input id="numero_tarjeta" class="swal2-input" placeholder="Número de tarjeta" required>
+                <input id="vencimiento" class="swal2-input" placeholder="Vencimiento (MM/AA)" required>
+                <input id="cvv" class="swal2-input" placeholder="CVV" required>
+                <input id="nom_banco" class="swal2-input" placeholder="Banco" required>
+            `,
+            confirmButtonText: 'Agregar',
+            showCancelButton: true,
+            cancelButtonText: 'Cancelar',
+            preConfirm: () => {
+                const numeroTarjeta = Swal.getPopup().querySelector('#numero_tarjeta').value;
+                const vencimiento = Swal.getPopup().querySelector('#vencimiento').value;
+                const cvv = Swal.getPopup().querySelector('#cvv').value;
+                const nomBanco = Swal.getPopup().querySelector('#nom_banco').value;
+
+                if (!numeroTarjeta || !vencimiento || !cvv || !nomBanco) {
+                    Swal.showValidationMessage('Por favor, completa todos los campos');
+                    return false;
+                }
+
+                // Aquí puedes hacer la inserción en la base de datos
+                const url = 'php/agregar_tarjeta.php';
+                const data = {
+                    numero_tarjeta: numeroTarjeta,
+                    vencimiento: vencimiento,
+                    cvv: cvv,
+                    id_cliente: '<?php echo $num_cliente; ?>',
+                    nom_banco: nomBanco
+                };
+
+                return fetch(`${url}?numero_tarjeta=${numeroTarjeta}&vencimiento=${vencimiento}&cvv=${cvv}&id_cliente=${data.id_cliente}&nom_banco=${nomBanco}`, {
+                    method: 'GET',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                })
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error(response.statusText);
+                    }
+                    return response.json();
+                })
+                .catch(error => {
+                    Swal.showValidationMessage(`Se produjo un error: ${error}`);
+                });
+            }
+        })
+        .then(result => {
+            if (result.isConfirmed) {
+                Swal.fire({
+                    title: 'Tarjeta agregada',
+                    icon: 'success'
+                }).then(() => {
+                    // Actualizar la página o hacer cualquier otra acción necesaria
+                    window.location.reload()
+
+                    //ahi ta, quien sabe porque no agarra el $_POST, pero chingue su ,adre por get, al final funciono jajaj omaigaGracias ah bb simon, ahi estamos
+                });
+            }
+        });
+    }
+</script>
 </body>
 <footer class="pt-4 my-md-5 pt-md-5 border-top">
 <nav class="navbar bg-dark" data-bs-theme="dark">

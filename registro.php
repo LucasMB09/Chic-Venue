@@ -117,7 +117,7 @@
                     <div id="car"><li><h4 class="letra-texto">1 caracter especial</h4></li></div>
                     <div id="num"><li><h4 class="letra-texto">1 número</h4></li></div>
                 </ul>
-    
+            </div>
         </form>
         <script src="js/registro_verificar.js"></script>
     </body>
