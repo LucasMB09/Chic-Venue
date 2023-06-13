@@ -1,0 +1,215 @@
+.titulo{
+    font-family:"Britannic";
+    font-size: 3rem;
+  }
+  
+  body {
+    background-image: linear-gradient(180deg, var(--bs-body-secondary-bg), var(--bs-body-bg) 100px, var(--bs-body-bg));
+  }
+  
+  .barra-negra{
+    width: 100%;
+    height: 64px;
+    background-color:#212529;
+    display: flex;
+    flex-wrap: inherit;
+    align-items: center;
+    justify-content: space-between;
+    --bs-gutter-x: 1.5rem;
+    --bs-gutter-y: 0;
+    width: 100%;
+    padding-right: calc(var(--bs-gutter-x) * .5);
+    padding-left: calc(var(--bs-gutter-x) * .5);
+    margin-right: auto;
+    margin-left: auto;
+  
+  }
+  
+  .input-con-espacio {
+    padding-right: 40px; /* Espacio de 20 píxeles a la derecha */
+  }
+  
+  
+  .container {
+    max-width: 800px;
+  }
+  
+  .metodoP-header {
+    max-width: 700px;
+  }
+  
+  .logo{
+    margin-right: 10px;
+  }
+  
+  .lista-dos-columnas-uno {
+    column-count: 2;
+    column-gap: 0px; /* Espacio entre columnas */
+  }
+  .lista-dos-columnas-dos {
+    column-count: 2;
+  
+  }
+  
+  .linea-horizontal {
+    border-bottom: 1px solid rgb(128, 126, 126);
+    width: 100%;
+    height: 5px;
+    margin-top: 20px;
+    display: auto;
+  }
+  
+  .carrito {
+    margin-top:10px;
+    margin-right: 20px;
+  }
+  
+  .tarjeta {
+    margin-top:20px;
+    margin-right: 30px;
+  }
+  
+  .caja {
+    border-radius: 2%;
+    border-color: #5e5e5e;
+    margin: 15px;
+    padding: 10px;
+    display: flex;
+    padding: 3%;
+    align-items: center;
+  }
+  
+  .filtro {
+    margin-right: 10px;
+  }
+  
+  .lista {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+  
+  
+  .letra-titulo{
+    font-family:"Candara";
+    font-size: 2rem;
+  }
+  
+  .letra-subtitulo{
+    font-family:"Candara";
+    font-size: 1.5rem;
+  }
+  
+  .letra-texto{
+    font-family:"Candara";
+    font-size: 1.2em;
+  }
+
+
+  .barra-gris{
+    width: 100%;
+    height: 14%;
+    border-radius: 2%;
+    background-color:#c9c9c9;
+
+  
+  }
+
+  .custom-radio-checkbox {
+    display: inline-flex;
+    align-items:center;
+    cursor: pointer;
+    font-family:"Candara";
+    font-size: 1.2em;
+}
+
+/* Modificador para dar la imagen de radio */
+.custom-radio-checkbox__show--radio {
+    background-image: url(radio-uncheck.png);
+}
+
+/* Oculta input original */
+.custom-radio-checkbox > .custom-radio-checkbox__input {
+    display: none;
+}
+
+/* Radio personalizado usando <span> */
+.custom-radio-checkbox > .custom-radio-checkbox__show {
+    display: inline-block;
+    width: 15px;
+    height: 15px;
+    margin-right: .5rem;
+    background-size: cover;
+}
+
+/* Cambia el radio personalizado cuando es pulsado */
+.custom-radio-checkbox > .custom-radio-checkbox__input:checked + .custom-radio-checkbox__show--radio {
+    background-image: url(radio-check.png);
+}
+
+.margin-auto {
+  display: flex;
+  height: 100px;
+  width: 200px;
+
+  background: #ffff99;
+  color: #333;
+}
+
+button {
+
+  outline: none;
+  cursor: pointer;
+  border: none;
+  padding: 0.9rem 2rem;
+  margin: 0;
+  font-family: inherit;
+  font-size: inherit;
+  position: relative;
+  display: inline-block;
+  letter-spacing: 0.05rem;
+  font-weight: 700;
+  font-size: 10px;
+  border-radius: 500px;
+  overflow: hidden;
+  background: #5e5e5e;
+  color: ghostwhite;
+  font-family:"Candara";
+ }
+ 
+ button span {
+  position: relative;
+  z-index: 10;
+  transition: color 0.4s;
+ }
+ 
+ button:hover span {
+  color: black;
+ }
+ 
+ button::before,
+ button::after {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+ }
+ 
+ button::before {
+  content: "";
+  background: #000;
+  width: 120%;
+  left: -10%;
+  transform: skew(30deg);
+  transition: transform 0.4s cubic-bezier(0.3, 1, 0.8, 1);
+ }
+ 
+ button:hover::before {
+  transform: translate3d(100%, 0, 0);
+ }
+ 
+
+
+  
