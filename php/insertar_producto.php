@@ -8,7 +8,7 @@ $imagen = $_POST['imagen'];
 // Obtener la fecha actual
 $fechaActual = date('Y-m-d');
 
-$conexion = mysqli_connect("localhost:3306","root","","chicvenue");
+$conexion = mysqli_connect("localhost","root","","chicvenue");
 $sql_crear = "INSERT INTO articulo VALUES ('NULL', '1', '$precio', '$nombre_articulo', '$descripcion', '$fechaActual','$categoria','$imagen')";
 $rta = mysqli_query($conexion,$sql_crear);
 if (!$rta){

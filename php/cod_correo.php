@@ -198,7 +198,8 @@
 
   <div class="container">
     <div class="checked">
-        <h2>Por favor ingresa el código que ha sido enviado a tu correo electrónico.</h2>
+        <h3>Confirmar correo electrónico</h3>
+        <p>Por favor ingresa el token enviado a tu correo electrónico para poder validar el correo proporcionado:</p>
         <!-- <p></p> -->
         <form id = "codi" action="validar_codigo.php" method= "POST" enctype="multipart/form-data">
             <input type="text"  class="letra-texto" name="cod" id="cod" placeholder="Código*"><br>

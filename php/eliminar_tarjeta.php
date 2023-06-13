@@ -1,7 +1,7 @@
 <?php
 function borrar_tarjeta($num_cliente, $tarjeta) {
     // Establecer los detalles de conexión a la base de datos
-    $host = 'localhost:3306';
+    $host = 'localhost';
     $usuario = 'root';
     $contrasena = '';
     $nombre_base_datos = 'chicvenue';

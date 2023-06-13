@@ -10,7 +10,7 @@ $imagen = $_POST['imagen'];
 $fechaActual = date('Y-m-d');
 
 
-$conexion = mysqli_connect("localhost:3306","root","","chicvenue");
+$conexion = mysqli_connect("localhost","root","","chicvenue");
 $sql_crear = "UPDATE articulo SET nombre_articulo='$nombre_articulo', descripcion='$descripcion', precio='$precio', categoria='$categoria', imagen='$imagen', fecha='$fechaActual' WHERE id_articulo LIKE $id_articulo";
 $rta = mysqli_query($conexion,$sql_crear);
 if (!$rta){
