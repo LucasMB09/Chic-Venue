@@ -66,7 +66,9 @@
           <br>
             <h2>Registros existentes</h2>
             <div class="input-group mb-3">
-                <input type="text" id="search-input" class="form-control" placeholder="Buscar">
+              <form action="buscar.php" method="post">
+                <input type="text" id="search-input" class="form-control mr-sm-2" placeholder="Buscar">
+              </form>
                 <button class="btn btn-primary" type="button" id="search-button">Buscar</button>
             </div>
             
@@ -114,52 +116,21 @@
                                 <td class="product-columns"> <?php echo $row["precio"] ?> </td>
                                 <td class="product-columns"> <?php echo $row["categoria"] ?> </td>
                                 <td class="product-columns"> <img src = <?php echo $row["imagen"] ?> height="200" width="175"> </td>
-                                <td> 
+                                <td class="product-columns">
+                                  <a href="editar_CRUD.php?
+                                  id_articulo=<?php echo $row["id_articulo"] ?> &
+                                  nombre_articulo=<?php echo $row["nombre_articulo"] ?> &
+                                  descripcion=<?php echo $row["descripcion"] ?> &
+                                  precio=<?php echo $row["precio"] ?> &
+                                  categoria=<?php echo $row["categoria"] ?> &
+                                  imagen=<?php echo $row["imagen"] ?> ">
                                       <button class="btn btn-primary product-columns" id="btn-abrir-modal">Editar</button>
-                                      <dialog id="modal">
-                                        <h2>Editar producto</h2>
-                                            <form id="create-product-form" action="/php/editar_producto.php" method="post">
-                                              <table>
-                                                <tr>
-                                                    <td><input type="text" value= "<?php echo $row["id_articulo"] ?>" name="id_articulo" id="" style="visibility:hidden"></td>
-                                                </tr>
-                                                <tr>
-                                                    <td><input type="text" value= "<?php echo $row["nombre_articulo"] ?>" name="nombre_articulo" id=""></td>
-                                                </tr>
-                                                <tr>
-                                                    <td><input type="text" value="<?php echo $row["descripcion"] ?>" name="descripcion" id=""></td>
-                                                </tr>
-                                                <tr>
-                                                    <td><input type="text" value="<?php echo $row["precio"] ?>" name="precio" id=""></td>
-                                                </tr>
-                                                <tr>
-                                                    <td><input type="text" value="<?php echo $row["imagen"] ?>" name="imagen" id=""></td>
-                                                </tr>
-                                                <tr>
-                                                    <td>
-                                                      <select name="categoria" id="categoria">
-                                                          <option value="">Categoria</option>
-                                                          <option value="Blusa bordado simple">Blusa bordado simple</option>
-                                                          <option value="Blusa doble bordado">Blusa doble bordado</option>
-                                                          <option value="Blusa triple bordados">Blusa triple bordado</option>
-                                                          <option value="Bluson">Bluson</option>
-                                                          <option value="Vestido corto">Vestido corto</option>
-                                                          <option value="Juego">Juego</option>
-                                                      </select>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td><button type="submit" class="btn btn-secondary">Confirmar</button></td>
-                                                </tr>
-                                              </table>
-                                            </form>
-                                            <button id="btn-cerrar-modal" class="btn product-columns">Cerrar</button>
-                                      </dialog>
+                                  </a>
                                 </td>
-                                <td>
-                                    <a href='/php/eliminar_producto.php?id_articulo=".$row["id_articulo"]."'>
-                                        <button class="btn btn-danger product-columns">Eliminar</button>
-                                    </a>
+                                <td class="product-columns">
+                                  <?php
+                                    echo "<a href='/php/eliminar_producto.php?id_articulo=".$row['id_articulo']."'><button class='btn btn-danger product-columns' onclick='return confirmacionEliminar()'>Eliminar</button></a>"
+                                  ?>
                                 </td>
                               <tr>
                           <?php } ?>
@@ -178,10 +149,10 @@
                                   <td class="promotion-columns"> <?php echo $row["descuento"] ?> </td>
                                   <td class="promotion-columns"> <?php echo $row["fecha_inicio"] ?> </td>
                                   <td class="promotion-columns"> <?php echo $row["fecha_final"] ?> </td>
-                                  <td>
+                                  <td class="promotion-columns">
                                         <button class="btn btn-primary promotion-columns">Editar</button>
                                 </td>
-                                  <td>
+                                  <td class="promotion-columns"> 
                                        <button class="btn btn-danger promotion-columns">Eliminar</button> <!-- Botón de eliminación -->
                                 </td>
                               </tr>
@@ -204,11 +175,7 @@
             <input type="text" placeholder="Fecha de fin">
             <input type="submit" value="Crear">
             </form>
-<!-- Crear promo --> 
-            <br>
-
-<!-- Actualizar promo -->         
-
+<!-- Crear promo -->         
            </div>
 </div>
 </div>
@@ -217,6 +184,7 @@
 </div>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
 <script src="/js/editar_producto.js"></script>
+<script src="/js/confirmacionesTEMP.js"></script>
 <script src="/js/activar_boton.js"></script>
 
 <footer class="container">

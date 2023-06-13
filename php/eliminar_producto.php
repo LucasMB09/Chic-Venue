@@ -8,12 +8,10 @@ $rta = mysqli_query($conexion,$sql_eliminar);
 if (!$rta){
     echo "Error al eliminar"; //MENSAJE DE ERROR AL ELIMINAR UN NUEVO PRODUCTO
 }
-else{
-    header("Location: ../CRUD.php");
-}
-
-
-
-
+else
+    echo"<script>
+    alert('Producto eliminado exitosamente');
+    window.location.href='../CRUD.php';
+    </script>"
 
 ?>
