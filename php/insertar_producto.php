@@ -14,10 +14,10 @@ $rta = mysqli_query($conexion,$sql_crear);
 if (!$rta){
     echo "Error al insertar"; //MENSAJE DE ERROR AL CREAR UN NUEVO PRODUCTO
 }
-else{
-    header("Location: ../CRUD.php");
-}
-
-
+else
+    echo"<script>
+    alert('Producto añadido exitosamente');
+    window.location.href='../CRUD.php';
+    </script>"
 
 ?>

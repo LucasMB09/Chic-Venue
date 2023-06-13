@@ -184,7 +184,7 @@
 </div>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
 <script src="/js/editar_producto.js"></script>
-<script src="/js/confirmacionesTEMP.js"></script>
+<script src="/js/confirmaciones_TEMPORAL.js"></script>
 <script src="/js/activar_boton.js"></script>
 
 <footer class="container">
