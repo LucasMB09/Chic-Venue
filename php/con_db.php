@@ -12,6 +12,11 @@
      // Conexión a la base de datos
      $conexion = mysqli_connect("localhost", "root", "", "chicvenue");
 
+     if($email == "root@root.com"){
+          header("Location: ../login_admin.php");
+          return;
+     }
+     
      // Consulta SQL para obtener los valores de una columna
      $query = "SELECT correo_electronico FROM cliente";
      
@@ -111,6 +116,7 @@
                $_SESSION['mensaje']  = "No se ha activado la cuenta";
                $_SESSION['activado'] = $activado;
                header("Location: ../log-in.php");
+               return;
           }
          
 
@@ -127,6 +133,7 @@
      else{
           $_SESSION['mensaje']  = "Hubo un error";
           header("Location: ../log-in.php");
+          return;
      }
 
      
