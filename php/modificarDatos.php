@@ -1,7 +1,7 @@
 <?php
     session_start();
     
-    $conexion = mysqli_connect("localhost", "root", "", "chicvenue");
+    $conexion = mysqli_connect("localhost:3306", "root", "", "chicvenue");
         $eliminar = $_GET['id'];
 
         $query = "DELETE FROM cliente WHERE id_cliente = $eliminar";

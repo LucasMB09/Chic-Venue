@@ -1,7 +1,7 @@
 <?php
     session_start();
 
-    $conexion = mysqli_connect("localhost", "root", "", "chicvenue");
+    $conexion = mysqli_connect("localhost:3306", "root", "", "chicvenue");
 
     $contra = $_POST['contra1'];
     $correo = $_SESSION['correo'];

@@ -1,7 +1,7 @@
 <?php
     session_start();
     
-    $conexion = mysqli_connect("localhost", "root", "", "chicvenue");
+    $conexion = mysqli_connect("localhost:3306", "root", "", "chicvenue");
     $mail = "";
     $conmail = 0;
     $activado = 0;

@@ -1,5 +1,6 @@
 const usuario = document.getElementById("usuario");
 const email = document.getElementById("correo");
+const mensaje = document.getElementById("mensaje");
 
 function user() {
     const Toast = Swal.mixin({
@@ -7,7 +8,7 @@ function user() {
         html: `<h3 class="text_toast"> <b>Nombre:</b> ${usuario.textContent}</h3><br>
             <h3 class="text_toast"> <b>Correo:</b> ${email.textContent}</h3>`,
         position: 'top-end',
-        showConfirmButton: false,
+        showConfirmButton: true,
         showDenyButton:true,
         showCancelButton:true,
         confirmButtonText: 'Ir al perfil',
@@ -19,10 +20,10 @@ function user() {
         icon: 'info',
         title: 'Cuenta'
     }).then((result) => {
-        // if (result.isConfirmed){
-        //     location.href = "perfil_usuario.php";
-        // }
-        if (result.isDenied){
+        if (result.isConfirmed){
+            location.href = "perfil_usuario.php";
+        }
+        else if (result.isDenied){
             var valor = 0;
             location.href = "index.php?valor=" + encodeURIComponent(valor);
         }
@@ -30,22 +31,19 @@ function user() {
             var valor = 3;
         }
     })
-    
-    
-}
-
-function mandarTarjeta() {
-    location.href = "tarjeta.php";
 }
 
 function agregarTarjeta() {
     Swal.fire({
         title: 'Agregar nueva tarjeta',
         html: `
+            
             <input id="numero_tarjeta" class="swal2-input" placeholder="Número de tarjeta" required>
+            
             <input id="vencimiento" class="swal2-input" placeholder="Vencimiento (MM/AA)" required>
             <input id="cvv" class="swal2-input" placeholder="CVV" required>
             <input id="nom_banco" class="swal2-input" placeholder="Banco" required>
+
         `,
         confirmButtonText: 'Agregar',
         showCancelButton: true,
@@ -101,36 +99,4 @@ function agregarTarjeta() {
             });
         }
     });
-}
-
-function aviso(codigo) {
-                      
-    Swal.fire({
-      icon: 'warning',
-      title: 'Confirmar acción',
-      text: '¿Estás seguro de eliminar tu cuenta en Chic Venue?',
-      showCancelButton: true,
-      confirmButtonText: 'Eliminar cuenta',
-      cancelButtonText: 'Cancelar'
-    }).then((result) => {
-      if (result.isConfirmed) {
-        
-            Swal.fire({
-          title: 'Operación exitosa',
-          text: 'Se ha eliminado tu cuenta',
-          confirmButtonText: 'De acuerdo',
-        }).then((result) => {
-          if (result.isConfirmed) {
-        document.location.href = "/php/modificarDatos.php?id=<?php echo $aidi?>"
-        location.href = "index.php?valor=" + encodeURIComponent(0);
-      }
-    });
-    }
-});
-}
-
-function mandarPHP(codigo)
-{
-  parametros = { 'id': codigo };
- 
 }

@@ -34,13 +34,6 @@
   // Conexión a la base de datos
   $conexion = mysqli_connect("localhost", "root", "", "chicvenue");
   
-  $query_fullname = "SELECT nombre FROM cliente WHERE correo_electronico = '$email'";
-  $resul_fullname = mysqli_query($conexion, $query_fullname);
-  if($resul_fullname){
-    $fullnam = mysqli_fetch_array($resul_fullname);
-    $fullname = $fullnam[0];
-  }
-
   // Consulta SQL para obtener los valores de una columna
   $query = "SELECT apellido FROM cliente WHERE correo_electronico = '$email'";
      
@@ -126,6 +119,7 @@
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
     <script src="/sweetalert/dist/sweetalert2.all.min.js"></script>
+    
     <script src="https://code.jquery.com/jquery-3.7.0.min.js" integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g=" crossorigin="anonymous"></script> 
   </head>
 
@@ -361,7 +355,7 @@
                             <div class="card ">
                                 <div class="card-body">
                                   <h5 class="card-title letra-titulo">Nombre</h5>
-                                  <span class="input-group-text" id="nombreUsuario"><?php echo $fullname;?></span>
+                                  <span class="input-group-text" id="nombreUsuario"><?php echo $user;?></span>
                                 </div>
                               </div>
                         </div>
@@ -498,7 +492,7 @@
                         $resultado = mysqli_query($conexion, $query_banco);
                         if ($resultado) {
                             $banco = mysqli_fetch_all($resultado);
-                        }
+                        }// Es esto??????? nop
 
                         $query_vencimiento = "SELECT vencimiento FROM tarjeta_bancaria WHERE id_cliente = '$num_cliente'";
                         $result = mysqli_query($conexion,$query_vencimiento);
@@ -529,7 +523,7 @@
                     }
                     ?>
                     <div>
-                        <button class="btn btn-bd-primary btn-lg" onclick="agregarTarjeta()">Agregar nueva tarjeta</button><br><br>
+                        <button class="btn btn-bd-primary btn-lg" onclick="mandarTarjeta()">Agregar nueva tarjeta</button><br><br>
                     </div>
                 </div>
             </div>
@@ -552,6 +546,39 @@
                     <a class="btn btn-outline-dark btn-lg fondoBonito" href="../preguntas.php">Ayuda</a>
                     <!-- ELIMINAR CUENTA-->
                     <button type="button" class="btn btn-outline-danger btn-lg" onclick="aviso(<?php echo $aidi?>);">Eliminar cuenta</button>
+                    <script>
+                      function aviso(codigo) {
+                      
+                        Swal.fire({
+                          icon: 'warning',
+                          title: 'Confirmar acción',
+                          text: '¿Estás seguro de eliminar tu cuenta en Chic Venue?',
+                          showCancelButton: true,
+                          confirmButtonText: 'Eliminar cuenta',
+                          cancelButtonText: 'Cancelar'
+                        }).then((result) => {
+                          if (result.isConfirmed) {
+                            
+                                Swal.fire({
+                              title: 'Operación exitosa',
+                              text: 'Se ha eliminado tu cuenta',
+                              confirmButtonText: 'De acuerdo',
+                            }).then((result) => {
+                              if (result.isConfirmed) {
+                            document.location.href = "/php/modificarDatos.php?id=<?php echo $aidi?>"
+                            location.href = "index.php?valor=" + encodeURIComponent(0);
+                          }
+                        });
+                        }
+                  });
+                }
+
+                    function mandarPHP(codigo)
+                    {
+                      parametros = { 'id': codigo };
+                     
+                    }
+                      </script>
 
                   </div>
             </div>
@@ -672,9 +699,8 @@
 </main>
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
-<script src="js/perfil_user.js"></script>
+<script src="/js/perfil_user.js"></script>
 <!-- Agrega este código JavaScript al final del archivo -->
-<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </body>
 <footer class="pt-4 my-md-5 pt-md-5 border-top">
 <nav class="navbar bg-dark" data-bs-theme="dark">
@@ -686,7 +712,7 @@
     <div class="row">
       <div class="col-12 col-md">
         <img class="logo" src="/assets/logo_CA.PNG"  width="24" height="19" alt="Logotipo de Chic Avenue" >
-        <small class="d-block mb-3 text-body-secondary">&copy; 2022-2023</small>
+        <small class="d-block mb-3 text-body-secondary">&copy; 2022–2023</small>
       </div>
       <div class="col-6 col-md">
         <h5>Nosotros</h5>
