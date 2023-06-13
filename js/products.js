@@ -1,6 +1,8 @@
 
 const usuario = document.getElementById("usuario");
 const email = document.getElementById("correo");
+const mensaje = document.getElementById("base");
+
 
 function user() {
     const Toast = Swal.mixin({
@@ -56,4 +58,20 @@ function redirecFiltro() {
                      '&precio='+encodeURIComponent(precio)+
                      '&ofertas='+ (ofertas ? '1':'0');
     window.location.href = urlDestino; 
+}
+
+if((mensaje.textContent).length > 0 ){
+    switch (mensaje.textContent) {
+        case "No hay":
+            Swal.fire({
+                title: 'Error!',
+                text: 'No existe ningun producto con esa especificación',
+                icon: 'error',
+                showConfirmButton: 'Aceptar'
+            });
+            break;
+        default:
+            break;
+    }
+    
 }

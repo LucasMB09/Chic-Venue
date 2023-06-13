@@ -49,7 +49,11 @@ class CreateDb
         $result = mysqli_query($this->con, $sql);
         if(mysqli_num_rows($result) > 0){
             return $result;
-        }   
+        }
+        else{
+            $_SESSION['base'] = "No hay";
+            return $this->getData();
+        }
     }
 
     public function filtrado2($color,$talla){
@@ -57,7 +61,11 @@ class CreateDb
         $result = mysqli_query($this->con, $sql);
         if(mysqli_num_rows($result) > 0){
             return $result;
-        }   
+        }
+        else{
+            $_SESSION['base'] = "No hay";
+            return $this->getData();
+        }
     }
 
     public function filtrado3($color){
@@ -66,6 +74,10 @@ class CreateDb
         if(mysqli_num_rows($result) > 0){
             return $result;
         }
+        else{
+            $_SESSION['base'] = "No hay";
+            return $this->getData();
+        }
     }
 
     public function filtrado4($talla,$precio){
@@ -73,7 +85,11 @@ class CreateDb
         $result = mysqli_query($this->con, $sql);
         if(mysqli_num_rows($result) > 0){
             return $result;
-        }   
+        }
+        else{
+            $_SESSION['base'] = "No hay";
+            return $this->getData();
+        }
     }
 
     public function filtrado5($talla){
@@ -81,7 +97,11 @@ class CreateDb
         $result = mysqli_query($this->con, $sql);
         if(mysqli_num_rows($result) > 0){
             return $result;
-        }   
+        }
+        else{
+            $_SESSION['base'] = "No hay";
+            return $this->getData();
+        }
     }
 
     public function filtrado6($precio){
@@ -94,7 +114,11 @@ class CreateDb
         $result = mysqli_query($this->con, $sql);
         if(mysqli_num_rows($result) > 0){
             return $result;
-        }   
+        }
+        else{
+            $_SESSION['base'] = "No hay";
+            return $this->getData();
+        }
     }
 }
 

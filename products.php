@@ -5,7 +5,7 @@
   if(isset($_GET['valor'])){
     $valor = $_GET['valor'];
   }
-  else{
+  elseif(isset($_SESSION['valor'])){
     $valor = $_SESSION['valor'];
   }
 
@@ -19,17 +19,21 @@
     $user = $_SESSION['user'];
     $email = $_SESSION['email'];
   }
-  elseif($valor == 0){
-    $user = "No";
-    $email = "No";  
-  }
-  elseif($valor == 1){
-    $user = ":v";
-    $email = ":v";
+  elseif(isset($valor)){
+    if($valor == 0){
+      $user = "No";
+      $email = "No";  
+    }
+    elseif($valor == 1){
+      $user = ":v";
+      $email = ":v";
+   }
   }
   else{
     $valor = 1;
     $_SESSION['valor'] = $valor;
+    $email = ":v";
+    $user = ":v";
   }
   
   require_once ('./php/CreateDb.php');
@@ -91,19 +95,22 @@
     <!-- LINEA NEGRA -->
     <nav class="navbar bg-dark" data-bs-theme="dark">
        <div class="container-fluid">
+       <br><br><br>
       <?php
-        if($_SESSION['email'] != "No" && $_SESSION['user'] != "No"){
-          ?>
-          <h3 class="text_user" style="display:none;">Hola, <?php echo "$user";?></h1>
-          <?php
-          if($valor == 0 ){
-            if($_GET['valor'] == 0){
-              setcookie('usuario', "", time()-86400, '/');
-              setcookie('email', "", time()-86400, '/');
-              unset($_SESSION['email']);
-              unset($_SESSION['user']);
-              $_SESSION['valor'] = 1;
-              header("Location: products.php?valor=1");
+        if(isset($_SESSION['email'])){
+          if($_SESSION['email'] != "No" && $_SESSION['user'] != "No"){
+            ?>
+            <h3 class="text_user" style="display:none;">Hola, <?php echo "$user";?></h1>
+            <?php
+            if($valor == 0 ){
+              if($_GET['valor'] == 0){
+                setcookie('usuario', "", time()-86400, '/');
+                setcookie('email', "", time()-86400, '/');
+                unset($_SESSION['email']);
+                unset($_SESSION['user']);
+                $_SESSION['valor'] = 1;
+                header("Location: index.php?valor=1");
+              }
             }
           }
         }
@@ -312,7 +319,12 @@ $num_images = $row['num_images'];
       $result = $database->getData();
     }
     $count = 0;
-
+    
+    if((isset($_SESSION['base']) && $_SESSION['base'] == "No hay" )){
+      ?><h3 id="base" style="display: none;"><?php echo $_SESSION['base']; unset($_SESSION['base']);?></h3>
+      <?php
+    }
+    
     // Obtener todas las imágenes
     $images = array();
     while ($row = mysqli_fetch_assoc($result)) {
