@@ -9,6 +9,7 @@ if (!$conexion) {
 
 
 // Obtener los datos de la tarjeta desde la solicitud POST
+$nombreTitular = $_GET['nombre_titular'];
 $numeroTarjeta = $_GET['numero_tarjeta'];
 $vencimiento = $_GET['vencimiento'];
 $cvv = $_GET['cvv'];
@@ -16,8 +17,8 @@ $idCliente = $_GET['id_cliente'];
 $nomBanco = $_GET['nom_banco'];
 
 // Preparar la consulta de inserción
-$query = "INSERT INTO tarjeta_bancaria (numero_tarjeta, vencimiento, cvv, id_cliente, nom_banco) 
-          VALUES ('$numeroTarjeta', '$vencimiento', '$cvv', '$idCliente', '$nomBanco')";
+$query = "INSERT INTO tarjeta_bancaria (Nombre_tit_tar, numero_tarjeta, vencimiento, cvv, id_cliente, nom_banco) 
+          VALUES ('$nombreTitular', '$numeroTarjeta', '$vencimiento', '$cvv', '$idCliente', '$nomBanco')";
 
 
 // Ejecutar la consulta

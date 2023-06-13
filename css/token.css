@@ -1,0 +1,80 @@
+:root{
+    --beige: rgb(216, 216, 216);
+    --negro: #1d1d1d;
+    --grisosc: rgb(89, 89, 89);
+    --verde: #8FE445;
+}
+
+body {
+    font-family: Candara,Calibri,Segoe,Segoe UI,Optima,Arial,sans-serif;
+    background-color: #f2f2f2;
+    margin: 0;
+    padding: 0;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.container {
+    background-color: var(--beige);
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    margin-top: 100px;
+    width: 450px;
+    text-align: center;
+}
+
+h3 {
+    font-family: "Britannic";
+    text-align: center;
+    margin-top: 0;
+}
+
+input[type="text"] {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+button {
+    display: inline-block;
+    background-color: var(--negro);
+    color: white;
+    padding: 10px 20px;
+    margin-top: 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: var(--grisosc);
+}
+
+.error-message {
+    color: red;
+}
+
+.mensaje {
+    display: none;
+    position: fixed;
+    text-align: center;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: var(--verde);
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    z-index: 999;
+}
+
+.mensaje p {
+    margin-bottom: 10px;
+}
+
+.mensaje button {
+    margin-right: 10px;
+}

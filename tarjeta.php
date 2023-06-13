@@ -1,3 +1,105 @@
+<?php
+  session_start();
+
+  if(isset($_GET['valor'])){
+    $valor = $_GET['valor'];
+  }
+  else{
+    $valor = $_SESSION['valor'];
+  }
+
+  if(isset($_COOKIE['usuario'])){
+    $_SESSION['user'] = $_COOKIE['usuario'];
+    $_SESSION['email'] = $_COOKIE['email'];
+    $user = $_SESSION['user'];
+    $email = $_SESSION['email'];
+  }
+  elseif(isset($_SESSION['email'])){
+    $user = $_SESSION['user'];
+    $email = $_SESSION['email'];
+  }
+  elseif($valor == 0){
+    $user = "No";
+    $email = "No";  
+  }
+  elseif($valor == 1){
+    $user = ":v";
+    $email = ":v";
+  }
+  else{
+    $valor = 1;
+    $_SESSION['valor'] = $valor;
+  }
+  
+  // Conexión a la base de datos
+  $conexion = mysqli_connect("localhost", "root", "", "chicvenue");
+  
+  // Consulta SQL para obtener los valores de una columna
+  $query = "SELECT apellido FROM cliente WHERE correo_electronico = '$email'";
+     
+  // Ejecutar consulta
+  $resultado = mysqli_query($conexion, $query);
+  if ($resultado) {
+    $ape = mysqli_fetch_array($resultado);
+    $apellido = $ape[0];
+  }
+
+  $query_noCliente = "SELECT id_cliente FROM cliente where correo_electronico = '$email'";
+  $resultado = mysqli_query($conexion,$query_noCliente);
+  if($resultado){
+    $num = mysqli_fetch_array($resultado);
+    $num_cliente = $num[0];
+  }
+
+  $query_id = "SELECT id_cliente FROM cliente where correo_electronico = '$email'";
+  $resul = mysqli_query($conexion,$query_id);
+  if($resul){
+    $ids=mysqli_fetch_array($resul);
+    $aidi= $ids[0];
+  }
+  
+  if(isset($_POST['modificar'])){
+    if(strlen($_POST['nombre']) >= 1 && strlen($_POST['apellido']) >= 1){
+        $nombre = trim($_POST['nombre']);
+        $apep = trim($_POST['apellido']);
+        $query_id = "SELECT id_cliente FROM cliente where correo_electronico = '$email'";
+        $resul = mysqli_query($conexion,$query_id);
+        if($resul){
+          $ids=mysqli_fetch_array($resul);
+          $aidi= $ids[0];
+
+          $consulta1 = "UPDATE cliente SET nombre = '$nombre' WHERE id_cliente ='$aidi'";  
+          $consulta2 = "UPDATE cliente SET apellido = '$apep' WHERE id_cliente = '$aidi'";  
+          mysqli_query($conexion,$consulta1);
+          $cambio = mysqli_query($conexion,$consulta2);
+             if($cambio){
+                 /*?>
+                 <h3 class="ok">¡Te has registrado correctamente!</h3>
+                 <?php*/
+                 $_SESSION['mensaje']  = "Se han modificado tus datos";
+                 //include "../registro.php";
+             } else {
+                 /*?>
+                 <h3 class="bad">¡Ups ha ocurrido un error!</h3>
+                 <?php*/
+                 $_SESSION['mensaje']  = "¡Ups, ha ocurrido un error!";
+                 
+             }
+         } else {
+             /*?>
+             <h3 class="bad">¡Por favor completa los campos!</h3>
+             <?php*/
+         }
+          
+        }
+       // $query = "SELECT correo_electronico FROM cliente";
+        //$resul = mysqli_query($conexion,$query);
+
+     //   $consulta = "INSERT INTO cliente(nombre,apellido,correo_electronico,contraseña,activado) VALUES ('$nombre','$apellido','$email','$contrasena','$activado')";
+    
+}
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -9,6 +111,7 @@
     <link href="https://getbootstrap.com/docs/5.3/assets/css/docs.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="/sweetalert/dist/sweetalert2.all.min.js"></script>
     <title>Registro tarjeta</title>
 
 
@@ -20,6 +123,23 @@
   <nav class="navbar bg-dark" data-bs-theme="dark">
     <div class="container-fluid">
    <br><br>
+   <?php
+        if($_SESSION['email'] != "No" && $_SESSION['user'] != "No"){
+          ?>
+          <h3 class="text_user" style="display:none;">Hola, <?php echo "$user";?></h1>
+          <?php
+          if($valor == 0 ){
+            if($_GET['valor'] == 0){
+              setcookie('usuario', "", time()-86400, '/');
+              setcookie('email', "", time()-86400, '/');
+              unset($_SESSION['email']);
+              unset($_SESSION['user']);
+              $_SESSION['valor'] = 1;
+              header("Location: index.php?valor=1");
+            }
+          }
+        }
+      ?>
  </div>
  </nav>
  <!--FIN LINEA NEGRA -->
@@ -27,19 +147,19 @@
    <!-- MENU DE NAVEGACION -->
    <nav class="navbar navbar-expand-lg bg-body-tertiary">
     <div class="container-fluid">
-      <a class="navbar-brand" href="/html/index.html">
+      <a class="navbar-brand" href="index.php">
         <img src="/assets/logo.jpg" class="rounded mx-auto d-block"  alt="" width="82" height="70">
       </a>
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
           <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="/html/products.html">Novedades</a> <!-- PESTAÑA NOVEDADES -->
+            <a class="nav-link active" aria-current="page" href="products.php">Novedades</a> <!-- PESTAÑA NOVEDADES -->
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="/html/products.html">Rebajas</a> <!-- RESTAÑA REBAJAS -->
+            <a class="nav-link" href="products.php">Rebajas</a> <!-- RESTAÑA REBAJAS -->
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="/html/products.html">Un poco de todo </a> <!-- PESTAÑA PARA REVISAR ARTICULOS -->
+            <a class="nav-link" href="products.php">Un poco de todo </a> <!-- PESTAÑA PARA REVISAR ARTICULOS -->
           </li>
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -142,21 +262,39 @@
               </div>
           </li>
           <li class="nav-item">
-           <li class="nav-item">
-            &nbsp;&nbsp;&nbsp;&nbsp;
-             <a class="navbar-brand" href="./log-in.html"> <!-- INCIAR SESION -->
-             <img src="../assets/usuario.png" alt="carrito" width="30" height="30" class="d-inline-block align-text-top">
-            </a>
+          <?php
+              if($email != ":v" && $user != ":v"){
+
+                ?>
+
+                  <h3 id="usuario" style="display:none;"> <?php echo "$user";?></h3>
+                  <h3 id="correo" style="display:none;"> <?php echo "$email";?></h3>
+                  <a class="navbar-brand" onclick="user()" id="change"> <!-- INCIAR SESION -->
+                    <img src="assets/usuario.png" alt="inicioSesión" width="30" height="30" class="d-inline-block align-text-top">
+                  </a>
+                  
+                  <?php
+                  
+                
+              }
+              else{
+                ?>
+                <a class="navbar-brand" href="log-in.php"> <!-- INCIAR SESION -->
+                <img src="assets/usuario.png" alt="inicioSesión" width="30" height="30" class="d-inline-block align-text-top">
+                </a>
+                <?php
+              }
+              ?>
           </li>
           <li class="nav-item">
             &nbsp;&nbsp;&nbsp;&nbsp;
-             <a class="navbar-brand" href="./favoritos.html"> <!-- ACCEDER A FAVORITOS-->
+             <a class="navbar-brand" href="favoritos.php"> <!-- ACCEDER A FAVORITOS-->
              <img src="../assets/favoritos.JPG" alt="carrito" width="30" height="30" class="d-inline-block align-text-top">
             </a>
           </li>
           <li class="nav-item">
             &nbsp;&nbsp;&nbsp;&nbsp;
-            <a class="navbar-brand" href="./carrito.html"> <!-- ACCEDER AL CARRITO-->
+            <a class="navbar-brand" href="carrito.php"> <!-- ACCEDER AL CARRITO-->
             <img src="../assets/carrito.png" alt="carrito" width="30" height="30" class="d-inline-block align-text-top">
            </a>
           </li>
@@ -245,11 +383,13 @@
             </div>
             <div id="expirationErrorMessage" class="error-message"></div>
         </div>
-        <a class="boton" href="#" id="addCardBtn">Añadir tarjeta</a>
+        <button class="btn btn-bd-primary btn-lg" id="addCardBtn">Agregar nueva tarjeta</button><br><br>
+        <!--<a class="boton" href="#" id="addCardBtn">Añadir tarjeta</a>-->
+        <!--<button class="btn btn-bd-primary btn-lg" onclick="agregarTarjeta()">Agregar nueva tarjeta</button><br><br>-->
     </div>
 </div>
 
-
+    <script src=""></script>
     <script>
         // Validación del CVV
         var cvvInput = document.getElementById("cvvInput");
@@ -299,7 +439,7 @@
         });
 
         // Botón añadir tarjeta
-        document.getElementById('addCardBtn').addEventListener('click', function (event) {
+        document.getElementById('addCardBtn').addEventListener('click', async function  (event) {
             event.preventDefault();
 
             var ownerName = ownerNameInput.value.trim();
@@ -345,14 +485,46 @@
             }
 
             if (errorCount === 0) {
-                var message = document.createElement('div');
-                message.className = 'message';
-                message.textContent = 'La tarjeta fue añadida exitosamente';
-                document.body.appendChild(message);
 
-                setTimeout(function () {
-                    message.remove();
-                }, 3000);
+              let parameters = '';
+              parameters += `nombre_titular=${ownerName}&`;
+              parameters += `numero_tarjeta=${cardNumber}&`;
+              parameters += `vencimiento=${selectedMonth}-${selectedYear}&`;
+              parameters += `cvv=${cvvValue}&`;
+              parameters += `id_cliente=${1}&`; //Solo falta obtener el numero del cliente
+              parameters += `nom_banco=${"ah bb"}`; //Y el banco o sino quitenselo pero ya funcionasiuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuu
+              //Cuando te doy tu for ah bb?jaj no hay falla, de compas bro:'), pos camara sino mañana no me levantoAdios ah bb, descansa, ,gracias hermano igual 
+
+              
+              const url = `/php/agregar_tarjeta.php?${parameters}`;
+
+              //Aqui hay que meter la petiicon a bd donde tienes el fetch?Fetch? ammm es que segun yo, aaa espera ¿Es esto?
+              const response = await fetch(url, {
+                method: 'GET',
+                headers: {
+                "Content-Type": "application/json",
+                // 'Content-Type': 'application/x-www-form-urlencoded',
+              },
+            } );
+
+            const result = await response.json();
+
+            if(result.success) {
+              var message = document.createElement('div');
+              message.className = 'message';
+              message.textContent = 'La tarjeta fue añadida exitosamente';
+              document.body.appendChild(message);
+  
+              setTimeout(function () {
+                  message.remove();
+              }, 3000);
+
+            } else {
+              //Aqui muestran que hubo error
+            }
+
+
+
             }
         });
     </script>

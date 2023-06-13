@@ -130,7 +130,7 @@
               </ul>
             </li>
           </ul>
-          <form class="d-flex" role="search">
+          <form class="d-flex" role="search" action="/products.php">
             <input class="form-control me-2" type="search" id="busqueda_text" placeholder="" aria-label="Search"> <!-- input SEARCH con id="busqueda_text"-->
             <button class="btn btn-outline-success" id="busqueda" type="submit">Buscar</button> <!-- Botón para buscar -->
           </form>
@@ -206,7 +206,7 @@
                         </div>
                       </div>
                       <div class="modal-footer">
-                        <button type="button" id="busqueda_filtro" class="btn btn-primary">Filtrar</button>
+                        <button type="button" id="busqueda_filtro" onclick="redirecFiltro()" class="btn btn-primary">Filtrar</button>
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
                         
                       </div>
