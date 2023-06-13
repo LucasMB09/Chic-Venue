@@ -44,3 +44,16 @@ var carouselInstance = new bootstrap.Carousel(carousel, {
   wrap: true, // Permitir repetir las imágenes
   perPage: 3 // Mostrar 3 imágenes a la vez
 });
+
+function redirecFiltro() {
+    var color = document.getElementById('color').value;
+    var talla = document.getElementById('talla').value;
+    var precio = document.getElementById('Precio').value;
+    var ofertas = document.getElementById('ofertas').checked;
+
+    var urlDestino = 'products.php?color=' + encodeURIComponent(color)+
+                     '&talla='+encodeURIComponent(talla)+
+                     '&precio='+encodeURIComponent(precio)+
+                     '&ofertas='+ (ofertas ? '1':'0');
+    window.location.href = urlDestino; 
+}

@@ -36,6 +36,30 @@
   require_once ('./php/component.php');
   $database = new CreateDb("chicvenue","articulo");
 
+  if(isset($_GET['color'])){
+    $color = $_GET['color'];
+    if($color == "todos"){
+      $color = "*";
+    }  
+  }
+
+  if(isset($_GET['talla'])){
+    $talla = $_GET['talla'];
+    if($talla == "todas"){
+      $talla = "*";
+    }  
+  }
+
+  if(isset($_GET['precio'])){
+    $precio = $_GET['precio'];
+    if($precio == "ninguno"){
+      $precio = "*";
+    }  
+  }
+
+  if(isset($_GET['ofertas'])){
+    $ofertas = $_GET['ofertas'];
+  }
 
 ?>
 
@@ -198,7 +222,7 @@
                         </div>
                       </div>
                       <div class="modal-footer">
-                        <button type="button" id="busqueda_filtro" class="btn btn-primary">Filtrar</button>
+                        <button type="button" id="busqueda_filtro" onclick="redirecFiltro()" class="btn btn-primary">Filtrar</button>
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
                         
                       </div>
@@ -260,7 +284,33 @@ $num_images = $row['num_images'];
 <div id="manualCarousel" class="carousel slide" data-bs-ride="carousel">
   <div class="carousel-inner">
     <?php
-    $result = $database->getData();
+    if( (isset($color) && $color != "*" ) ){
+      if((isset($talla) && $talla != "*")){
+        if((isset($precio) && $precio != "*")){
+          $result = $database->filtrado($color,$talla,$precio);
+        }
+        else{
+          $result = $database->filtrado2($color,$talla);
+        }
+      }
+      else{
+        $result = $database->filtrado3($color);
+      }
+    }
+    elseif( (isset($talla) && $talla != "*") ){
+      if((isset($precio) && $precio != "*")){
+        $result = $database->filtrado4($talla,$precio);
+      }
+      else{
+        $result = $database->filtrado5($talla);
+      }
+    }
+    elseif((isset($precio) && $precio != "*")){
+      $result = $database->filtrado6($precio);
+    }
+    else{
+      $result = $database->getData();
+    }
     $count = 0;
 
     // Obtener todas las imágenes
