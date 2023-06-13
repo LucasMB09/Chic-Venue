@@ -108,7 +108,7 @@ class CreateDb
         if($precio == "ascendente"){
             $sql = "SELECT * FROM $this->tablename ORDER BY precio ASC";
         }
-        elseif($precio == "descendente"){
+        elseif($precio == "descendente"){   
             $sql = "SELECT * FROM $this->tablename ORDER BY precio DESC";
         }
         $result = mysqli_query($this->con, $sql);
