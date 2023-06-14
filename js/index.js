@@ -70,5 +70,5 @@ function redirecFiltro() {
                      '&talla='+encodeURIComponent(talla)+
                      '&precio='+encodeURIComponent(precio)+
                      '&ofertas='+ (ofertas ? '1':'0');
-    window.location.href = urlDestino; 
+    location.href = urlDestino; 
 }

@@ -169,3 +169,16 @@ function user() {
         }
     })
 }
+
+function redirecFiltro() {
+    var color = document.getElementById('color').value;
+    var talla = document.getElementById('talla').value;
+    var precio = document.getElementById('Precio').value;
+    var ofertas = document.getElementById('ofertas').checked;
+
+    var urlDestino = 'products.php?color=' + encodeURIComponent(color)+
+                     '&talla='+encodeURIComponent(talla)+
+                     '&precio='+encodeURIComponent(precio)+
+                     '&ofertas='+ (ofertas ? '1':'0');
+    location.href = urlDestino; 
+}

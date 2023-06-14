@@ -117,8 +117,7 @@
 
 </head>
 
-<body>
-
+<body class="p-3 m-0 border-0 bd-example">
   <!-- LINEA NEGRA -->
   <nav class="navbar bg-dark" data-bs-theme="dark">
     <div class="container-fluid">
@@ -181,86 +180,85 @@
           <button class="btn btn-outline-success" id="busqueda" type="submit">Buscar</button> <!-- Botón para buscar -->
         </form>
         <ul class="nav">
-          <li class="nav-item">
-            &nbsp;&nbsp;&nbsp;&nbsp;
-           <!--   <a class="navbar-brand" href="#"> 
-             <img src="/assets/filtro.png" alt="carrito" width="30" height="30" class="d-inline-block align-text-top">
-            </a> -
-            <button type="button" style="background-image: url('/assets/filtro.png'); width: 10px; height: 10px;" data-toggle="modal" data-target="#exampleModalLong">
-            </button>-->
-            <a class="navbar-brand" href="#" data-toggle="modal" data-target="#exampleModalLong"> 
-              <img src="../assets/filtro.png" alt="carrito" width="30" height="30" class="d-inline-block align-text-top">
-             </a> 
-           <!-- Modal -->
-              <div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
-                <div class="modal-dialog" role="document">
-                  <div class="modal-content">
-                    <div class="modal-header">
-                      <h5 class="modal-title" id="exampleModalLongTitle">¿Buscas algo en especial?</h5>
-                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                      </button>
-                    </div>
-                    <div class="modal-body">
-                      <div class="form-group" id="filtro-form">
-                        <form>
-                          <div class="input-group mb-3">
-                            <div class="input-group-prepend">
-                              <label class="input-group-text" for="color">Color</label>
-                            </div>
-                            <select class="custom-select" id="color">
-                              <option value="todos">Todos</option>
-                              <option value="verde">Verde</option>
-                              <option value="azul">Azul</option>
-                              <option value="blanco">Blanco</option>
-                              <option value="negro">Negro</option>
-                              <option value="rosa">Rosa</option>
-                              <option value="café">Café</option>
-                              <option value="morado">Morado</option>
-                            </select>
-                          </div>
-                        
-                          <div class="input-group mb-3">
-                            <div class="input-group-prepend">
-                              <label class="input-group-text" for="talla">Talla</label>
-                            </div>
-                            <select class="custom-select" id="talla">
-                              <option value="todas">Todas</option>
-                              <option value="xs">XS</option>
-                              <option value="s">S</option>
-                              <option value="m">M</option>
-                              <option value="l">L</option>
-                              <option value="xl">XL</option>
-                            </select>
-                          </div>
-                        
-                          <div class="input-group mb-3">
-                            <div class="input-group-prepend">
-                              <label class="input-group-text" for="Precio">Precio</label>
-                            </div>
-                            <select class="custom-select" id="Precio">
-                              <option value="ninguno">Ninguno</option>
-                              <option value="ascendente">Del más barato al más caro</option>
-                              <option value="descendente">Del más caro al más barato</option>
-                            </select>
-                          </div>
-                        
-                        
-                        <input type="checkbox" id="ofertas">
-                        <label for="ofertas">Mostrar solo ofertas/descuentos</label>
-                        
-                      </form>
+        <li class="nav-item">
+              &nbsp;&nbsp;&nbsp;&nbsp;
+             <!--   <a class="navbar-brand" href="#">  
+               <img src="/assets/filtro.png" alt="carrito" width="30" height="30" class="d-inline-block align-text-top">
+              </a> -
+              <button type="button" style="background-image: url('/assets/filtro.png'); width: 10px; height: 10px;" data-toggle="modal" data-target="#exampleModalLong">
+              </button>-->
+              <a class="navbar-brand" href="#" data-toggle="modal" data-target="#exampleModalLong"> 
+                <img src="assets/filtro.png" alt="carrito" width="30" height="30" class="d-inline-block align-text-top">
+               </a> 
+             <!-- Modal -->
+                <div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+                  <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLongTitle">¿Buscas algo en especial?</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                          <span aria-hidden="true">&times;</span>
+                        </button>
                       </div>
-                    </div>
-                    <div class="modal-footer">
-                      <button type="button" id="busqueda_filtro" class="btn btn-primary">Filtrar</button>
-                      <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-                      
+                      <div class="modal-body">
+                        <div class="form-group" id="filtro-form">
+                          <form>
+                            <div class="input-group mb-3">
+                              <div class="input-group-prepend">
+                                <label class="input-group-text" for="color">Color</label>
+                              </div>
+                              <select class="custom-select" id="color">
+                                <option value="todos">Todos</option>
+                                <option value="verde">Verde</option>
+                                <option value="azul">Azul</option>
+                                <option value="blanco">Blanco</option>
+                                <option value="negro">Negro</option>
+                                <option value="rosa">Rosa</option>
+                                <option value="café">Café</option>
+                                <option value="morado">Morado</option>
+                              </select>
+                            </div>
+                          
+                            <div class="input-group mb-3">
+                              <div class="input-group-prepend">
+                                <label class="input-group-text" for="talla">Talla</label>
+                              </div>
+                              <select class="custom-select" id="talla">
+                                <option value="todas">Todas</option>
+                                <option value="xs">XS</option>
+                                <option value="s">S</option>
+                                <option value="m">M</option>
+                                <option value="l">L</option>
+                                <option value="xl">XL</option>
+                              </select>
+                            </div>
+                          
+                            <div class="input-group mb-3">
+                              <div class="input-group-prepend">
+                                <label class="input-group-text" for="Precio">Precio</label>
+                              </div>
+                              <select class="custom-select" id="Precio">
+                                <option value="ninguno">Ninguno</option>
+                                <option value="ascendente">Del más barato al más caro</option>
+                                <option value="descendente">Del más caro al más barato</option>
+                              </select>
+                            </div>
+                          
+                          
+                            <input type="checkbox" id="ofertas">
+                            <label for="ofertas">Mostrar solo ofertas/descuentos</label>
+                          </form>
+                        </div>
+                      </div>
+                      <div class="modal-footer">
+                        <button type="button" id="busqueda_filtro" onclick="redirecFiltro()" class="btn btn-primary">Filtrar</button>
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                        
+                      </div>
                     </div>
                   </div>
                 </div>
-              </div>
-          </li>
+            </li>
           <li class="nav-item">
           <?php
               if($email != ":v" && $user != ":v"){
@@ -311,14 +309,14 @@
 
         <div class="first-row">
             <div class="owner">
-                <h3>Nombre del titular de la tarjeta</h3>
+                <h3 class="text_card">Nombre del titular de la tarjeta:</h3>
                 <div class="input-field">
                     <input type="text" id="owner-name-input">
                     <div id="ownerNameErrorMessage" class="error-message"></div>
                 </div>
             </div>
             <div class="cvv">
-                <h3>CVV</h3>
+                <h3 class="text_card">CVV:</h3>
                 <div class="input-field">
                     <input type="password" id="cvvInput" maxlength="3">
                     <div id="cvvErrorMessage" class="error-message"></div>
@@ -328,7 +326,7 @@
 
         <div class="second-row">
             <div class="card-number">
-                <h3>Número de la tarjeta</h3>
+                <h3 class="text_card">Número de la tarjeta:</h3>
                 <div class="input-field">
                     <input type="text" id="card-number-input" maxlength="16">
                     <div id="cardNumberErrorMessage" class="error-message"></div>
@@ -338,7 +336,7 @@
         </div>
 
         <div class="third-row">
-            <h3>Vencimiento</h3>
+            <h3 class="text_card">Vencimiento:</h3>
             <div class="selection">
                 <div class="date">
                     <select name="months" id="months">
