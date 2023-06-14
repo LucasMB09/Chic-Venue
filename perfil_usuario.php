@@ -524,6 +524,7 @@
                     ?>
                     <div>
                         <button class="btn btn-bd-primary btn-lg" onclick="mandarTarjeta()">Agregar nueva tarjeta</button><br><br>
+                        <!--<button class="btn btn-bd-primary btn-lg" onclick="agregarTarjeta()">Agregar nueva tarjeta</button><br><br>-->
                     </div>
                 </div>
             </div>
@@ -701,6 +702,73 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
 <script src="/js/perfil_user.js"></script>
 <!-- Agrega este código JavaScript al final del archivo -->
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script>
+    function agregarTarjeta() {
+        Swal.fire({
+            title: 'Agregar nueva tarjeta',
+            html: `
+                <input id="numero_tarjeta" class="swal2-input" placeholder="Número de tarjeta" required>
+                <input id="vencimiento" class="swal2-input" placeholder="Vencimiento (MM/AA)" required>
+                <input id="cvv" class="swal2-input" placeholder="CVV" required>
+                <input id="nom_banco" class="swal2-input" placeholder="Banco" required>
+            `,
+            confirmButtonText: 'Agregar',
+            showCancelButton: true,
+            cancelButtonText: 'Cancelar',
+            preConfirm: () => {
+                const numeroTarjeta = Swal.getPopup().querySelector('#numero_tarjeta').value;
+                const vencimiento = Swal.getPopup().querySelector('#vencimiento').value;
+                const cvv = Swal.getPopup().querySelector('#cvv').value;
+                const nomBanco = Swal.getPopup().querySelector('#nom_banco').value;
+
+                if (!numeroTarjeta || !vencimiento || !cvv || !nomBanco) {
+                    Swal.showValidationMessage('Por favor, completa todos los campos');
+                    return false;
+                }
+
+                // Aquí puedes hacer la inserción en la base de datos
+                const url = 'php/agregar_tarjeta.php';
+                const data = {
+                    numero_tarjeta: numeroTarjeta,
+                    vencimiento: vencimiento,
+                    cvv: cvv,
+                    id_cliente: '<?php echo $num_cliente; ?>',
+                    nom_banco: nomBanco
+                };
+
+                return fetch(`${url}?numero_tarjeta=${numeroTarjeta}&vencimiento=${vencimiento}&cvv=${cvv}&id_cliente=${data.id_cliente}&nom_banco=${nomBanco}`, {
+                    method: 'GET',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                })
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error(response.statusText);
+                    }
+                    return response.json();
+                })
+                .catch(error => {
+                    Swal.showValidationMessage(`Se produjo un error: ${error}`);
+                });
+            }
+        })
+        .then(result => {
+            if (result.isConfirmed) {
+                Swal.fire({
+                    title: 'Tarjeta agregada',
+                    icon: 'success'
+                }).then(() => {
+                    // Actualizar la página o hacer cualquier otra acción necesaria
+                    window.location.reload()
+
+                    //ahi ta, quien sabe porque no agarra el $_POST, pero chingue su ,adre por get, al final funciono jajaj omaigaGracias ah bb simon, ahi estamos
+                });
+            }
+        });
+    }
+</script>
 </body>
 <footer class="pt-4 my-md-5 pt-md-5 border-top">
 <nav class="navbar bg-dark" data-bs-theme="dark">

@@ -1,5 +1,5 @@
 <?php
-
+session_start();
 $id_articulo = $_POST['id_articulo'];
 $nombre_articulo = $_POST['nombre_articulo'];
 $descripcion = $_POST['descripcion'];
