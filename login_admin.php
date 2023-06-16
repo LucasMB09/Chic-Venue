@@ -165,7 +165,7 @@
     -->
     <main class="form-signin w-100 m-auto">
       <!--Empieza formulario-->
-      <form id="login" action="php/con_db.php" method= "POST" enctype="multipart/form-data">
+      <form id="login" action="php/ver_admin.php" method= "POST" enctype="multipart/form-data">
         <img class="Logo de Chic Avenue" src="../assets/logo_CA.PNG" alt="LOGO" width="82" height="70">
         <h1 class="texto">Inicio de sesión ADMIN</h1>
         
@@ -190,7 +190,7 @@
           </div>
         </div>
 
-        <a class="nav-link" href="registro.php"><strong><u>Crea una nueva cuenta</u></strong></a>
+        <!-- <a class="nav-link" href="registro.php"><strong><u>Crea una nueva cuenta</u></strong></a> -->
         <br>
         <!-- Botón Iniciar sesión -->
         <button class="w-100 btn btn-lg btn-primary mb1 bg-black" type="submit" id="log">Iniciar sesión</button>
@@ -214,8 +214,8 @@
       </div>
       
   </main>
-    <script src="/js/login_verificar.js"></script>
-    </div>
+    
+    <script src="/js/admin_verify.js"></script>
   </body>
 
 </html>

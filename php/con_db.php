@@ -12,7 +12,7 @@
      // Conexión a la base de datos
      $conexion = mysqli_connect("localhost", "root", "", "chicvenue");
 
-     if($email == "root@root.com"){
+     if($email == "root@root.com" && $pass == "Contr@s3creta"){
           header("Location: ../login_admin.php");
           return;
      }
@@ -139,4 +139,3 @@
      
 
 ?>
-
