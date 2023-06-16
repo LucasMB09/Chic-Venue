@@ -130,8 +130,8 @@
               </ul>
             </li>
           </ul>
-          <form class="d-flex" role="search" action="/products.php">
-            <input class="form-control me-2" type="search" id="busqueda_text" placeholder="" aria-label="Search"> <!-- input SEARCH con id="busqueda_text"-->
+          <form class="d-flex" role="search" action="/products.php" >
+            <input class="form-control me-2" type="search" id="busqueda_text" placeholder="" aria-label="Search" name="search"> <!-- input SEARCH con id="busqueda_text"-->
             <button class="btn btn-outline-success" id="busqueda" type="submit">Buscar</button> <!-- Botón para buscar -->
           </form>
           <ul class="nav">

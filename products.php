@@ -65,6 +65,10 @@
     $ofertas = $_GET['ofertas'];
   }
 
+  if(isset($_GET['search'])){
+    $busqueda = $_GET['search'];
+  }
+
 ?>
 
 
@@ -291,7 +295,11 @@ $num_images = $row['num_images'];
 <div id="manualCarousel" class="carousel slide" data-bs-ride="carousel">
   <div class="carousel-inner">
     <?php
-    if( (isset($color) && $color != "*" ) ){
+
+    if( (isset($busqueda))){
+      $result = $database->busqueda($busqueda);
+    }
+    elseif( (isset($color) && $color != "*" ) ){
       if((isset($talla) && $talla != "*")){
         if((isset($precio) && $precio != "*")){
           $result = $database->filtrado($color,$talla,$precio);
@@ -324,7 +332,11 @@ $num_images = $row['num_images'];
       ?><h3 id="base" style="display: none;"><?php echo $_SESSION['base']; unset($_SESSION['base']);?></h3>
       <?php
     }
-    
+    elseif((isset($_SESSION['base']) && $_SESSION['base'] == "No nombre" )){
+      ?><h3 id="base" style="display: none;"><?php echo $_SESSION['base']; unset($_SESSION['base']);?></h3>
+      <?php
+    }
+
     // Obtener todas las imágenes
     $images = array();
     while ($row = mysqli_fetch_assoc($result)) {

@@ -64,17 +64,13 @@
             /*echo "La cuenta existe"."<br>";
             echo "Correo: $mail"."<br>";
             echo "Contraseña: $pas"."<br>";*/
-            $_SESSION['mensaje']  = "Inicio de sesión exitoso";
-            $_SESSION['email'] = $mail;
-            $_SESSION['recuerda'] = $recuerda;
+            $_SESSION['mensaje']  = "Inicio de sesión exitoso";  
             $querynombre = "SELECT nombre FROM cliente WHERE correo_electronico = '$valor'";
             $resulnombre = mysqli_query($conexion, $querynombre);
 
             if($resulnombre){
                     $fila3 = mysqli_fetch_array($resulnombre);
                     $valnom = $fila3[0];
-                    $_SESSION['user'] = $valnom;
-                    $_SESSION['valor']= 1;
             }
             else{
                     return;
