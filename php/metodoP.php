@@ -1,3 +1,43 @@
+<?php
+  session_start();
+
+  if(isset($_GET['valor'])){
+    $valor = $_GET['valor'];
+  }
+  elseif(isset($_SESSION['valor'])){
+    $valor = $_SESSION['valor'];
+  }
+
+  if(isset($_COOKIE['usuario'])){
+    $_SESSION['user'] = $_COOKIE['usuario'];
+    $_SESSION['email'] = $_COOKIE['email'];
+    $user = $_SESSION['user'];
+    $email = $_SESSION['email'];
+  }
+  elseif(isset($_SESSION['email'])){
+    $user = $_SESSION['user'];
+    $email = $_SESSION['email'];
+  }
+  elseif(isset($valor)){
+    if($valor == 0){
+      $user = "No";
+      $email = "No";  
+    }
+    elseif($valor == 1){
+      $user = ":v";
+      $email = ":v";
+   }
+  }
+  else{
+    $valor = 1;
+    $_SESSION['valor'] = $valor;
+    $email = ":v";
+    $user = ":v";
+  }
+  
+ 
+?>
+
 <!doctype html>
 <html lang="en" data-bs-theme="auto">
   <head><script src="../assets/js/color-modes.js"></script>
@@ -13,7 +53,9 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
     <link rel="canonical" href="https://getbootstrap.com/docs/5.3/examples/metodoP/">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-    
+    <script src="/sweetalert/dist/sweetalert2.all.min.js"></script>
+    <link href="/css/formulario.css" rel="stylesheet">
+
 
 <link href="../assets/dist/css/bootstrap.min.css" rel="stylesheet">
 
@@ -130,7 +172,7 @@
     <!-- Custom styles for this template -->
     <link href="metodoP.css" rel="stylesheet">
   </head>
-  <body>
+  <body class="p-3 m-0 border-0 bd-example">
  
     <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
       <symbol id="check2" viewBox="0 0 16 16">
@@ -194,26 +236,70 @@
 <!-- <div class="container py-3"> -->
   <header>
     
-<div class="barra-negra"></div>
+<div class="barra-negra">
+  <nav class="navbar bg-dark" data-bs-theme="dark">
+    <div class="container-fluid">
+      <br><br><br>
+      <?php
+      if(isset($_SESSION['mensaje'])){ 
+        if ($_SESSION['mensaje'] == "Inicio de sesión exitoso") {
+        $mensaje = $_SESSION['mensaje'];
+        $user = $_SESSION['user'];
+        $email = $_SESSION['email'];
+        if(isset($_SESSION['recuerda'])){
+          $recuerda = $_SESSION['recuerda'];
+          setcookie('usuario', $user, time()+86400, '/');
+          setcookie('email', $email, time()+86400, '/');
+        }  
+        ?>
+        <div><h3 id="mensaje" style="display: none;"><?php echo "$mensaje";?></h3></div>
+        <h3 class="text_user" style="display:none;">Hola, <?php echo "$user";?></h1>
+        <?php
+        unset($_SESSION['mensaje']); // Limpiamos la variable de sesión
+        }
+      }
+      elseif(isset($_SESSION['email'])){
+        if($_SESSION['email'] != "No" && $_SESSION['user'] != "No"){
+          ?>
+          <h3 class="text_user" style="display:none;">Hola, <?php echo "$user";?></h1>
+          <?php
+          if($valor == 0 ){
+            if($_GET['valor'] == 0){
+              setcookie('usuario', "", time()-86400, '/');
+              setcookie('email', "", time()-86400, '/');
+              unset($_SESSION['email']);
+              unset($_SESSION['user']);
+              $_SESSION['valor'] = 1;
+              header("Location: index.php?valor=1");
+            }
+          }
+        }
+      }
+      ?>
+    </div>
+    </nav>
+</div>
+
+
     <div class=" flex-column flex-md-row align-items-center pb-6 mb-4 border-bottom">
       <!-- <a href="/" class="d-flex align-items-center link-body-emphasis text-decoration-none"> -->
           
     <!-- MENU DE NAVEGACION -->
     <nav class="navbar navbar-expand-lg bg-body-tertiary">
       <div class="container-fluid">
-        <a class="navbar-brand" href="/html/index.html">
-          <img src="logo_CA.PNG" class="rounded mx-auto d-block"  alt="" width="82" height="70">
+        <a class="navbar-brand" href="../index.php">
+          <img src="../assets/logo.jpg" class="rounded mx-auto d-block"  alt="" width="82" height="70">
         </a>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav me-auto mb-2 mb-lg-0">
             <li class="letra-texto">
-              <a class="nav-link " aria-current="page" href="/html/products.html">Novedades</a> <!-- PESTAÑA NOVEDADES -->
+              <a class="nav-link " aria-current="page" href="../products.php">Novedades</a> <!-- PESTAÑA NOVEDADES -->
             </li>
             <li class="letra-texto">
-              <a class="nav-link" href="/html/products.html">Rebajas</a> <!-- RESTAÑA REBAJAS -->
+              <a class="nav-link" href="../products.php">Rebajas</a> <!-- RESTAÑA REBAJAS -->
             </li>
             <li class="letra-texto">
-              <a class="nav-link" href="/html/products.html">Un poco de todo </a> <!-- PESTAÑA PARA REVISAR ARTICULOS -->
+              <a class="nav-link" href="../products.php">Un poco de todo </a> <!-- PESTAÑA PARA REVISAR ARTICULOS -->
             </li>
             <li class="letra-texto">
               <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -230,20 +316,20 @@
               </ul>
             </li>
           </ul>
-          <form class="d-flex" role="search">
-            <input  class="form-control me-2"  type="search" id="busqueda_text" placeholder="" aria-label="Search"> <!-- input SEARCH con id="busqueda_text"-->
+          <form class="d-flex" role="search" action="../products.php" >
+            <input class="form-control me-2" type="search" id="busqueda_text" placeholder="" aria-label="Search" name="search"> <!-- input SEARCH con id="busqueda_text"-->
             <button class="btn btn-outline-success" id="busqueda" type="submit">Buscar</button> <!-- Botón para buscar -->
           </form>
           <ul class="nav">
             <li class="nav-item">
               &nbsp;&nbsp;&nbsp;&nbsp;
-             <!--   <a class="navbar-brand" href="#"> <!-- 
+             <!--   <a class="navbar-brand" href="#"> 
                <img src="/assets/filtro.png" alt="carrito" width="30" height="30" class="d-inline-block align-text-top">
               </a> -
               <button type="button" style="background-image: url('/assets/filtro.png'); width: 10px; height: 10px;" data-toggle="modal" data-target="#exampleModalLong">
               </button>-->
               <a class="navbar-brand" href="#" data-toggle="modal" data-target="#exampleModalLong"> 
-                <img src="filtro.png" alt="carrito" width="30" height="30" class="d-inline-block align-text-top">
+                <img src="/assets/filtro.png" alt="filtro" width="30" height="30" class="d-inline-block align-text-top">
                </a> 
              <!-- Modal -->
                 <div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
@@ -307,7 +393,7 @@
                         </div>
                       </div>
                       <div class="modal-footer">
-                        <button type="button" id="busqueda_filtro" class="btn btn-primary">Filtrar</button>
+                        <button type="button" id="busqueda_filtro" onclick="redirecFiltro()" class="btn btn-primary">Filtrar</button>
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
                         
                       </div>
@@ -317,21 +403,38 @@
             </li>
             <li class="nav-item">
              <li class="nav-item">
-              &nbsp;&nbsp;&nbsp;&nbsp;
-               <a class="navbar-brand" href="./log-in.html"> <!-- INCIAR SESION -->
-               <img src="usuario (1).png" alt="carrito" width="30" height="30" class="d-inline-block align-text-top">
+             <?php
+              if($email != ":v" && $user != ":v"){
+
+                ?>
+
+                  <h3 id="usuario" style="display:none;"> <?php echo "$user";?></h3>
+                  <h3 id="correo" style="display:none;"> <?php echo "$email";?></h3>
+                  <a class="navbar-brand" onclick="user()" id="change"> <!-- INCIAR SESION -->
+                    <img src="../assets/usuario.png" alt="inicioSesión" width="30" height="30" class="d-inline-block align-text-top">
+                  </a>
+                  
+                  <?php
+                  
+                
+              }
+              else{
+                ?>
+                <a class="navbar-brand" href="../log-in.php"> <!-- INCIAR SESION -->
+                <img src="../assets/usuario.png" alt="inicioSesión" width="30" height="30" class="d-inline-block align-text-top">
+                </a>
+                <?php
+              }
+              ?>
+            </li>
+            <li class="nav-item">
+               <a class="navbar-brand" href="../favoritos.php"> <!-- ACCEDER A FAVORITOS-->
+               <img src="../assets/favoritos.PNG" alt="favoritos" width="30" height="30" class="d-inline-block align-text-top">
               </a>
             </li>
             <li class="nav-item">
-              &nbsp;&nbsp;&nbsp;&nbsp;
-               <a class="navbar-brand" href="./favoritos.html"> <!-- ACCEDER A FAVORITOS-->
-               <img src="favoritos.PNG" alt="carrito" width="30" height="30" class="d-inline-block align-text-top">
-              </a>
-            </li>
-            <li class="nav-item">
-              &nbsp;&nbsp;&nbsp;&nbsp;
-              <a class="navbar-brand" href="./carrito.html"> <!-- ACCEDER AL CARRITO-->
-              <img src="carrito.png" alt="carrito" width="30" height="30" class="d-inline-block align-text-top">
+              <a class="navbar-brand" href="../carrito.php"> <!-- ACCEDER AL CARRITO-->
+              <img src="../assets/carrito.png" alt="carrito" width="30" height="30" class="d-inline-block align-text-top">
              </a>
             </li>
           </ul>
@@ -362,7 +465,7 @@
              
               <span class="custom-radio-checkbox__show custom-radio-checkbox__show--radio"></span>
 
-              <img class="tarjeta1" src="Cardb.png"  width="24" height="19" alt="tarjeta de credito" >
+              <img class="tarjeta1" src="../assets/Cardb.png"  width="24" height="19" alt="tarjeta de credito" >
            
               <span class="custom-radio-checkbox__text">Nueva tarjeta de credito </span>
           </label>
@@ -377,7 +480,7 @@
               
               <span class="custom-radio-checkbox__show custom-radio-checkbox__show--radio"></span>
 
-              <img class="tarjeta2" src="Cardm.png"  width="24" height="19" alt="tarejta de debito" >
+              <img class="tarjeta2" src="../assets/Cardm.png"  width="24" height="19" alt="tarejta de debito" >
            
               <span class="custom-radio-checkbox__text">Nueva tarjeta de debito</span>
           </label>
@@ -391,7 +494,7 @@
             
             <span class="custom-radio-checkbox__show custom-radio-checkbox__show--radio"></span>
 
-            <img class="transferencia" src="transaction2.png"  width="24" height="19" alt="Tranferencia" >
+            <img class="transferencia" src="../assets/transaction2.png"  width="24" height="19" alt="Tranferencia" >
             
             <span class="custom-radio-checkbox__text ">Tranferencia electronica</span>
         </label>
@@ -405,7 +508,7 @@
           <!-- Imagen en sustitucion -->
           <span class="custom-radio-checkbox__show custom-radio-checkbox__show--radio"></span>
 
-          <img class="pago" src="cash.png"  width="24" height="19" alt="Puntos pago" >
+          <img class="pago" src="../assets/paymant.png"  width="24" height="19" alt="Puntos pago" >
           <!-- Texto -->
           <span class="custom-radio-checkbox__text">Efectivo en puntos de pago</span>
       </label>
@@ -444,7 +547,7 @@
   <footer class="pt-4 my-md-5 pt-md-5 border-top card-header py-3 container py-3">
     <div class="row">
       <div class="col-12 col-md">
-        <img class="logo" src="logo_CA.PNG"  width="24" height="19" alt="Logotipo de Chic Avenue" >
+        <img class="logo" src="../assets/logo_CA.PNG"  width="24" height="19" alt="Logotipo de Chic Avenue" >
         <small class="d-block mb-3 letra-texto">&copy; 2022–2023</small>
       </div>
       <div class="col-6 col-md">
@@ -478,7 +581,7 @@
 
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
- 
+<script src="../js/metodP.js"></script>
 
     
   </body>
