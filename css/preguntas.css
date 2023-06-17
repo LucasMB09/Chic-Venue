@@ -94,4 +94,40 @@ body {
   font-size: 2rem;
 }
 
+select{
+  width: 100%;
+  background: #FFF;
+  border: 3px solid transparent;
+  border-radius: 3px;
+  height: 45px;
+  line-height: 45px;
+  padding: 0 40 px 0 10 px;
+  transition: .3s ease all;
+}
 
+.text_user{
+  color: white;
+  font-size: 20px;
+  text-align: left;
+}
+
+.text_toast{
+  color: black;
+  font-size: 15px;
+  text-align: justify;
+}
+
+.subir_icon{
+  top: -50px;
+  left: -50px;
+}
+
+.toast_content{
+  position: relative;
+}
+
+#buttonOk{
+  position: absolute;
+  top: 10px;
+  right: 10px;
+}

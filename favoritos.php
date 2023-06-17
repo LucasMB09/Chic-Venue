@@ -44,6 +44,7 @@
         <link href="https://getbootstrap.com/docs/5.3/assets/css/docs.css" rel="stylesheet">
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
         <link rel="stylesheet" href="css/favoritos.css">
+        
 
         <title>Chic Venue</title>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
@@ -110,22 +111,22 @@
                   </ul>
                 </li>
               </ul>
-              <form class="d-flex" role="search">
-                <input class="form-control me-2" type="search" id="busqueda_text" placeholder="" aria-label="Search"> <!-- input SEARCH con id="busqueda_text"-->
+              <form class="d-flex" role="search" action="/products.php" >
+                <input class="form-control me-2" type="search" id="busqueda_text" placeholder="" aria-label="Search" name="search"> <!-- input SEARCH con id="busqueda_text"-->
                 <button class="btn btn-outline-success" id="busqueda" type="submit">Buscar</button> <!-- Botón para buscar -->
               </form>
               <ul class="nav">
-                <li class="nav-item">
+                  <li class="nav-item">
                   &nbsp;&nbsp;&nbsp;&nbsp;
-                 <!--   <a class="navbar-brand" href="#">  ACCEDER AL FILTRO
-                   <img src="/assets/filtro.png" alt="carrito" width="30" height="30" class="d-inline-block align-text-top">
+                <!--   <a class="navbar-brand" href="#">  
+                  <img src="/assets/filtro.png" alt="carrito" width="30" height="30" class="d-inline-block align-text-top">
                   </a> -
                   <button type="button" style="background-image: url('/assets/filtro.png'); width: 10px; height: 10px;" data-toggle="modal" data-target="#exampleModalLong">
                   </button>-->
                   <a class="navbar-brand" href="#" data-toggle="modal" data-target="#exampleModalLong"> 
-                    <img src="/assets/filtro.png" alt="carrito" width="30" height="30" class="d-inline-block align-text-top">
-                   </a> 
-                 <!-- Modal -->
+                    <img src="assets/filtro.png" alt="carrito" width="30" height="30" class="d-inline-block align-text-top">
+                  </a> 
+                <!-- Modal -->
                     <div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
                       <div class="modal-dialog" role="document">
                         <div class="modal-content">
@@ -180,14 +181,13 @@
                                 </div>
                               
                               
-                              <input type="checkbox" id="ofertas">
-                              <label for="ofertas">Mostrar solo ofertas/descuentos</label>
-                              
-                            </form>
+                                <input type="checkbox" id="ofertas">
+                                <label for="ofertas">Mostrar solo ofertas/descuentos</label>
+                              </form>
                             </div>
                           </div>
                           <div class="modal-footer">
-                            <button type="button" id="busqueda_filtro" class="btn btn-primary">Filtrar</button>
+                            <button type="button" id="busqueda_filtro" onclick="redirecFiltro()" class="btn btn-primary">Filtrar</button>
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
                             
                           </div>
@@ -258,6 +258,9 @@
             </div>
         </section>
   <script src="/js/favoritos.js"></script>
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
+
 </body>
  <!-- FOOTER -->
  <footer class="container">

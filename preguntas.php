@@ -53,6 +53,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
     <script src="/sweetalert/dist/sweetalert2.all.min.js"></script>
+    <link rel="stylesheet" href="/css/preguntas.css">
 
     <link href="/css/bootstrap-5.1.3-dist/bootstrap.min.css" rel="stylesheet">
 
@@ -236,7 +237,7 @@
   
       <nav class="navbar navbar-expand-lg bg-body-tertiary">
           <div class="container-fluid">
-            <a class="navbar-brand" href="#">
+            <a class="navbar-brand" href="index.php">
               <img src="/assets/logo.jpg" class="rounded mx-auto d-block"  alt="" width="82" height="70">
             </a>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
@@ -531,6 +532,9 @@
 </div>
 
 
-    
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
+<script src="/js/inicio_sesion.js"></script>
+
   </body>
 </html>

@@ -108,17 +108,90 @@
               </ul>
             </li>
           </ul>
-          <form class="d-flex" role="search">
-            <input class="form-control me-2 " type="search" placeholder="" aria-label="Search">
-            <button class="btn btn-outline-success" type="submit">Buscar</button>
+          <form class="d-flex" role="search" action="/products.php" >
+            <input class="form-control me-2" type="search" id="busqueda_text" placeholder="" aria-label="Search" name="search"> <!-- input SEARCH con id="busqueda_text"-->
+            <button class="btn btn-outline-success" id="busqueda" type="submit">Buscar</button> <!-- Botón para buscar -->
           </form>
           <ul class="nav">
-            <li class="nav-item">
-               <a class="navbar-brand" href="#">
-               <img src="assets/filtro.png" alt="carrito" width="30" height="30" class="d-inline-block align-text-top">
-              </a>
-            </li>
-            <li class="nav-item">
+          <li class="nav-item">
+                  &nbsp;&nbsp;&nbsp;&nbsp;
+                <!--   <a class="navbar-brand" href="#">  
+                  <img src="/assets/filtro.png" alt="carrito" width="30" height="30" class="d-inline-block align-text-top">
+                  </a> -
+                  <button type="button" style="background-image: url('/assets/filtro.png'); width: 10px; height: 10px;" data-toggle="modal" data-target="#exampleModalLong">
+                  </button>-->
+                  <a class="navbar-brand" href="#" data-toggle="modal" data-target="#exampleModalLong"> 
+                    <img src="assets/filtro.png" alt="carrito" width="30" height="30" class="d-inline-block align-text-top">
+                  </a> 
+                <!-- Modal -->
+                    <div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+                      <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                          <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLongTitle">¿Buscas algo en especial?</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                              <span aria-hidden="true">&times;</span>
+                            </button>
+                          </div>
+                          <div class="modal-body">
+                            <div class="form-group" id="filtro-form">
+                              <form>
+                                <div class="input-group mb-3">
+                                  <div class="input-group-prepend">
+                                    <label class="input-group-text" for="color">Color</label>
+                                  </div>
+                                  <select class="custom-select" id="color">
+                                    <option value="todos">Todos</option>
+                                    <option value="verde">Verde</option>
+                                    <option value="azul">Azul</option>
+                                    <option value="blanco">Blanco</option>
+                                    <option value="negro">Negro</option>
+                                    <option value="rosa">Rosa</option>
+                                    <option value="café">Café</option>
+                                    <option value="morado">Morado</option>
+                                  </select>
+                                </div>
+                              
+                                <div class="input-group mb-3">
+                                  <div class="input-group-prepend">
+                                    <label class="input-group-text" for="talla">Talla</label>
+                                  </div>
+                                  <select class="custom-select" id="talla">
+                                    <option value="todas">Todas</option>
+                                    <option value="xs">XS</option>
+                                    <option value="s">S</option>
+                                    <option value="m">M</option>
+                                    <option value="l">L</option>
+                                    <option value="xl">XL</option>
+                                  </select>
+                                </div>
+                              
+                                <div class="input-group mb-3">
+                                  <div class="input-group-prepend">
+                                    <label class="input-group-text" for="Precio">Precio</label>
+                                  </div>
+                                  <select class="custom-select" id="Precio">
+                                    <option value="ninguno">Ninguno</option>
+                                    <option value="ascendente">Del más barato al más caro</option>
+                                    <option value="descendente">Del más caro al más barato</option>
+                                  </select>
+                                </div>
+                              
+                              
+                                <input type="checkbox" id="ofertas">
+                                <label for="ofertas">Mostrar solo ofertas/descuentos</label>
+                              </form>
+                            </div>
+                          </div>
+                          <div class="modal-footer">
+                            <button type="button" id="busqueda_filtro" onclick="redirecFiltro()" class="btn btn-primary">Filtrar</button>
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                            
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                </li>
              <li class="nav-item">
               <?php
               if($email != ":v" && $user != ":v"){
@@ -220,6 +293,8 @@
     </div>
   </section>
   <script src="js/metodo_ent.js"></script>
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
   <script>
 
     //Redireccionamiento
