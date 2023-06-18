@@ -1,5 +1,6 @@
 const usuario = document.getElementById("usuario");
 const email = document.getElementById("correo");
+const mensaje = document.getElementById("mensaje");
 
 function user() {
     const Toast = Swal.mixin({
@@ -7,7 +8,7 @@ function user() {
         html: `<h3 class="text_toast"> <b>Nombre:</b> ${usuario.textContent}</h3><br>
             <h3 class="text_toast"> <b>Correo:</b> ${email.textContent}</h3>`,
         position: 'top-end',
-        showConfirmButton: false,
+        showConfirmButton: true,
         showDenyButton:true,
         showCancelButton:true,
         confirmButtonText: 'Ir al perfil',
@@ -19,10 +20,10 @@ function user() {
         icon: 'info',
         title: 'Cuenta'
     }).then((result) => {
-        // if (result.isConfirmed){
-        //     location.href = "perfil_usuario.php";
-        // }
-        if (result.isDenied){
+        if (result.isConfirmed){
+            location.href = "perfil_usuario.php";
+        }
+        else if (result.isDenied){
             var valor = 0;
             location.href = "index.php?valor=" + encodeURIComponent(valor);
         }
@@ -30,12 +31,17 @@ function user() {
             var valor = 3;
         }
     })
-    
-    
 }
 
-function mandarPHP(codigo)
-{
-  parametros = { 'id': codigo };
- 
-}
+function eliminarTarjeta(tarjeta, aidi) {
+    // Realizar la solicitud AJAX para eliminar la tarjeta
+    const url = `/php/eliminar_tarjeta.php?num_cliente=${aidi}&tarjeta=${tarjeta}`;
+  
+    fetch(url)
+      .then(response => response.text())
+      .then(result => {
+        console.log(result); // Mostrar el resultado en la consola
+        // Aquí puedes realizar cualquier otra acción que desees luego de eliminar la tarjeta
+      })
+      .catch(error => console.error(error));
+  }
