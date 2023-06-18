@@ -75,7 +75,7 @@ formulario.addEventListener('submit', (e) => {
 });
 
 function go_login() {
-    window.location.href = 'log-in.php';
+    window.location.href = 'login_usuario.php';
 }
 
 
