@@ -31,6 +31,7 @@
     $_SESSION['valor'] = $valor;
   }
   
+  // Obtén los datos del producto añadido a favoritos
  
 ?>
 
@@ -82,7 +83,7 @@
         <!-- MENU DE NAVEGACION -->
         <nav class="navbar navbar-expand-lg bg-body-tertiary">
           <div class="container-fluid">
-            <a class="navbar-brand" href="#">
+            <a class="navbar-brand" href="index.php">
               <img src="/assets/logo.jpg" class="rounded mx-auto d-block"  alt="" width="82" height="70">
             </a>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
@@ -240,23 +241,23 @@
         </header>
     </div>
  
-        <section class="contenedor">
-            <div class="caja-principal">
-                <div class="imagen">
-                    <img src="../FAVORITOS/img/Hoodie.jpg" alt="">
-                </div>
-                <div class="texto">
-                    <p class="descripcion" id>Pullover Negra </p>
-                </div>
-                <div class="carrito">
-                    <a class="boton1" href="#">Añadir al carrito</a>
-                </div>
-                <div class="delete">
-                    <p>$250</p>
-                    <a class="boton2" href="#">Eliminar</a>
-                </div>
-            </div>
-        </section>
+    <section class="contenedor">
+    <div class="caja-principal">
+        <div class="imagen">
+            <img src="../FAVORITOS/img/Hoodie.jpg" alt="">
+        </div>
+        <div class="texto">
+            <p class="descripcion" id><?= $nombre_articulo ?></p>
+        </div>
+        <div class="carrito">
+            <a class="boton1" href="#">Añadir al carrito</a>
+        </div>
+        <div class="delete">
+            <p><?= $precio ?></p>
+            <a class="boton2" href="#">Eliminar</a>
+        </div>
+    </div>
+  </section>
   <script src="/js/favoritos.js"></script>
   <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>

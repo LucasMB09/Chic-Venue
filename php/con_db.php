@@ -10,7 +10,7 @@
      $conmail = 0;
      $con = 0;
      // Conexión a la base de datos
-     $conexion = mysqli_connect("localhost", "root", "", "chicvenue");
+     $conexion = mysqli_connect("localhost:3307", "root", "", "chicvenue");
 
      if($email == "root@root.com" && $pass == "Contr@s3creta"){
           header("Location: ../login_admin.php");
