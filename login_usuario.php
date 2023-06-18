@@ -116,8 +116,10 @@
             <div class="cont">
           <div class="form sign-in ">
          <form id="login" action="php/con_db.php" method= "POST" enctype="multipart/form-data">
-        <img class="rounded mx-auto d-block" src="../assets/logo_CA.PNG" alt="LOGO" width="82" height="70">
-        <br>
+        <a class="navbar-brand" href="/index.php">
+            <img class="rounded mx-auto d-block" src="../assets/logo_CA.PNG" alt="LOGO" width="82" height="70">
+            
+    </a><br>
         <h1 class="texto">Inicio de sesión</h1>
         
         <!--Correo Electronico-->

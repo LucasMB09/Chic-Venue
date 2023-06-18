@@ -233,7 +233,7 @@
               }
               else{
                 ?>
-                <a class="navbar-brand" href="log-in.php"> <!-- INCIAR SESION -->
+                <a class="navbar-brand" href="login_usuario.php"> <!-- INCIAR SESION -->
                 <img src="assets/usuario.png" alt="inicioSesión" width="30" height="30" class="d-inline-block align-text-top">
                 </a>
                 <?php
