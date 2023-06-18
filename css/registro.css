@@ -22,7 +22,7 @@ body {
 
 .container-form {
     width: 90%;
-    height: 90vh;
+    height: 850px;
     border-radius: 10rem;
     display: flex;
     justify-content: space-around;

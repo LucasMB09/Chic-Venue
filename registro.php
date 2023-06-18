@@ -46,7 +46,7 @@
 
     <body style=" display: flex;
   flex-direction: column;
-  min-height: 100vh;">
+  min-height: 120vh;">
         <div class="novbar"></div>
         <div class="container-form sign-up" >
             <div class="welcome-back">

@@ -105,7 +105,7 @@
                else{
                     //echo "La contraseña no es correcta"."<br>";
                     $_SESSION['mensaje']  = "La contraseña es incorrecta";
-                    header("Location: ../log-in.php");
+                    header("Location: ../login_usuario.php");
                     // Liberar recursos y cerrar conexión
                     mysqli_free_result($resultado);
                     mysqli_close($conexion);
@@ -115,7 +115,7 @@
           else{
                $_SESSION['mensaje']  = "No se ha activado la cuenta";
                $_SESSION['activado'] = $activado;
-               header("Location: ../log-in.php");
+               header("Location: ../login_usuario.php");
                return;
           }
          
@@ -124,7 +124,7 @@
      elseif($mail == "No hay"){
          //echo "No existe ninguna cuenta asociada a ese correo"."<br>";
          $_SESSION['mensaje']  = "No existe ninguna cuenta asociada a ese correo";
-         header("Location: ../log-in.php");
+         header("Location: ../login_usuario.php");
          // Liberar recursos y cerrar conexión
          mysqli_free_result($resultado);
          mysqli_close($conexion);
@@ -132,7 +132,7 @@
      }
      else{
           $_SESSION['mensaje']  = "Hubo un error";
-          header("Location: ../log-in.php");
+          header("Location: ../login_usuario.php");
           return;
      }
 
