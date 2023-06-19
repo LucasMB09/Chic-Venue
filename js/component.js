@@ -1,132 +1,109 @@
 document.addEventListener('DOMContentLoaded', function() {
-    var buttons = document.querySelectorAll('.btn-circle');
-    buttons.forEach(function(button) {
-      button.addEventListener('click', function(e) {
-        e.preventDefault(); // Evita que el formulario se envíe automáticamente
-        if (!isLoggedIn()) {
-          if (button.getAttribute('name') === 'add') {
-            showAddToCartAlert();
-          } else if (button.getAttribute('name') === 'favorite') {
-            showAddToFavoritesAlert();
-          }
-        } else {
-          button.classList.toggle('active'); // Alternar la clase 'active' en el botón clicado
-          button.blur(); // Quitar el enfoque del botón para evitar la apariencia de selección
-          if (button.getAttribute('name') === 'add') {
-            var nombre_articulo = button.getAttribute('data-nombre');
-            var precio = button.getAttribute('data-precio');
-            handleAgregarAlCarrito(nombre_articulo, precio);
-          } else if (button.getAttribute('name') === 'favorite') {
-            handleAgregarAFavoritos(button);
-          }
-          resetButtons(buttons, button); // Restablecer el estado de los botones
+  var buttons = document.querySelectorAll('.btn-circle');
+  buttons.forEach(function(button) {
+    button.addEventListener('click', async function(e) {
+      e.preventDefault(); // Evita que el formulario se envíe automáticamente
+      if (isLoggedIn()) {
+        button.classList.toggle('active'); // Alternar la clase 'active' en el botón clicado
+        button.blur(); // Quitar el enfoque del botón para evitar la apariencia de selección
+        if (button.getAttribute('name') === 'add') {
+          var nombre_articulo = button.getAttribute('data-nombre');
+          var precio = button.getAttribute('data-precio');
+          handleAgregarAlCarrito(nombre_articulo, precio);
+        } else if (button.getAttribute('name') === 'favorite') {
+          handleAgregarAFavoritos(button);
         }
-      });
+        resetButtons(buttons, button); // Restablecer el estado de los botones
+      } else {
+        if (button.getAttribute('name') === 'add') {
+          showAddToCartAlert();
+        } else if (button.getAttribute('name') === 'favorite') {
+          showAddToFavoritesAlert();
+        }
+      }
     });
-  
-    // Función para verificar si el cliente está activado
-    function isClienteActivado(clienteId, callback) {
-        var xhr = new XMLHttpRequest();
-        xhr.open('GET', '../php/verificar_cliente.php?clienteId=' + clienteId, true);
-        xhr.onreadystatechange = function() {
-        if (xhr.readyState === 4 && xhr.status === 200) {
-            var activado = xhr.responseText;
-            callback(activado === '1'); // Llama al callback con un valor booleano indicando si el cliente está activado
-        }
-        };
-        xhr.send();
-    }
+  });
 
-    // Función para obtener el ID del cliente
-    function obtenerClienteId() {
-        // Lógica para obtener el ID del cliente
-        // Por ejemplo, si tienes un elemento en el DOM con el ID 'clienteId', puedes obtener su valor así:
-        var clienteIdElement = document.getElementById('clienteId');
-        if (clienteIdElement) {
-        return clienteIdElement.value;
-        } else {
-        return null; // Si no se encuentra el elemento, retorna null o un valor adecuado según tu caso
-        }
-    }
 
     // Función para verificar si el usuario ha iniciado sesión y está activado
-    function isLoggedIn() {
-        var clienteId = obtenerClienteId(); // Obtener el ID del cliente desde donde lo obtengas
-        if (clienteId) {
-        isClienteActivado(clienteId, function(estaActivado) {
-            if (estaActivado) {
-            // El cliente está activado
-            // Aquí puedes realizar las acciones correspondientes
-            console.log('El cliente está activado');
-            } else {
-            // El cliente no está activado
-            // Aquí puedes realizar las acciones correspondientes
-            console.log('El cliente no está activado');
-            }
-        });
-        } else {
-        // No se puede obtener el ID del cliente
-        // Aquí puedes realizar las acciones correspondientes
-        console.log('No se puede obtener el ID del cliente');
-        }
-    }
-    
+  // Función para verificar si el cliente ha iniciado sesión
+  function isLoggedIn() {
+    var formulario = document.getElementById("login");
+    var inputs = formulario.querySelectorAll("input");
+    var campos = {
+      email: false,
+      pass: false
+    };
 
-// Función para mostrar la alerta de agregar a carrito o iniciar sesión
-    function showAddToCartAlert() {
-        if (isLoggedIn()) {
-        Swal.fire({
-            title: 'Añadido al carrito',
-            text: 'El producto ha sido añadido al carrito.',
-            icon: 'success',
-            timer: 1500,
-            timerProgressBar: true,
-            showConfirmButton: false
-        });
-        } else {
-        Swal.fire({
-            title: 'Alerta',
-            text: 'Se requiere iniciar sesión con una cuenta activada para realizar una compra.',
-            icon: 'warning',
-            showCancelButton: true,
-            confirmButtonColor: '#3085d6',
-            cancelButtonColor: '#d33',
-            confirmButtonText: 'Iniciar sesión'
-        }).then((result) => {
-            if (result.isConfirmed) {
-            location.href = "log-in.php"; // Redirigir al usuario a la página de inicio de sesión
-            }
-        });
+    for (var i = 0; i < inputs.length; i++) {
+      var input = inputs[i];
+      var campo = input.name.substring(1);
+      var expresion = exp[campo];
+      validarCampo(expresion, input, campo);
+      campos[campo] = expresion.test(input.value);
+    }
+
+    return campos.email && campos.pass;
+  }
+    
+  // Función para mostrar la alerta de agregar a carrito o iniciar sesión
+  function showAddToCartAlert() {
+    if (isLoggedIn()) {
+      // El cliente está activado
+      Swal.fire({
+        title: 'Añadido al carrito',
+        text: 'El producto ha sido añadido al carrito.',
+        icon: 'success',
+        timer: 1500,
+        timerProgressBar: true,
+        showConfirmButton: false
+      });
+    } else {
+      // El cliente no está activado
+      Swal.fire({
+        title: 'Alerta',
+        text: 'Se requiere iniciar sesión con una cuenta activada para realizar una compra.',
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Iniciar sesión'
+      }).then((result) => {
+        if (result.isConfirmed) {
+          location.href = "log-in.php";
         }
+      });
     }
+  }
   
-    // Función para mostrar la alerta de agregar a favoritos o iniciar sesión
-    function showAddToFavoritesAlert() {
-      if (!isLoggedIn()) {
-        Swal.fire({
-          title: 'Alerta',
-          text: 'Se requiere iniciar sesión con una cuenta activada para añadir a favoritos.',
-          icon: 'warning',
-          showCancelButton: true,
-          confirmButtonColor: '#3085d6',
-          cancelButtonColor: '#d33',
-          confirmButtonText: 'Iniciar sesión'
-        }).then((result) => {
-          if (result.isConfirmed) {
-            location.href = "log-in.php"; // Redirigir al usuario a la página de inicio de sesión
-          }
-        });
-      } else {
-        Swal.fire({
-          title: 'Añadido a favoritos',
-          text: 'El producto ha sido añadido a favoritos.',
-          icon: 'success',
-          timer: 1500,
-          timerProgressBar: true,
-          showConfirmButton: false
-        });
-      }
+  function showAddToFavoritesAlert() {
+    if (!isLoggedIn()) {
+      // El cliente no está activado
+      Swal.fire({
+        title: 'Alerta',
+        text: 'Se requiere iniciar sesión con una cuenta activada para añadir a favoritos.',
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Iniciar sesión'
+      }).then((result) => {
+        if (result.isConfirmed) {
+          location.href = "log-in.php";
+        }
+      });
+    } else {
+      // El cliente está activado
+      Swal.fire({
+        title: 'Añadido a favoritos',
+        text: 'El producto ha sido añadido a favoritos.',
+        icon: 'success',
+        timer: 1500,
+        timerProgressBar: true,
+        showConfirmButton: false
+      });
     }
+  }
   
     // Función para manejar el evento de clic en el botón de carrito
     function handleAgregarAlCarrito(nombre_articulo, precio) {
@@ -202,14 +179,145 @@ document.addEventListener('DOMContentLoaded', function() {
   
       favoritosContainer.appendChild(section);
     }
-  
-    // Restablecer el estado de los botones
-    function resetButtons(buttons, activeButton) {
-      buttons.forEach(function(button) {
-        if (button !== activeButton) {
-          button.classList.remove('active');
-        }
-      });
+
+    const formulario = document.getElementById("login");
+    const inputs = document.querySelectorAll("#login input");
+    const mensaje = document.getElementById("mensaje");
+    
+    const exp = {
+        email: /^[a-zA-Z0-9._+-]+@[a-zA-Z0-9-]+\.[a-zA-Z]{2,}$/,
+        pass: /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*()])[a-zA-Z\d!@#$%^&*()]{8,}$/
     }
-  });
+    
+    const campos = {
+        email: false,
+        pass: false
+    }
+    
+    const validarFormulario = (e) => {
+        switch (e.target.name) {
+            case "iemail":
+                validarCampo(exp.email, e.target,"email");
+            break;
+            case "ipass":
+                validarCampo(exp.pass, e.target,"pass");
+                
+            break;
+        }
+    }
+    
+    
+    const validarCampo = (expresion, input, campo) => {
+        if(expresion.test(input.value)){
+            document.getElementById(`${campo}`).classList.remove('formulario_grupo-incorrecto');
+            document.getElementById(`${campo}`).classList.add('formulario_grupo-correcto');
+        document.querySelector(`#${campo} i`).classList.add('fa-check-circle');
+        document.querySelector(`#${campo} i`).classList.remove('fa-times-circle');
+            campos[campo] = true;
+        } else{
+            document.getElementById(`${campo}`).classList.add('formulario_grupo-incorrecto');
+            document.getElementById(`${campo}`).classList.remove('formulario_grupo-correcto');
+        document.querySelector(`#${campo} i`).classList.add('fa-times-circle');
+        document.querySelector(`#${campo} i`).classList.remove('fa-check-circle');
+            campos[campo] = false;
+        }
+    }
+    
+    inputs.forEach((input) => {
+      input.addEventListener('keyup', validarFormulario);
+      input.addEventListener('blur', validarFormulario);
+    });
+    
+    formulario.addEventListener('submit', (e) => {
+      if(campos.email && campos.pass){
+          document.getElementById('formulario_mensaje-exito').classList.add('formulario_mensaje-exito-activo');
+        setTimeout(() => {
+          document.getElementById('formulario_mensaje-exito').classList.remove('formulario_mensaje-exito-activo');
+        }, 5000);
+    
+        document.querySelectorAll('.formulario_grupo-correcto').forEach((icono) => {
+          icono.classList.remove('formulario_grupo-correcto');
+        });
+          console.log("Llenado");
+    
+      }
+        
+        else{
+            e.preventDefault();
+        //document.getElementById('formulario_mensaje').classList.add('formulario_mensaje-activo');
+            Swal.fire({
+                title: '¡Error!',
+                text: 'Se deben completar todos los campos obligatorios.',
+                icon: 'error',
+                showConfirmButton: 'Aceptar'
+              });
+        console.log("llena campos");
+        }
+        
+    });
+    
+    function go_login() {
+        window.location.href = 'index.php';
+    }
+    
+    
+    if((mensaje.textContent).length > 0 ){
+        switch (mensaje.textContent) {
+            case "¡Te has registrado correctamente!":
+                Swal.fire({
+                    title: 'Exito!',
+                    text: '¡Te has registrado correctamente!',
+                    icon: 'success',
+                    showConfirmButton: 'Aceptar'
+                });
+                break;
+            case "La contraseña es incorrecta":
+                Swal.fire({
+                    title: '¡Error!',
+                    text: 'Contraseña incorrecta',
+                    icon: 'error',
+                    showConfirmButton: 'Aceptar'
+                });
+                break;
+            case "No existe ninguna cuenta asociada a ese correo":
+                Swal.fire({
+                    title: '¡Error!',
+                    text: 'Correo inválido o no registrado',
+                    icon: 'error',
+                    showConfirmButton: 'Aceptar'
+                });
+                break;
+            case "No se ha activado la cuenta":
+                Swal.fire({
+                    title: '¡Error!',
+                  //  text: 'No se ha activado la cuenta',
+                    html: '<p>No se ha activado la cuenta.</p>' +
+                  '<p><a href="../php/enviar_correo.php">¿Confirmar correo electrónico?</a></p>',
+                    icon: 'error',
+                    confirmButtonText: 'Cancelar'
+                });
+                break;
+            case "Hubo un error":
+                Swal.fire({
+                    title: 'Error!',
+                    text: 'No se ha activado la cuenta',
+                    icon: 'error',
+                    showConfirmButton: 'Aceptar'
+                });
+                break;    
+            default:
+                break;
+        }
+        
+    }
+  
+  // Restablecer el estado de los botones
+  function resetButtons(buttons, activeButton) {
+    buttons.forEach(function(button) {
+      if (button !== activeButton) {
+        button.classList.remove('active');
+      }
+    });
+  }
+});
   
