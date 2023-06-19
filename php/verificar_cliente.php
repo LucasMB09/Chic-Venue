@@ -2,7 +2,7 @@
     session_start();
 
     // Conexión a la base de datos
-    $conexion = mysqli_connect("localhost:3307", "root", "", "chicvenue");
+    $conexion = mysqli_connect("localhost", "root", "", "chicvenue");
 
     // Función para obtener el valor de 'activado' del cliente
     function obtenerValorActivadoDelCliente($clienteId) {
