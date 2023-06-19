@@ -135,6 +135,43 @@
     list-style-type: none;
   }
 </style>
+<style>
+  #img{
+    display: none;
+  }
+</style>
+
+<style>
+  #img2{
+    display: none;
+  }
+</style>
+
+<style>
+  #img3{
+    display: none;
+  }
+</style>
+<style>
+  #img4{
+    display: none;
+  }
+</style>
+<style>
+  #img5{
+    display: none;
+  }
+</style>
+<style>
+  #img6{
+    display: none;
+  }
+</style>
+<style>
+  #img7{
+    display: none;
+  }
+</style>
 
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Lobster+Two:ital@1&display=swap');
