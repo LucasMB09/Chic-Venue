@@ -581,7 +581,7 @@
         </div>
         <div class="card-body">
           <div class="section">
-            <h3 class="letra-subtitulo3" onclick="mostrar6();">Preguntas frecuentes sobre compras.</h3> 
+            <h3 class="letra-subtitulo3" onclick="mostrar6();">Preguntas frecuentes sobre compras</h3> 
             <div id="img6">
              
                <p class="letra-texto"> Tu compra va a estar 100% protegida y te devolveremos el dinero si el producto no es lo que esperabas.
@@ -610,7 +610,7 @@
         </div>
         <div class="card-body">
           <div class="section">
-            <h3 class="letra-subtitulo3" onclick="mostrar7();">Contactanos.</h3> 
+            <h3 class="letra-subtitulo3" onclick="mostrar7();">Contactanos</h3> 
             <div id="img7">
               <p class="letra-texto">Llamanos al 55 711 264 00, 55 768 840 06 ó 55 773 767 34
                 <br>
