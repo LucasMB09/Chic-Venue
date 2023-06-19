@@ -1,5 +1,6 @@
 const usuario = document.getElementById("usuario");
 const email = document.getElementById("correo");
+const elim = document.getElementById("elim");
 
 function user() {
     const Toast = Swal.mixin({
@@ -38,4 +39,20 @@ function mandarPHP(codigo)
 {
   parametros = { 'id': codigo };
  
+}
+console.log(elim);
+if((elim.textContent).length > 0 ){
+    switch (elim.textContent) {
+        case "eliminado":
+            Swal.fire({
+                title: 'Hecho!',
+                text: 'Tarjeta eliminada exitosamente',
+                icon: 'info',
+                showConfirmButton: 'Aceptar'
+            });
+            break;
+        default:
+            break;
+    }
+    
 }

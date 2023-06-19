@@ -1,7 +1,3 @@
-const usuario = document.getElementById("usuario");
-const email = document.getElementById("correo");
-const mensaje = document.getElementById("mensaje");
-
 function user() {
     const Toast = Swal.mixin({
         toast: true,
@@ -36,12 +32,12 @@ function user() {
 function eliminarTarjeta(tarjeta, aidi) {
     // Realizar la solicitud AJAX para eliminar la tarjeta
     const url = `/php/eliminar_tarjeta.php?num_cliente=${aidi}&tarjeta=${tarjeta}`;
-  
+    
     fetch(url)
       .then(response => response.text())
       .then(result => {
-        console.log(result); // Mostrar el resultado en la consola
-        // Aquí puedes realizar cualquier otra acción que desees luego de eliminar la tarjeta
+        location.href = "perfil_usuario.php?eliminado=eliminado";
+
       })
       .catch(error => console.error(error));
   }

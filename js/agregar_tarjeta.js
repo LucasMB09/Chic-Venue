@@ -1,5 +1,3 @@
-const usuario = document.getElementById("usuario");
-const email = document.getElementById("correo");
 const mensaje = document.getElementById("mensaje");
 
 function user() {

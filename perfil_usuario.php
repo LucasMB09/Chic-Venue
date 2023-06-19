@@ -101,6 +101,7 @@
 
      //   $consulta = "INSERT INTO cliente(nombre,apellido,correo_electronico,contraseña,activado) VALUES ('$nombre','$apellido','$email','$contrasena','$activado')";
     
+    
 }
 
 ?>
@@ -204,7 +205,7 @@
       <?php
         if($_SESSION['email'] != "No" && $_SESSION['user'] != "No"){
           ?>
-          <h3 class="text_user" style="display:none;">Hola, <?php echo "$user";?></h1>
+          <h3 class="text_user" style="display:none;">Hola, <?php echo $user;?></h3>
           <?php
           if($valor == 0 ){
             if($_GET['valor'] == 0){
@@ -217,7 +218,8 @@
             }
           }
         }
-      ?>
+        ?>
+        <h3 class="text_user" style="display:none;" id="elim"><?php echo $_GET['eliminado']; unset($_GET['eliminado'])?></h3>
     </div>
     </nav>
     <!--FIN LINEA NEGRA -->
@@ -587,7 +589,7 @@
                                 </div>
                                 <div class="col-1">
                                     <!--<button class="btn btn-danger btn-lg">Eliminar</button><br><br>-->
-                                    <button class="btn btn-danger btn-lg" onclick="eliminarTarjeta('<?php echo $tarjeta; ?>', '<?php echo $aidi; ?>')">Eliminar</button>
+                                    <button class="btn btn-danger btn-lg" onclick="eliminarTarjeta('<?php echo $tar[$i][0]; ?>', '<?php echo $aidi; ?>')">Eliminar</button>
                                 </div>
                             </div>
                             <hr>
@@ -775,6 +777,7 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
 <script src="/js/agregar_tarjeta.js"></script>
 <script src="/js/perfil_user.js"></script>
+<script src="/js/eliminarTarjeta.js"></script>
 <!-- Agrega este código JavaScript al final del archivo -->
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
