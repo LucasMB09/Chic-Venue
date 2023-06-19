@@ -56,6 +56,7 @@
   if($resul){
     $ids=mysqli_fetch_array($resul);
     $aidi= $ids[0];
+    $_SESSION['id'] = $aidi;
   }
 
 
@@ -219,7 +220,7 @@
           }
         }
         ?>
-        <h3 class="text_user" style="display:none;" id="elim"><?php echo $_GET['eliminado']; unset($_GET['eliminado'])?></h3>
+        <h3 class="text_user" style="display:none;" id="elim"><?php echo $_SESSION['eliminado']; unset($_SESSION['eliminado'])?></h3>
     </div>
     </nav>
     <!--FIN LINEA NEGRA -->
@@ -677,16 +678,16 @@
       <div class="modal-body">
         
 
-          <form id="modificar" action="../perfil_usuario.php" method="post" enctype="multipart/form-data">
+          <form id="modificar" action="/php/editarDatUsuario.php" method="post" enctype="multipart/form-data">
         <h4 class="letra-subtitulo">Por favor, agregue sus nuevos datos</h4>
         <div class="form-floating formulario_grupo formulario_grupo-input">
           <fieldset>
-            <input class="form-control" placeholder=<?php echo $user;?> type="text" name="nombre" required>
+            <input class="form-control" placeholder= "<?php echo $user;?>" type="text" name="nombre" required>
           </fieldset>
         </div>
         <div class="form-floating formulario_grupo formulario_grupo-input">
           <fieldset>
-            <input class="form-control" placeholder=<?php echo $apellido;?> type="text" name="apellido" required>
+            <input class="form-control" placeholder= "<?php echo $apellido;?>" type="text" name="apellido" required>
           </fieldset>
         </div>
         <div class="modal-footer">

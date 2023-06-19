@@ -1,4 +1,5 @@
 <?php
+session_start();
 function eliminar_tarjeta($num_cliente, $tarjeta) {
     // Establecer los detalles de conexión a la base de datos
     $host = 'localhost';
@@ -30,8 +31,9 @@ function eliminar_tarjeta($num_cliente, $tarjeta) {
     } else {
         echo "Error al eliminar la tarjeta: " . mysqli_error($conexion);
     }
-
+    
     // Cerrar la conexión a la base de datos
+    $_SESSION['eliminado'] = "eliminado";
     mysqli_close($conexion);
 }
 

@@ -51,6 +51,14 @@ if((elim.textContent).length > 0 ){
                 showConfirmButton: 'Aceptar'
             });
             break;
+        case "Cambio":
+            Swal.fire({
+                title: 'Hecho!',
+                text: 'Cambio de datos exitosamente',
+                icon: 'info',
+                showConfirmButton: 'Aceptar'
+            });
+            break;        
         default:
             break;
     }

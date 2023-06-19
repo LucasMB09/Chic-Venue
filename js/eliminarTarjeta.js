@@ -36,7 +36,7 @@ function eliminarTarjeta(tarjeta, aidi) {
     fetch(url)
       .then(response => response.text())
       .then(result => {
-        location.href = "perfil_usuario.php?eliminado=eliminado";
+        location.href = "perfil_usuario.php";
 
       })
       .catch(error => console.error(error));
