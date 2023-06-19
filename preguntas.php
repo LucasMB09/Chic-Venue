@@ -428,8 +428,9 @@
           </div>
         </nav>
     </div>
+    <div class="container py-3">
   <header>
-    <h1>Preguntas</h1>            
+             
   </header>
   <div class="preguntas-header">
     <p class="fs-5 text-body-secondary">Ulises Gomez. ¿Con que podemos ayudarte?</p>
@@ -445,7 +446,7 @@
           <div class="card-body">
               <div class="section">
   
-                <h3 class="letra-subtitulo" onclick="mostrar();">Administrar y Cancelar Compras</h3> 
+                <h3 class="letra-subtitulo3" onclick="mostrar();">Administrar y Cancelar Compras</h3> 
                 <div id="img">
                  
                    <p class="letra-texto">
@@ -475,7 +476,7 @@
                 </div>
 
               <div class="section">
-                <h3 class="letra-subtitulo" onclick="mostrar2();">Devoluciones y Reembolsos </h3> 
+                <h3 class="letra-subtitulo3" onclick="mostrar2();">Devoluciones y Reembolsos </h3> 
                 <div id="img2">
                  
                    <p class="letra-texto">Puedes devolver tus productos y recuperar tu dinero para comprar otra cosa. 
@@ -494,7 +495,7 @@
               </div>
               
               <div class="section">
-                <h3 class="letra-subtitulo" onclick="mostrar3();">Facturación</nav></h3> 
+                <h3 class="letra-subtitulo3" onclick="mostrar3();">Facturación</nav></h3> 
                 <div id="img3">
                 
                    <p class="letra-texto">Estimado cliente, le informamos que conforme a las disposiciones fiscales para 
@@ -529,7 +530,7 @@
     <div class="card-body">
 
       <div class="section">
-        <h3 class="letra-subtitulo" onclick="mostrar4();">Configuracion sobre mi cuenta</h3> 
+        <h3 class="letra-subtitulo3" onclick="mostrar4();">Configuracion sobre mi cuenta</h3> 
         <div id="img4">
           <p class="letra-texto">Cuando te registras estás creando una única cuenta para Chic Venue. 
             Puedes eliminar tu cuenta cuando lo desees, desde Tu perfil de la pagina de Chic Venue. 
@@ -549,7 +550,7 @@
       </div>
      
       <div class="section">
-        <h3 class="letra-subtitulo" onclick="mostrar5();">Seguridad</h3> 
+        <h3 class="letra-subtitulo3" onclick="mostrar5();">Seguridad</h3> 
         <div id="img5">
          
            <p class="letra-texto">Si sospechas que alguien esta usando tu cuenta sin permiso, reporta el robo de tu cuenta
@@ -580,7 +581,7 @@
         </div>
         <div class="card-body">
           <div class="section">
-            <h3 class="letra-subtitulo" onclick="mostrar6();">Preguntas frecuentes sobre compras.</h3> 
+            <h3 class="letra-subtitulo3" onclick="mostrar6();">Preguntas frecuentes sobre compras.</h3> 
             <div id="img6">
              
                <p class="letra-texto"> Tu compra va a estar 100% protegida y te devolveremos el dinero si el producto no es lo que esperabas.
@@ -609,7 +610,7 @@
         </div>
         <div class="card-body">
           <div class="section">
-            <h3 class="letra-subtitulo" onclick="mostrar7();">Contactanos.</h3> 
+            <h3 class="letra-subtitulo3" onclick="mostrar7();">Contactanos.</h3> 
             <div id="img7">
               <p class="letra-texto">Llamanos al 55 711 264 00, 55 768 840 06 ó 55 773 767 34
                 <br>
