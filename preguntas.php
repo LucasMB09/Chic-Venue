@@ -445,10 +445,10 @@
           <div class="card-body">
               <div class="section">
   
-                <h3 class="section-title" onclick="mostrar();">Administrar y Cancelar Compras</h3> 
+                <h3 class="letra-subtitulo" onclick="mostrar();">Administrar y Cancelar Compras</h3> 
                 <div id="img">
                  
-                   <p>
+                   <p class="letra-texto">
                     Si ya tienes un reclamo abierto, puedes acordar el servicio a cliente la posibilidad de reemplazar el producto. Si no llegas a un acuerdo, 
                     podrás devolverlo y recuperar tu dinero para comprar lo que quieras, cuando quieras.
                     Para realizar una cancelación, busca la opción “Cancelar compra”.
@@ -475,10 +475,10 @@
                 </div>
 
               <div class="section">
-                <h3 class="section-title" onclick="mostrar2();">Devoluciones y Reembolsos </h3> 
+                <h3 class="letra-subtitulo" onclick="mostrar2();">Devoluciones y Reembolsos </h3> 
                 <div id="img2">
                  
-                   <p>Puedes devolver tus productos y recuperar tu dinero para comprar otra cosa. 
+                   <p class="letra-texto">Puedes devolver tus productos y recuperar tu dinero para comprar otra cosa. 
                     Para devolverlo debes ingresar al estado de la compra y seleccionar “Devolver gratis” o  “Quiero devolver el producto” desde “Ayuda con la compra”.
                     </p>
                     <h1 class="letra-texto"  onclick="ocultar2();"><u>Ocultar</u></h1>
@@ -494,10 +494,10 @@
               </div>
               
               <div class="section">
-                <h3 class="section-title" onclick="mostrar3();">Facturación</nav></h3> 
+                <h3 class="letra-subtitulo" onclick="mostrar3();">Facturación</nav></h3> 
                 <div id="img3">
                 
-                   <p>Estimado cliente, le informamos que conforme a las disposiciones fiscales para 
+                   <p class="letra-texto">Estimado cliente, le informamos que conforme a las disposiciones fiscales para 
                     la emisión de facturas en la nueva versión CFDI 4.0, es necesario que los datos ingresados en los campos RFC
                     , Razón Social, Código Postal y Régimen Fiscal coincidan con la Constancia de Situación Fiscal del SAT,
                      en caso de existir alguna discrepancia, nuestra plataforma de facturación en línea no le permitirá completar el proceso,
@@ -529,9 +529,9 @@
     <div class="card-body">
 
       <div class="section">
-        <h3 class="section-title" onclick="mostrar4();">Configuracion sobre mi cuenta</h3> 
+        <h3 class="letra-subtitulo" onclick="mostrar4();">Configuracion sobre mi cuenta</h3> 
         <div id="img4">
-          <p>Cuando te registras estás creando una única cuenta para Chic Venue. 
+          <p class="letra-texto">Cuando te registras estás creando una única cuenta para Chic Venue. 
             Puedes eliminar tu cuenta cuando lo desees, desde Tu perfil de la pagina de Chic Venue. 
             Sin embargo, ten en cuenta que al hacerlo ya no podrás operar en nuestro sitio oficial y perderás tu nombre de usuario, 
             entre otras cosas.</p>
@@ -549,10 +549,10 @@
       </div>
      
       <div class="section">
-        <h3 class="section-title" onclick="mostrar5();">Seguridad</h3> 
+        <h3 class="letra-subtitulo" onclick="mostrar5();">Seguridad</h3> 
         <div id="img5">
          
-           <p>Si sospechas que alguien esta usando tu cuenta sin permiso, reporta el robo de tu cuenta
+           <p class="letra-texto">Si sospechas que alguien esta usando tu cuenta sin permiso, reporta el robo de tu cuenta
             para que podamos tomar medidas de seguridad de inmediato y analizar lo que paso.
            </p>
            <h1 class="letra-texto"  onclick="ocultar5();"><u>Ocultar </u></h1>
@@ -580,10 +580,10 @@
         </div>
         <div class="card-body">
           <div class="section">
-            <h3 class="section-title" onclick="mostrar6();">Preguntas frecuentes sobre compras.</h3> 
+            <h3 class="letra-subtitulo" onclick="mostrar6();">Preguntas frecuentes sobre compras.</h3> 
             <div id="img6">
              
-               <p> Tu compra va a estar 100% protegida y te devolveremos el dinero si el producto no es lo que esperabas.
+               <p class="letra-texto"> Tu compra va a estar 100% protegida y te devolveremos el dinero si el producto no es lo que esperabas.
                  Así mismo protegemos tu dinero hasta que nos confirmes que ya te entregaron tu producto adquirido.</p>
                <h1 class="letra-texto"  onclick="ocultar6();"><u>Ocultar </u></h1>
             </div>
@@ -609,9 +609,9 @@
         </div>
         <div class="card-body">
           <div class="section">
-            <h3 class="section-title" onclick="mostrar7();">Contactanos.</h3> 
+            <h3 class="letra-subtitulo" onclick="mostrar7();">Contactanos.</h3> 
             <div id="img7">
-              <p>Llamanos al 55 711 264 00, 55 768 840 06 ó 55 773 767 34
+              <p class="letra-texto">Llamanos al 55 711 264 00, 55 768 840 06 ó 55 773 767 34
                 <br>
                  En nuestras redes sociales:
                  <br>

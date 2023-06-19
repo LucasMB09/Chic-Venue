@@ -94,6 +94,38 @@ body {
   font-size: 2rem;
 }
 
+.letra-titulo{
+  font-family:"Candara";
+  font-size: 2rem;
+}
+
+.letra-subtitulo{
+  font-family:"Candara";
+  font-size: 1.5rem;
+}
+
+.letra-subtitulo:hover {
+  background-color: #e7c4eb;
+}
+
+.letra-texto{
+  font-family:"Candara";
+  font-size: 1.2em;
+  
+}
+
+.letra-subtitulo-uno{
+  font-family:"Candara";
+  font-size: 1.2em;
+  display: none;
+  padding: 5px;
+  
+}
+
+.letra-subtitulo1:hover{
+  background-color: #e7c4eb;
+}
+
 select{
   width: 100%;
   background: #FFF;
@@ -130,4 +162,30 @@ select{
   position: absolute;
   top: 10px;
   right: 10px;
+}
+
+.dropdown {
+  display: inline-block;
+  position: relative;
+}
+.dropdown-content {
+  display:ruby;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  overflow:initial;
+  box-shadow: 0px 0px 10px 5px;
+}
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+.dropdown-content a {
+  display: block;
+  color: #000000;
+  padding: 5px;
+  text-decoration: none;
+}
+.dropdown-content a:hover {
+  color: #FFFFFF;
+  background-color: #00A4BD;
 }
