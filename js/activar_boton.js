@@ -32,10 +32,10 @@ function habilitar(){
         val++;
     }
     if(val == 0){
-        document.getElementById("btm-crear").disabled = false;
+        document.getElementById("btn-crear-product").disabled = false;
     }
     else{
-        document.getElementById("btm-crear").disabled = true;
+        document.getElementById("btn-crear-product").disabled = true;
     }
 }
 
@@ -57,10 +57,10 @@ document.getElementById("categoria").addEventListener("change",habilitar);
         val++;
     }
     if(val == 0){
-        document.getElementById("btm-crear").disabled = false;
+        document.getElementById("btn-crear-product").disabled = false;
     }
     else{
-        document.getElementById("btm-crear").disabled = true;
+        document.getElementById("btn-crear-product").disabled = true;
     }
 }
 

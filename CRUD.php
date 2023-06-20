@@ -42,7 +42,7 @@
         <div class="col">
         <br>
           <!-- Crear producto -->
-        <div class="tab-content">
+        <div class="tab-content products-create">
           <div class="tab-pane fade show active" id="products">
             <h2>Crear producto</h2>
             <form id="create-product-form" action="/php/insertar_producto.php" method="post">
@@ -50,8 +50,12 @@
               <input type="text" placeholder="Descripción" name="descripcion" id="descripcion">
               <input type="text" placeholder="Precio" name="precio" id="precio">
               <input type="text" placeholder="Imagen" name="imagen" id="imagen">
+              <!--AÑADIDO-->
+              <input type="text" placeholder="Color" name="color" id="color">
+              <input type="text" placeholder="Talla" name="talla" id="talla">
+              <input type="text" placeholder="Stock" name="stock" id="stock">
               <select name="categoria" id="categoria">
-                  <option value="">Categoria</option>
+                  <option value="" selected="selected">Categoria</option>
                   <option value="Blusa bordado simple">Blusa bordado simple</option>
                   <option value="Blusa doble bordado">Blusa doble bordado</option>
                   <option value="Blusa triple bordados">Blusa triple bordado</option>
@@ -59,11 +63,28 @@
                   <option value="Vestido corto">Vestido corto</option>
                   <option value="Juego">Juego</option>
               </select>
-              <button type="submit" class="btn btn-secondary" id="btm-crear" disabled>Crear</button>
+              <button type="submit" class="btn btn-secondary" id="btn-crear-product" disabled>Crear</button>
               
             </form>
           </div>
-          <br>
+        </div>
+
+          <!-- Crear promo --> 
+          <div class="tab-content promotions-create">
+          <div class="tab-pane fade show active" id="promotions">
+            <h2>Crear promoción</h2>
+            <form id="create-promotion-form" action="/php/insertar_promocion.php" method="post">
+            <input type="text" placeholder="Nombre de la promoción" name="nombre_promocion" id="nombre_promocion">
+            <input type="text" placeholder="Descripción" name="descripcion" id="descripcion">
+            <input type="text" placeholder="Descuento" name="descuento" id="descuento">
+            <input type="text" placeholder="Fecha de inicio" name="fecha_inicio" id="fecha_final">
+            <input type="text" placeholder="Fecha de fin" name="fecha_final" id="fecha_final">
+            <button type="submit" class="btn btn-secondary" id="btn-crear-promotion">Crear</button>
+              
+            </form>
+          </div>
+          </div>
+           
             <h2>Registros existentes</h2>
             <div class="input-group mb-3">
               <form action="buscar.php" method="post">
@@ -81,6 +102,9 @@
                         <th class="product-columns">Descripción</th>
                         <th class="product-columns">Precio</th>
                         <th class="product-columns">Categoría</th>
+                        <th class="product-columns">Color</th>
+                        <th class="product-columns">Talla</th>
+                        <th class="product-columns">Stock</th>
                         <th class="product-columns">Imagen</th>
                         <!-- Columna de promociones-->
                         <th class="promotion-columns">ID</th>
@@ -96,7 +120,7 @@
                     <!-- Filas de productos o promociones se agregarán dinámicamente aquí -->
                     <?php
                       $cnx = mysqli_connect("localhost","root","","chicvenue");
-                      $query_productos = "SELECT id_articulo, nombre_articulo, descripcion, precio, categoria, imagen FROM articulo ORDER BY id_articulo asc";
+                      $query_productos = "SELECT id_articulo, nombre_articulo, descripcion, precio, categoria, color, talla, stock, imagen FROM articulo ORDER BY id_articulo asc";
                       $result1 = mysqli_query($cnx,$query_productos);
 
                       $query_promociones = "SELECT id_promocion, nombre_promocion, descripcion, descuento, fecha_inicio, fecha_final FROM promocion ORDER BY id_promocion asc";
@@ -115,15 +139,21 @@
                                 <td class="product-columns"> <?php echo $row["descripcion"] ?> </td>
                                 <td class="product-columns"> <?php echo $row["precio"] ?> </td>
                                 <td class="product-columns"> <?php echo $row["categoria"] ?> </td>
+                                <td class="product-columns"> <?php echo $row["color"] ?> </td>
+                                <td class="product-columns"> <?php echo $row["talla"] ?> </td>
+                                <td class="product-columns"> <?php echo $row["stock"] ?> </td>
                                 <td class="product-columns"> <img src = <?php echo $row["imagen"] ?> height="200" width="175"> </td>
                                 <td class="product-columns">
-                                  <a href="editar_CRUD.php?
+                                  <a href="editarProducto_CRUD.php?
                                   id_articulo=<?php echo $row["id_articulo"] ?> &
                                   nombre_articulo=<?php echo $row["nombre_articulo"] ?> &
                                   descripcion=<?php echo $row["descripcion"] ?> &
                                   precio=<?php echo $row["precio"] ?> &
                                   categoria=<?php echo $row["categoria"] ?> &
-                                  imagen=<?php echo $row["imagen"] ?> ">
+                                  color=<?php echo $row["color"] ?> &
+                                  talla=<?php echo $row["talla"] ?> &
+                                  stock=<?php echo $row["stock"] ?> &
+                                  imagen=<?php echo $row["imagen"] ?>">
                                       <button class="btn btn-primary product-columns" id="btn-abrir-modal">Editar</button>
                                   </a>
                                 </td>
@@ -150,12 +180,22 @@
                                   <td class="promotion-columns"> <?php echo $row["fecha_inicio"] ?> </td>
                                   <td class="promotion-columns"> <?php echo $row["fecha_final"] ?> </td>
                                   <td class="promotion-columns">
-                                        <button class="btn btn-primary promotion-columns">Editar</button>
-                                </td>
-                                  <td class="promotion-columns"> 
-                                       <button class="btn btn-danger promotion-columns">Eliminar</button> <!-- Botón de eliminación -->
-                                </td>
-                              </tr>
+                                  <a href="editarPromocion_CRUD.php?
+                                  id_promocion=<?php echo $row["id_promocion"] ?> &
+                                  nombre_promocion=<?php echo $row["nombre_promocion"] ?> &
+                                  descripcion=<?php echo $row["descripcion"] ?> &
+                                  descuento=<?php echo $row["descuento"] ?> &
+                                  fecha_inicio=<?php echo $row["fecha_inicio"] ?> &
+                                  fecha_final=<?php echo $row["fecha_final"] ?>">
+                                      <button class="btn btn-primary promotion-columns" id="btn-abrir-modal">Editar</button>
+                                  </a>
+                                  </td>
+                                  <td class="promotion-columns">
+                                  <?php
+                                    echo "<a href='/php/eliminar_promocion.php?id_promocion=".$row['id_promocion']."'><button class='btn btn-danger promotion-columns' onclick='return confirmacionEliminar()'>Eliminar</button></a>"
+                                  ?>
+                                  </td>
+                                </tr>
                           <?php } ?>
                       <?php } ?>
                 </tbody>
@@ -164,19 +204,6 @@
 <!-- Registros existentes -->
 
 
-<!-- Crear promo --> 
-          <div class="tabpane fade" id="promotions">
-            <h2>Crear promoción</h2>
-            <form id="create-promotion-form">
-            <input type="text" placeholder="Nombre de la promoción">
-            <input type="text" placeholder="Descripción">
-            <input type="text" placeholder="Descuento">
-            <input type="text" placeholder="Fecha de inicio">
-            <input type="text" placeholder="Fecha de fin">
-            <input type="submit" value="Crear">
-            </form>
-<!-- Crear promo -->         
-           </div>
 </div>
 </div>
 
