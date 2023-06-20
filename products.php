@@ -2,10 +2,30 @@
 
   session_start();
 
-  if(isset($_GET['valor'])){
-    $valor = $_GET['valor'];
+  if (isset($_GET['checkSession']) && $_GET['checkSession'] === 'true') {
+    // Verificar el estado de inicio de sesión y activación del usuario
+    $response = array(
+      'loggedIn' => false,
+      'activated' => false
+    );
+  
+    // Lógica para verificar el inicio de sesión y la activación del usuario
+    // Reemplaza las siguientes líneas con tu propia lógica de verificación
+    // Ejemplo: Comprueba si el usuario ha iniciado sesión y está activado
+    // Si es verdadero, actualiza los valores de loggedIn y activated en $response
+    if (isset($_SESSION['user']) && isset($_SESSION['email'])) {
+      $response['loggedIn'] = true;
+      $response['activated'] = true;
+    }
+  
+    header('Content-Type: application/json');
+    echo json_encode($response);
+    exit();
   }
-  elseif(isset($_SESSION['valor'])){
+
+  if (isset($_POST['valor'])) {
+    $valor = $_POST['valor'];
+  } elseif (isset($_SESSION['valor'])) {
     $valor = $_SESSION['valor'];
   }
 

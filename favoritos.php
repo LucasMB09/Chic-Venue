@@ -1,38 +1,36 @@
 <?php
-  session_start();
 
-  if(isset($_GET['valor'])){
-    $valor = $_GET['valor'];
-  }
-  else{
-    $valor = $_SESSION['valor'];
-  }
+session_start();
 
-  if(isset($_COOKIE['usuario'])){
-    $_SESSION['user'] = $_COOKIE['usuario'];
-    $_SESSION['email'] = $_COOKIE['email'];
-    $user = $_SESSION['user'];
-    $email = $_SESSION['email'];
-  }
-  elseif(isset($_SESSION['email'])){
-    $user = $_SESSION['user'];
-    $email = $_SESSION['email'];
-  }
-  elseif($valor == 0){
-    $user = "No";
-    $email = "No";  
-  }
-  elseif($valor == 1){
-    $user = ":v";
-    $email = ":v";
-  }
-  else{
-    $valor = 1;
-    $_SESSION['valor'] = $valor;
-  }
-  
-  // Obtén los datos del producto añadido a favoritos
- 
+if (isset($_GET['valor'])) {
+  $valor = $_GET['valor'];
+} else {
+  $valor = $_SESSION['valor'];
+}
+
+if (isset($_COOKIE['usuario'])) {
+  $_SESSION['user'] = $_COOKIE['usuario'];
+  $_SESSION['email'] = $_COOKIE['email'];
+  $user = $_SESSION['user'];
+  $email = $_SESSION['email'];
+} elseif (isset($_SESSION['email'])) {
+  $user = $_SESSION['user'];
+  $email = $_SESSION['email'];
+} elseif ($valor == 0) {
+  $user = "No";
+  $email = "No";
+} elseif ($valor == 1) {
+  $user = ":v";
+  $email = ":v";
+} else {
+  $valor = 1;
+  $_SESSION['valor'] = $valor;
+}
+
+$nombre_articulo = isset($_POST['nombre_articulo']) ? $_POST['nombre_articulo'] : '';
+$precio = isset($_POST['precio']) ? $_POST['precio'] : '';
+$imagen = isset($_POST['imagen']) ? $_POST['imagen'] : '';
+  // Genera la estructura HTML con los datos recibidos
 ?>
 
 <!DOCTYPE html>
@@ -237,27 +235,33 @@
         </nav>
     
         <header>
-            <h1 class="titulo">Guardados</h1>
-        </header>
-    </div>
- 
-    <section class="contenedor">
-    <div class="caja-principal">
-        <div class="imagen">
-            <img src="../FAVORITOS/img/Hoodie.jpg" alt="">
-        </div>
-        <div class="texto">
-            <p class="descripcion" id><?= $nombre_articulo ?></p>
-        </div>
-        <div class="carrito">
-            <a class="boton1" href="#">Añadir al carrito</a>
-        </div>
-        <div class="delete">
-            <p><?= $precio ?></p>
-            <a class="boton2" href="#">Eliminar</a>
-        </div>
+  <h1 class="titulo">Guardados</h1>
+</header>
+</div>
+<?php 
+$element = "
+  <section class=\"contenedor\">
+    <div class=\"caja-principal\">
+      <div class=\"imagen\">
+        <img src=\"$imagen\" alt=\"\">
+      </div>
+      <div class=\"texto\">
+        <p class=\"descripcion\">$nombre_articulo</p>
+      </div>
+      <div class=\"carrito\">
+        <a class=\"boton1\" href=\"#\">Añadir al carrito</a>
+      </div>
+      <div class=\"delete\">
+        <p>$precio</p>
+        <a class=\"boton2\" href=\"#\">Eliminar</a>
+      </div>
     </div>
   </section>
+  ";
+
+echo $element;
+?>
+
   <script src="/js/favoritos.js"></script>
   <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
