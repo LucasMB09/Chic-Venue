@@ -1,5 +1,5 @@
 <?php
-
+session_start();
 $conexion = mysqli_connect("localhost", "root", "", "chicvenue");
 
 // Verificar la conexión a la base de datos

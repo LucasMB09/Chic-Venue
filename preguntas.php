@@ -53,6 +53,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
     <script src="/sweetalert/dist/sweetalert2.all.min.js"></script>
+    <link rel="stylesheet" href="/css/preguntas.css">
 
     <link href="/css/bootstrap-5.1.3-dist/bootstrap.min.css" rel="stylesheet">
 
@@ -132,6 +133,43 @@
 <style>
   ul {
     list-style-type: none;
+  }
+</style>
+<style>
+  #img{
+    display: none;
+  }
+</style>
+
+<style>
+  #img2{
+    display: none;
+  }
+</style>
+
+<style>
+  #img3{
+    display: none;
+  }
+</style>
+<style>
+  #img4{
+    display: none;
+  }
+</style>
+<style>
+  #img5{
+    display: none;
+  }
+</style>
+<style>
+  #img6{
+    display: none;
+  }
+</style>
+<style>
+  #img7{
+    display: none;
   }
 </style>
 
@@ -236,7 +274,7 @@
   
       <nav class="navbar navbar-expand-lg bg-body-tertiary">
           <div class="container-fluid">
-            <a class="navbar-brand" href="#">
+            <a class="navbar-brand" href="index.php">
               <img src="/assets/logo.jpg" class="rounded mx-auto d-block"  alt="" width="82" height="70">
             </a>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
@@ -390,8 +428,9 @@
           </div>
         </nav>
     </div>
+    <div class="container py-3">
   <header>
-    <h1>Preguntas</h1>            
+             
   </header>
   <div class="preguntas-header">
     <p class="fs-5 text-body-secondary">Ulises Gomez. ¿Con que podemos ayudarte?</p>
@@ -402,29 +441,81 @@
       <div class="col">
         <div class="card mb-4 rounded-3 shadow-sm" style= "width: 97%; height: 50%;" >
           <div class="card-header py-3">
-            <h4 class="my-0 fw-normal ">Compras</h4>
+          <h4 class="letra-subtitulo "><b>Compras</b></h4>
           </div>
           <div class="card-body">
               <div class="section">
-                <h3 class="section-title">Administrar y Cancelar Compras</h3>
-                <div class="section-content">
-                  Pagar,modificar,reclamar o cancelar compras.
+  
+                <h3 class="letra-subtitulo3" onclick="mostrar();">Administrar y Cancelar Compras</h3> 
+                <div id="img">
+                 
+                   <p class="letra-texto">
+                    Si ya tienes un reclamo abierto, puedes acordar el servicio a cliente la posibilidad de reemplazar el producto. Si no llegas a un acuerdo, 
+                    podrás devolverlo y recuperar tu dinero para comprar lo que quieras, cuando quieras.
+                    Para realizar una cancelación, busca la opción “Cancelar compra”.
+                    En el menú de la compra que ya no quieres recibir, elige la opción "Cancelar compra"  y sigue los pasos que te detallaremos.
+                    No importa el motivo por el que canceles, recibirás el reembolso total de tu dinero. 
+                    <br>
+                    Si no tienes disponible la opción “Cancelar compra”, debes elegir:
+                    Necesito ayuda
+                    Tengo un problema con el producto
+                    Quiero cancelar la compra
+                    
+                     </p>
+                     <h1 class="letra-texto"  onclick="ocultar();"><u>Ocultar</u></h1>
                 </div>
-              </div>
-           
+                <script>
+                 function mostrar(){
+                   document.getElementById('img').style.display='block';
+                 }
+                 function ocultar(){
+                   document.getElementById('img').style.display='none';
+                 }
+                </script>
+                
+                </div>
+
               <div class="section">
-                <h3 class="section-title">Devoluciones y Reembolsos </h3>
-                <div class="section-content">
-                  Contenido de la sección 2
+                <h3 class="letra-subtitulo3" onclick="mostrar2();">Devoluciones y Reembolsos </h3> 
+                <div id="img2">
+                 
+                   <p class="letra-texto">Puedes devolver tus productos y recuperar tu dinero para comprar otra cosa. 
+                    Para devolverlo debes ingresar al estado de la compra y seleccionar “Devolver gratis” o  “Quiero devolver el producto” desde “Ayuda con la compra”.
+                    </p>
+                    <h1 class="letra-texto"  onclick="ocultar2();"><u>Ocultar</u></h1>
                 </div>
+                <script>
+                 function mostrar2(){
+                   document.getElementById('img2').style.display='block';
+                 }
+                 function ocultar2(){
+                   document.getElementById('img2').style.display='none';
+                 }
+                </script>
               </div>
               
               <div class="section">
-                <h3 class="section-title">Preguntas frecuentes sobre compras</h3>
-                <div class="section-content">
-                  Contenido de la sección 3
+                <h3 class="letra-subtitulo3" onclick="mostrar3();">Facturación</nav></h3> 
+                <div id="img3">
+                
+                   <p class="letra-texto">Estimado cliente, le informamos que conforme a las disposiciones fiscales para 
+                    la emisión de facturas en la nueva versión CFDI 4.0, es necesario que los datos ingresados en los campos RFC
+                    , Razón Social, Código Postal y Régimen Fiscal coincidan con la Constancia de Situación Fiscal del SAT,
+                     en caso de existir alguna discrepancia, nuestra plataforma de facturación en línea no le permitirá completar el proceso,
+                    le recomendamos tener la información disponible al momento de realizar el trámite. A partir del 01/julio/2023 no se podrán
+                     cancelar o corregir facturas emitidas en años anteriores. Walmart agradece su compresión.</p>
+                   <h1 class="letra-texto"  onclick="ocultar3();"><u>Ocultar</u></h1>
                 </div>
-          </div>
+                <script>
+                 function mostrar3(){
+                   document.getElementById('img3').style.display='block';
+                 }
+                 function ocultar3(){
+                   document.getElementById('img3').style.display='none';
+                 }
+                </script>
+              </div>
+
         </div>
       </div>
       
@@ -434,22 +525,48 @@
 <div class="col">
   <div class="card mb-4 rounded-3 shadow-sm" style= "width: 97%; height: 50%;" >
     <div class="card-header py-3">
-      <h4 class="my-0 fw-normal ">Ayuda sobre tu cuenta</h4>
+      <h4 class="letra-subtitulo "><b>Ayuda sobre tu cuenta</b></h4>
     </div>
     <div class="card-body">
-        <div class="section">
-          <h3 class="section-title">Configuración sobre mi cuenta</h3>
-          <div class="section-content">
-            Contenido de la sección 1
-          </div>
+
+      <div class="section">
+        <h3 class="letra-subtitulo3" onclick="mostrar4();">Configuracion sobre mi cuenta</h3> 
+        <div id="img4">
+          <p class="letra-texto">Cuando te registras estás creando una única cuenta para Chic Venue. 
+            Puedes eliminar tu cuenta cuando lo desees, desde Tu perfil de la pagina de Chic Venue. 
+            Sin embargo, ten en cuenta que al hacerlo ya no podrás operar en nuestro sitio oficial y perderás tu nombre de usuario, 
+            entre otras cosas.</p>
+         <h1 class="letra-texto"  onclick="ocultar4();"><u>Ocultar</u></h1>
+           
         </div>
+        <script>
+         function mostrar4(){
+           document.getElementById('img4').style.display='block';
+         }
+         function ocultar4(){
+           document.getElementById('img4').style.display='none';
+         }
+        </script>
+      </div>
      
-        <div class="section">
-          <h3 class="section-title">Seguridad</h3>
-          <div class="section-content">
-            Contenido de la sección 2
-          </div>
+      <div class="section">
+        <h3 class="letra-subtitulo3" onclick="mostrar5();">Seguridad</h3> 
+        <div id="img5">
+         
+           <p class="letra-texto">Si sospechas que alguien esta usando tu cuenta sin permiso, reporta el robo de tu cuenta
+            para que podamos tomar medidas de seguridad de inmediato y analizar lo que paso.
+           </p>
+           <h1 class="letra-texto"  onclick="ocultar5();"><u>Ocultar </u></h1>
         </div>
+        <script>
+         function mostrar5(){
+           document.getElementById('img5').style.display='block';
+         }
+         function ocultar5(){
+           document.getElementById('img5').style.display='none';
+         }
+        </script>
+      </div>
         
     </div>
   </div>
@@ -460,15 +577,26 @@
     <div class="col">
       <div class="card mb-4 rounded-3 shadow-sm" style= "width: 97%; height: 50%;" >
         <div class="card-header py-3">
-          <h4 class="my-0 fw-normal ">Tus últimas consultas</h4>
+          <h4 class="letra-subtitulo "><b>Tus últimas consultas</b></h4>
         </div>
         <div class="card-body">
-            <div class="section">
-              <h3 class="section-title">Consultas</h3>
-              <div class="section-content">
-                Contenido de la sección 1
-              </div>
+          <div class="section">
+            <h3 class="letra-subtitulo3" onclick="mostrar6();">Preguntas frecuentes sobre compras</h3> 
+            <div id="img6">
+             
+               <p class="letra-texto"> Tu compra va a estar 100% protegida y te devolveremos el dinero si el producto no es lo que esperabas.
+                 Así mismo protegemos tu dinero hasta que nos confirmes que ya te entregaron tu producto adquirido.</p>
+               <h1 class="letra-texto"  onclick="ocultar6();"><u>Ocultar </u></h1>
             </div>
+            <script>
+             function mostrar6(){
+               document.getElementById('img6').style.display='block';
+             }
+             function ocultar6(){
+               document.getElementById('img6').style.display='none';
+             }
+            </script>
+          </div>
         </div>
       </div>
     </div>
@@ -478,18 +606,34 @@
      <div class="col">
       <div class="card mb-4 rounded-3 shadow-sm" style= "width: 97%; height: 50%;" >
         <div class="card-header py-3">
-          <h4 class="my-0 fw-normal ">¿Necesitas mas ayuda?</h4>
+          <h4 class="letra-subtitulo "><b>¿Necesitas mas ayudarte?</b></h4>
         </div>
         <div class="card-body">
-            <div class="section">
-              <h3 class="section-title">Contáctanos</h3>
-              <div class="section-content">
-                Contenido de la sección 1
-              </div>
+          <div class="section">
+            <h3 class="letra-subtitulo3" onclick="mostrar7();">Contactanos</h3> 
+            <div id="img7">
+              <p class="letra-texto">Llamanos al 55 711 264 00, 55 768 840 06 ó 55 773 767 34
+                <br>
+                 En nuestras redes sociales:
+                 <br>
+                 Facebook: @YUNUS fashion
+              </p>
+             <h1 class="letra-texto"  onclick="ocultar7();"><u>Ocultar</u> </h1>
+               
             </div>
+            <script>
+             function mostrar7(){
+               document.getElementById('img7').style.display='block';
+             }
+             function ocultar7(){
+               document.getElementById('img7').style.display='none';
+             }
+            </script>
+          </div>
         </div>
       </div>
     </div>
+
 
 
 
@@ -531,6 +675,9 @@
 </div>
 
 
-    
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
+<script src="/js/inicio_sesion.js"></script>
+
   </body>
 </html>

@@ -103,3 +103,14 @@ h1{
     text-transform: uppercase;
 }
 
+select{
+    width: 100%;
+    background: #FFF;
+    border: 3px solid transparent;
+    border-radius: 3px;
+    height: 45px;
+    line-height: 45px;
+    padding: 0 40 px 0 10 px;
+    transition: .3s ease all;
+}
+

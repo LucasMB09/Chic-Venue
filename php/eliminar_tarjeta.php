@@ -1,5 +1,6 @@
 <?php
-function borrar_tarjeta($num_cliente, $tarjeta) {
+session_start();
+function eliminar_tarjeta($num_cliente, $tarjeta) {
     // Establecer los detalles de conexión a la base de datos
     $host = 'localhost';
     $usuario = 'root';
@@ -30,8 +31,16 @@ function borrar_tarjeta($num_cliente, $tarjeta) {
     } else {
         echo "Error al eliminar la tarjeta: " . mysqli_error($conexion);
     }
-
+    
     // Cerrar la conexión a la base de datos
+    $_SESSION['eliminado'] = "eliminado";
     mysqli_close($conexion);
 }
+
+// Obtener los valores de los parámetros enviados por la solicitud AJAX
+$num_cliente = $_GET['num_cliente'];
+$tarjeta = $_GET['tarjeta'];
+
+// Llamar a la función para eliminar la tarjeta
+eliminar_tarjeta($num_cliente, $tarjeta);
 ?>

@@ -1,31 +1,5 @@
 const usuario = document.getElementById("usuario");
 const email = document.getElementById("correo");
-const mensaje = document.getElementById("mensaje");
-
-if((mensaje.textContent).length > 0 ){
-    switch (mensaje.textContent) {
-        case "Inicio de sesión exitoso":
-            Swal.fire({
-                title: 'Exito!',
-                text: mensaje.textContent,
-                icon: 'success',
-                showConfirmButton: 'Aceptar'
-            });
-            break;
-        case "Contraseña cambiada":
-            Swal.fire({
-                title: 'Exito!',
-                text: 'Contraseña cambiada existosamente',
-                icon: 'success',
-                showConfirmButton: 'Aceptar'
-            });
-            break;
-        default:
-            break;
-    }
-    
-}
-
 
 function user() {
     const Toast = Swal.mixin({

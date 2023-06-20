@@ -23,71 +23,79 @@
     <!--SweetAlert-->
     <script src="/sweetalert/dist/sweetalert2.all.min.js"></script>
     <style>
-        .navbar {
+        .novbar {
             position: fixed;
             top: 0;
             left: 0;
             right: 0;
             height: 40px;
-            background-color: black;
+            background: linear-gradient(to right,rgba(0, 0, 0, 1), rgba(0, 0, 0, 1));
             z-index: 9999;
         }
 
         .container-form {
             padding-top: 40px;
         }
+
+        .fondoform
+        {
+         background: linear-gradient(to bottom,rgba(5, 3, 3, 0.01),rgba(5, 3, 3, 0.72));
+        }
     </style>
 </head>
 
-    <body>
-        <div class="navbar"></div>
-        <div class="container-form sign-up">
+    <body style=" display: flex;
+  flex-direction: column;
+  min-height: 120vh;">
+        <div class="novbar"></div>
+        <div class="container-form sign-up" >
             <div class="welcome-back">
                 <div class="message">
                     <div class="logo">
-                        <img src="/assets/logo.jpg" width="170" height="170">
+                        <img src="/assets/logo.jpg" class="rounded mx-auto d-block" width="170" height="170">
                     </div>
-                    <h2>CHIC VENUE</h2>
-                    <p class="letra-texto">¿Ya es parte de Chic Venue? Inicie sesión aquí</p>
+                    <h2>¿Ya eres parte de Chic Venue?</h2>
+                    <p class="letra-texto">Inicia sesión aquí</p>
                     <button class="letra-texto" type="button" onclick="go_login()" id="regreso" value="Atras">Iniciar Sesión</button>
                     <!--<button id="boton-alerta">Try me</button>-->
                 </div>
             </div>
-            <form class="formulario" id="registro" action="/php/registro.php" method= "POST" enctype="multipart/form-data">
-                <h2 class="create-account">R E G I S T R O</h2>
-                <div class="form-floating formulario_grupo formulario_grupo-input" id="nombre">
-                    <input type="text" class="letra-texto" name="nombre" placeholder="Nombre*">
-                    <i class="formulacion_validacion-estado fas fa-times-circle"></i>
-                </div>
-                <div class="form-floating formulario_grupo formulario_grupo-input" id="apellido">
-                    <input type="text" class="letra-texto" name="apellido" placeholder="Apellido*">
-                    <i class="formulacion_validacion-estado fas fa-times-circle"></i>
-                </div>
-                <div class="form-floating formulario_grupo formulario_grupo-input" id="email">
-                    <input type="email"  class="letra-texto" name="email" placeholder="Correo electrónico*">
-                    <i class="formulacion_validacion-estado fas fa-times-circle"></i>
-                </div>
-                <div class="form-floating formulario_grupo formulario_grupo-input" id="pass">
-                    <input type="password"  class="letra-texto" name="contrasena" id="con1" placeholder="Contraseña*">
-                    <i class="formulacion_validacion-estado fas fa-times-circle"></i>
-                </div>
-                <div class="form-floating formulario_grupo formulario_grupo-input" id="pass2">
-                    <input type="password"  class="letra-texto" name="contrasena2" id="con2" placeholder="Confirmar Contraseña*">
-                    <i class="formulacion_validacion-estado fas fa-times-circle"></i>
-                </div>
-                <button class="boton_registro" class="letra-texto" type="submit" name="registro" id="regis">Registrarme</button>
-                <br><br>
-                <?php
-                if (isset($_SESSION['mensaje'])) {
-                    $mensaje = $_SESSION['mensaje'];
-                    ?>
-                    <div><h3 id="mensaje" style="display: none;"><?php echo "$mensaje";?></h3></div>
+                <form class="formulario fondoform" id="registro" action="/php/registro.php" method= "POST" enctype="multipart/form-data">
+                    <h2 class="create-account">R E G I S T R O</h2>
+                    <div class="form-floating formulario_grupo formulario_grupo-input" id="nombre">
+                        <input type="text" class="letra-texto" name="nombre" placeholder="Nombre*">
+                        <i class="formulacion_validacion-estado fas fa-times-circle"></i>
+                    </div>
+                    <div class="form-floating formulario_grupo formulario_grupo-input" id="apellido">
+                        <input type="text" class="letra-texto" name="apellido" placeholder="Apellido*">
+                        <i class="formulacion_validacion-estado fas fa-times-circle"></i>
+                    </div>
+                    <div class="form-floating formulario_grupo formulario_grupo-input" id="email">
+                        <input type="email"  class="letra-texto" name="email" placeholder="Correo electrónico*">
+                        <i class="formulacion_validacion-estado fas fa-times-circle"></i>
+                    </div>
+                    <div class="form-floating formulario_grupo formulario_grupo-input" id="pass">
+                        <input type="password"  class="letra-texto" name="contrasena" id="con1" placeholder="Contraseña*">
+                        <i class="formulacion_validacion-estado fas fa-times-circle"></i>
+                    </div>
+                    <div class="form-floating formulario_grupo formulario_grupo-input" id="pass2">
+                        <input type="password"  class="letra-texto" name="contrasena2" id="con2" placeholder="Confirmar Contraseña*">
+                        <i class="formulacion_validacion-estado fas fa-times-circle"></i>
+                    </div>
+                    <button class="boton_registro" class="letra-texto" type="submit" name="registro" id="regis">Registrarme</button>
+                    <br><br>
                     <?php
-                    unset($_SESSION['mensaje']); // Limpiamos la variable de sesión
-                }
-                ?>
-            </form>
-        </div>
+                    if (isset($_SESSION['mensaje'])) {
+                        $mensaje = $_SESSION['mensaje'];
+                        ?>
+                        <div><h3 id="mensaje" style="display: none;"><?php echo "$mensaje";?></h3></div>
+                        <?php
+                        unset($_SESSION['mensaje']); // Limpiamos la variable de sesión
+                    }
+                    ?>
+                </form>
+
+        
         <!--Cuadro de validaciones-->
         <form class="campo_validaciones" >
         <div class="contenedor" id="cont_nom" style="display: none;" >
@@ -119,6 +127,48 @@
                 </ul>
             </div>
         </form>
+        </div>
+        
         <script src="js/registro_verificar.js"></script>
     </body>
+     <!-- FOOTER -->
+     <footer class="container" style="margin-top: auto;">
+
+  <div class="navbar bg-dark" data-bs-theme="dark">
+    <div class="container-fluid">
+        
+    </div>
+    </div>
+    <br>
+    <div class="row">
+      <div class="col-12 col-md">
+        <img class="logo" src="/assets/logo_CA.PNG"  width="24" height="19" alt="Logotipo de Chic Avenue" >
+        <small class="d-block mb-3 text-body-secondary">&copy; 2022-2023</small>
+      </div>
+      <div class="col-6 col-md">
+        <h5>Nosotros</h5>
+        <ul class="list-unstyled text-small">
+          <li class="mb-1"><a class="link-secondary text-decoration-none" href="./preguntas.php">Preguntas frecuentes</a></li>
+          <li class="mb-1"><a class="link-secondary text-decoration-none" href="./products.php">Random feature</a></li>
+
+        </ul>
+      </div>
+      <div class="col-6 col-md">
+        <h5>Catálogo</h5>
+        <ul class="list-unstyled text-small">
+          <li class="mb-1"><a class="link-secondary text-decoration-none" href="../products.php">Tendencia</a></li>
+          <li class="mb-1"><a class="link-secondary text-decoration-none" href="./products.php">Descuentos</a></li>
+          <li class="mb-1"><a class="link-secondary text-decoration-none" href="./products.php">Promociones</a></li>
+        </ul>
+      </div>
+      <div class="col-6 col-md">
+        <h5>Atención a cliente</h5>
+        <ul class="list-unstyled text-small">
+          <li class="mb-1"><a class="link-secondary text-decoration-none" href="./preguntas.php">Contactos</a></li>
+          <li class="mb-1"><a class="link-secondary text-decoration-none" href="./preguntas.php">Ubicación</a></li>
+          <li class="mb-1"><a class="link-secondary text-decoration-none" href="#"></a></li>
+          <li class="mb-1"><a class="link-secondary text-decoration-none" href="#"></a></li>
+        </ul>
+      </div>
+    </div></footer>
 </html>

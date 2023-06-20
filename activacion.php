@@ -154,21 +154,21 @@
           </li>
           <li class="nav-item">
           <li class="nav-item">
-            <a class="navbar-brand" href="log-in.php">
+            <a class="navbar-brand" href="login_usuario.php">
               <!-- INCIAR SESION -->
               <img src="/assets/usuario.png" alt="carrito" width="30" height="30"
                 class="d-inline-block align-text-top">
             </a>
           </li>
           <li class="nav-item">
-            <a class="navbar-brand" href="#">
+            <a class="navbar-brand" href="favoritos.php">
               <!-- ACCEDER A FAVORITOS-->
               <img src="/assets/favoritos.JPG" alt="carrito" width="30" height="30"
                 class="d-inline-block align-text-top">
             </a>
           </li>
           <li class="nav-item">
-            <a class="navbar-brand" href="#">
+            <a class="navbar-brand" href="carrito.php">
               <!-- ACCEDER AL CARRITO-->
               <img src="/assets/carrito.png" alt="carrito" width="30" height="30"
                 class="d-inline-block align-text-top">
@@ -196,7 +196,7 @@
         </svg>
         <h1>Activación de cuenta exitosa</h1>
         <p>Tu cuenta ha sido activada correctamente.</p>
-        <a href="log-in.php" class="btn">Iniciar sesión</a>
+        <a href="login_usuario.php" class="btn">Iniciar sesión</a>
     </div>
   </div>
 

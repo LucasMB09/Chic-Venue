@@ -120,6 +120,18 @@ class CreateDb
             return $this->getData();
         }
     }
+
+    public function busqueda($nom){
+        $sql = "SELECT * FROM $this->tablename WHERE nombre_articulo = '$nom'";
+        $result = mysqli_query($this->con, $sql);
+        if(mysqli_num_rows($result) > 0){
+            return $result;
+        }
+        else{
+            $_SESSION['base'] = "No nombre";
+            return $this->getData();
+        }
+    }
 }
 
 

@@ -1,0 +1,388 @@
+*, *:before, *:after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+  
+  body {
+    font-family:"Britannic";
+    background: #ededed;
+  }
+  
+  input, button {
+    border: none;
+    outline: none;
+    background: none;
+    font-family:"Britannic";
+  }
+  
+  .tip {
+    font-size: 20px;
+    margin: 40px auto 50px;
+    text-align: center;
+  }
+  
+  .cont {
+    overflow: hidden;
+    position: relative;
+    width: 900px;
+    height: 700px;
+    margin: 0 auto 100px;
+    background: #fff;
+  }
+  
+  .form {
+    position: relative;
+    width: 640px;
+    height: 100%;
+    transition: transform 1.2s ease-in-out;
+    padding: 50px 30px 0;
+  }
+  
+  .sub-cont {
+    overflow: hidden;
+    position: absolute;
+    left: 640px;
+    top: 0;
+    width: 900px;
+    height: 100%;
+    padding-left: 260px;
+    background: #fff;
+    transition: transform 1.2s ease-in-out;
+  }
+  .cont.s--signup .sub-cont {
+    transform: translate3d(-640px, 0, 0);
+  }
+  
+  button {
+    display: block;
+    margin: 0 auto;
+    width: 260px;
+    height: 36px;
+    border-radius: 30px;
+    color: #fff;
+    font-size: 15px;
+    cursor: pointer;
+  }
+  
+  .img {
+    overflow: hidden;
+    z-index: 2;
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 260px;
+    height: 100%;
+    padding-top: 360px;
+  }
+  .img:before {
+    content: "";
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 900px;
+    height: 100%;
+    background-image: url("https://us.123rf.com/450wm/nd3000/nd30001904/nd3000190400448/120427260-grupo-de-amigos-sonrientes-felices-de-compras-en-la-ciudad.jpg?ver=6");
+    background-size: cover;
+    transition: transform 1.2s ease-in-out;
+  }
+  .img:after {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.6);
+  }
+  .cont.s--signup .img:before {
+    transform: translate3d(640px, 0, 0);
+  }
+  .img__text {
+    z-index: 2;
+    position: absolute;
+    left: 0;
+    top: 50px;
+    width: 100%;
+    padding: 0 20px;
+    text-align: center;
+    color: #fff;
+    transition: transform 1.2s ease-in-out;
+  }
+  .img__text h2 {
+    margin-bottom: 10px;
+    font-weight: normal;
+  }
+  .img__text p {
+    font-size: 14px;
+    line-height: 1.5;
+  }
+  .cont.s--signup .img__text.m--up {
+    transform: translateX(520px);
+  }
+  .img__text.m--in {
+    transform: translateX(-520px);
+  }
+  .cont.s--signup .img__text.m--in {
+    transform: translateX(0);
+  }
+  .img__btn {
+    overflow: hidden;
+    z-index: 2;
+    position: relative;
+    width: 150px;
+    height: 100px;
+    margin: 0 auto;
+    background: transparent;
+    color: #fff;
+    text-transform: uppercase;
+    font-size: 15px;
+    cursor: pointer;
+    border: 2px solid #fff;
+    border-radius: 30px;
+  }
+  
+
+  h2 {
+    width: 100%;
+    font-size: 26px;
+    text-align: center;
+  }
+  
+  label {
+    display: block;
+    width: 260px;
+    margin: 25px auto 0;
+    text-align: center;
+  }
+  label span {
+    font-size: 12px;
+    color: #cfcfcf;
+    text-transform: uppercase;
+  }
+  
+  input {
+    display: block;
+    width: 100%;
+    margin-top: 5px;
+    padding-bottom: 5px;
+    font-size: 16px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.4);
+    text-align: center;
+  }
+  
+  .forgot-pass {
+    margin-top: 15px;
+    text-align: center;
+    font-size: 12px;
+    color: #cfcfcf;
+  }
+  
+  .submit {
+    margin-top: 40px;
+    margin-bottom: 20px;
+    background: #000000;
+    text-transform: uppercase;
+  }
+  
+  .fb-btn {
+    border: 2px solid #d3dae9;
+    color: #8fa1c7;
+  }
+  .fb-btn span {
+    font-weight: bold;
+    color: #455a81;
+  }
+  
+  .sign-in {
+    transition-timing-function: ease-out;
+  }
+  .cont.s--signup .sign-in {
+    transition-timing-function: ease-in-out;
+    transition-duration: 1.2s;
+    transform: translate3d(640px, 0, 0);
+  }
+  
+  .sign-up {
+    transform: translate3d(-900px, 0, 0);
+  }
+  .cont.s--signup .sign-up {
+    transform: translate3d(0, 0, 0);
+  }
+  
+  .icon-link {
+    position: absolute;
+    left: 5px;
+    bottom: 5px;
+    width: 32px;
+  }
+  .icon-link img {
+    width: 100%;
+    vertical-align: top;
+  }
+  .icon-link--twitter {
+    left: auto;
+    right: 5px;
+  }
+
+  @keyframes dance6123 {
+    to {
+      background-position: var(--width);
+    }
+  }
+
+  button:hover {
+    background-image: linear-gradient(to right, rgb(250, 82, 82), rgb(250, 82, 82) 16.65%, rgb(190, 75, 219) 16.65%, rgb(190, 75, 219) 33.3%, rgb(76, 110, 245) 33.3%, rgb(76, 110, 245) 49.95%, rgb(64, 192, 87) 49.95%, rgb(64, 192, 87) 66.6%, rgb(250, 176, 5) 66.6%, rgb(250, 176, 5) 83.25%, rgb(253, 126, 20) 83.25%, rgb(253, 126, 20) 100%, rgb(250, 82, 82) 100%);
+    animation: var(--timing) linear dance6123 infinite;
+    transform: scale(1.1) translateY(-1px);
+  }
+
+  button {
+    --width: 180px;
+    --timing: 2s;
+    border: 0;
+    width: var(--width);
+    padding-block: 0.5em;
+    color: #fff;
+    font-weight: bold;
+    font-size: 1em;
+    background: rgb(3, 5, 4);
+    transition: all 0.2s;
+    border-radius: 5px;
+  }
+  
+  
+.campo_validaciones{
+    position: relative;
+    left: -50px;
+    top: 0px;   
+    border: none;
+	border-radius: 3px;
+}
+  
+
+.container-form {
+    width: 90%;
+    height: 90vh;
+    border-radius: 10rem;
+    display: flex;
+    justify-content: space-around;
+    transition:  all .5s ease-out;
+}
+
+.welcome-back {
+    display: flex;
+    align-items: center;
+    text-align: center;
+}
+
+.message {
+    padding: 1rem;
+}
+
+.message h2 {
+    font-size: 1.7rem;
+    padding: 1rem 0;
+    color: rgb(55, 55, 55); /* chic avenue */
+}
+
+.message button { /* boton, iniciar sesion y registrate */
+    padding: 1rem;
+    font-weight: 400;
+    background-color: #2d2d2c;
+    border-radius: 2rem;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    font-size: .9rem;
+    margin-top: 2rem;
+    transition: all .3s ease-in;
+    color: #fff;
+}
+
+.message button:hover { /* boton, iniciar sesion y registrate al poner el cursor encima */
+    background-color: #4a4a4f;
+}
+
+.formulario {
+    width: 400px;
+    padding: -1rem;
+    margin: 2rem;
+    background-color: rgba(183, 183, 183, 0.9); /* fondo del formulario */
+    text-align: center;
+    border-radius: 2rem;
+}
+
+.create-account {
+    padding: 2.7rem 0;
+    font-size: 1.7rem;
+}
+
+
+.formulario input {
+    width: 70%;
+    display: block;
+    margin: auto;
+    margin-bottom: 2rem;
+    background-color: transparent;
+    border: none;
+    border-bottom: white thin solid; /* barra */
+    text-align: left;
+    outline: none;
+    padding: .2rem 0;
+    font-size: .9rem;
+}
+
+.boton_registro { /* boton registrarme */
+    width: 60%;
+    margin: auto;
+    border: solid thin rgb(255, 255, 255);
+    padding: .7rem;
+    border-radius: 2rem;
+    background-color: white;
+    text-align: center;
+    font-weight: 600;
+    margin-top: 0rem;
+    top: -20px;
+    font-size: .8rem;
+    cursor: pointer;
+    color: #222;
+    font-family:"Britannic";
+}
+
+.recuadro {
+    position:absolute;
+    width: 30px;
+    height: 20px;
+    align-content:end;
+
+  }
+  
+  .mensaje-emergente {
+    width: 300px;
+    height: 150px;
+    font-family:"Candara";
+    font-size: 1em;
+    position: absolute;
+    top: 50%;
+    left: 220%;
+    transform: translate(10%, -45%);
+    background-color: rgb(238, 238, 238);
+    color:rgb(78, 78, 78);
+    border-color: 10px #4a4a4f ;
+    border-radius: 3%;
+    padding: 10px;
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out;
+  }
+  
+  .recuadro:hover .mensaje-emergente {
+    opacity: 2;
+  }
+
+
+
+
+
+  /*# sourceMappingURL=styles.css.map */
+  

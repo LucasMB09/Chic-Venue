@@ -70,6 +70,14 @@ if((mensaje.textContent).length > 0 ){
                 showConfirmButton: 'Aceptar'
             });
             break;
+        case "No nombre":
+            Swal.fire({
+                title: 'Error!',
+                text: 'No existe ningun producto con este nombre',
+                icon: 'error',
+                showConfirmButton: 'Aceptar'
+            });
+            break;    
         default:
             break;
     }

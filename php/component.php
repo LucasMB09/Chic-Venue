@@ -1,6 +1,5 @@
 <?php
-
-function component($id_articulo, $precio, $nombre_articulo, $descripcion, $imagen, $email)
+function component($id_articulo, $precio, $nombre_articulo, $color, $talla, $stock, $categoria, $imagen, $email)
 {
     $element = "
         <style>
@@ -76,34 +75,72 @@ function component($id_articulo, $precio, $nombre_articulo, $descripcion, $image
         }
         
         .title {
-            font-size: 16px;
+            font-size: 14px;
             font-weight: bold;
             text-align: center;
+            margin-top: 5px;
         }
     
         .price {
-            font-size: 18px;
+            font-size: 14px;
             font-weight: bold;
             text-align: center;
+            margin-top: 5px;
         }
         
+        .color {
+            font-size: 12px;
+            text-align: center;
+            margin-top: 5px;
+        }
+        
+        .talla {
+            font-size: 12px;
+            text-align: center;
+            margin-top: 5px;
+        }
+        
+        .stock {
+            font-size: 12px;
+            text-align: center;
+            margin-top: 5px;
+        }
+        
+        .categoria {
+            font-size: 12px;
+            text-align: center;
+            margin-top: 5px;
+        }
+    
         </style>
     
         <div class=\"col-md-3 col-sm-6 my-3 my-md-0\">
-          <h3 id=\"uwu\"style=\"display:none;\">$email</h1>
-            <form action=\"index.php\" method=\"post\">
+            <h3 id=\"uwu\" style=\"display:none;\">$email</h3>
+            <form action=\"products.php\" method=\"post\">
                 <div class=\"text-center\">
                     <div class=\"circle-container\">
                         <div class=\"circle\" onmouseover=\"showButtons(this)\" onmouseout=\"hideButtons(this)\">
                             <img src=\"$imagen\" alt=\"Image1\">
                             <div class=\"overlay\">
                                 <button type=\"submit\" class=\"btn btn-warning my-3 btn-circle btn-white\" name=\"add\"><img src=\"assets/carrito.png\" alt=\"Carrito\"></button>
-                                <button type=\"button\" class=\"btn btn-info my-3 btn-circle btn-white\" name=\"favorite\" onClick=\"favoriteClicked(event, '$nombre_articulo', $precio)\"><img src=\"assets/favoritos.png\" alt=\"Favoritos\"></button>
+                                <button type=\"button\" class=\"btn btn-info my-3 btn-circle btn-white\" name=\"favorite\" onclick=\"handleAgregarAFavoritos(this)\"><img src=\"assets/favoritos.png\" alt=\"Favoritos\"></button>
                             </div>
                         </div>
                         <h5 class=\"title\">$nombre_articulo</h5>
                         <h5 class=\"price\">
                             <span>$$precio</span>
+                        </h5>
+                        <h5 class=\"color\">
+                            <span>Color: $color</span>
+                        </h5>
+                        <h5 class=\"talla\">
+                            <span>Talla: $talla</span>
+                        </h5>
+                        <h5 class=\"stock\">
+                            <span>Stock: $stock</span>
+                        </h5>
+                        <h5 class=\"categoria\">
+                            <span>Categoría: $categoria</span>
                         </h5>
                     </div>
                 </div>
@@ -113,28 +150,8 @@ function component($id_articulo, $precio, $nombre_articulo, $descripcion, $image
             </form>
         </div>
         
-        <script src=\"https://cdn.jsdelivr.net/npm/sweetalert2@11\"></script>
-        
         <script src=\"../js/component.js\"></script>
     ";
     echo $element;
 }
-
 ?>
-
-<!-- Asegúrate de incluir jQuery en tu página -->
-<script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
-
-<script>
-$(document).ready(function() {
-    $('.btn-circle').click(function(e) {
-        e.preventDefault(); // Evita que el formulario se envíe automáticamente
-        if (!isLoggedIn()) {
-            showAlert();
-        } else {
-            $(this).closest('form').submit(); // Envía el formulario más cercano al botón clicado
-            $(this).addClass('active'); // Agrega la clase 'active' al botón clicado
-        }
-    });
-});
-</script>

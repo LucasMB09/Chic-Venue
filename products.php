@@ -9,6 +9,12 @@
     $valor = $_SESSION['valor'];
   }
 
+    $client_id = null;
+
+  if (isset($_SESSION['client_id'])) {
+      $client_id = $_SESSION['client_id'];
+  }
+
   if(isset($_COOKIE['usuario'])){
     $_SESSION['user'] = $_COOKIE['usuario'];
     $_SESSION['email'] = $_COOKIE['email'];
@@ -63,6 +69,10 @@
 
   if(isset($_GET['ofertas'])){
     $ofertas = $_GET['ofertas'];
+  }
+
+  if(isset($_GET['search'])){
+    $busqueda = $_GET['search'];
   }
 
 ?>
@@ -291,76 +301,102 @@ $num_images = $row['num_images'];
 <div id="manualCarousel" class="carousel slide" data-bs-ride="carousel">
   <div class="carousel-inner">
     <?php
-    if( (isset($color) && $color != "*" ) ){
-      if((isset($talla) && $talla != "*")){
-        if((isset($precio) && $precio != "*")){
-          $result = $database->filtrado($color,$talla,$precio);
+
+    if (isset($busqueda)) {
+        $result = $database->busqueda($busqueda);
+    } elseif (isset($color) && $color != "*") {
+        if (isset($talla) && $talla != "*") {
+            if (isset($precio) && $precio != "*") {
+                $result = $database->filtrado($color, $talla, $precio);
+            } else {
+                $result = $database->filtrado2($color, $talla);
+            }
+        } else {
+            $result = $database->filtrado3($color);
         }
-        else{
-          $result = $database->filtrado2($color,$talla);
+    } elseif (isset($talla) && $talla != "*") {
+        if (isset($precio) && $precio != "*") {
+            $result = $database->filtrado4($talla, $precio);
+        } else {
+            $result = $database->filtrado5($talla);
         }
-      }
-      else{
-        $result = $database->filtrado3($color);
-      }
-    }
-    elseif( (isset($talla) && $talla != "*") ){
-      if((isset($precio) && $precio != "*")){
-        $result = $database->filtrado4($talla,$precio);
-      }
-      else{
-        $result = $database->filtrado5($talla);
-      }
-    }
-    elseif((isset($precio) && $precio != "*")){
-      $result = $database->filtrado6($precio);
-    }
-    else{
-      $result = $database->getData();
+    } elseif (isset($precio) && $precio != "*") {
+        $result = $database->filtrado6($precio);
+    } else {
+        $result = $database->getData();
     }
     $count = 0;
-    
-    if((isset($_SESSION['base']) && $_SESSION['base'] == "No hay" )){
-      ?><h3 id="base" style="display: none;"><?php echo $_SESSION['base']; unset($_SESSION['base']);?></h3>
-      <?php
+
+    if (isset($_SESSION['base']) && $_SESSION['base'] == "No hay") {
+        ?>
+        <h3 id="base" style="display: none;"><?php echo $_SESSION['base'];
+                                            unset($_SESSION['base']); ?></h3>
+    <?php
+    } elseif (isset($_SESSION['base']) && $_SESSION['base'] == "No nombre") {
+        ?>
+        <h3 id="base" style="display: none;"><?php echo $_SESSION['base'];
+                                            unset($_SESSION['base']); ?></h3>
+    <?php
     }
-    
+
     // Obtener todas las imágenes
     $images = array();
     while ($row = mysqli_fetch_assoc($result)) {
-      $img_id = $row['id_articulo'];
-      $img_name = $row['nombre_articulo'];
-      $img_description = $row['descripcion'];
-      $img_price = $row['precio'];
-      $img_url = $row['imagen'];
+        $img_id = $row['id_articulo'];
+        $img_name = $row['nombre_articulo'];
+        $img_description = $row['descripcion'];
+        $img_price = $row['precio'];
+        $img_url = $row['imagen'];
+        $img_color = $row['color']; // Nuevo campo: color
+        $img_talla = $row['talla']; // Nuevo campo: talla
+        $img_stock = $row['stock']; // Nuevo campo: stock
+        $img_categoria = $row['categoria']; // Nuevo campo: categoria
 
-      $images[] = array(
-        'id' => $img_id,
-        'name' => $img_name,
-        'description' => $img_description,
-        'price' => $img_price,
-        'url' => $img_url
-      );
+        $images[] = array(
+            'id' => $img_id,
+            'name' => $img_name,
+            'description' => $img_description,
+            'price' => $img_price,
+            'url' => $img_url,
+            'color' => $img_color,
+            'talla' => $img_talla,
+            'stock' => $img_stock,
+            'categoria' => $img_categoria
+        );
     }
+
 
     // Mostrar las imágenes en grupos de 3
     $num_images = count($images);
     for ($i = 0; $i < $num_images; $i += 3) {
-      echo '<div class="carousel-item' . ($i == 0 ? ' active' : '') . '">';
-      echo '<div class="container">';
-      echo '<div class="row text-center py-5 justify-content-center">';
+        echo '<div class="carousel-item' . ($i == 0 ? ' active' : '') . '">';
+        echo '<div class="container">';
+        echo '<div class="row text-center py-5 justify-content-center">';
 
-      // Mostrar las imágenes en el grupo actual
-      for ($j = $i; $j < min($i + 3, $num_images); $j++) {
-        component($images[$j]['id'], $images[$j]['price'], $images[$j]['name'], $images[$j]['description'], $images[$j]['url'],$email);
-      }
+        // Mostrar las imágenes en el grupo actual
+        for ($j = $i; $j < min($i + 3, $num_images); $j++) {
+            $image = $images[$j];
+            component(
+                $image['id'],
+                $image['price'],
+                $image['name'],
+                $image['color'], // Nuevo argumento: color
+                $image['talla'], // Nuevo argumento: talla
+                $image['stock'], // Nuevo argumento: stock
+                $image['categoria'], // Nuevo argumento: categoria
+                $image['url'],
+                $image['description']
+            );
+        }
 
-      echo '</div>';
-      echo '</div>';
-      echo '</div>';
+        echo '</div>';
+        echo '</div>';
+        echo '</div>';
     }
+
     ?>
   </div>
+
 
   <?php
   if ($num_images > 3) {
