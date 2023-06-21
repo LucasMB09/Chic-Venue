@@ -159,13 +159,13 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav me-auto mb-2 mb-lg-0">
             <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="index.php">Novedades</a>
+              <a class="nav-link active" aria-current="page" href="products.php">Novedades</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#">Rebajas</a>
+              <a class="nav-link" href="products.php">Rebajas</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#">Básicos</a>
+              <a class="nav-link" href="products.php">Básicos</a>
             </li>
             <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -282,7 +282,7 @@
               }
               else{
                 ?>
-                <a class="navbar-brand" href="log-in.php"> <!-- INCIAR SESION -->
+                <a class="navbar-brand" href="login_usuario.php"> <!-- INCIAR SESION -->
                 <img src="assets/usuario.png" alt="carrito" width="30" height="30" class="d-inline-block align-text-top">
                 </a>
                 <?php
@@ -349,13 +349,19 @@ $num_images = $row['num_images'];
 
     if (isset($_SESSION['base']) && $_SESSION['base'] == "No hay") {
         ?>
-        <h3 id="base" style="display: none;"><?php echo $_SESSION['base'];
-                                            unset($_SESSION['base']); ?></h3>
+        <h3 id="base" style="display: none;"><?php echo $_SESSION['base'];unset($_SESSION['base']); ?></h3>
     <?php
     } elseif (isset($_SESSION['base']) && $_SESSION['base'] == "No nombre") {
         ?>
-        <h3 id="base" style="display: none;"><?php echo $_SESSION['base'];
-                                            unset($_SESSION['base']); ?></h3>
+        <h3 id="base" style="display: none;"><?php echo $_SESSION['base'];unset($_SESSION['base']); ?></h3>
+    <?php
+    } elseif (isset($_SESSION['base']) && $_SESSION['base'] == "Fav") {
+      ?>
+      <h3 id="base" style="display: none;"><?php echo $_SESSION['base'];unset($_SESSION['base']); ?></h3>
+    <?php
+    } elseif (isset($_SESSION['base']) && $_SESSION['base'] == "Ya esta") {
+      ?>
+      <h3 id="base" style="display: none;"><?php echo $_SESSION['base'];unset($_SESSION['base']); ?></h3>
     <?php
     }
 
@@ -371,6 +377,7 @@ $num_images = $row['num_images'];
         $img_talla = $row['talla']; // Nuevo campo: talla
         $img_stock = $row['stock']; // Nuevo campo: stock
         $img_categoria = $row['categoria']; // Nuevo campo: categoria
+        $img_email = $email;
 
         $images[] = array(
             'id' => $img_id,
@@ -381,7 +388,8 @@ $num_images = $row['num_images'];
             'color' => $img_color,
             'talla' => $img_talla,
             'stock' => $img_stock,
-            'categoria' => $img_categoria
+            'categoria' => $img_categoria,
+            'email' => $img_email
         );
     }
 
@@ -405,7 +413,7 @@ $num_images = $row['num_images'];
                 $image['stock'], // Nuevo argumento: stock
                 $image['categoria'], // Nuevo argumento: categoria
                 $image['url'],
-                $image['description']
+                $image['email']
             );
         }
 

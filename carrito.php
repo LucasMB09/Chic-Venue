@@ -35,7 +35,16 @@
     $user = ":v";
   }
   
- 
+  $conexion = mysqli_connect("localhost", "root", "", "chicvenue");
+
+  $quer = "SELECT id_cliente FROM cliente WHERE correo_electronico = '$email'";
+
+  $resul = mysqli_query($conexion,$quer);
+  if($resul){
+      $aidi = mysqli_fetch_array($resul);
+      $id_cliente = $aidi[0];
+}
+
 ?>
 
 <!DOCTYPE html>
@@ -230,15 +239,63 @@
       </div>
   </nav>
   <!-- FIN MENU DE NAVEGACIÓN -->
+<?php 
 
+$uwu = "SELECT id_articulo FROM carrito WHERE id_cliente = $id_cliente";
+$res = mysqli_query($conexion,$uwu);
 
-  <!-- --------------------------------------------------------------------------------------------------- -->
-<!-- PARTE IZQUIERDA CARRITO DE COMPRAS -->
-  <div class="container">
-    <div class="left-column">
-      <h2>Carrito de compras</h2>
-      <table>
-        <thead>
+if($res){
+    $ide = mysqli_fetch_all($res);
+    for ($i=0; $i < count($ide); $i++) {
+      $id_base = $ide[$i][0];
+      $query = "SELECT imagen FROM articulo WHERE id_articulo = $id_base";
+      $resul = mysqli_query($conexion,$query);
+      if($resul){
+        $ima = mysqli_fetch_array($resul);
+        $imagen = $ima[0];
+      }
+      $query = "SELECT nombre_articulo FROM articulo WHERE id_articulo = $id_base";
+      $resul = mysqli_query($conexion,$query);
+      if($resul){
+        $nom = mysqli_fetch_array($resul);
+        $nombre_articulo = $nom[0];
+      }
+      
+      $query = "SELECT color FROM articulo WHERE id_articulo = $id_base";
+      $resul = mysqli_query($conexion,$query);
+      if($resul){
+        $col = mysqli_fetch_array($resul);
+        $color = $col[0];
+      }
+
+      $query = "SELECT talla FROM articulo WHERE id_articulo = $id_base";
+      $resul = mysqli_query($conexion,$query);
+      if($resul){
+        $tal = mysqli_fetch_array($resul);
+        $talla = $tal[0];
+      }
+      
+      $query = "SELECT precio FROM articulo WHERE id_articulo = $id_base";
+      $resul = mysqli_query($conexion,$query);
+      if($resul){
+        $prec = mysqli_fetch_array($resul);
+        $precio = $prec[0];
+      }
+      
+      $query = "SELECT color FROM articulo WHERE id_articulo = $id_base";
+      $resul = mysqli_query($conexion,$query);
+      if($resul){
+        $col = mysqli_fetch_array($resul);
+        $color = $col[0];
+      }
+      ?>
+      <!-- --------------------------------------------------------------------------------------------------- -->
+      <!-- PARTE IZQUIERDA CARRITO DE COMPRAS -->
+      <div class="container">
+        <div class="left-column">
+          <h2>Carrito de compras</h2>
+          <table>
+            <thead>
           <tr>
             <th>Producto</th>
             <th> </th>
@@ -247,24 +304,24 @@
             <th>Subtotal</th>
           </tr>
         </thead>
-
-<!-- COLUMNA PRODUCTO -->
+        
+        <!-- COLUMNA PRODUCTO -->
         <tbody>
           <tr>
             <td>
-              <img src="/assets/producto1.jpg" alt="Producto 1">
+              <img src="<?php echo $imagen;?>" alt="Producto 1">
             </td>
             <td>
               <div class="product-details">
-                <p><strong>Camiseta juvenil</strong></p>
-                <p>Color: Azul</p>
-                <p>Talla: M </p>
+                <p><strong><?php echo $nombre_articulo;?></strong></p>
+                <p>Color: <?php echo $color;?></p>
+                <p>Talla: <?php echo $talla;?></p>
               </div>
-            </td>
-
-<!-- COLUMNA PRECIO -->
-            <td>
-              <p><span class="price-text"><p>$25.00</p></span></p>
+              </td>
+              
+              <!-- COLUMNA PRECIO -->
+              <td>
+              <p><span class="price-text"><p>$<?php echo $precio;?>.00</p></span></p>
               <div class="save-button">
                 <p><button class="favorite-button" title="Añadir a favoritos">
                     <p><img src="/assets/favoritos.JPG" alt="Guardar en favoritos" class="favorite-icon"></p>
@@ -281,21 +338,25 @@
                 <p><button class="edit-button">Editar</button></p>
               </div>
             </td>
-
-<!-- COLUMNA SUBTOTAL -->
+            
+            <!-- COLUMNA SUBTOTAL -->
             <td>
-              <div class="subtotal-container">
-                <p><span class="subtotal-amount"><p>$25.00</p></span></p>
-                <p><button class="delete-button"><p>Eliminar</p></button></p>
+            <div class="subtotal-container">
+                <p><span class="subtotal-amount"><p>$<?php echo $precio;?>.00</p></span></p>
+                <form>
+                  <p><button class="delete-button"><p>Eliminar</p></button></p>
+                  <input type='hidden' name='id_art' value='<?php echo $id_base;?>'>
+                  <input type='hidden' name='id_cliente' value='<?php echo $email;?>'>
+                </form>
               </div>
             </td>
           </tr>
         </tbody>
       </table>
-    </div>
-
-<!-- PARTE DERECHA "RESUMEN DEL PEDIDO" -->
-    <div class="right-column">
+      </div>
+      
+      <!-- PARTE DERECHA "RESUMEN DEL PEDIDO" -->
+      <div class="right-column">
       <h2>Resumen del pedido</h2>
       <p>Subtotal: $29.99</p>
       <p>Costo de envío: $50</p>
@@ -304,21 +365,27 @@
       <div class="buy-button-container">
         <button class="buy-button">Comprar</button>
       </div>
-    </div>
-  </div>
-
-
+      </div>
+      </div>
+    <?php
+    }
+    if(count($ide)==0){
+      ?>
+      <h3><?php echo "No hay articulos en el carrito";?></h3>
+      <?php
+    }
+  }
+  else{
+  }
+  ?>
+      
   <script src="/js/carrito.js"></script>
 
 </body>
 
  <!-- FOOTER -->
  <footer class="container">
-  <nav class="navbar bg-dark" data-bs-theme="dark">
-    <div class="container-fluid">
-    </div>
-    </nav>
-    <br>
+  
     <div class="row">
       <div class="col-12 col-md">
         <img class="logo" src="/assets/logo_CA.PNG"  width="24" height="19" alt="Logotipo de Chic Avenue" >

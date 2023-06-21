@@ -27,10 +27,20 @@ if (isset($_COOKIE['usuario'])) {
   $_SESSION['valor'] = $valor;
 }
 
-$nombre_articulo = isset($_POST['nombre_articulo']) ? $_POST['nombre_articulo'] : '';
-$precio = isset($_POST['precio']) ? $_POST['precio'] : '';
-$imagen = isset($_POST['imagen']) ? $_POST['imagen'] : '';
+// $nombre_articulo = isset($_POST['nombre_articulo']) ? $_POST['nombre_articulo'] : '';
+// $precio = isset($_POST['precio']) ? $_POST['precio'] : '';
+// $imagen = isset($_POST['imagen']) ? $_POST['imagen'] : '';
   // Genera la estructura HTML con los datos recibidos
+$conexion = mysqli_connect("localhost", "root", "", "chicvenue");
+
+$quer = "SELECT id_cliente FROM cliente WHERE correo_electronico = '$email'";
+
+$resul = mysqli_query($conexion,$quer);
+if($resul){
+    $aidi = mysqli_fetch_array($resul);
+    $id_cliente = $aidi[0];
+}
+
 ?>
 
 <!DOCTYPE html>
@@ -71,6 +81,13 @@ $imagen = isset($_POST['imagen']) ? $_POST['imagen'] : '';
                 header("Location: products.php?valor=1");
               }
             }
+          }
+
+          if(isset($_SESSION['mensa'])){
+            $mensa = $_SESSION['mensa'];
+            ?>
+            <h3 class="text_user" id="mensa" style="display:none;"><?php echo "$mensa";unset($_SESSION['mensa']); unset($mensa);?></h3>
+            <?php
           }
         ?>
         </div>
@@ -239,27 +256,62 @@ $imagen = isset($_POST['imagen']) ? $_POST['imagen'] : '';
 </header>
 </div>
 <?php 
-$element = "
-  <section class=\"contenedor\">
-    <div class=\"caja-principal\">
-      <div class=\"imagen\">
-        <img src=\"$imagen\" alt=\"\">
-      </div>
-      <div class=\"texto\">
-        <p class=\"descripcion\">$nombre_articulo</p>
-      </div>
-      <div class=\"carrito\">
-        <a class=\"boton1\" href=\"#\">Añadir al carrito</a>
-      </div>
-      <div class=\"delete\">
-        <p>$precio</p>
-        <a class=\"boton2\" href=\"#\">Eliminar</a>
-      </div>
-    </div>
-  </section>
-  ";
 
-echo $element;
+$uwu = "SELECT id_articulo FROM favoritos WHERE id_cliente = $id_cliente";
+$res = mysqli_query($conexion,$uwu);
+
+if($res){
+    $ide = mysqli_fetch_all($res);
+    for ($i=0; $i < count($ide); $i++) {
+      $id_base = $ide[$i][0];
+      $query = "SELECT imagen FROM articulo WHERE id_articulo = $id_base";
+      $resul = mysqli_query($conexion,$query);
+      if($resul){
+        $ima = mysqli_fetch_array($resul);
+        $imagen = $ima[0];
+      }
+      $query = "SELECT nombre_articulo FROM articulo WHERE id_articulo = $id_base";
+      $resul = mysqli_query($conexion,$query);
+      if($resul){
+        $nom = mysqli_fetch_array($resul);
+        $nombre_articulo = $nom[0];
+      }
+      $query = "SELECT precio FROM articulo WHERE id_articulo = $id_base";
+      $resul = mysqli_query($conexion,$query);
+      if($resul){
+        $prec = mysqli_fetch_array($resul);
+        $precio = $prec[0];
+      }
+      $element = "
+        <section class=\"contenedor\">
+          <div class=\"caja-principal\">
+            <div class=\"imagen\">
+              <img src=\"$imagen\" alt=\"\">
+            </div>
+            <div class=\"texto\">
+              <p class=\"descripcion\">$nombre_articulo</p>
+            </div>
+            <div class=\"carrito\">
+              <a class=\"boton1\" href=\"#\">Añadir al carrito</a>
+            </div>
+            <form action=\"/php/eliminar_favoritos.php\" id=\"elim_fav\" method=\"POST\" enctype=\"multipart/form-data\">
+              <div class=\"delete\">
+                <p>$precio</p>
+                <a class=\"boton2\" onclick=\"submitForm()\">Eliminar</a>
+                <input type='hidden' name='id_art' value='$id_base'>
+                <input type='hidden' name='id_cliente' value='$email'>
+              </div>
+            </form>
+          </div>
+        </section>
+        ";
+      
+      echo $element;
+    }
+}
+else{
+    echo "Hubo un error";
+}
 ?>
 
   <script src="/js/favoritos.js"></script>

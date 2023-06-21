@@ -116,14 +116,23 @@ function component($id_articulo, $precio, $nombre_articulo, $color, $talla, $sto
     
         <div class=\"col-md-3 col-sm-6 my-3 my-md-0\">
             <h3 id=\"uwu\" style=\"display:none;\">$email</h3>
-            <form action=\"products.php\" method=\"post\">
+            <form id=\"registro\" method=\"POST\" enctype=\"multipart/form-data\">
                 <div class=\"text-center\">
                     <div class=\"circle-container\">
-                        <div class=\"circle\" onmouseover=\"showButtons(this)\" onmouseout=\"hideButtons(this)\">
+                        <div class=\"circle\">
                             <img src=\"$imagen\" alt=\"Image1\">
                             <div class=\"overlay\">
-                                <button type=\"submit\" class=\"btn btn-warning my-3 btn-circle btn-white\" name=\"add\"><img src=\"assets/carrito.png\" alt=\"Carrito\"></button>
-                                <button type=\"button\" class=\"btn btn-info my-3 btn-circle btn-white\" name=\"favorite\" onclick=\"handleAgregarAFavoritos(this)\"><img src=\"assets/favoritos.png\" alt=\"Favoritos\"></button>
+                                <form action=\"/php/agregar_carrito.php\" id=\"carrito\" method=\"POST\" enctype=\"multipart/form-data\">
+                                    <button type=\"submit\" data-arti=\"$id_articulo\" data-cliente=\"$email\" class=\"btn btn-warning my-3 btn-circle btn-white\" name=\"add\"><img src=\"assets/carrito.png\" alt=\"Carrito\"></button>
+                                    <input type='hidden' name='id_art' value='$id_articulo'>
+                                    <input type='hidden' name='id_cliente' value='$email'>
+                                </form>
+                                
+                                <form action=\"/php/agregar_fav.php\" id=\"favo\" method=\"POST\" enctype=\"multipart/form-data\">
+                                    <button type=\"submit\" data-arti=\"$id_articulo\" data-cliente=\"$email\" class=\"btn btn-info my-3 btn-circle btn-white\" name=\"favorite\" ><img src=\"assets/favoritos.png\" alt=\"Favoritos\"></button>
+                                    <input type='hidden' name='id_art' value='$id_articulo'>
+                                    <input type='hidden' name='id_cliente' value='$email'>
+                                </form>
                             </div>
                         </div>
                         <h5 class=\"title\">$nombre_articulo</h5>
