@@ -96,7 +96,7 @@ if($resul){
     
     
         <!-- MENU DE NAVEGACION -->
-        <nav class="navbar navbar-expand-lg bg-body-tertiary">
+        <nav class="navbar navbar-expand-lg bg-body-tertiary" style="font-family:Britannic;">
           <div class="container-fluid">
             <a class="navbar-brand" href="index.php">
               <img src="/assets/logo.jpg" class="rounded mx-auto d-block"  alt="" width="82" height="70">
@@ -252,7 +252,7 @@ if($resul){
         </nav>
     
         <header>
-  <h1 class="titulo">Guardados</h1>
+  <h1 class="titulo" style="font-family:Britannic;">Guardados</h1>
 </header>
 </div>
 <?php 
@@ -320,7 +320,9 @@ else{
 
 </body>
  <!-- FOOTER -->
- <footer class="container">
+ <br><br><br><br><br>
+ <br><br><br><br><br>
+ <footer class="container" style="font-family:Britannic;" >
   <nav class="navbar bg-dark" data-bs-theme="dark">
     <div class="container-fluid">
     </div>

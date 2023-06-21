@@ -382,14 +382,19 @@ if($res){
   <script src="/js/carrito.js"></script>
 
 </body>
-
+<br>
+<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
  <!-- FOOTER -->
- <footer class="container">
-  
+ <footer style="margin-top: auto;">
+  <nav class="navbar bg-dark" data-bs-theme="dark">
+    <div class="container-fluid">
+    </div>
+    </nav>
+    <br>
     <div class="row">
       <div class="col-12 col-md">
         <img class="logo" src="/assets/logo_CA.PNG"  width="24" height="19" alt="Logotipo de Chic Avenue" >
-        <small class="d-block mb-3 text-body-secondary">&copy; 2022–2023</small>
+        <small class="d-block mb-3 text-body-secondary">&copy; 2022-2023</small>
       </div>
       <div class="col-6 col-md">
         <h5>Nosotros</h5>
