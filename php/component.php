@@ -148,9 +148,6 @@ function component($id_articulo, $precio, $nombre_articulo, $color, $talla, $sto
                         <h5 class=\"stock\">
                             <span>Stock: $stock</span>
                         </h5>
-                        <h5 class=\"categoria\">
-                            <span>Categoría: $categoria</span>
-                        </h5>
                     </div>
                 </div>
                 <div class=\"card-body text-center\">

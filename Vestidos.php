@@ -308,7 +308,7 @@
 
 <!-- Carrusel de imágenes -->
 <?php
-$query = "SELECT COUNT(imagen) AS num_images FROM articulo WHERE categoria = 'Novedades'";
+$query = "SELECT COUNT(imagen) AS num_images FROM articulo WHERE categoria = 'Vestidos'";
 $result = mysqli_query($database->con, $query);
 $row = mysqli_fetch_assoc($result);
 $num_images = $row['num_images'];
@@ -343,26 +343,20 @@ $num_images = $row['num_images'];
         $result = $database->filtrado6($precio);
     } else {
       // Obtener solo los artículos de la categoría "perro"
-      $query = "SELECT * FROM articulo WHERE categoria = 'Novedades'";
+      $query = "SELECT * FROM articulo WHERE categoria = 'Vestidos'";
       $result = mysqli_query($database->con, $query);
     }
     $count = 0;
 
     if (isset($_SESSION['base']) && $_SESSION['base'] == "No hay") {
         ?>
-        <h3 id="base" style="display: none;"><?php echo $_SESSION['base'];unset($_SESSION['base']); ?></h3>
+        <h3 id="base" style="display: none;"><?php echo $_SESSION['base'];
+                                            unset($_SESSION['base']); ?></h3>
     <?php
     } elseif (isset($_SESSION['base']) && $_SESSION['base'] == "No nombre") {
         ?>
-        <h3 id="base" style="display: none;"><?php echo $_SESSION['base'];unset($_SESSION['base']); ?></h3>
-    <?php
-    } elseif (isset($_SESSION['base']) && $_SESSION['base'] == "Fav") {
-      ?>
-      <h3 id="base" style="display: none;"><?php echo $_SESSION['base'];unset($_SESSION['base']); ?></h3>
-    <?php
-    } elseif (isset($_SESSION['base']) && $_SESSION['base'] == "Ya esta") {
-      ?>
-      <h3 id="base" style="display: none;"><?php echo $_SESSION['base'];unset($_SESSION['base']); ?></h3>
+        <h3 id="base" style="display: none;"><?php echo $_SESSION['base'];
+                                            unset($_SESSION['base']); ?></h3>
     <?php
     }
 
@@ -378,7 +372,6 @@ $num_images = $row['num_images'];
         $img_talla = $row['talla']; // Nuevo campo: talla
         $img_stock = $row['stock']; // Nuevo campo: stock
         $img_categoria = $row['categoria']; // Nuevo campo: categoria
-        $img_email = $email;
 
         $images[] = array(
             'id' => $img_id,
@@ -389,8 +382,7 @@ $num_images = $row['num_images'];
             'color' => $img_color,
             'talla' => $img_talla,
             'stock' => $img_stock,
-            'categoria' => $img_categoria,
-            'email' => $img_email
+            'categoria' => $img_categoria
         );
     }
 
@@ -414,7 +406,7 @@ $num_images = $row['num_images'];
                 $image['stock'], // Nuevo argumento: stock
                 $image['categoria'], // Nuevo argumento: categoria
                 $image['url'],
-                $image['email']
+                $image['description']
             );
         }
 
