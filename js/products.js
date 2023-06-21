@@ -91,7 +91,23 @@ if((mensaje.textContent).length > 0 ){
                 icon: 'error',
                 showConfirmButton: 'Aceptar'
             });
-            break;    
+            break;
+        case "Car":
+            Swal.fire({
+                title: 'Exito!',
+                text: 'Se agrego a tu carrito',
+                icon: 'success',
+                showConfirmButton: 'Aceptar'
+            });
+            break;
+        case "Ya carrito":
+            Swal.fire({
+                title: 'Error!',
+                text: 'Ya existe en tu carrito',
+                icon: 'error',
+                showConfirmButton: 'Aceptar'
+            });
+            break;
         default:
             break;
     }

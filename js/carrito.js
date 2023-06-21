@@ -6,7 +6,6 @@ const usuario = document.getElementById("usuario");
 const email = document.getElementById("correo");
 const mensaje = document.getElementById("base");
 
-
 // decreaseButton.addEventListener('click', function () {
 //   let currentValue = parseInt(quantityInput.value);
 //   if (currentValue > 1) {
@@ -19,34 +18,34 @@ const mensaje = document.getElementById("base");
 // });
 
 /* BOTON ELIMINAR EL PRODUCTO*/
-const deleteButtons = document.querySelectorAll('.delete-button');
+// const deleteButtons = document.querySelectorAll('.delete-button');
 
-deleteButtons.forEach(button => {
-  button.addEventListener('click', () => {
-    const confirmationPopup = document.createElement('div');
-    confirmationPopup.className = 'confirmation-popup';
-    confirmationPopup.innerHTML = `
-  <p>¿Esta seguro de eliminar este producto?</p>
-  <button class="confirm-yes">Sí</button>
-  <button class="confirm-no">No</button>
-  <span class="close-button">X</span>
-`;
-    const closeBtn = confirmationPopup.querySelector('.close-button');
-    const confirmYesBtn = confirmationPopup.querySelector('.confirm-yes');
-    const confirmNoBtn = confirmationPopup.querySelector('.confirm-no');
+// deleteButtons.forEach(button => {
+//   button.addEventListener('click', () => {
+//     const confirmationPopup = document.createElement('div');
+//     confirmationPopup.className = 'confirmation-popup';
+//     confirmationPopup.innerHTML = `
+//   <p>¿Esta seguro de eliminar este producto?</p>
+//   <button class="confirm-yes">Sí</button>
+//   <button class="confirm-no">No</button>
+//   <span class="close-button">X</span>
+// `;
+//     const closeBtn = confirmationPopup.querySelector('.close-button');
+//     const confirmYesBtn = confirmationPopup.querySelector('.confirm-yes');
+//     const confirmNoBtn = confirmationPopup.querySelector('.confirm-no');
 
-    closeBtn.addEventListener('click', () => {
-      document.body.removeChild(confirmationPopup);
-    });
+//     closeBtn.addEventListener('click', () => {
+//       document.body.removeChild(confirmationPopup);
+//     });
 
-    confirmNoBtn.addEventListener('click', () => {
-      document.body.removeChild(confirmationPopup);
-    });
+//     confirmNoBtn.addEventListener('click', () => {
+//       document.body.removeChild(confirmationPopup);
+//     });
 
-    document.body.appendChild(confirmationPopup);
-    confirmationPopup.style.display = 'block';
-  });
-});
+//     document.body.appendChild(confirmationPopup);
+//     confirmationPopup.style.display = 'block';
+//   });
+// });
 
 /* BOTON PARA AÑADIR A FAVORITOS */
 // const favoriteButtons = document.querySelectorAll('.favorite-button');
@@ -143,6 +142,7 @@ function actualizarResumen(subtotal) {
 
   // Actualizar los elementos del resumen del pedido
   totalElement.textContent = 'Total a pagar: $' + total.toFixed(2);
+  return total;
 }
 
 // Función para calcular el subtotal por producto
@@ -172,8 +172,8 @@ function calcularSubtotalTotal() {
   // Actualiza el valor del subtotal total en el elemento HTML
   const subtotalTotalElement = document.getElementById('resumen_subtotal');
   subtotalTotalElement.textContent = 'Subtotal: $' + subtotalTotal.toFixed(2);
-  actualizarResumen(subtotalTotal)
-  return subtotalTotal;
+  var total = actualizarResumen(subtotalTotal)
+  return total;
 }
 
 // Agrega los controladores de eventos a cada botón de incremento
@@ -230,9 +230,45 @@ if((mensaje.textContent).length > 0 ){
               icon: 'error',
               showConfirmButton: 'Aceptar'
           });
-          break;    
+          break;
+        case "Ha habido un problema":
+          Swal.fire({
+              title: 'Error!',
+              text: 'No existe ningun producto con esa especificación',
+              icon: 'error',
+              showConfirmButton: 'Aceptar'
+          });
+          break; 
+      case "Car borrado":
+          Swal.fire({
+              title: 'Exito!',
+              text: 'Se ha borrado exitosamente',
+              icon: 'success',
+              showConfirmButton: 'Aceptar'
+          });
+          break;     
       default:
           break;
   }
   
+}
+
+
+function enviarDatos() {
+  var tot = calcularSubtotalTotal();
+  // Crear un formulario dinámico
+  var form = document.createElement('form');
+  form.method = 'post';
+  form.action = '/php/metodoP.php';
+
+  // Agregar los campos ocultos con los datos del artículo
+  var inputNombre = document.createElement('input');
+  inputNombre.type = 'hidden';
+  inputNombre.name = 'total';
+  inputNombre.value = tot;
+  form.appendChild(inputNombre);
+
+  // Agregar el formulario al documento y enviarlo
+  document.body.appendChild(form);
+  form.submit();
 }

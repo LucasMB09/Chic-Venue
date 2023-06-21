@@ -448,8 +448,7 @@
     </div>
   </header>
 
-
-  <p class="letra-subtitulo">Hola, Aide Yunuen.</p>
+  <p class="letra-subtitulo">Hola, <?php echo "$user";?>.</p>
   
   <div class="caja">
     <div class="col1">
@@ -519,22 +518,21 @@
     <div class="col2">
         <h7 class="letra-subtitulo"><b><center>Resumen de compra</center></b></h7>
         <br>
-        <p class="letra-texto"><b>Descripción del producto</b></p>
+        <p class="letra-texto"><b>Descripción</b></p>
         <ul class="lista-dos-columnas-dos">
           
           <li class="letra-texto">Envio</li>
-          <li class="letra-texto">Subtotal</li>
-          <li class="letra-texto">$320.00</li>
-          <li class="letra-texto">$   0.00</li>
+          <li class="letra-texto">Total</li>
+          <li class="letra-texto">$<?php echo $_POST['total']; $_SESSION['total'] = $_POST['total'];?>.00</li>
         </ul>
         <div class="linea-horizontal" ></div>
         <ul class="lista-dos-columnas-dos">
           <li class="letra-texto">Tu pago</li>
-          <li class="letra-texto">$320.00</li>      
+          <li class="letra-texto">$<?php echo $_POST['total'];?>.00</li>      
         </ul>
         
 
-        <center><button><span>Continuar compra</span></button></center>
+        <center><button onclick="redirecM();"><span>Continuar compra</span></button></center>
     </div>
     
     

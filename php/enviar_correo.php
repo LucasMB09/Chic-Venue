@@ -32,6 +32,8 @@
         $mail->Body = '¡Gracias por registrarte en nuestro sitio! Ingresa el siguiente codigo: ' .
             '<h3>' . $codigo_confirmacion . '</h3>';
 
+        $mail->CharSet = 'UTF-8';
+        $mail->Encoding = 'quoted-printable';
         $mail->send();
     } 
     catch (Exception $e) {

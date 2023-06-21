@@ -47,11 +47,29 @@
         <div class="tab-content products-create">
           <div class="tab-pane fade show active" id="products">
             <h2>Crear producto</h2>
-            
-            <a href="#">
-              <button type="submit" class="btn btn-secondary" id="" data-bs-toggle="modal" data-bs-target="#modal-crear-producto">Nuevo Producto</button>
-            </a>
-
+            <form id="create-product-form" action="/php/insertar_producto.php" method="post">
+              <input type="text" placeholder="Nombre del producto" name="nombre_articulo" id="nombre_articulo">
+              <input type="text" placeholder="Descripción" name="descripcion" id="descripcion">
+              <input type="text" placeholder="Precio" name="precio" id="precio">
+              <input type="text" placeholder="Imagen" name="imagen" id="imagen">
+              <!--AÑADIDO-->
+              <input type="text" placeholder="Color" name="color" id="color">
+              <input type="text" placeholder="Talla" name="talla" id="talla">
+              <input type="text" placeholder="Stock" name="stock" id="stock">
+              <select name="categoria" id="categoria">
+                  <option value="" selected="selected">Categoria</option>
+                  <option value="Promociones">Promociones</option>
+                  <option value="Básicos">Básicos</option>
+                  <option value="Blusas">Blusas</option>
+                  <option value="Bluson">Bluson</option>
+                  <option value="Vestidos">Vestidos</option>
+                  <option value="Conjuntos">Conjuntos</option>
+                  <option value="Novedades">Novedades</option>
+                  <option value="iTEMPORADA DE VERANO!">iTEMPORADA DE VERANO!</option>
+              </select>
+              <button type="submit" class="btn btn-secondary" id="btn-crear-product" disabled>Crear</button>
+              
+            </form>
           </div>
         </div>
 

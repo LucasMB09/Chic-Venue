@@ -358,6 +358,14 @@ $num_images = $row['num_images'];
         <h3 id="base" style="display: none;"><?php echo $_SESSION['base'];
                                             unset($_SESSION['base']); ?></h3>
     <?php
+    } elseif (isset($_SESSION['base']) && $_SESSION['base'] == "Fav") {
+      ?>
+      <h3 id="base" style="display: none;"><?php echo $_SESSION['base'];unset($_SESSION['base']); ?></h3>
+    <?php
+    } elseif (isset($_SESSION['base']) && $_SESSION['base'] == "Ya esta") {
+      ?>
+      <h3 id="base" style="display: none;"><?php echo $_SESSION['base'];unset($_SESSION['base']); ?></h3>
+    <?php
     }
 
     // Obtener todas las imágenes
@@ -372,6 +380,8 @@ $num_images = $row['num_images'];
         $img_talla = $row['talla']; // Nuevo campo: talla
         $img_stock = $row['stock']; // Nuevo campo: stock
         $img_categoria = $row['categoria']; // Nuevo campo: categoria
+        $img_email = $email;
+
 
         $images[] = array(
             'id' => $img_id,
@@ -382,7 +392,9 @@ $num_images = $row['num_images'];
             'color' => $img_color,
             'talla' => $img_talla,
             'stock' => $img_stock,
-            'categoria' => $img_categoria
+            'categoria' => $img_categoria,
+            'email' => $img_email
+
         );
     }
 
@@ -406,7 +418,8 @@ $num_images = $row['num_images'];
                 $image['stock'], // Nuevo argumento: stock
                 $image['categoria'], // Nuevo argumento: categoria
                 $image['url'],
-                $image['description']
+                $image['email']
+
             );
         }
 

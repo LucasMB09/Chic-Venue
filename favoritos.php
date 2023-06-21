@@ -59,7 +59,18 @@ if($resul){
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
         <script src="/sweetalert/dist/sweetalert2.all.min.js"></script>
         <link href="/css/fav.css" rel="stylesheet">
+        
       </head>
+      <style>
+        .link-button {
+          background: none;
+          border: none;
+          color: black;
+          text-decoration: underline;
+          cursor: pointer;
+        }
+
+      </style>
       <body class="p-3 m-0 border-0 bd-example">
     
         <!-- LINEA NEGRA -->
@@ -107,23 +118,22 @@ if($resul){
                   <a class="nav-link active" aria-current="page" href="products.php">Novedades</a> <!-- PESTAÑA NOVEDADES -->
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" href="products.php">Rebajas</a> <!-- PESTAÑA REBAJAS -->
+                  <a class="nav-link" href="promociones.php">Promociones</a> <!-- PESTAÑA REBAJAS -->
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" href="products.php">Un poco de todo </a> <!-- PESTAÑA PARA REVISAR ARTICULOS -->
+                  <a class="nav-link" href="basicos.php">Basicos</a> <!-- PESTAÑA PARA REVISAR ARTICULOS -->
                 </li>
                 <li class="nav-item dropdown">
                   <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                     Ropa
                   </a>
                   <ul class="dropdown-menu"> <!-- PARA MOSTRAR DISTINTAS CATEGORIAS -->
-                    <li><a class="dropdown-item" href="#">Mezclilla</a></li> <!---->
-                    <li><a class="dropdown-item" href="#">Sudaderas</a></li>
-                    <li><a class="dropdown-item" href="#">Vestidos</a></li>
-                    <li><a class="dropdown-item" href="#">Conjuntos</a></li>
-                    <li><a class="dropdown-item" href="#">Ropa de descanso</a></li>
-                    <li><hr class="dropdown-divider"></li>
-                    <li><a class="dropdown-item" href="#">¡TEMPORADA DE VERANO!</a></li> <!-- TEMPORADAS -->
+                    <li><a class="dropdown-item" href="Blusas.php">Blusas</a></li>
+                  <li><a class="dropdown-item" href="Bluson.php">Bluson</a></li>
+                  <li><a class="dropdown-item" href="Vestidos.php">Vestidos</a></li>
+                  <li><a class="dropdown-item" href="Conjuntos.php">Conjuntos</a></li>
+                  <li><hr class="dropdown-divider"></li>
+                  <li><a class="dropdown-item" href="verano.php">¡TEMPORADA DE VERANO!</a></li>
                   </ul>
                 </li>
               </ul>
@@ -291,13 +301,17 @@ if($res){
             <div class=\"texto\">
               <p class=\"descripcion\">$nombre_articulo</p>
             </div>
-            <div class=\"carrito\">
-              <a class=\"boton1\" href=\"#\">Añadir al carrito</a>
-            </div>
+            <form action=\"/php/agregar_carrito2.php\" id=\"carrito\" method=\"POST\" enctype=\"multipart/form-data\">
+              <div class=\"carrito\">
+                <button type=\"submit\" data-arti=\"$id_base\" data-cliente=\"$email\" class=\"boton1\" name=\"add\">Añadir al carrito</button>
+                <input type='hidden' name='id_art' value='$id_base'>
+                <input type='hidden' name='id_cliente' value='$email'>
+              </div>
+            </form>
             <form action=\"/php/eliminar_favoritos.php\" id=\"elim_fav\" method=\"POST\" enctype=\"multipart/form-data\">
               <div class=\"delete\">
                 <p>$precio</p>
-                <a class=\"boton2\" onclick=\"submitForm()\">Eliminar</a>
+                <button type=\"submit\" class=\"link-button\">Eliminar</button>
                 <input type='hidden' name='id_art' value='$id_base'>
                 <input type='hidden' name='id_cliente' value='$email'>
               </div>

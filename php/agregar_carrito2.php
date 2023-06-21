@@ -16,7 +16,7 @@
         $id_cliente = $aidi[0];
     }
 
-    $uwu = "SELECT id_articulo FROM favoritos WHERE id_cliente = '$id_cliente'";
+    $uwu = "SELECT id_articulo FROM carrito WHERE id_cliente = '$id_cliente'";
     $res = mysqli_query($conexion,$uwu);
 
     if($res){
@@ -25,9 +25,9 @@
             // echo $id_arti, "\n", $ide[$i][0];
             $id_base = $ide[$i][0];
             if($id_base == $id_arti ){
-                header("Location: ../products.php");
-                $_SESSION['base'] = "Ya esta";
-                echo $_SESSION['base'];
+                header("Location: ../favoritos.php");
+                $_SESSION['mensa'] = "Ya carrito";
+                echo $_SESSION['mensa'];
                 mysqli_close($conexion);
                 return;
             }
@@ -40,14 +40,14 @@
         echo "Hubo un error";
     }
 
-    $query = "INSERT INTO favoritos values ($id_cliente,$id_arti)";
+    $query = "INSERT INTO carrito values ($id_cliente,$id_arti)";
 
     $result = mysqli_query($conexion,$query);
 
     if($result){
-        header("Location: ../products.php");
+        header("Location: ../favoritos.php");
         // Liberar recursos y cerrar conexión
-        $_SESSION['base'] = "Fav";
+        $_SESSION['mensa'] = "Car";
         mysqli_free_result($resultado);         
         mysqli_close($conexion);
         return;

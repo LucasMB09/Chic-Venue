@@ -223,6 +223,7 @@
                                 <option value="rosa">Rosa</option>
                                 <option value="café">Café</option>
                                 <option value="morado">Morado</option>
+                                <option value="Amarillo">Amarillo</option>
                               </select>
                             </div>
                           
@@ -361,6 +362,14 @@ $num_images = $row['num_images'];
       <h3 id="base" style="display: none;"><?php echo $_SESSION['base'];unset($_SESSION['base']); ?></h3>
     <?php
     } elseif (isset($_SESSION['base']) && $_SESSION['base'] == "Ya esta") {
+      ?>
+      <h3 id="base" style="display: none;"><?php echo $_SESSION['base'];unset($_SESSION['base']); ?></h3>
+    <?php
+    } elseif (isset($_SESSION['base']) && $_SESSION['base'] == "Ya carrito") {
+      ?>
+      <h3 id="base" style="display: none;"><?php echo $_SESSION['base'];unset($_SESSION['base']); ?></h3>
+    <?php
+    } elseif (isset($_SESSION['base']) && $_SESSION['base'] == "Car") {
       ?>
       <h3 id="base" style="display: none;"><?php echo $_SESSION['base'];unset($_SESSION['base']); ?></h3>
     <?php
