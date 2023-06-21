@@ -1,20 +1,20 @@
 /* BOTON PARA AUMENTAR O DISMINUIR LA CANTIDAD */
-const decreaseButton = document.querySelector('.decrease-button');
-const increaseButton = document.querySelector('.increase-button');
-const quantityInput = document.querySelector('.quantity-input');
+// const decreaseButton = document.querySelector('.decrease-button');
+// const increaseButton = document.querySelector('.increase-button');
+// const quantityInput = document.querySelector('.quantity-input');
 const usuario = document.getElementById("usuario");
 const email = document.getElementById("correo");
 
-decreaseButton.addEventListener('click', function () {
-  let currentValue = parseInt(quantityInput.value);
-  if (currentValue > 1) {
-    quantityInput.value = currentValue - 1;
-  }
-});
-increaseButton.addEventListener('click', function () {
-  let currentValue = parseInt(quantityInput.value);
-  quantityInput.value = currentValue + 1;
-});
+// decreaseButton.addEventListener('click', function () {
+//   let currentValue = parseInt(quantityInput.value);
+//   if (currentValue > 1) {
+//     quantityInput.value = currentValue - 1;
+//   }
+// });
+// increaseButton.addEventListener('click', function () {
+//   let currentValue = parseInt(quantityInput.value);
+//   quantityInput.value = currentValue + 1;
+// });
 
 /* BOTON ELIMINAR EL PRODUCTO*/
 const deleteButtons = document.querySelectorAll('.delete-button');
@@ -125,21 +125,88 @@ function user() {
   
 }
 
-// Obtener elementos
-const subtotalAmount = document.querySelector('.subtotal-amount');
+// Obtén todos los botones de incremento y decremento
+const increaseButtons = document.querySelectorAll('.increase-button');
+const decreaseButtons = document.querySelectorAll('.decrease-button');
 
-// Obtener el precio inicial
-const initialPrice = parseFloat(subtotalAmount.textContent.replace('$', ''));
+const totalElement = document.getElementById('resumen_total');
 
-// Evento de clic en el botón de aumentar
-increaseButton.addEventListener('click', () => {
-  // Obtener la cantidad y el precio
-  const quantity = parseInt(quantityInput.value);
-  const price = initialPrice;
+// Obtener el costo de envío inicial
+const shippingCost = 50.00;
 
-  // Calcular el nuevo subtotal
+// Función para actualizar el resumen del pedido
+function actualizarResumen(subtotal) {
+  // Calcular el total sumando el subtotal y el costo de envío
+  const total = subtotal + shippingCost;
+
+  // Actualizar los elementos del resumen del pedido
+  totalElement.textContent = 'Total a pagar: $' + total.toFixed(2);
+}
+
+// Función para calcular el subtotal por producto
+function calcularSubtotalPorProducto(input) {
+  const price = parseFloat(input.getAttribute('data-price'));
+  const subtotalAmount = input.parentNode.parentNode.nextElementSibling.querySelector('.subtotal-amount');
+  const quantity = parseInt(input.value);
   const subtotal = quantity * price;
 
-  // Actualizar el contenido del subtotal
+  // Actualiza el valor del subtotal por producto en el elemento HTML
   subtotalAmount.textContent = '$' + subtotal.toFixed(2);
+
+  return subtotal;
+}
+
+// Función para calcular el subtotal total de todos los productos
+function calcularSubtotalTotal() {
+  const subtotalAmounts = document.querySelectorAll('.subtotal-amount');
+  let subtotalTotal = 0;
+
+  // Recorre todos los subtotales por producto y suma los subtotales totales
+  subtotalAmounts.forEach(subtotalAmount => {
+    const subtotal = parseFloat(subtotalAmount.textContent.slice(1));
+    subtotalTotal += subtotal;
+  });
+
+  // Actualiza el valor del subtotal total en el elemento HTML
+  const subtotalTotalElement = document.getElementById('resumen_subtotal');
+  subtotalTotalElement.textContent = 'Subtotal: $' + subtotalTotal.toFixed(2);
+  actualizarResumen(subtotalTotal)
+  return subtotalTotal;
+}
+
+// Agrega los controladores de eventos a cada botón de incremento
+increaseButtons.forEach(button => {
+  button.addEventListener('click', () => {
+    const targetId = button.getAttribute('data-target');
+    const input = document.getElementById(targetId);
+    if (input) {
+      const currentValue = parseInt(input.value);
+      input.value = currentValue + 1;
+      calcularSubtotalPorProducto(input); // Actualiza el subtotal por producto
+      calcularSubtotalTotal(); // Actualiza el subtotal total
+    }
+  });
 });
+
+// Agrega los controladores de eventos a cada botón de decremento
+decreaseButtons.forEach(button => {
+  button.addEventListener('click', () => {
+    const targetId = button.getAttribute('data-target');
+    const input = document.getElementById(targetId);
+    if (input) {
+      const currentValue = parseInt(input.value);
+      if (currentValue > 1) {
+        input.value = currentValue - 1;
+        calcularSubtotalPorProducto(input); // Actualiza el subtotal por producto
+        calcularSubtotalTotal(); // Actualiza el subtotal total
+      }
+    }
+  });
+});
+
+// Calcula el subtotal por producto y el subtotal total inicial al cargar la página
+const quantityInputs = document.querySelectorAll('.quantity-input');
+quantityInputs.forEach(input => {
+  calcularSubtotalPorProducto(input);
+});
+calcularSubtotalTotal();
