@@ -59,7 +59,18 @@ if($resul){
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
         <script src="/sweetalert/dist/sweetalert2.all.min.js"></script>
         <link href="/css/fav.css" rel="stylesheet">
+        
       </head>
+      <style>
+        .link-button {
+          background: none;
+          border: none;
+          color: black;
+          text-decoration: underline;
+          cursor: pointer;
+        }
+
+      </style>
       <body class="p-3 m-0 border-0 bd-example">
     
         <!-- LINEA NEGRA -->
@@ -290,13 +301,17 @@ if($res){
             <div class=\"texto\">
               <p class=\"descripcion\">$nombre_articulo</p>
             </div>
-            <div class=\"carrito\">
-              <a class=\"boton1\" href=\"#\">Añadir al carrito</a>
-            </div>
+            <form action=\"/php/agregar_carrito2.php\" id=\"carrito\" method=\"POST\" enctype=\"multipart/form-data\">
+              <div class=\"carrito\">
+                <button type=\"submit\" data-arti=\"$id_base\" data-cliente=\"$email\" class=\"boton1\" name=\"add\">Añadir al carrito</button>
+                <input type='hidden' name='id_art' value='$id_base'>
+                <input type='hidden' name='id_cliente' value='$email'>
+              </div>
+            </form>
             <form action=\"/php/eliminar_favoritos.php\" id=\"elim_fav\" method=\"POST\" enctype=\"multipart/form-data\">
               <div class=\"delete\">
                 <p>$precio</p>
-                <a class=\"boton2\" onclick=\"submitForm()\">Eliminar</a>
+                <button type=\"submit\" class=\"link-button\">Eliminar</button>
                 <input type='hidden' name='id_art' value='$id_base'>
                 <input type='hidden' name='id_cliente' value='$email'>
               </div>

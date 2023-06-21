@@ -47,6 +47,14 @@
     integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
   <link rel="stylesheet" href="css/metodo_ent.css">
   <script src="/sweetalert/dist/sweetalert2.all.min.js"></script>
+  <style>
+    .butonv {
+      display: flex;
+      align-self: center;
+      justify-content: center;
+    }
+  </style>
+
 </head>
 <title>Metodo de entrega</title>
 
@@ -242,7 +250,7 @@
 
 
     <div class="contenidoform">
-      <form action="procesar_entrega.php" method="post">
+      <form action="resumen.php" id="envio" method="POST" enctype="multipart/form-data">
 
 
         <!--Seleccion de direccion de envio-->
@@ -284,10 +292,10 @@
           <option value="paypal">PayPal</option>
         </select>
         <div id="MetpagErrormessage" class="error-message"></div>
-
+        <br>
         <!--Boton de continuar-->
         <div>
-          <input type="submit" value="Continuar" id="continuarBtn">
+          <center><button type="submit" id="continuarBtn">Continuar</button></center>
         </div>
       </form>
     </div>
@@ -299,7 +307,7 @@
 
     //Redireccionamiento
     function redireccionar() {
-      window.location.href = "puntoent.html";
+      window.location.href = "puntoent.php";
     }
 
     // Seleccionar dirección de envío
@@ -340,14 +348,13 @@
 
     // Botón de continuar
     document.getElementById('continuarBtn').addEventListener('click', function (event) {
-      event.preventDefault();
-
+      
       var selectedOpt = opc_dir.value;
       var selectedOpcEnv = opcion_envio.value;
       var selectedMetPag = metodo_pago.value;
-
+      
       var errorCount = 0; // Contador de errores
-
+      
       if (selectedOpt === 'Seleccione una opción') {
         DirenvErrormessage.textContent = 'Por favor, seleccione una opción';
         errorCount++;
@@ -372,6 +379,9 @@
       if (errorCount === 0) {
         // No hay errores, puedes continuar con el proceso de envío
         // Aquí puedes agregar el código adicional que deseas ejecutar cuando no hay errores
+      }
+      else{
+        event.preventDefault();
       }
 
     });

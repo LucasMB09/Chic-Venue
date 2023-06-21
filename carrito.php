@@ -74,6 +74,30 @@
     <nav class="navbar bg-dark" data-bs-theme="dark">
       <div class="container-fluid">
      <br><br>
+     <?php
+          if($_SESSION['email'] != "No" && $_SESSION['user'] != "No"){
+            ?>
+            <h3 class="text_user" style="display:none;">Hola, <?php echo "$user";?></h1>
+            <?php
+            if($valor == 0 ){
+              if($_GET['valor'] == 0){
+                setcookie('usuario', "", time()-86400, '/');
+                setcookie('email', "", time()-86400, '/');
+                unset($_SESSION['email']);
+                unset($_SESSION['user']);
+                $_SESSION['valor'] = 1;
+                header("Location: products.php?valor=1");
+              }
+            }
+          }
+
+          if(isset($_SESSION['mensa'])){
+            $mensa = $_SESSION['mensa'];
+            ?>
+            <h3 class="text_user" id="mensag" style="display:none;"><?php echo "$mensa";unset($_SESSION['mensa']); unset($mensa);?></h3>
+            <?php
+          }
+        ?>
    </div>
    </nav>
    <!--FIN LINEA NEGRA -->
@@ -246,6 +270,14 @@
       ?>
       <h3 id="base" style="display: none;"><?php echo $_SESSION['base'];unset($_SESSION['base']); ?></h3>
     <?php
+    } elseif (isset($_SESSION['base']) && $_SESSION['base'] == "Car borrado") {
+      ?>
+      <h3 id="base" style="display: none;"><?php echo $_SESSION['base'];unset($_SESSION['base']); ?></h3>
+    <?php
+    } elseif (isset($_SESSION['base']) && $_SESSION['base'] == "Ha habido un problema") {
+      ?>
+      <h3 id="base" style="display: none;"><?php echo $_SESSION['base'];unset($_SESSION['base']); ?></h3>
+    <?php
     }
     ?>
   <!-- FIN MENU DE NAVEGACIÓN -->
@@ -349,7 +381,7 @@ if($res){
                     <button class="decrease-button" data-target="quantity-input-<?php echo $id_base?>">-</button>
                     <input type="text" data-price="<?php echo $precio;?>" class="quantity-input" id="quantity-input-<?php echo $id_base?>" value="1">
                     <button class="increase-button" data-target="quantity-input-<?php echo $id_base?>">+</button>
-                    <p><button class="edit-button">Editar</button></p>
+                    
                   </div>
                 </td>
 
@@ -357,8 +389,8 @@ if($res){
                 <td>
                   <div class="subtotal-container">
                     <p><span class="subtotal-amount"></span></p>
-                    <form>
-                      <p><button class="delete-button"><p>Eliminar</p></button></p>
+                    <form action="/php/eliminar_carrito.php" id="elim_car" method="POST" enctype="multipart/form-data">
+                      <p><button type="submit" class="delete-button"><p>Eliminar</p></button></p>
                       <input type='hidden' name='id_art' value='<?php echo $id_base;?>'>
                       <input type='hidden' name='id_cliente' value='<?php echo $email;?>'>
                     </form>
@@ -380,7 +412,7 @@ if($res){
       <hr>
       <p class="total" id="resumen_total">Total a pagar: $50.00</p>
       <div class="buy-button-container">
-        <button class="buy-button">Comprar</button>
+        <button class="buy-button" onclick="enviarDatos();">Comprar</button>
       </div>
     </div>
   </div>
