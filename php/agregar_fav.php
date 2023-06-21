@@ -5,7 +5,7 @@
     $email = $_POST['id_cliente'];
 
     // echo $email, "",$id_arti;
-    $conexion = mysqli_connect("localhost:3307", "root", "", "chicvenue");
+    $conexion = mysqli_connect("localhost", "root", "", "chicvenue");
 
     
     $quer = "SELECT id_cliente FROM cliente WHERE correo_electronico = '$email'";
