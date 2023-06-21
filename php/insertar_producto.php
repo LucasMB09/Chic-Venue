@@ -9,11 +9,12 @@ $imagen = $_POST['imagen'];
 $color = $_POST['color'];
 $talla = $_POST['talla'];
 $stock = $_POST['stock'];
+$descuento = $_POST['descuento'];
 // Obtener la fecha actual
 $fechaActual = date('Y-m-d');
 
 $conexion = mysqli_connect("localhost","root","","chicvenue");
-$sql_crear = "INSERT INTO articulo VALUES ('NULL', '1', '$precio', '$nombre_articulo', '$descripcion', '$fechaActual', '$color', '$talla', '$stock', '$categoria', '$imagen')";
+$sql_crear = "INSERT INTO articulo VALUES ('NULL', '1', '$precio', '$nombre_articulo', '$descripcion', '$fechaActual', '$color', '$talla', '$stock', '$descuento', '$categoria', '$imagen')";
 $rta = mysqli_query($conexion,$sql_crear);
 if (!$rta){
     echo "Error al insertar"; //MENSAJE DE ERROR AL CREAR UN NUEVO PRODUCTO

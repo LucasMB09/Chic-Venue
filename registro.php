@@ -129,7 +129,7 @@
         </form>
         </div>
         
-        <script src="js/registro_verificar.js"></script>
+        <script src="/js/registro_verificar.js"></script>
     </body>
      <!-- FOOTER -->
      <footer class="container" style="margin-top: auto;">

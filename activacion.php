@@ -40,10 +40,10 @@
             <!-- PESTAÑA NOVEDADES -->
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="/products.php">Rebajas</a> <!-- RESTAÑA REBAJAS -->
+            <a class="nav-link" href="promociones.php">Promociones</a> <!-- RESTAÑA REBAJAS -->
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="/products.php">Un poco de todo </a> <!-- PESTAÑA PARA REVISAR ARTICULOS -->
+            <a class="nav-link" href="basicos.php">Básicos</a> <!-- PESTAÑA PARA REVISAR ARTICULOS -->
           </li>
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -51,16 +51,12 @@
             </a>
             <ul class="dropdown-menu">
               <!-- PARA MOSTRAR DISTINTAS CATEGORIAS -->
-              <li><a class="dropdown-item" href="#">Mezclilla</a></li>
-              <!---->
-              <li><a class="dropdown-item" href="#">Sudaderas</a></li>
-              <li><a class="dropdown-item" href="#">Vestidos</a></li>
-              <li><a class="dropdown-item" href="#">Conjuntos</a></li>
-              <li><a class="dropdown-item" href="#">Ropa de descanso</a></li>
-              <li>
-                <hr class="dropdown-divider">
-              </li>
-              <li><a class="dropdown-item" href="#">¡TEMPORADA DE VERANO!</a></li> <!-- TEMPORADAS -->
+              <li><a class="dropdown-item" href="Blusas.php">Blusas</a></li>
+                <li><a class="dropdown-item" href="Bluson.php">Bluson</a></li>
+                <li><a class="dropdown-item" href="Vestidos.php">Vestidos</a></li>
+                <li><a class="dropdown-item" href="Conjuntos.php">Conjuntos</a></li>
+                <li><hr class="dropdown-divider"></li>
+                <li><a class="dropdown-item" href="verano.php">¡TEMPORADA DE VERANO!</a></li>
             </ul>
           </li>
         </ul>
@@ -201,10 +197,14 @@
   </div>
 
 
-
+<br>
+<br>
+<br>
+<br>
+<br>
 </body>
  <!-- FOOTER -->
- <footer class="container">
+ <footer style="margin-top: auto;">
   <nav class="navbar bg-dark" data-bs-theme="dark">
     <div class="container-fluid">
     </div>

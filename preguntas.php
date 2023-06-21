@@ -128,6 +128,7 @@
       .bd-mode-toggle {
         z-index: 1500;
       }
+      
     </style>
 
 <style>
@@ -270,7 +271,7 @@
   </symbol>
 </svg>
 <header>
-<div class="container py-3">
+<div class="container py-3 letra-subtitulo2">
   
       <nav class="navbar navbar-expand-lg bg-body-tertiary">
           <div class="container-fluid">
@@ -283,23 +284,22 @@
                   <a class="nav-link active" aria-current="page" href="products.php">Novedades</a> <!-- PESTAÑA NOVEDADES -->
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" href="products.php">Rebajas</a> <!-- PESTAÑA REBAJAS -->
+                  <a class="nav-link" href="promociones.php">Promociones</a> <!-- PESTAÑA REBAJAS -->
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" href="products.php">Un poco de todo </a> <!-- PESTAÑA PARA REVISAR ARTICULOS -->
+                  <a class="nav-link" href="basicos.php">Básicos</a> <!-- PESTAÑA PARA REVISAR ARTICULOS -->
                 </li>
                 <li class="nav-item dropdown">
                   <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                     Ropa
                   </a>
                   <ul class="dropdown-menu"> <!-- PARA MOSTRAR DISTINTAS CATEGORIAS -->
-                    <li><a class="dropdown-item" href="#">Mezclilla</a></li> <!---->
-                    <li><a class="dropdown-item" href="#">Sudaderas</a></li>
-                    <li><a class="dropdown-item" href="#">Vestidos</a></li>
-                    <li><a class="dropdown-item" href="#">Conjuntos</a></li>
-                    <li><a class="dropdown-item" href="#">Ropa de descanso</a></li>
-                    <li><hr class="dropdown-divider"></li>
-                    <li><a class="dropdown-item" href="#">¡TEMPORADA DE VERANO!</a></li> <!-- TEMPORADAS -->
+                    <li><a class="dropdown-item" href="Blusas.php">Blusas</a></li>
+                  <li><a class="dropdown-item" href="Bluson.php">Bluson</a></li>
+                  <li><a class="dropdown-item" href="Vestidos.php">Vestidos</a></li>
+                  <li><a class="dropdown-item" href="Conjuntos.php">Conjuntos</a></li>
+                  <li><hr class="dropdown-divider"></li>
+                  <li><a class="dropdown-item" href="verano.php">¡TEMPORADA DE VERANO!</a></li>
                   </ul>
                 </li>
               </ul>
@@ -425,15 +425,15 @@
               </ul>
               </div>
             </div>
-          </div>
+         
         </nav>
-    </div>
+        </div>
     <div class="container py-3">
   <header>
              
   </header>
   <div class="preguntas-header">
-    <p class="fs-5 text-body-secondary">Ulises Gomez. ¿Con que podemos ayudarte?</p>
+    <p class="fs-5 text-body-secondary">¿Con que podemos ayudarte?</p>
   </div>
   
   <main>
@@ -462,7 +462,7 @@
                     Quiero cancelar la compra
                     
                      </p>
-                     <h1 class="letra-texto"  onclick="ocultar();"><u>Ocultar</u></h1>
+                    <a style="color: #333; text-decoration: none;"> <h1 class="letra-texto"  onclick="ocultar();"><u>Ocultar</u></h1></a >
                 </div>
                 <script>
                  function mostrar(){
@@ -639,39 +639,44 @@
 
 
 <!-- Pie de pagina -->
-  <footer class="pt-4 my-md-5 pt-md-5 border-top">
+<footer class="container letra-subtitulo2">
+  <nav class="navbar bg-dark" data-bs-theme="dark">
+    <div class="container-fluid">
+    </div>
+    </nav>
+    <br>
     <div class="row">
       <div class="col-12 col-md">
         <img class="logo" src="/assets/logo_CA.PNG"  width="24" height="19" alt="Logotipo de Chic Avenue" >
-        <small class="d-block mb-3 text-body-secondary">&copy; 2022–2023</small>
+        <small class="d-block mb-3 text-body-secondary">&copy; 2022-2023</small>
       </div>
       <div class="col-6 col-md">
-        <h5>Nosotros</h5>
-        <ul class="list-unstyled text-small">
-          <li class="mb-1"><a class="link-secondary text-decoration-none" href="#">Historia</a></li>
-          <li class="mb-1"><a class="link-secondary text-decoration-none" href="#">Random feature</a></li>
+        <h5 class="letra-subtitulo2">Nosotros</h5>
+        <ul class="list-unstyled text-small ">
+          <li class="mb-1"><a class="link-secondary text-decoration-none" href="./preguntas.php">Preguntas frecuentes</a></li>
+          <li class="mb-1"><a class="link-secondary text-decoration-none" href="./products.php">Random feature</a></li>
 
         </ul>
       </div>
       <div class="col-6 col-md">
-        <h5>Catalogo</h5>
+        <h5 class="letra-subtitulo2">Catálogo</h5>
         <ul class="list-unstyled text-small">
-          <li class="mb-1"><a class="link-secondary text-decoration-none" href="#">Tendencia</a></li>
-          <li class="mb-1"><a class="link-secondary text-decoration-none" href="#">Descuentos</a></li>
-          <li class="mb-1"><a class="link-secondary text-decoration-none" href="#">Promociones</a></li>
+          <li class="mb-1"><a class="link-secondary text-decoration-none" href="../products.php">Tendencia</a></li>
+          <li class="mb-1"><a class="link-secondary text-decoration-none" href="./products.php">Descuentos</a></li>
+          <li class="mb-1"><a class="link-secondary text-decoration-none" href="./products.php">Promociones</a></li>
         </ul>
       </div>
       <div class="col-6 col-md">
-        <h5>Atencion a cliente</h5>
+        <h5 class="letra-subtitulo2">Atención a cliente</h5>
         <ul class="list-unstyled text-small">
-          <li class="mb-1"><a class="link-secondary text-decoration-none" href="#">Contactos</a></li>
-          <li class="mb-1"><a class="link-secondary text-decoration-none" href="#">Ubicacion</a></li>
+          <li class="mb-1"><a class="link-secondary text-decoration-none" href="./preguntas.php">Contactos</a></li>
+          <li class="mb-1"><a class="link-secondary text-decoration-none" href="./preguntas.php">Ubicación</a></li>
           <li class="mb-1"><a class="link-secondary text-decoration-none" href="#"></a></li>
           <li class="mb-1"><a class="link-secondary text-decoration-none" href="#"></a></li>
         </ul>
       </div>
-    </div>
-  </footer>
+    </div></footer>
+
 </div>
 
 

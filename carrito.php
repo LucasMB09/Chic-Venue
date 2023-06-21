@@ -35,7 +35,16 @@
     $user = ":v";
   }
   
- 
+  $conexion = mysqli_connect("localhost", "root", "", "chicvenue");
+
+  $quer = "SELECT id_cliente FROM cliente WHERE correo_electronico = '$email'";
+
+  $resul = mysqli_query($conexion,$quer);
+  if($resul){
+      $aidi = mysqli_fetch_array($resul);
+      $id_cliente = $aidi[0];
+}
+
 ?>
 
 <!DOCTYPE html>
@@ -59,12 +68,36 @@
 </head>
 
 
-<body>
+<body class="p-3 m-0 border-0 bd-example">
 
     <!-- LINEA NEGRA -->
     <nav class="navbar bg-dark" data-bs-theme="dark">
       <div class="container-fluid">
      <br><br>
+     <?php
+          if($_SESSION['email'] != "No" && $_SESSION['user'] != "No"){
+            ?>
+            <h3 class="text_user" style="display:none;">Hola, <?php echo "$user";?></h1>
+            <?php
+            if($valor == 0 ){
+              if($_GET['valor'] == 0){
+                setcookie('usuario', "", time()-86400, '/');
+                setcookie('email', "", time()-86400, '/');
+                unset($_SESSION['email']);
+                unset($_SESSION['user']);
+                $_SESSION['valor'] = 1;
+                header("Location: products.php?valor=1");
+              }
+            }
+          }
+
+          if(isset($_SESSION['mensa'])){
+            $mensa = $_SESSION['mensa'];
+            ?>
+            <h3 class="text_user" id="mensag" style="display:none;"><?php echo "$mensa";unset($_SESSION['mensa']); unset($mensa);?></h3>
+            <?php
+          }
+        ?>
    </div>
    </nav>
    <!--FIN LINEA NEGRA -->
@@ -79,26 +112,25 @@
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
           <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="index.php">Novedades</a>
+            <a class="nav-link active" aria-current="page" href="products.php">Novedades</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="products.php">Rebajas</a>
+            <a class="nav-link" href="promociones.php">Promociones</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="products.php">Básicos</a>
+            <a class="nav-link" href="basicos.php">Básicos</a>
           </li>
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
               Ropa
             </a>
             <ul class="dropdown-menu">
-              <li><a class="dropdown-item" href="#">Mezclilla</a></li> <!---->
-              <li><a class="dropdown-item" href="#">Sudaderas</a></li>
-              <li><a class="dropdown-item" href="#">Vestidos</a></li>
-              <li><a class="dropdown-item" href="#">Conjuntos</a></li>
-              <li><a class="dropdown-item" href="#">Ropa de descanso</a></li>
-              <li><hr class="dropdown-divider"></li>
-              <li><a class="dropdown-item" href="#">¡TEMPORADA DE VERANO!</a></li>
+            <li><a class="dropdown-item" href="Blusas.php">Blusas</a></li>
+                <li><a class="dropdown-item" href="Bluson.php">Bluson</a></li>
+                <li><a class="dropdown-item" href="Vestidos.php">Vestidos</a></li>
+                <li><a class="dropdown-item" href="Conjuntos.php">Conjuntos</a></li>
+                <li><hr class="dropdown-divider"></li>
+                <li><a class="dropdown-item" href="verano.php">¡TEMPORADA DE VERANO!</a></li>
             </ul>
           </li>
         </ul>
@@ -229,91 +261,179 @@
         </div>
       </div>
   </nav>
+  <?php
+  if (isset($_SESSION['base']) && $_SESSION['base'] == "Fav") {
+      ?>
+      <h3 id="base" style="display: none;"><?php echo $_SESSION['base'];unset($_SESSION['base']); ?></h3>
+    <?php
+    } elseif (isset($_SESSION['base']) && $_SESSION['base'] == "Ya esta") {
+      ?>
+      <h3 id="base" style="display: none;"><?php echo $_SESSION['base'];unset($_SESSION['base']); ?></h3>
+    <?php
+    } elseif (isset($_SESSION['base']) && $_SESSION['base'] == "Car borrado") {
+      ?>
+      <h3 id="base" style="display: none;"><?php echo $_SESSION['base'];unset($_SESSION['base']); ?></h3>
+    <?php
+    } elseif (isset($_SESSION['base']) && $_SESSION['base'] == "Ha habido un problema") {
+      ?>
+      <h3 id="base" style="display: none;"><?php echo $_SESSION['base'];unset($_SESSION['base']); ?></h3>
+    <?php
+    }
+    ?>
   <!-- FIN MENU DE NAVEGACIÓN -->
-
-
   <!-- --------------------------------------------------------------------------------------------------- -->
-<!-- PARTE IZQUIERDA CARRITO DE COMPRAS -->
-  <div class="container">
-    <div class="left-column">
-      <h2>Carrito de compras</h2>
-      <table>
-        <thead>
-          <tr>
-            <th>Producto</th>
-            <th> </th>
-            <th>Precio</th>
-            <th>Cantidad</th>
-            <th>Subtotal</th>
-          </tr>
-        </thead>
+      <!-- PARTE IZQUIERDA CARRITO DE COMPRAS -->
+      <div class="container" style=" width: fit-content;">
+        <div class="left-column">
+          <h2>Carrito de compras</h2>
+          <table>
+            <thead>
+              <tr>
+                <th>Producto</th>
+                <th> </th>
+                <th>Precio</th>
+                <th>Cantidad</th>
+                <th>Subtotal</th>
+              </tr>
+            </thead>
+            <!-- COLUMNA PRODUCTO -->
+            <tbody>
+        
+<?php 
 
-<!-- COLUMNA PRODUCTO -->
-        <tbody>
-          <tr>
-            <td>
-              <img src="/assets/producto1.jpg" alt="Producto 1">
-            </td>
-            <td>
-              <div class="product-details">
-                <p><strong>Camiseta juvenil</strong></p>
-                <p>Color: Azul</p>
-                <p>Talla: M </p>
-              </div>
-            </td>
+$uwu = "SELECT id_articulo FROM carrito WHERE id_cliente = $id_cliente";
+$res = mysqli_query($conexion,$uwu);
 
-<!-- COLUMNA PRECIO -->
-            <td>
-              <p><span class="price-text"><p>$25.00</p></span></p>
-              <div class="save-button">
-                <p><button class="favorite-button" title="Añadir a favoritos">
-                    <p><img src="/assets/favoritos.JPG" alt="Guardar en favoritos" class="favorite-icon"></p>
-                  </button></p>
-              </div>
-            </td>
+if($res){
+    $ide = mysqli_fetch_all($res);
+    for ($i=0; $i < count($ide); $i++) {
+      $id_base = $ide[$i][0];
+      $query = "SELECT imagen FROM articulo WHERE id_articulo = $id_base";
+      $resul = mysqli_query($conexion,$query);
+      if($resul){
+        $ima = mysqli_fetch_array($resul);
+        $imagen = $ima[0];
+      }
+      $query = "SELECT nombre_articulo FROM articulo WHERE id_articulo = $id_base";
+      $resul = mysqli_query($conexion,$query);
+      if($resul){
+        $nom = mysqli_fetch_array($resul);
+        $nombre_articulo = $nom[0];
+      }
+      
+      $query = "SELECT color FROM articulo WHERE id_articulo = $id_base";
+      $resul = mysqli_query($conexion,$query);
+      if($resul){
+        $col = mysqli_fetch_array($resul);
+        $color = $col[0];
+      }
 
-<!-- COLUMNA CANTIDAD -->
-            <td>
-              <div class="quantity-control">
-                <button class="decrease-button">-</button>
-                <input type="text" class="quantity-input" value="1">
-                <button class="increase-button">+</button>
-                <p><button class="edit-button">Editar</button></p>
-              </div>
-            </td>
+      $query = "SELECT talla FROM articulo WHERE id_articulo = $id_base";
+      $resul = mysqli_query($conexion,$query);
+      if($resul){
+        $tal = mysqli_fetch_array($resul);
+        $talla = $tal[0];
+      }
+      
+      $query = "SELECT precio FROM articulo WHERE id_articulo = $id_base";
+      $resul = mysqli_query($conexion,$query);
+      if($resul){
+        $prec = mysqli_fetch_array($resul);
+        $precio = $prec[0];
+      }
+      
+      $query = "SELECT color FROM articulo WHERE id_articulo = $id_base";
+      $resul = mysqli_query($conexion,$query);
+      if($resul){
+        $col = mysqli_fetch_array($resul);
+        $color = $col[0];
+      }
+      ?>
+              <tr>
+                <td>
+                  <img src="<?php echo $imagen;?>" alt="Producto 1">
+                </td>
+                <td>
+                  <div class="product-details">
+                    <p><strong><?php echo $nombre_articulo;?></strong></p>
+                    <p>Color: <?php echo $color;?></p>
+                    <p>Talla: <?php echo $talla;?></p>
+                  </div>
+                </td>
+                
+                <!-- COLUMNA PRECIO -->
+                <td>
+                  <p><span class="price-text"><p>$<?php echo $precio;?>.00</p></span></p>
+                  <div class="save-button">
+                    <form action="/php/agregar_fav2.php" id="favo" method="POST" enctype="multipart/form-data">
+                      <input type='hidden' name='id_art' value='<?php echo $id_base;?>'>
+                      <input type='hidden' name='id_cliente' value='<?php echo $email;?>'>
+                      <p><button type="submit" class="favorite-button" title="Añadir a favoritos">
+                        <p><img src="/assets/favoritos.JPG" alt="Guardar en favoritos" class="favorite-icon"></p>
+                      </button></p>
+                    </form>
+                  </div>
+                </td>
 
-<!-- COLUMNA SUBTOTAL -->
-            <td>
-              <div class="subtotal-container">
-                <p><span class="subtotal-amount"><p>$25.00</p></span></p>
-                <p><button class="delete-button"><p>Eliminar</p></button></p>
-              </div>
-            </td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
+                <!-- COLUMNA CANTIDAD -->
+                <td>
+                  <div class="quantity-control" style=" width: max-content;">
+                    <button class="decrease-button" data-target="quantity-input-<?php echo $id_base?>">-</button>
+                    <input type="text" data-price="<?php echo $precio;?>" class="quantity-input" id="quantity-input-<?php echo $id_base?>" value="1">
+                    <button class="increase-button" data-target="quantity-input-<?php echo $id_base?>">+</button>
+                    
+                  </div>
+                </td>
 
-<!-- PARTE DERECHA "RESUMEN DEL PEDIDO" -->
+                <!-- COLUMNA SUBTOTAL -->
+                <td>
+                  <div class="subtotal-container">
+                    <p><span class="subtotal-amount"></span></p>
+                    <form action="/php/eliminar_carrito.php" id="elim_car" method="POST" enctype="multipart/form-data">
+                      <p><button type="submit" class="delete-button"><p>Eliminar</p></button></p>
+                      <input type='hidden' name='id_art' value='<?php echo $id_base;?>'>
+                      <input type='hidden' name='id_cliente' value='<?php echo $email;?>'>
+                    </form>
+                  </div>
+                </td>
+              </tr>
+              
+              <?php
+    }
+    ?>
+            </tbody>
+          </table>
+        </div>
+    <!-- PARTE DERECHA "RESUMEN DEL PEDIDO" -->
     <div class="right-column">
       <h2>Resumen del pedido</h2>
-      <p>Subtotal: $29.99</p>
+      <p id="resumen_subtotal">Subtotal: $0.00</p>
       <p>Costo de envío: $50</p>
       <hr>
-      <p class="total">Total a pagar: $79.99</p>
+      <p class="total" id="resumen_total">Total a pagar: $50.00</p>
       <div class="buy-button-container">
-        <button class="buy-button">Comprar</button>
+        <button class="buy-button" onclick="enviarDatos();">Comprar</button>
       </div>
     </div>
   </div>
-
-
+  <?php
+    if(count($ide)==0){
+      ?>
+      <h3><?php echo "No hay articulos en el carrito";?></h3>
+      <?php
+    }
+  }
+  else{
+  }
+  ?>
+      
   <script src="/js/carrito.js"></script>
 
 </body>
-
+<br>
+<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
  <!-- FOOTER -->
- <footer class="container">
+ <footer style="margin-top: auto;">
   <nav class="navbar bg-dark" data-bs-theme="dark">
     <div class="container-fluid">
     </div>
@@ -322,7 +442,7 @@
     <div class="row">
       <div class="col-12 col-md">
         <img class="logo" src="/assets/logo_CA.PNG"  width="24" height="19" alt="Logotipo de Chic Avenue" >
-        <small class="d-block mb-3 text-body-secondary">&copy; 2022–2023</small>
+        <small class="d-block mb-3 text-body-secondary">&copy; 2022-2023</small>
       </div>
       <div class="col-6 col-md">
         <h5>Nosotros</h5>

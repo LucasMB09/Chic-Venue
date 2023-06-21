@@ -1,5 +1,6 @@
 const usuario = document.getElementById("usuario");
 const email = document.getElementById("correo");
+const mensaje = document.getElementById("mensa");
 
 function user() {
     const Toast = Swal.mixin({
@@ -31,5 +32,49 @@ function user() {
         }
     })
     
+    
+}
+
+function submitForm() {
+    document.getElementById('elim_fav').submit();
+}
+
+if((mensaje.textContent).length > 0 ){
+    switch (mensaje.textContent) {
+        case "Ha habido un problema":
+            Swal.fire({
+                title: 'Error!',
+                text: 'No existe ningun producto con esa especificación',
+                icon: 'error',
+                showConfirmButton: 'Aceptar'
+            });
+            break; 
+        case "Se ha borrado":
+            Swal.fire({
+                title: 'Exito!',
+                text: 'Se ha borrado exitosamente',
+                icon: 'success',
+                showConfirmButton: 'Aceptar'
+            });
+            break;
+        case "Car":
+            Swal.fire({
+                title: 'Exito!',
+                text: 'Se agrego a tu carrito',
+                icon: 'success',
+                showConfirmButton: 'Aceptar'
+            });
+            break;
+        case "Ya carrito":
+            Swal.fire({
+                title: 'Error!',
+                text: 'Ya existe en tu carrito',
+                icon: 'error',
+                showConfirmButton: 'Aceptar'
+            });
+            break;
+        default:
+            break;
+    }
     
 }

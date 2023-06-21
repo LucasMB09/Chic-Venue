@@ -24,6 +24,8 @@
     </a>
   </div>
 
+  
+
   <br><br>
 
   <div class="container">
@@ -56,12 +58,14 @@
               <input type="text" placeholder="Stock" name="stock" id="stock">
               <select name="categoria" id="categoria">
                   <option value="" selected="selected">Categoria</option>
-                  <option value="Blusa bordado simple">Blusa bordado simple</option>
-                  <option value="Blusa doble bordado">Blusa doble bordado</option>
-                  <option value="Blusa triple bordados">Blusa triple bordado</option>
+                  <option value="Promociones">Promociones</option>
+                  <option value="Básicos">Básicos</option>
+                  <option value="Blusas">Blusas</option>
                   <option value="Bluson">Bluson</option>
-                  <option value="Vestido corto">Vestido corto</option>
-                  <option value="Juego">Juego</option>
+                  <option value="Vestidos">Vestidos</option>
+                  <option value="Conjuntos">Conjuntos</option>
+                  <option value="Novedades">Novedades</option>
+                  <option value="iTEMPORADA DE VERANO!">iTEMPORADA DE VERANO!</option>
               </select>
               <button type="submit" class="btn btn-secondary" id="btn-crear-product" disabled>Crear</button>
               
@@ -73,25 +77,26 @@
           <div class="tab-content promotions-create">
           <div class="tab-pane fade show active" id="promotions">
             <h2>Crear promoción</h2>
-            <form id="create-promotion-form" action="/php/insertar_promocion.php" method="post">
+            <!--<form id="create-promotion-form" action="/php/insertar_promocion.php" method="post">
             <input type="text" placeholder="Nombre de la promoción" name="nombre_promocion" id="nombre_promocion">
             <input type="text" placeholder="Descripción" name="descripcion" id="descripcion">
             <input type="text" placeholder="Descuento" name="descuento" id="descuento">
             <input type="text" placeholder="Fecha de inicio" name="fecha_inicio" id="fecha_final">
-            <input type="text" placeholder="Fecha de fin" name="fecha_final" id="fecha_final">
-            <button type="submit" class="btn btn-secondary" id="btn-crear-promotion">Crear</button>
+            <input type="text" placeholder="Fecha de fin" name="fecha_final" id="fecha_final"-->
+            <a href="#">
+              <button type="submit" class="btn btn-secondary" id="" data-bs-toggle="modal" data-bs-target="#modal-crear-promocion">Nueva Promoción</button>
+            </a>
               
-            </form>
           </div>
           </div>
            
-            <h2>Registros existentes</h2>
-            <div class="input-group mb-3">
+            <!--<h2>Registros existentes</h2>
+            <div-- class="input-group mb-3">
               <form action="buscar.php" method="post">
                 <input type="text" id="search-input" class="form-control mr-sm-2" placeholder="Buscar">
               </form>
                 <button class="btn btn-primary" type="button" id="search-button">Buscar</button>
-            </div>
+            </div-->
             
             <table class="table">
                 <thead>
@@ -105,6 +110,7 @@
                         <th class="product-columns">Color</th>
                         <th class="product-columns">Talla</th>
                         <th class="product-columns">Stock</th>
+                        <th class="product-columns">Descuento</th>
                         <th class="product-columns">Imagen</th>
                         <!-- Columna de promociones-->
                         <th class="promotion-columns">ID</th>
@@ -120,7 +126,7 @@
                     <!-- Filas de productos o promociones se agregarán dinámicamente aquí -->
                     <?php
                       $cnx = mysqli_connect("localhost","root","","chicvenue");
-                      $query_productos = "SELECT id_articulo, nombre_articulo, descripcion, precio, categoria, color, talla, stock, imagen FROM articulo ORDER BY id_articulo asc";
+                      $query_productos = "SELECT id_articulo, nombre_articulo, descripcion, precio, categoria, color, talla, stock, descuento, imagen FROM articulo ORDER BY id_articulo asc";
                       $result1 = mysqli_query($cnx,$query_productos);
 
                       $query_promociones = "SELECT id_promocion, nombre_promocion, descripcion, descuento, fecha_inicio, fecha_final FROM promocion ORDER BY id_promocion asc";
@@ -142,6 +148,7 @@
                                 <td class="product-columns"> <?php echo $row["color"] ?> </td>
                                 <td class="product-columns"> <?php echo $row["talla"] ?> </td>
                                 <td class="product-columns"> <?php echo $row["stock"] ?> </td>
+                                <td class="product-columns"> <?php echo $row["descuento"] ?> </td>
                                 <td class="product-columns"> <img src = <?php echo $row["imagen"] ?> height="200" width="175"> </td>
                                 <td class="product-columns">
                                   <a href="editarProducto_CRUD.php?
@@ -153,6 +160,7 @@
                                   color=<?php echo $row["color"] ?> &
                                   talla=<?php echo $row["talla"] ?> &
                                   stock=<?php echo $row["stock"] ?> &
+                                  descuento=<?php echo $row["descuento"] ?> &
                                   imagen=<?php echo $row["imagen"] ?>">
                                       <button class="btn btn-primary product-columns" id="btn-abrir-modal">Editar</button>
                                   </a>
@@ -209,6 +217,10 @@
 
 </div>
 </div>
+
+<?php include 'crearProducto_modal.php'; ?>
+<?php include 'crearPromocion_modal.php'; ?>
+
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
 <script src="/js/editar_producto.js"></script>
 <script src="/js/confirmaciones_TEMPORAL.js"></script>

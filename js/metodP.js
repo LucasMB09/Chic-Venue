@@ -46,3 +46,7 @@ function redirecFiltro() {
                      '&ofertas='+ (ofertas ? '1':'0');
     location.href = urlDestino; 
 }
+
+function redirecM() {
+    location.href = "../metodo_ent.php";
+}

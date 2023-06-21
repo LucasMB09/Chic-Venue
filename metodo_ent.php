@@ -47,6 +47,14 @@
     integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
   <link rel="stylesheet" href="css/metodo_ent.css">
   <script src="/sweetalert/dist/sweetalert2.all.min.js"></script>
+  <style>
+    .butonv {
+      display: flex;
+      align-self: center;
+      justify-content: center;
+    }
+  </style>
+
 </head>
 <title>Metodo de entrega</title>
 
@@ -242,7 +250,7 @@
 
 
     <div class="contenidoform">
-      <form action="procesar_entrega.php" method="post">
+      <form action="resumen.php" id="envio" method="POST" enctype="multipart/form-data">
 
 
         <!--Seleccion de direccion de envio-->
@@ -284,10 +292,10 @@
           <option value="paypal">PayPal</option>
         </select>
         <div id="MetpagErrormessage" class="error-message"></div>
-
+        <br>
         <!--Boton de continuar-->
         <div>
-          <input type="submit" value="Continuar" id="continuarBtn">
+          <center><button type="submit" id="continuarBtn">Continuar</button></center>
         </div>
       </form>
     </div>
@@ -299,7 +307,7 @@
 
     //Redireccionamiento
     function redireccionar() {
-      window.location.href = "puntoent.html";
+      window.location.href = "puntoent.php";
     }
 
     // Seleccionar dirección de envío
@@ -340,14 +348,13 @@
 
     // Botón de continuar
     document.getElementById('continuarBtn').addEventListener('click', function (event) {
-      event.preventDefault();
-
+      
       var selectedOpt = opc_dir.value;
       var selectedOpcEnv = opcion_envio.value;
       var selectedMetPag = metodo_pago.value;
-
+      
       var errorCount = 0; // Contador de errores
-
+      
       if (selectedOpt === 'Seleccione una opción') {
         DirenvErrormessage.textContent = 'Por favor, seleccione una opción';
         errorCount++;
@@ -373,6 +380,9 @@
         // No hay errores, puedes continuar con el proceso de envío
         // Aquí puedes agregar el código adicional que deseas ejecutar cuando no hay errores
       }
+      else{
+        event.preventDefault();
+      }
 
     });
 
@@ -380,6 +390,43 @@
 
   </script>
 </body>
+<footer class="container">
+  <nav class="navbar bg-dark" data-bs-theme="dark">
+    <div class="container-fluid">
+    </div>
+    </nav>
+    <br>
+    <div class="row">
+      <div class="col-12 col-md">
+        <img class="logo" src="/assets/logo_CA.PNG"  width="24" height="19" alt="Logotipo de Chic Avenue" >
+        <small class="d-block mb-3 text-body-secondary">&copy; 2022-2023</small>
+      </div>
+      <div class="col-6 col-md">
+        <h5>Nosotros</h5>
+        <ul class="list-unstyled text-small">
+          <li class="mb-1"><a class="link-secondary text-decoration-none" href="./preguntas.php">Preguntas frecuentes</a></li>
+          <li class="mb-1"><a class="link-secondary text-decoration-none" href="./products.php">Random feature</a></li>
+
+        </ul>
+      </div>
+      <div class="col-6 col-md">
+        <h5>Catálogo</h5>
+        <ul class="list-unstyled text-small">
+          <li class="mb-1"><a class="link-secondary text-decoration-none" href="../products.php">Tendencia</a></li>
+          <li class="mb-1"><a class="link-secondary text-decoration-none" href="./products.php">Descuentos</a></li>
+          <li class="mb-1"><a class="link-secondary text-decoration-none" href="./products.php">Promociones</a></li>
+        </ul>
+      </div>
+      <div class="col-6 col-md">
+        <h5>Atención a cliente</h5>
+        <ul class="list-unstyled text-small">
+          <li class="mb-1"><a class="link-secondary text-decoration-none" href="./preguntas.php">Contactos</a></li>
+          <li class="mb-1"><a class="link-secondary text-decoration-none" href="./preguntas.php">Ubicación</a></li>
+          <li class="mb-1"><a class="link-secondary text-decoration-none" href="#"></a></li>
+          <li class="mb-1"><a class="link-secondary text-decoration-none" href="#"></a></li>
+        </ul>
+      </div>
+    </div></footer>
 
 
 </html>
