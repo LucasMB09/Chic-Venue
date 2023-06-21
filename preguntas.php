@@ -606,7 +606,7 @@
      <div class="col">
       <div class="card mb-4 rounded-3 shadow-sm" style= "width: 97%; height: 50%;" >
         <div class="card-header py-3">
-          <h4 class="letra-subtitulo "><b>¿Necesitas mas ayudarte?</b></h4>
+          <h4 class="letra-subtitulo "><b>¿Necesitas mas ayuda?</b></h4>
         </div>
         <div class="card-body">
           <div class="section">
