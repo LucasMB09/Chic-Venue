@@ -1,38 +1,46 @@
 <?php
-  session_start();
 
-  if(isset($_GET['valor'])){
-    $valor = $_GET['valor'];
-  }
-  else{
-    $valor = $_SESSION['valor'];
-  }
+session_start();
 
-  if(isset($_COOKIE['usuario'])){
-    $_SESSION['user'] = $_COOKIE['usuario'];
-    $_SESSION['email'] = $_COOKIE['email'];
-    $user = $_SESSION['user'];
-    $email = $_SESSION['email'];
-  }
-  elseif(isset($_SESSION['email'])){
-    $user = $_SESSION['user'];
-    $email = $_SESSION['email'];
-  }
-  elseif($valor == 0){
-    $user = "No";
-    $email = "No";  
-  }
-  elseif($valor == 1){
-    $user = ":v";
-    $email = ":v";
-  }
-  else{
-    $valor = 1;
-    $_SESSION['valor'] = $valor;
-  }
-  
-  // Obtén los datos del producto añadido a favoritos
- 
+if (isset($_GET['valor'])) {
+  $valor = $_GET['valor'];
+} else {
+  $valor = $_SESSION['valor'];
+}
+
+if (isset($_COOKIE['usuario'])) {
+  $_SESSION['user'] = $_COOKIE['usuario'];
+  $_SESSION['email'] = $_COOKIE['email'];
+  $user = $_SESSION['user'];
+  $email = $_SESSION['email'];
+} elseif (isset($_SESSION['email'])) {
+  $user = $_SESSION['user'];
+  $email = $_SESSION['email'];
+} elseif ($valor == 0) {
+  $user = "No";
+  $email = "No";
+} elseif ($valor == 1) {
+  $user = ":v";
+  $email = ":v";
+} else {
+  $valor = 1;
+  $_SESSION['valor'] = $valor;
+}
+
+// $nombre_articulo = isset($_POST['nombre_articulo']) ? $_POST['nombre_articulo'] : '';
+// $precio = isset($_POST['precio']) ? $_POST['precio'] : '';
+// $imagen = isset($_POST['imagen']) ? $_POST['imagen'] : '';
+  // Genera la estructura HTML con los datos recibidos
+$conexion = mysqli_connect("localhost", "root", "", "chicvenue");
+
+$quer = "SELECT id_cliente FROM cliente WHERE correo_electronico = '$email'";
+
+$resul = mysqli_query($conexion,$quer);
+if($resul){
+    $aidi = mysqli_fetch_array($resul);
+    $id_cliente = $aidi[0];
+}
+
 ?>
 
 <!DOCTYPE html>
@@ -73,6 +81,13 @@
                 header("Location: products.php?valor=1");
               }
             }
+          }
+
+          if(isset($_SESSION['mensa'])){
+            $mensa = $_SESSION['mensa'];
+            ?>
+            <h3 class="text_user" id="mensa" style="display:none;"><?php echo "$mensa";unset($_SESSION['mensa']); unset($mensa);?></h3>
+            <?php
           }
         ?>
         </div>
@@ -237,27 +252,68 @@
         </nav>
     
         <header>
-            <h1 class="titulo">Guardados</h1>
-        </header>
-    </div>
- 
-    <section class="contenedor">
-    <div class="caja-principal">
-        <div class="imagen">
-            <img src="../FAVORITOS/img/Hoodie.jpg" alt="">
-        </div>
-        <div class="texto">
-            <p class="descripcion" id><?= $nombre_articulo ?></p>
-        </div>
-        <div class="carrito">
-            <a class="boton1" href="#">Añadir al carrito</a>
-        </div>
-        <div class="delete">
-            <p><?= $precio ?></p>
-            <a class="boton2" href="#">Eliminar</a>
-        </div>
-    </div>
-  </section>
+  <h1 class="titulo">Guardados</h1>
+</header>
+</div>
+<?php 
+
+$uwu = "SELECT id_articulo FROM favoritos WHERE id_cliente = $id_cliente";
+$res = mysqli_query($conexion,$uwu);
+
+if($res){
+    $ide = mysqli_fetch_all($res);
+    for ($i=0; $i < count($ide); $i++) {
+      $id_base = $ide[$i][0];
+      $query = "SELECT imagen FROM articulo WHERE id_articulo = $id_base";
+      $resul = mysqli_query($conexion,$query);
+      if($resul){
+        $ima = mysqli_fetch_array($resul);
+        $imagen = $ima[0];
+      }
+      $query = "SELECT nombre_articulo FROM articulo WHERE id_articulo = $id_base";
+      $resul = mysqli_query($conexion,$query);
+      if($resul){
+        $nom = mysqli_fetch_array($resul);
+        $nombre_articulo = $nom[0];
+      }
+      $query = "SELECT precio FROM articulo WHERE id_articulo = $id_base";
+      $resul = mysqli_query($conexion,$query);
+      if($resul){
+        $prec = mysqli_fetch_array($resul);
+        $precio = $prec[0];
+      }
+      $element = "
+        <section class=\"contenedor\">
+          <div class=\"caja-principal\">
+            <div class=\"imagen\">
+              <img src=\"$imagen\" alt=\"\">
+            </div>
+            <div class=\"texto\">
+              <p class=\"descripcion\">$nombre_articulo</p>
+            </div>
+            <div class=\"carrito\">
+              <a class=\"boton1\" href=\"#\">Añadir al carrito</a>
+            </div>
+            <form action=\"/php/eliminar_favoritos.php\" id=\"elim_fav\" method=\"POST\" enctype=\"multipart/form-data\">
+              <div class=\"delete\">
+                <p>$precio</p>
+                <a class=\"boton2\" onclick=\"submitForm()\">Eliminar</a>
+                <input type='hidden' name='id_art' value='$id_base'>
+                <input type='hidden' name='id_cliente' value='$email'>
+              </div>
+            </form>
+          </div>
+        </section>
+        ";
+      
+      echo $element;
+    }
+}
+else{
+    echo "Hubo un error";
+}
+?>
+
   <script src="/js/favoritos.js"></script>
   <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>

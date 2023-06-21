@@ -124,3 +124,22 @@ function user() {
   
   
 }
+
+// Obtener elementos
+const subtotalAmount = document.querySelector('.subtotal-amount');
+
+// Obtener el precio inicial
+const initialPrice = parseFloat(subtotalAmount.textContent.replace('$', ''));
+
+// Evento de clic en el botón de aumentar
+increaseButton.addEventListener('click', () => {
+  // Obtener la cantidad y el precio
+  const quantity = parseInt(quantityInput.value);
+  const price = initialPrice;
+
+  // Calcular el nuevo subtotal
+  const subtotal = quantity * price;
+
+  // Actualizar el contenido del subtotal
+  subtotalAmount.textContent = '$' + subtotal.toFixed(2);
+});

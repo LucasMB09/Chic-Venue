@@ -27,12 +27,10 @@ function user() {
         }
         else if (result.isDenied){
             var valor = 0;
-            location.href = "products.php?valor=" + encodeURIComponent(valor);
+            location.href = "index.php?valor=" + encodeURIComponent(valor);
         }
         else if(result.isDismissed){
             var valor = 3;
-        }
-        else{
         }
     })
     
@@ -57,7 +55,7 @@ function redirecFiltro() {
                      '&talla='+encodeURIComponent(talla)+
                      '&precio='+encodeURIComponent(precio)+
                      '&ofertas='+ (ofertas ? '1':'0');
-    window.location.href = urlDestino; 
+    location.href = urlDestino; 
 }
 
 if((mensaje.textContent).length > 0 ){
@@ -74,6 +72,22 @@ if((mensaje.textContent).length > 0 ){
             Swal.fire({
                 title: 'Error!',
                 text: 'No existe ningun producto con este nombre',
+                icon: 'error',
+                showConfirmButton: 'Aceptar'
+            });
+            break;    
+        case "Fav":
+            Swal.fire({
+                title: 'Exito!',
+                text: 'Se agrego a favoritos',
+                icon: 'success',
+                showConfirmButton: 'Aceptar'
+            });
+            break;    
+        case "Ya esta":
+            Swal.fire({
+                title: 'Error!',
+                text: 'Ya existe en tus favoritos',
                 icon: 'error',
                 showConfirmButton: 'Aceptar'
             });

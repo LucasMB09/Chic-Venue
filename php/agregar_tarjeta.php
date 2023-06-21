@@ -1,6 +1,6 @@
 <?php
 session_start();
-$conexion = mysqli_connect("localhost", "root", "", "chicvenue");
+$conexion = mysqli_connect("localhost:3307", "root", "", "chicvenue");
 
 // Verificar la conexión a la base de datos
 if (!$conexion) {
