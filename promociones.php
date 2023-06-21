@@ -305,7 +305,9 @@
         </div>
       </div>
     </nav>
-
+<header>
+  <h1 class="titulo">ofertas</h1>
+</header>
 <!-- Carrusel de imágenes -->
 <?php
 $query = "SELECT COUNT(imagen) AS num_images FROM articulo WHERE categoria = 'Promociones'";
