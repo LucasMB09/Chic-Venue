@@ -97,6 +97,7 @@ if (isset($_POST['modificar'])) {
 }
 
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -137,6 +138,8 @@ if (isset($_POST['modificar'])) {
         }
       }
       ?>
+
+
     </div>
   </nav>
   <!--FIN LINEA NEGRA -->
@@ -337,18 +340,18 @@ if (isset($_POST['modificar'])) {
           <div class="date">
             <select name="months" id="months">
               <option value="mes">Mes</option>
-              <option value="Jan">01</option>
-              <option value="Feb">02</option>
-              <option value="Mar">03</option>
-              <option value="Apr">04</option>
-              <option value="May">05</option>
-              <option value="Jun">06</option>
-              <option value="Jul">07</option>
-              <option value="Aug">08</option>
-              <option value="Sep">09</option>
-              <option value="Oct">10</option>
-              <option value="Nov">11</option>
-              <option value="Dec">12</option>
+              <option value="01">01</option>
+              <option value="02">02</option>
+              <option value="03">03</option>
+              <option value="04">04</option>
+              <option value="05">05</option>
+              <option value="06">06</option>
+              <option value="07">07</option>
+              <option value="08">08</option>
+              <option value="09">09</option>
+              <option value="10">10</option>
+              <option value="11">11</option>
+              <option value="12">12</option>
             </select>
             <select name="years" id="years">
               <option value="año">Año</option>
@@ -379,7 +382,8 @@ if (isset($_POST['modificar'])) {
     </div>
   </div>
 
-  <script src="agregar_tarjeta.js"></script>
+  <script src="/js/agregar_tarjeta.js"></script>
+  <script src=""></script>
   <script>
     //Funcion para validar que los datos de la tarjeta no sean incorrectos
     // Validación del CVV
@@ -449,7 +453,6 @@ if (isset($_POST['modificar'])) {
 
     // Botón añadir tarjeta
     document.getElementById('addCardBtn').addEventListener('click', async function(event) {
-      event.preventDefault();
 
       var ownerName = ownerNameInput.value.trim();
       var cvvValue = cvvInput.value.trim();
@@ -498,13 +501,13 @@ if (isset($_POST['modificar'])) {
         let parameters = '';
         parameters += `nombre_titular=${ownerName}&`;
         parameters += `numero_tarjeta=${cardNumber}&`;
-        parameters += `vencimiento=${selectedMonth}-${selectedYear}&`;
+        parameters += `vencimiento="${selectedYear}-${selectedMonth}-01"&`;
         parameters += `cvv=${cvvValue}&`;
         parameters += `id_cliente=${aidi.textContent}&`; //Solo falta obtener el numero del cliente
         parameters += `nom_banco=${nomBanco}`;
 
         const url = `/php/agregar_tarjeta.php?${parameters}`;
-
+        // location.href = url;
         //Aqui hay que meter la petiicon a bd donde tienes el fetch?Fetch? ammm es que segun yo, aaa espera ¿Es esto?
         const response = await fetch(url, {
           method: 'GET',
@@ -529,10 +532,14 @@ if (isset($_POST['modificar'])) {
 
         } else {
           //Aqui muestran que hubo error
+          event.preventDefault();
         }
 
 
 
+      }
+      else{
+        event.preventDefault();
       }
     });
   </script>

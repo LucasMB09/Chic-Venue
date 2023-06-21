@@ -272,55 +272,65 @@ $res = mysqli_query($conexion,$uwu);
 
 if($res){
     $ide = mysqli_fetch_all($res);
-    for ($i=0; $i < count($ide); $i++) {
-      $id_base = $ide[$i][0];
-      $query = "SELECT imagen FROM articulo WHERE id_articulo = $id_base";
-      $resul = mysqli_query($conexion,$query);
-      if($resul){
-        $ima = mysqli_fetch_array($resul);
-        $imagen = $ima[0];
-      }
-      $query = "SELECT nombre_articulo FROM articulo WHERE id_articulo = $id_base";
-      $resul = mysqli_query($conexion,$query);
-      if($resul){
-        $nom = mysqli_fetch_array($resul);
-        $nombre_articulo = $nom[0];
-      }
-      $query = "SELECT precio FROM articulo WHERE id_articulo = $id_base";
-      $resul = mysqli_query($conexion,$query);
-      if($resul){
-        $prec = mysqli_fetch_array($resul);
-        $precio = $prec[0];
-      }
-      $element = "
-        <section class=\"contenedor\">
-          <div class=\"caja-principal\">
-            <div class=\"imagen\">
-              <img src=\"$imagen\" alt=\"\">
-            </div>
-            <div class=\"texto\">
-              <p class=\"descripcion\">$nombre_articulo</p>
-            </div>
-            <form action=\"/php/agregar_carrito2.php\" id=\"carrito\" method=\"POST\" enctype=\"multipart/form-data\">
-              <div class=\"carrito\">
-                <button type=\"submit\" data-arti=\"$id_base\" data-cliente=\"$email\" class=\"boton1\" name=\"add\">Añadir al carrito</button>
-                <input type='hidden' name='id_art' value='$id_base'>
-                <input type='hidden' name='id_cliente' value='$email'>
+    if(count($ide) == 0){
+      ?>
+      <div class="cont">
+        <center><h3><?php echo "No hay artículos guardados en favoritos";?></h3><br><br></center>
+        <center><button class="btn boton_redirec" onclick="redirecPro();">Regresar a los productos</button></center>
+      </div>
+      <?php
+    }
+    else{
+      for ($i=0; $i < count($ide); $i++) {
+        $id_base = $ide[$i][0];
+        $query = "SELECT imagen FROM articulo WHERE id_articulo = $id_base";
+        $resul = mysqli_query($conexion,$query);
+        if($resul){
+          $ima = mysqli_fetch_array($resul);
+          $imagen = $ima[0];
+        }
+        $query = "SELECT nombre_articulo FROM articulo WHERE id_articulo = $id_base";
+        $resul = mysqli_query($conexion,$query);
+        if($resul){
+          $nom = mysqli_fetch_array($resul);
+          $nombre_articulo = $nom[0];
+        }
+        $query = "SELECT precio FROM articulo WHERE id_articulo = $id_base";
+        $resul = mysqli_query($conexion,$query);
+        if($resul){
+          $prec = mysqli_fetch_array($resul);
+          $precio = $prec[0];
+        }
+        $element = "
+          <section class=\"contenedor\">
+            <div class=\"caja-principal\">
+              <div class=\"imagen\">
+                <img src=\"$imagen\" alt=\"\">
               </div>
-            </form>
-            <form action=\"/php/eliminar_favoritos.php\" id=\"elim_fav\" method=\"POST\" enctype=\"multipart/form-data\">
-              <div class=\"delete\">
-                <p>$precio</p>
-                <button type=\"submit\" class=\"link-button\">Eliminar</button>
-                <input type='hidden' name='id_art' value='$id_base'>
-                <input type='hidden' name='id_cliente' value='$email'>
+              <div class=\"texto\">
+                <p class=\"descripcion\">$nombre_articulo</p>
               </div>
-            </form>
-          </div>
-        </section>
-        ";
-      
-      echo $element;
+              <form action=\"/php/agregar_carrito2.php\" id=\"carrito\" method=\"POST\" enctype=\"multipart/form-data\">
+                <div class=\"carrito\">
+                  <button type=\"submit\" data-arti=\"$id_base\" data-cliente=\"$email\" class=\"boton1\" name=\"add\">Añadir al carrito</button>
+                  <input type='hidden' name='id_art' value='$id_base'>
+                  <input type='hidden' name='id_cliente' value='$email'>
+                </div>
+              </form>
+              <form action=\"/php/eliminar_favoritos.php\" id=\"elim_fav\" method=\"POST\" enctype=\"multipart/form-data\">
+                <div class=\"delete\">
+                  <p>$precio</p>
+                  <button type=\"submit\" class=\"link-button\">Eliminar</button>
+                  <input type='hidden' name='id_art' value='$id_base'>
+                  <input type='hidden' name='id_cliente' value='$email'>
+                </div>
+              </form>
+            </div>
+          </section>
+          ";
+        
+        echo $element;
+      }
     }
 }
 else{

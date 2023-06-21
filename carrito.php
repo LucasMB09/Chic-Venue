@@ -279,127 +279,136 @@
       <h3 id="base" style="display: none;"><?php echo $_SESSION['base'];unset($_SESSION['base']); ?></h3>
     <?php
     }
-    ?>
-  <!-- FIN MENU DE NAVEGACIÓN -->
-  <!-- --------------------------------------------------------------------------------------------------- -->
-      <!-- PARTE IZQUIERDA CARRITO DE COMPRAS -->
-      <div class="container" style=" width: fit-content;">
-        <div class="left-column">
-          <h2>Carrito de compras</h2>
-          <table>
-            <thead>
-              <tr>
-                <th>Producto</th>
-                <th> </th>
-                <th>Precio</th>
-                <th>Cantidad</th>
-                <th>Subtotal</th>
-              </tr>
-            </thead>
-            <!-- COLUMNA PRODUCTO -->
-            <tbody>
-        
-<?php 
 
 $uwu = "SELECT id_articulo FROM carrito WHERE id_cliente = $id_cliente";
 $res = mysqli_query($conexion,$uwu);
 
 if($res){
     $ide = mysqli_fetch_all($res);
-    for ($i=0; $i < count($ide); $i++) {
-      $id_base = $ide[$i][0];
-      $query = "SELECT imagen FROM articulo WHERE id_articulo = $id_base";
-      $resul = mysqli_query($conexion,$query);
-      if($resul){
-        $ima = mysqli_fetch_array($resul);
-        $imagen = $ima[0];
-      }
-      $query = "SELECT nombre_articulo FROM articulo WHERE id_articulo = $id_base";
-      $resul = mysqli_query($conexion,$query);
-      if($resul){
-        $nom = mysqli_fetch_array($resul);
-        $nombre_articulo = $nom[0];
-      }
-      
-      $query = "SELECT color FROM articulo WHERE id_articulo = $id_base";
-      $resul = mysqli_query($conexion,$query);
-      if($resul){
-        $col = mysqli_fetch_array($resul);
-        $color = $col[0];
-      }
-
-      $query = "SELECT talla FROM articulo WHERE id_articulo = $id_base";
-      $resul = mysqli_query($conexion,$query);
-      if($resul){
-        $tal = mysqli_fetch_array($resul);
-        $talla = $tal[0];
-      }
-      
-      $query = "SELECT precio FROM articulo WHERE id_articulo = $id_base";
-      $resul = mysqli_query($conexion,$query);
-      if($resul){
-        $prec = mysqli_fetch_array($resul);
-        $precio = $prec[0];
-      }
-      
-      $query = "SELECT color FROM articulo WHERE id_articulo = $id_base";
-      $resul = mysqli_query($conexion,$query);
-      if($resul){
-        $col = mysqli_fetch_array($resul);
-        $color = $col[0];
-      }
+    if(count($ide)==0){
       ?>
-              <tr>
-                <td>
-                  <img src="<?php echo $imagen;?>" alt="Producto 1">
-                </td>
-                <td>
-                  <div class="product-details">
-                    <p><strong><?php echo $nombre_articulo;?></strong></p>
-                    <p>Color: <?php echo $color;?></p>
-                    <p>Talla: <?php echo $talla;?></p>
-                  </div>
-                </td>
-                
-                <!-- COLUMNA PRECIO -->
-                <td>
-                  <p><span class="price-text"><p>$<?php echo $precio;?>.00</p></span></p>
-                  <div class="save-button">
-                    <form action="/php/agregar_fav2.php" id="favo" method="POST" enctype="multipart/form-data">
-                      <input type='hidden' name='id_art' value='<?php echo $id_base;?>'>
-                      <input type='hidden' name='id_cliente' value='<?php echo $email;?>'>
-                      <p><button type="submit" class="favorite-button" title="Añadir a favoritos">
-                        <p><img src="/assets/favoritos.JPG" alt="Guardar en favoritos" class="favorite-icon"></p>
-                      </button></p>
-                    </form>
-                  </div>
-                </td>
-
-                <!-- COLUMNA CANTIDAD -->
-                <td>
-                  <div class="quantity-control" style=" width: max-content;">
-                    <button class="decrease-button" data-target="quantity-input-<?php echo $id_base?>">-</button>
-                    <input type="text" data-price="<?php echo $precio;?>" class="quantity-input" id="quantity-input-<?php echo $id_base?>" value="1">
-                    <button class="increase-button" data-target="quantity-input-<?php echo $id_base?>">+</button>
-                    
-                  </div>
-                </td>
-
-                <!-- COLUMNA SUBTOTAL -->
-                <td>
-                  <div class="subtotal-container">
-                    <p><span class="subtotal-amount"></span></p>
-                    <form action="/php/eliminar_carrito.php" id="elim_car" method="POST" enctype="multipart/form-data">
-                      <p><button type="submit" class="delete-button"><p>Eliminar</p></button></p>
-                      <input type='hidden' name='id_art' value='<?php echo $id_base;?>'>
-                      <input type='hidden' name='id_cliente' value='<?php echo $email;?>'>
-                    </form>
-                  </div>
-                </td>
-              </tr>
-              
-              <?php
+      <div class="cont">
+        <h3><?php echo "No hay articulos en el carrito";?></h3><br><br>
+        <center><button class="btn boton_redirec" onclick="redirecPro();">Regresar a los productos</button></center>
+      </div>
+      <?php
     }
+    else{
+      ?>
+      <!-- FIN MENU DE NAVEGACIÓN -->
+      <!-- --------------------------------------------------------------------------------------------------- -->
+          <!-- PARTE IZQUIERDA CARRITO DE COMPRAS -->
+          <div class="container" style=" width: fit-content;">
+            <div class="left-column">
+              <h2>Carrito de compras</h2>
+              <table>
+                <thead>
+                  <tr>
+                    <th>Producto</th>
+                    <th> </th>
+                    <th>Precio</th>
+                    <th>Cantidad</th>
+                    <th>Subtotal</th>
+                  </tr>
+                </thead>
+                <!-- COLUMNA PRODUCTO -->
+                <tbody>
+            
+      <?php 
+      for ($i=0; $i < count($ide); $i++) {
+        $id_base = $ide[$i][0];
+        $query = "SELECT imagen FROM articulo WHERE id_articulo = $id_base";
+        $resul = mysqli_query($conexion,$query);
+        if($resul){
+          $ima = mysqli_fetch_array($resul);
+          $imagen = $ima[0];
+        }
+        $query = "SELECT nombre_articulo FROM articulo WHERE id_articulo = $id_base";
+        $resul = mysqli_query($conexion,$query);
+        if($resul){
+          $nom = mysqli_fetch_array($resul);
+          $nombre_articulo = $nom[0];
+        }
+        
+        $query = "SELECT color FROM articulo WHERE id_articulo = $id_base";
+        $resul = mysqli_query($conexion,$query);
+        if($resul){
+          $col = mysqli_fetch_array($resul);
+          $color = $col[0];
+        }
+  
+        $query = "SELECT talla FROM articulo WHERE id_articulo = $id_base";
+        $resul = mysqli_query($conexion,$query);
+        if($resul){
+          $tal = mysqli_fetch_array($resul);
+          $talla = $tal[0];
+        }
+        
+        $query = "SELECT precio FROM articulo WHERE id_articulo = $id_base";
+        $resul = mysqli_query($conexion,$query);
+        if($resul){
+          $prec = mysqli_fetch_array($resul);
+          $precio = $prec[0];
+        }
+        
+        $query = "SELECT color FROM articulo WHERE id_articulo = $id_base";
+        $resul = mysqli_query($conexion,$query);
+        if($resul){
+          $col = mysqli_fetch_array($resul);
+          $color = $col[0];
+        }
+        ?>
+                <tr>
+                  <td>
+                    <img src="<?php echo $imagen;?>" alt="Producto 1">
+                  </td>
+                  <td>
+                    <div class="product-details">
+                      <p><strong><?php echo $nombre_articulo;?></strong></p>
+                      <p>Color: <?php echo $color;?></p>
+                      <p>Talla: <?php echo $talla;?></p>
+                    </div>
+                  </td>
+                  
+                  <!-- COLUMNA PRECIO -->
+                  <td>
+                    <p><span class="price-text"><p>$<?php echo $precio;?>.00</p></span></p>
+                    <div class="save-button">
+                      <form action="/php/agregar_fav2.php" id="favo" method="POST" enctype="multipart/form-data">
+                        <input type='hidden' name='id_art' value='<?php echo $id_base;?>'>
+                        <input type='hidden' name='id_cliente' value='<?php echo $email;?>'>
+                        <p><button type="submit" class="favorite-button" title="Añadir a favoritos">
+                          <p><img src="/assets/favoritos.JPG" alt="Guardar en favoritos" class="favorite-icon"></p>
+                        </button></p>
+                      </form>
+                    </div>
+                  </td>
+  
+                  <!-- COLUMNA CANTIDAD -->
+                  <td>
+                    <div class="quantity-control" style=" width: max-content;">
+                      <button class="decrease-button" data-target="quantity-input-<?php echo $id_base?>">-</button>
+                      <input type="text" data-price="<?php echo $precio;?>" class="quantity-input" id="quantity-input-<?php echo $id_base?>" value="1">
+                      <button class="increase-button" data-target="quantity-input-<?php echo $id_base?>">+</button>
+                      
+                    </div>
+                  </td>
+  
+                  <!-- COLUMNA SUBTOTAL -->
+                  <td>
+                    <div class="subtotal-container">
+                      <p><span class="subtotal-amount"></span></p>
+                      <form action="/php/eliminar_carrito.php" id="elim_car" method="POST" enctype="multipart/form-data">
+                        <p><button type="submit" class="delete-button"><p>Eliminar</p></button></p>
+                        <input type='hidden' name='id_art' value='<?php echo $id_base;?>'>
+                        <input type='hidden' name='id_cliente' value='<?php echo $email;?>'>
+                      </form>
+                    </div>
+                  </td>
+                </tr>
+                
+                <?php
+      }
     ?>
             </tbody>
           </table>
@@ -415,12 +424,8 @@ if($res){
         <button class="buy-button" onclick="enviarDatos();">Comprar</button>
       </div>
     </div>
-  </div>
-  <?php
-    if(count($ide)==0){
-      ?>
-      <h3><?php echo "No hay articulos en el carrito";?></h3>
-      <?php
+    </div>
+    <?php
     }
   }
   else{

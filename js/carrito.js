@@ -272,3 +272,7 @@ function enviarDatos() {
   document.body.appendChild(form);
   form.submit();
 }
+
+function redirecPro(){
+  location.href = "/products.php";
+}

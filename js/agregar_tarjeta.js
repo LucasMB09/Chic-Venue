@@ -69,10 +69,27 @@ function agregarTarjeta() {
 
     if (numericCardNumber.length === 16) {
       cardNumberInput.value = numericCardNumber;
-      cardNumberErrorMessage.textContent = "";
+      cardNumberErrorMessage.textContent = '';
+
+      if (numericCardNumber.startsWith('4152')) {
+        // Tarjeta del banco BBVA
+        nomBanco = "BBVA";
+      } else if (numericCardNumber.startsWith('4027')) {
+        // Tarjeta del banco Azteca
+        nomBanco = "Azteca";
+      } else if (numericCardNumber.startsWith('5709')) {
+        // Tarjeta del banco Banamex
+        nomBanco = "Banamex";
+      } else if (numericCardNumber.startsWith('4915')) {
+        // Tarjeta del banco Banorte
+        nomBanco = "Banorte";
+      } else {
+        // Otro banco
+        nomBanco = "STP";
+      }
     } else {
       cardNumberInput.value = numericCardNumber;
-      cardNumberErrorMessage.textContent = "El número de tarjeta no es válido";
+      cardNumberErrorMessage.textContent = 'El número de tarjeta no es válido';
     }
   });
 
@@ -144,10 +161,10 @@ function agregarTarjeta() {
         let parameters = "";
         parameters += `nombre_titular=${ownerName}&`;
         parameters += `numero_tarjeta=${cardNumber}&`;
-        parameters += `vencimiento=${selectedMonth}-${selectedYear}&`;
+        parameters += `vencimiento="${selectedYear}-${selectedMonth}-01"&`;
         parameters += `cvv=${cvvValue}&`;
         parameters += `id_cliente=${aidi.textContent}&`; //Solo falta obtener el numero del cliente
-        parameters += `nom_banco=${"Validando"}`; //Y el banco o sino quitenselo pero ya funcionasiuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuu
+        parameters += `nom_banco=${nomBanco}`; //Y el banco o sino quitenselo pero ya funcionasiuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuu
         //Cuando te doy tu for ah bb?jaj no hay falla, de compas bro:'), pos camara sino mañana no me levantoAdios ah bb, descansa, ,gracias hermano igual
 
         const url = `/php/agregar_tarjeta.php?${parameters}`;

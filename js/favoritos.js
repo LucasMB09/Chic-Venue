@@ -78,3 +78,7 @@ if((mensaje.textContent).length > 0 ){
     }
     
 }
+
+function redirecPro(){
+    location.href = "/products.php";
+  }

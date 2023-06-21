@@ -17,8 +17,8 @@ $idCliente = $_GET['id_cliente'];
 $nomBanco = $_GET['nom_banco'];
 
 // Preparar la consulta de inserción
-$query = "INSERT INTO tarjeta_bancaria (Nombre_tit_tar, numero_tarjeta, vencimiento, cvv, id_cliente, nom_banco) 
-          VALUES ('$nombreTitular', '$numeroTarjeta', '$vencimiento', '$cvv', '$idCliente', '$nomBanco')";
+$query = "INSERT INTO tarjeta_bancaria (nom_banco, numero_tarjeta, vencimiento, cvv, id_cliente, nombre_tit_tar) 
+          VALUES ('$nomBanco', '$numeroTarjeta', $vencimiento,  '$cvv',  '$idCliente', '$nombreTitular')";
 
 
 // Ejecutar la consulta

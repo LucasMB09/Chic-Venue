@@ -114,3 +114,20 @@ select{
     transition: .3s ease all;
 }
 
+
+.boton_redirec{
+    height: 50px;
+	line-height: 0px;
+	width: 30%;
+	background: #414141;
+	color: #fff;
+	font-weight: bold;
+	border: none;
+	border-radius: 3px;
+	cursor: pointer;
+	transition: .1s ease all;
+}
+
+.cont{
+    margin-top: 100px;
+}

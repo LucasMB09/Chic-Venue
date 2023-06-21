@@ -1,6 +1,8 @@
 // Validación del CVV
 var cvvInput = document.getElementById("cvvInput");
 var cvvErrorMessage = document.getElementById("cvvErrorMessage");
+var aidi = document.getElementById("aidi");
+
 
 cvvInput.addEventListener("input", function () {
     var cvvValue = cvvInput.value.trim();
@@ -98,8 +100,8 @@ document.getElementById('addCardBtn').addEventListener('click', async function  
       parameters += `numero_tarjeta=${cardNumber}&`;
       parameters += `vencimiento=${selectedMonth}-${selectedYear}&`;
       parameters += `cvv=${cvvValue}&`;
-      parameters += `id_cliente=${1}&`; //Solo falta obtener el numero del cliente
-      parameters += `nom_banco=${"ah bb"}`; //Y el banco o sino quitenselo pero ya funcionasiuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuu
+      parameters += `id_cliente=${aidi}&`; //Solo falta obtener el numero del cliente
+      parameters += `nom_banco=${"BBVA"}`; //Y el banco o sino quitenselo pero ya funcionasiuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuu
       //Cuando te doy tu for ah bb?jaj no hay falla, de compas bro:'), pos camara sino mañana no me levantoAdios ah bb, descansa, ,gracias hermano igual 
 
       
