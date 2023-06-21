@@ -122,12 +122,12 @@ function component($id_articulo, $precio, $nombre_articulo, $color, $talla, $sto
                         <div class=\"circle\">
                             <img src=\"$imagen\" alt=\"Image1\">
                             <div class=\"overlay\">
+                                <form id=\"awa\"></form>
                                 <form action=\"/php/agregar_carrito.php\" id=\"carrito\" method=\"POST\" enctype=\"multipart/form-data\">
                                     <button type=\"submit\" data-arti=\"$id_articulo\" data-cliente=\"$email\" class=\"btn btn-warning my-3 btn-circle btn-white\" name=\"add\"><img src=\"assets/carrito.png\" alt=\"Carrito\"></button>
                                     <input type='hidden' name='id_art' value='$id_articulo'>
                                     <input type='hidden' name='id_cliente' value='$email'>
                                 </form>
-                                
                                 <form action=\"/php/agregar_fav.php\" id=\"favo\" method=\"POST\" enctype=\"multipart/form-data\">
                                     <button type=\"submit\" data-arti=\"$id_articulo\" data-cliente=\"$email\" class=\"btn btn-info my-3 btn-circle btn-white\" name=\"favorite\" ><img src=\"assets/favoritos.png\" alt=\"Favoritos\"></button>
                                     <input type='hidden' name='id_art' value='$id_articulo'>

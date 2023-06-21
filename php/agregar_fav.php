@@ -16,7 +16,7 @@
         $id_cliente = $aidi[0];
     }
 
-    $uwu = "SELECT id_articulo FROM favoritos WHERE id_cliente = $id_cliente";
+    $uwu = "SELECT id_articulo FROM favoritos WHERE id_cliente = '$id_cliente'";
     $res = mysqli_query($conexion,$uwu);
 
     if($res){
