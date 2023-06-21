@@ -51,6 +51,11 @@
     } else {
         $stock = ''; // o cualquier valor predeterminado que desees asignar
     }
+    if (isset($_GET['descuento'])) {
+        $descuento = $_GET['descuento'];
+    } else {
+        $stock = ''; // o cualquier valor predeterminado que desees asignar
+    }
     $imagen = $_GET['imagen'];
 
     // Obtener la fecha actual
@@ -89,24 +94,39 @@
                 </tr>
                 <tr>
                     <td>Talla:</td>
-                    <td><input type="text" value="<?=$talla?>" name="talla" id=""></td>
+                    <td>
+                    <select name="talla" id="talla">
+                        <option value="" disabled>Tallas</option>
+                        <option value="S" <?php if ($talla == "S") echo "selected='selected'"; ?>>S</option>
+                        <option value="M" <?php if ($talla == "M") echo "selected='selected'"; ?>>M</option>
+                        <option value="X" <?php if ($talla == "X") echo "selected='selected'"; ?>>X</option>
+                        <option value="XL" <?php if ($categoria == "Bluson") echo "selected='selected'"; ?>>XL</option>
+                    </select>
+                    </td>
                 </tr>
                 <tr>
                     <td>Stock:</td>
                     <td><input type="text" value="<?=$stock?>" name="stock" id=""></td>
+                </tr>
+
+                <tr>
+                    <td>Descuento:</td>
+                    <td><input type="text" value="<?=$descuento?>" name="descuento" id=""></td>
                 </tr>
                 
                 <tr>
                     <td>Categoría:</td>
                     <td>
                     <select name="categoria" id="categoria">
-                        <option value="">Categoria</option>
-                        <option value="Blusa bordado simple" <?php if ($categoria == "Blusa bordado simple") echo "selected='selected'"; ?>>Blusa bordado simple</option>
-                        <option value="Blusa doble bordado" <?php if ($categoria == "Blusa doble bordado") echo "selected='selected'"; ?>>Blusa doble bordado</option>
-                        <option value="Blusa triple bordado" <?php if ($categoria == "Blusa triple bordado") echo "selected='selected'"; ?>>Blusa triple bordado</option>
+                        <option value="" disabled>Categoria</option>
+                        <option value="Promociones" <?php if ($categoria == "Promociones") echo "selected='selected'"; ?>>Promociones</option>
+                        <option value="Básicos" <?php if ($categoria == "Básicos") echo "selected='selected'"; ?>>Básicos</option>
+                        <option value="Blusas" <?php if ($categoria == "Blusas") echo "selected='selected'"; ?>>Blusas</option>
                         <option value="Bluson" <?php if ($categoria == "Bluson") echo "selected='selected'"; ?>>Bluson</option>
-                        <option value="Vestido corto" <?php if ($categoria == "Vestido corto") echo "selected='selected'"; ?>>Vestido corto</option>
-                        <option value="Juego" <?php if ($categoria == "Juego") echo "selected='selected'"; ?>>Juego</option>
+                        <option value="Vestidos" <?php if ($categoria == "Vestidos") echo "selected='selected'"; ?>>Vestidos</option>
+                        <option value="Conjuntos" <?php if ($categoria == "Conjuntos") echo "selected='selected'"; ?>>Conjuntos</option>
+                        <option value="Novedades" <?php if ($categoria == "Novedades") echo "selected='selected'"; ?>>Novedades</option>
+                        <option value="iTEMPORADA DE VERANO!" <?php if ($categoria == "iTEMPORADA DE VERANO!") echo "selected='selected'"; ?>>iTEMPORADA DE VERANO!</option>
                     </select>
                     </td>
                 </tr>
