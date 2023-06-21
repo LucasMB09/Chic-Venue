@@ -201,10 +201,14 @@
   </div>
 
 
-
+<br>
+<br>
+<br>
+<br>
+<br>
 </body>
  <!-- FOOTER -->
- <footer class="container">
+ <footer style="margin-top: auto;">
   <nav class="navbar bg-dark" data-bs-theme="dark">
     <div class="container-fluid">
     </div>

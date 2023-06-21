@@ -616,7 +616,7 @@
                     <!-- MODIFICAR CONTRASEÑA --------------------------------------------------------->
                     <a class="btn btn-outline-dark btn-lg fondoBonito" href="../contraseña_dos.php">Cambiar mi contraseña</a>
                     <!--AVISO DE PRIVACIDAD ---------------------------------------------------------- -->
-                    <a class="btn btn-outline-dark btn-lg fondoBonito" data-toggle="modal" data-target="#exampleModalLong">Privacidad</a>
+                    <a class="btn btn-outline-dark btn-lg fondoBonito" data-toggle="modal" data-target="#modalPrivacidad">Privacidad</a>
                     <!--SEGURIDAD -->
                  <!--   <button type="button" class="btn btn-outline-dark btn-lg ">Seguridad</button>-->
                     <!--Ayuda -->
@@ -716,11 +716,11 @@
 <!-- -------------------------------------------------------------------------------------------- -->
 
 <!-- Modal -->
-<div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+<div class="modal fade" id="modalPrivacidad" tabindex="-1" role="dialog" aria-labelledby="modalPrivacidad" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title letra-titulo" id="exampleModalLongTitle">Aviso de Privacidad - Chic Venue</h5>
+        <h5 class="modal-title letra-titulo" id="modalPrivacidad">Aviso de Privacidad - Chic Venue</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
