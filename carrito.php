@@ -88,7 +88,7 @@
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
           <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="index.php">Novedades</a>
+            <a class="nav-link active" aria-current="page" href="products.php">Novedades</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="products.php">Rebajas</a>
@@ -238,6 +238,17 @@
         </div>
       </div>
   </nav>
+  <?php
+  if (isset($_SESSION['base']) && $_SESSION['base'] == "Fav") {
+      ?>
+      <h3 id="base" style="display: none;"><?php echo $_SESSION['base'];unset($_SESSION['base']); ?></h3>
+    <?php
+    } elseif (isset($_SESSION['base']) && $_SESSION['base'] == "Ya esta") {
+      ?>
+      <h3 id="base" style="display: none;"><?php echo $_SESSION['base'];unset($_SESSION['base']); ?></h3>
+    <?php
+    }
+    ?>
   <!-- FIN MENU DE NAVEGACIÓN -->
   <!-- --------------------------------------------------------------------------------------------------- -->
       <!-- PARTE IZQUIERDA CARRITO DE COMPRAS -->
@@ -323,9 +334,13 @@ if($res){
                 <td>
                   <p><span class="price-text"><p>$<?php echo $precio;?>.00</p></span></p>
                   <div class="save-button">
-                    <p><button class="favorite-button" title="Añadir a favoritos">
-                      <p><img src="/assets/favoritos.JPG" alt="Guardar en favoritos" class="favorite-icon"></p>
-                    </button></p>
+                    <form action="/php/agregar_fav2.php" id="favo" method="POST" enctype="multipart/form-data">
+                      <input type='hidden' name='id_art' value='<?php echo $id_base;?>'>
+                      <input type='hidden' name='id_cliente' value='<?php echo $email;?>'>
+                      <p><button type="submit" class="favorite-button" title="Añadir a favoritos">
+                        <p><img src="/assets/favoritos.JPG" alt="Guardar en favoritos" class="favorite-icon"></p>
+                      </button></p>
+                    </form>
                   </div>
                 </td>
 

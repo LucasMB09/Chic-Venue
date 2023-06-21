@@ -4,6 +4,8 @@
 // const quantityInput = document.querySelector('.quantity-input');
 const usuario = document.getElementById("usuario");
 const email = document.getElementById("correo");
+const mensaje = document.getElementById("base");
+
 
 // decreaseButton.addEventListener('click', function () {
 //   let currentValue = parseInt(quantityInput.value);
@@ -47,50 +49,50 @@ deleteButtons.forEach(button => {
 });
 
 /* BOTON PARA AÑADIR A FAVORITOS */
-const favoriteButtons = document.querySelectorAll('.favorite-button');
+// const favoriteButtons = document.querySelectorAll('.favorite-button');
 
-favoriteButtons.forEach(button => {
-  button.addEventListener('click', () => {
-    const confirmationPopup = document.createElement('div');
-    confirmationPopup.className = 'confirmation-popup';
-    confirmationPopup.innerHTML = `
-  <p>¿Esta seguro de añadir este producto a favoritos?</p>
-  <button class="confirm-yes">Sí</button>
-  <button class="confirm-no">No</button>
-  <span class="close-button">X</span>
-`;
-    const closeBtn = confirmationPopup.querySelector('.close-button');
-    const confirmYesBtn = confirmationPopup.querySelector('.confirm-yes');
-    const confirmNoBtn = confirmationPopup.querySelector('.confirm-no');
+// favoriteButtons.forEach(button => {
+//   button.addEventListener('click', () => {
+//     const confirmationPopup = document.createElement('div');
+//     confirmationPopup.className = 'confirmation-popup';
+//     confirmationPopup.innerHTML = `
+//   <p>¿Esta seguro de añadir este producto a favoritos?</p>
+//   <button class="confirm-yes">Sí</button>
+//   <button class="confirm-no">No</button>
+//   <span class="close-button">X</span>
+// `;
+//     const closeBtn = confirmationPopup.querySelector('.close-button');
+//     const confirmYesBtn = confirmationPopup.querySelector('.confirm-yes');
+//     const confirmNoBtn = confirmationPopup.querySelector('.confirm-no');
 
-    closeBtn.addEventListener('click', () => {
-      document.body.removeChild(confirmationPopup);
-    });
+//     closeBtn.addEventListener('click', () => {
+//       document.body.removeChild(confirmationPopup);
+//     });
 
-    confirmNoBtn.addEventListener('click', () => {
-      document.body.removeChild(confirmationPopup);
-    });
+//     confirmNoBtn.addEventListener('click', () => {
+//       document.body.removeChild(confirmationPopup);
+//     });
 
-    confirmYesBtn.addEventListener('click', () => {
-      const addedToFavoritesPopup = document.createElement('div');
-      addedToFavoritesPopup.className = 'confirmation-popup';
-      addedToFavoritesPopup.innerHTML = `
-        <p>El producto ha sido añadido a favoritos</p>
+//     confirmYesBtn.addEventListener('click', () => {
+//       const addedToFavoritesPopup = document.createElement('div');
+//       addedToFavoritesPopup.className = 'confirmation-popup';
+//       addedToFavoritesPopup.innerHTML = `
+//         <p>El producto ha sido añadido a favoritos</p>
 
-      `;
-      document.body.removeChild(confirmationPopup);
-      document.body.appendChild(addedToFavoritesPopup);
-      addedToFavoritesPopup.style.display = 'block';
+//       `;
+//       document.body.removeChild(confirmationPopup);
+//       document.body.appendChild(addedToFavoritesPopup);
+//       addedToFavoritesPopup.style.display = 'block';
 
-      setTimeout(() => {
-        document.body.removeChild(addedToFavoritesPopup);
-      }, 2000);
-    });
+//       setTimeout(() => {
+//         document.body.removeChild(addedToFavoritesPopup);
+//       }, 2000);
+//     });
 
-    document.body.appendChild(confirmationPopup);
-    confirmationPopup.style.display = 'block';
-  });
-});
+//     document.body.appendChild(confirmationPopup);
+//     confirmationPopup.style.display = 'block';
+//   });
+// });
 
 function user() {
   const Toast = Swal.mixin({
@@ -210,3 +212,27 @@ quantityInputs.forEach(input => {
   calcularSubtotalPorProducto(input);
 });
 calcularSubtotalTotal();
+
+if((mensaje.textContent).length > 0 ){
+  switch (mensaje.textContent) {  
+      case "Fav":
+          Swal.fire({
+              title: 'Exito!',
+              text: 'Se agrego a favoritos',
+              icon: 'success',
+              showConfirmButton: 'Aceptar'
+          });
+          break;    
+      case "Ya esta":
+          Swal.fire({
+              title: 'Error!',
+              text: 'Ya existe en tus favoritos',
+              icon: 'error',
+              showConfirmButton: 'Aceptar'
+          });
+          break;    
+      default:
+          break;
+  }
+  
+}
