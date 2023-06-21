@@ -223,6 +223,7 @@
                                 <option value="rosa">Rosa</option>
                                 <option value="café">Café</option>
                                 <option value="morado">Morado</option>
+                                <option value="Amarillo">Amarillo</option>
                               </select>
                             </div>
                           
