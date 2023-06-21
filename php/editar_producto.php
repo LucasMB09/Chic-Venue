@@ -10,6 +10,7 @@ $imagen = $_POST['imagen'];
 $color = $_POST['color'];
 $talla = $_POST['talla'];
 $stock = $_POST['stock'];
+$descuento = $_POST['descuento'];
 //AÑADIDO ACABA AQUI
 
 // Obtener la fecha actual
@@ -17,7 +18,7 @@ $fechaActual = date('Y-m-d');
 
 
 $conexion = mysqli_connect("localhost","root","","chicvenue");
-$sql_crear = "UPDATE articulo SET nombre_articulo='$nombre_articulo', descripcion='$descripcion', precio='$precio', categoria='$categoria', imagen='$imagen', fecha='$fechaActual', color='$color', talla='$talla', stock='$stock' WHERE id_articulo LIKE $id_articulo";
+$sql_crear = "UPDATE articulo SET nombre_articulo='$nombre_articulo', descripcion='$descripcion', precio='$precio', categoria='$categoria', imagen='$imagen', fecha='$fechaActual', color='$color', talla='$talla', stock='$stock', descuento='$descuento' WHERE id_articulo LIKE $id_articulo";
 $rta = mysqli_query($conexion,$sql_crear);
 if (!$rta){
     echo "Error al insertar"; //MENSAJE DE ERROR AL CREAR UN NUEVO PRODUCTO

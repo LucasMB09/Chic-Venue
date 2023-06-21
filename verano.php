@@ -308,7 +308,7 @@
 
 <!-- Carrusel de imágenes -->
 <?php
-$query = "SELECT COUNT(imagen) AS num_images FROM articulo WHERE categoria = '¡TEMPORADA DE VERANO!'";
+$query = "SELECT COUNT(imagen) AS num_images FROM articulo WHERE categoria = 'iTEMPORADA DE VERANO!'";
 $result = mysqli_query($database->con, $query);
 $row = mysqli_fetch_assoc($result);
 $num_images = $row['num_images'];
@@ -343,7 +343,7 @@ $num_images = $row['num_images'];
         $result = $database->filtrado6($precio);
     } else {
       // Obtener solo los artículos de la categoría "perro"
-      $query = "SELECT * FROM articulo WHERE categoria = '¡TEMPORADA DE VERANO!'";
+      $query = "SELECT * FROM articulo WHERE categoria = 'iTEMPORADA DE VERANO!'";
       $result = mysqli_query($database->con, $query);
     }
     $count = 0;

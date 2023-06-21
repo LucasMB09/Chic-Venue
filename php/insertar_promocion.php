@@ -3,7 +3,9 @@
 $nombre_promocion = $_POST['nombre_promocion'];
 $descripcion = $_POST['descripcion'];
 $descuento = $_POST['descuento'];
+// Obtener fecha del formulario
 $fecha_inicio = $_POST['fecha_inicio'];
+
 $fecha_final = $_POST['fecha_final'];
 
 

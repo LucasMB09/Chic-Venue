@@ -68,7 +68,7 @@
 </head>
 
 
-<body>
+<body class="p-3 m-0 border-0 bd-example">
 
     <!-- LINEA NEGRA -->
     <nav class="navbar bg-dark" data-bs-theme="dark">
@@ -88,7 +88,7 @@
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
           <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="index.php">Novedades</a>
+            <a class="nav-link active" aria-current="page" href="products.php">Novedades</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="products.php">Rebajas</a>
@@ -238,7 +238,36 @@
         </div>
       </div>
   </nav>
+  <?php
+  if (isset($_SESSION['base']) && $_SESSION['base'] == "Fav") {
+      ?>
+      <h3 id="base" style="display: none;"><?php echo $_SESSION['base'];unset($_SESSION['base']); ?></h3>
+    <?php
+    } elseif (isset($_SESSION['base']) && $_SESSION['base'] == "Ya esta") {
+      ?>
+      <h3 id="base" style="display: none;"><?php echo $_SESSION['base'];unset($_SESSION['base']); ?></h3>
+    <?php
+    }
+    ?>
   <!-- FIN MENU DE NAVEGACIÓN -->
+  <!-- --------------------------------------------------------------------------------------------------- -->
+      <!-- PARTE IZQUIERDA CARRITO DE COMPRAS -->
+      <div class="container" style=" width: fit-content;">
+        <div class="left-column">
+          <h2>Carrito de compras</h2>
+          <table>
+            <thead>
+              <tr>
+                <th>Producto</th>
+                <th> </th>
+                <th>Precio</th>
+                <th>Cantidad</th>
+                <th>Subtotal</th>
+              </tr>
+            </thead>
+            <!-- COLUMNA PRODUCTO -->
+            <tbody>
+        
 <?php 
 
 $uwu = "SELECT id_articulo FROM carrito WHERE id_cliente = $id_cliente";
@@ -289,86 +318,74 @@ if($res){
         $color = $col[0];
       }
       ?>
-      <!-- --------------------------------------------------------------------------------------------------- -->
-      <!-- PARTE IZQUIERDA CARRITO DE COMPRAS -->
-      <div class="container">
-        <div class="left-column">
-          <h2>Carrito de compras</h2>
-          <table>
-            <thead>
-          <tr>
-            <th>Producto</th>
-            <th> </th>
-            <th>Precio</th>
-            <th>Cantidad</th>
-            <th>Subtotal</th>
-          </tr>
-        </thead>
-        
-        <!-- COLUMNA PRODUCTO -->
-        <tbody>
-          <tr>
-            <td>
-              <img src="<?php echo $imagen;?>" alt="Producto 1">
-            </td>
-            <td>
-              <div class="product-details">
-                <p><strong><?php echo $nombre_articulo;?></strong></p>
-                <p>Color: <?php echo $color;?></p>
-                <p>Talla: <?php echo $talla;?></p>
-              </div>
-              </td>
-              
-              <!-- COLUMNA PRECIO -->
-              <td>
-              <p><span class="price-text"><p>$<?php echo $precio;?>.00</p></span></p>
-              <div class="save-button">
-                <p><button class="favorite-button" title="Añadir a favoritos">
-                    <p><img src="/assets/favoritos.JPG" alt="Guardar en favoritos" class="favorite-icon"></p>
-                  </button></p>
-              </div>
-            </td>
+              <tr>
+                <td>
+                  <img src="<?php echo $imagen;?>" alt="Producto 1">
+                </td>
+                <td>
+                  <div class="product-details">
+                    <p><strong><?php echo $nombre_articulo;?></strong></p>
+                    <p>Color: <?php echo $color;?></p>
+                    <p>Talla: <?php echo $talla;?></p>
+                  </div>
+                </td>
+                
+                <!-- COLUMNA PRECIO -->
+                <td>
+                  <p><span class="price-text"><p>$<?php echo $precio;?>.00</p></span></p>
+                  <div class="save-button">
+                    <form action="/php/agregar_fav2.php" id="favo" method="POST" enctype="multipart/form-data">
+                      <input type='hidden' name='id_art' value='<?php echo $id_base;?>'>
+                      <input type='hidden' name='id_cliente' value='<?php echo $email;?>'>
+                      <p><button type="submit" class="favorite-button" title="Añadir a favoritos">
+                        <p><img src="/assets/favoritos.JPG" alt="Guardar en favoritos" class="favorite-icon"></p>
+                      </button></p>
+                    </form>
+                  </div>
+                </td>
 
-<!-- COLUMNA CANTIDAD -->
-            <td>
-              <div class="quantity-control">
-                <button class="decrease-button">-</button>
-                <input type="text" class="quantity-input" value="1">
-                <button class="increase-button">+</button>
-                <p><button class="edit-button">Editar</button></p>
-              </div>
-            </td>
-            
-            <!-- COLUMNA SUBTOTAL -->
-            <td>
-            <div class="subtotal-container">
-                <p><span class="subtotal-amount"><p>$<?php echo $precio;?>.00</p></span></p>
-                <form>
-                  <p><button class="delete-button"><p>Eliminar</p></button></p>
-                  <input type='hidden' name='id_art' value='<?php echo $id_base;?>'>
-                  <input type='hidden' name='id_cliente' value='<?php echo $email;?>'>
-                </form>
-              </div>
-            </td>
-          </tr>
-        </tbody>
-      </table>
-      </div>
-      
-      <!-- PARTE DERECHA "RESUMEN DEL PEDIDO" -->
-      <div class="right-column">
+                <!-- COLUMNA CANTIDAD -->
+                <td>
+                  <div class="quantity-control" style=" width: max-content;">
+                    <button class="decrease-button" data-target="quantity-input-<?php echo $id_base?>">-</button>
+                    <input type="text" data-price="<?php echo $precio;?>" class="quantity-input" id="quantity-input-<?php echo $id_base?>" value="1">
+                    <button class="increase-button" data-target="quantity-input-<?php echo $id_base?>">+</button>
+                    <p><button class="edit-button">Editar</button></p>
+                  </div>
+                </td>
+
+                <!-- COLUMNA SUBTOTAL -->
+                <td>
+                  <div class="subtotal-container">
+                    <p><span class="subtotal-amount"></span></p>
+                    <form>
+                      <p><button class="delete-button"><p>Eliminar</p></button></p>
+                      <input type='hidden' name='id_art' value='<?php echo $id_base;?>'>
+                      <input type='hidden' name='id_cliente' value='<?php echo $email;?>'>
+                    </form>
+                  </div>
+                </td>
+              </tr>
+              
+              <?php
+    }
+    ?>
+            </tbody>
+          </table>
+        </div>
+    <!-- PARTE DERECHA "RESUMEN DEL PEDIDO" -->
+    <div class="right-column">
       <h2>Resumen del pedido</h2>
-      <p>Subtotal: $29.99</p>
+      <p id="resumen_subtotal">Subtotal: $0.00</p>
       <p>Costo de envío: $50</p>
       <hr>
-      <p class="total">Total a pagar: $79.99</p>
+      <p class="total" id="resumen_total">Total a pagar: $50.00</p>
       <div class="buy-button-container">
         <button class="buy-button">Comprar</button>
       </div>
-      </div>
-      </div>
-    <?php
-    }
+    </div>
+  </div>
+  <?php
     if(count($ide)==0){
       ?>
       <h3><?php echo "No hay articulos en el carrito";?></h3>

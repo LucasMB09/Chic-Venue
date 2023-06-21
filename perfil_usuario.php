@@ -32,7 +32,7 @@
   }
   
   // Conexión a la base de datos
-  $conexion = mysqli_connect("localhost", "root", "", "chicvenue");
+  $conexion = mysqli_connect("localhost:3307", "root", "", "chicvenue");
   
   // Consulta SQL para obtener los valores de una columna
   $query = "SELECT apellido FROM cliente WHERE correo_electronico = '$email'";
@@ -235,26 +235,25 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav me-auto mb-2 mb-lg-0">
             <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="/products.php">Novedades</a>
+              <a class="nav-link " aria-current="page" href="/products.php">Novedades</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="/products.php">Rebajas</a>
+              <a class="nav-link" href="/promociones.php">Promociones</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="/products.php">Básicos</a>
+              <a class="nav-link" href="/basicos.php">Básicos</a>
             </li>
             <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                 Ropa
               </a>
               <ul class="dropdown-menu">
-                <li><a class="dropdown-item" href="#">Mezclilla</a></li> <!---->
-                <li><a class="dropdown-item" href="#">Sudaderas</a></li>
-                <li><a class="dropdown-item" href="#">Vestidos</a></li>
-                <li><a class="dropdown-item" href="#">Conjuntos</a></li>
-                <li><a class="dropdown-item" href="#">Ropa de descanso</a></li>
+                <li><a class="dropdown-item" href="Blusas.php">Blusas</a></li>
+                <li><a class="dropdown-item" href="Bluson.php">Bluson</a></li>
+                <li><a class="dropdown-item" href="Vestidos.php">Vestidos</a></li>
+                <li><a class="dropdown-item" href="Conjuntos.php">Conjuntos</a></li>
                 <li><hr class="dropdown-divider"></li>
-                <li><a class="dropdown-item" href="#">¡TEMPORADA DE VERANO!</a></li>
+                <li><a class="dropdown-item" href="verano.php">¡TEMPORADA DE VERANO!</a></li>
               </ul>
             </li>
           </ul>
@@ -409,7 +408,6 @@
           <button class="btn btn-lg nav-link" id="compras" data-bs-toggle="pill" data-bs-target="#compras-tab" type="button" role="tab" aria-controls="v-pills-profile" aria-selected="false">MIS COMPRAS</button>
           <button class="btn btn-lg nav-link" id="tarjetas" data-bs-toggle="pill" data-bs-target="#tarjetas-tab" type="button" role="tab" aria-controls="v-pills-messages" aria-selected="false">TARJETAS</button>
           <button class="btn btn-lg nav-link" id="configuracion" data-bs-toggle="pill" data-bs-target="#configuracion-tab" type="button" role="tab" aria-controls="v-pills-settings" aria-selected="false">CONFIGURACIÓN</button>
-          <button class="btn btn-lg btn-outline-danger position-relative" type="button">Cerrar sesión</button>
         </div>
         
     </div>

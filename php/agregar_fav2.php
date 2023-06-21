@@ -5,7 +5,7 @@
     $email = $_POST['id_cliente'];
 
     // echo $email, "",$id_arti;
-    $conexion = mysqli_connect("localhost:3307", "root", "", "chicvenue");
+    $conexion = mysqli_connect("localhost", "root", "", "chicvenue");
 
     
     $quer = "SELECT id_cliente FROM cliente WHERE correo_electronico = '$email'";
@@ -25,7 +25,7 @@
             // echo $id_arti, "\n", $ide[$i][0];
             $id_base = $ide[$i][0];
             if($id_base == $id_arti ){
-                header("Location: ../products.php");
+                header("Location: ../carrito.php");
                 $_SESSION['base'] = "Ya esta";
                 echo $_SESSION['base'];
                 mysqli_close($conexion);
@@ -45,7 +45,7 @@
     $result = mysqli_query($conexion,$query);
 
     if($result){
-        header("Location: ../products.php");
+        header("Location: ../carrito.php");
         // Liberar recursos y cerrar conexión
         $_SESSION['base'] = "Fav";
         mysqli_free_result($resultado);         
