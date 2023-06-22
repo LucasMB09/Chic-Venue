@@ -31,6 +31,8 @@
     $_SESSION['valor'] = $valor;
   }
   
+  $conexion = mysqli_connect("localhost","root","","chicvenue");
+
  
 ?>
 
@@ -243,7 +245,7 @@
     <h3 class="h1ME">¿Desea añadir una nueva direccion? </h3>
     <div class="contenidoform">
       <p>Porfavor ayudanos llenando los siguientes campos</p>
-      <form action="agregar_punto_entrega.php" method="post">
+      <form action="/php/agregar_punto_entrega.php" method="post" enctype="multipart/form-data" id="form_punto_ent">
 
         <!--Nombre del punto de entrega-->
         <label for="nombre_punto">Nombre del punto de entrega*:</label>
@@ -335,7 +337,7 @@
         <div class="error"></div>
 
         <div>
-          <input type="submit" value="Agregar punto de entrega" id="agregarBtn">
+          <button type="submit" class="boton_avanzar" id="agregarBtn">Agregar punto de entrega</button>
         </div>
       </form>
     </div>
@@ -351,7 +353,7 @@
 
     nombrePuntoentInput.addEventListener('input', function () {
       var nombrePuntoent = nombrePuntoentInput.value.trim();
-      var regex = /^[A-Za-z\s]+$/; // Expresión regular para letras y espacios
+      var regex = /^[A-Za-záéíóú\s]+$/; // Expresión regular para letras y espacios
 
       if (!regex.test(nombrePuntoent)) {
         nombrePuntoentInput.value = nombrePuntoent.replace(/[^A-Za-z\s]/g, ''); // Eliminar caracteres no permitidos
@@ -364,7 +366,7 @@
 
     nombreDestinatarioInput.addEventListener('input', function () {
       var nombreDestinatario = nombreDestinatarioInput.value.trim();
-      var regex = /^[A-Za-z\s]+$/; // Expresión regular para letras y espacios
+      var regex = /^[A-Za-záéíóú\s]+$/; // Expresión regular para letras y espacios
 
       if (!regex.test(nombreDestinatario)) {
         nombreDestinatarioInput.value = nombreDestinatario.replace(/[^A-Za-z\s]/g, ''); // Eliminar caracteres no permitidos
@@ -378,7 +380,7 @@
 
     CalleInput.addEventListener('input', function () {
       var Calle = CalleInput.value.trim();
-      var regex = /^[A-Za-z0-9\s]+$/; // Expresión regular para letras, números y espacios
+      var regex = /^[A-Za-z0-9áéíóú\s]+$/; // Expresión regular para letras, números y espacios
 
       if (!regex.test(Calle)) {
         CalleInput.value = Calle.replace(/[^A-Za-z0-9\s]/g, ''); // Eliminar caracteres no permitidos
@@ -390,7 +392,7 @@
 
     coloniaInput.addEventListener('input', function () {
       var colonia = coloniaInput.value.trim();
-      var regex = /^[A-Za-z0-9\s]+$/; // Expresión regular para letras, números y espacios
+      var regex = /^[A-Za-z0-9áéíóú\s]+$/; // Expresión regular para letras, números y espacios
 
       if (!regex.test(colonia)) {
         coloniaInput.value = colonia.replace(/[^A-Za-z\s]/g, ''); // Eliminar caracteres no permitidos
@@ -402,7 +404,7 @@
 
     ciudadInput.addEventListener('input', function () {
       var ciudad = ciudadInput.value.trim();
-      var regex = /^[A-Za-z0-9\s]+$/; // Expresión regular para letras, números y espacios
+      var regex = /^[A-Za-z0-9áéíóú\s]+$/; // Expresión regular para letras, números y espacios
 
       if (!regex.test(ciudad)) {
         ciudadInput.value = ciudad.replace(/[^A-Za-z\s]/g, ''); // Eliminar caracteres no permitidos
@@ -426,13 +428,13 @@
       var codigo = codigoInput.value.trim();
       var numericCodigo = codigo.replace(/\D/g, '');
 
-      if (numericCodigo.length === 6) {
+      if (numericCodigo.length === 5) {
         codigoInput.value = numericCodigo;
         CPErrormessage.textContent = '';
       } else {
         codigoInput.value = numericCodigo;
         if (numericCodigo.length > 0) {
-          CPErrormessage.textContent = 'Debe tener 6 dígitos';
+          CPErrormessage.textContent = 'Debe tener 5 dígitos';
         } else {
           CPErrormessage.textContent = '';
         }
@@ -477,7 +479,6 @@
 
 
     document.getElementById('agregarBtn').addEventListener('click', function (event) {
-      event.preventDefault();
 
       var nombrePuntoent = nombrePuntoentInput.value.trim();
       var nombreDestinatario = nombreDestinatarioInput.value.trim();
@@ -549,6 +550,9 @@
       if (errorCount === 0) {
         // No hay errores, puedes continuar con el proceso de envío
         // Aquí puedes agregar el código adicional que deseas ejecutar cuando no hay errores
+      }
+      else{
+      event.preventDefault();
       }
     });
   </script>

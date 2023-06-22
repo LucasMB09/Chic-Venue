@@ -31,7 +31,14 @@
     $_SESSION['valor'] = $valor;
   }
   
+  $conexion = mysqli_connect("localhost","root","","chicvenue");
  
+  $query_noCliente = "SELECT id_cliente FROM cliente where correo_electronico = '$email'";
+  $resultado = mysqli_query($conexion,$query_noCliente);
+  if($resultado){
+    $num = mysqli_fetch_array($resultado);
+    $num_cliente = $num[0];
+  }
 ?>
 
 <!DOCTYPE html>
@@ -78,6 +85,12 @@
               header("Location: products.php?valor=1");
             }
           }
+        }
+
+        if(isset($_SESSION['message'])){
+          ?>
+          <h3 class="text_user" id="uwu" style="display:none;"><?php echo $_SESSION['message']; unset($_SESSION['message']);?></h1>
+          <?php
         }
       ?>
     </div>
@@ -257,10 +270,22 @@
         <label for="direccion">Dirección de envío:</label>
         <select id="opc_dir" name="opc_direccion">
           <option value="Seleccione una opción">Seleccione una opción</option>
-          <option value="estandar">Casa</option>
-          <option value="express">Casa Mamá</option>
-          <option value="internacional">Trabajo</option>
-          <option value="recogida">Recoger en tienda</option>
+          <?php
+          $query = "SELECT nom_punto FROM direccion WHERE id_cliente = $num_cliente";
+          $result_nompunt = mysqli_query($conexion,$query);
+          if($result_nompunt){
+            $nom_pun = mysqli_fetch_all($result_nompunt);
+            for ($i=0; $i < count($nom_pun); $i++) { 
+              $nom_punto = $nom_pun[$i][0];
+              ?>
+              <option value="<?php echo $nom_punto;?>"><?php echo $nom_punto;?></option>
+              <?php
+            }
+            
+          }
+
+          
+          ?>
         </select>
         <div id="DirenvErrormessage" class="error-message"></div>
 

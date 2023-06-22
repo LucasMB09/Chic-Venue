@@ -1,5 +1,6 @@
 const usuario = document.getElementById("usuario");
 const email = document.getElementById("correo");
+const mensaje = document.getElementById("uwu");
 
 function user() {
     const Toast = Swal.mixin({
@@ -31,5 +32,21 @@ function user() {
         }
     })
     
+    
+}
+
+if((mensaje.textContent).length > 0 ){
+    switch (mensaje.textContent) {
+        case "Dir agregada":
+            Swal.fire({
+                title: 'Hecho!',
+                text: 'Dirección agregada exitosamente',
+                icon: 'success',
+                showConfirmButton: 'Aceptar'
+            });
+            break;        
+        default:
+            break;
+    }
     
 }

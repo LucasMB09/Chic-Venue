@@ -88,6 +88,22 @@
     input[type="submit"]:hover {
       background-color: var(--grisosc);
     }
+    
+    .boton_avanzar {
+      background-color: #1d1d1d;
+      color: white;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      margin-top: 10px;
+      margin: 11px auto auto auto; 
+      display: block;
+    }
+    
+    .boton_avanzar:hover {
+      background-color: var(--grisosc);
+    }
 
     .error-message {
       color: red;
