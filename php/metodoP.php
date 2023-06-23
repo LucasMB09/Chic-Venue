@@ -34,7 +34,8 @@
     $email = ":v";
     $user = ":v";
   }
-  
+  $conexion = mysqli_connect("localhost","root","","chicvenue");
+  $id_cliente = $_SESSION['aidCliente'];
  
 ?>
 
@@ -456,64 +457,41 @@
             <h7 class="letra-subtitulo"><b> Selecciona método de pago</center></b></h7>
         </div>
         <div>
-          <br>
-        <p >
-          <label class="custom-radio-checkbox">
-         
-              <input class="custom-radio-checkbox__input" type="radio" name="pago" value="credito">
-             
-              <span class="custom-radio-checkbox__show custom-radio-checkbox__show--radio"></span>
+        <div class="linea-horizontal" ></div>
+        <br>
+        </div>
+        <?php
 
-              <img class="tarjeta1" src="../assets/Cardb.png"  width="24" height="19" alt="tarjeta de credito" >
-           
-              <span class="custom-radio-checkbox__text">Nueva tarjeta de credito </span>
-          </label>
-      </p>
-      <div class="linea-horizontal" ></div>
-      <br>
-    </div>
-      <p>
-          <label class="custom-radio-checkbox">
-            
-              <input class="custom-radio-checkbox__input" type="radio" name="pago" value="debito">
-              
-              <span class="custom-radio-checkbox__show custom-radio-checkbox__show--radio"></span>
+        $query_tarjeta = "SELECT numero_tarjeta FROM tarjeta_bancaria WHERE id_cliente = '$id_cliente'";
+        $resul = mysqli_query($conexion,$query_tarjeta);
+        if($resul){
+          $tar = mysqli_fetch_all($resul);
 
-              <img class="tarjeta2" src="../assets/Cardm.png"  width="24" height="19" alt="tarejta de debito" >
-           
-              <span class="custom-radio-checkbox__text">Nueva tarjeta de debito</span>
-          </label>
-      </p>
-      <div class="linea-horizontal" ></div>
-      <br>
-      <p>
-        <label class="custom-radio-checkbox">
-            
-            <input class="custom-radio-checkbox__input" type="radio" name="pago" value="tranferencia">
-            
-            <span class="custom-radio-checkbox__show custom-radio-checkbox__show--radio"></span>
+          for ($i=0; $i < count($tar) ; $i++) { 
+            $tarjeta = $tar[$i][0];
+            $tarjeta = substr($tarjeta,-4);
+            ?>
+            <p>
+              <label class="custom-radio-checkbox">
+                
+                <input class="custom-radio-checkbox__input" type="radio" name="pago" value="debito">
+                
+                <span class="custom-radio-checkbox__show custom-radio-checkbox__show--radio"></span>
 
-            <img class="transferencia" src="../assets/transaction2.png"  width="24" height="19" alt="Tranferencia" >
+                <img class="tarjeta2" src="../assets/Cardm.png"  width="24" height="19" alt="tarejta de debito" >
             
-            <span class="custom-radio-checkbox__text ">Tranferencia electronica</span>
-        </label>
-    </p>
-    <div class="linea-horizontal" ></div>
-    <br>
-    <p>
-      <label class="custom-radio-checkbox">
-          <!-- Input oculto -->
-          <input class="custom-radio-checkbox__input" type="radio" name="pago" value="puntos pago">
-          <!-- Imagen en sustitucion -->
-          <span class="custom-radio-checkbox__show custom-radio-checkbox__show--radio"></span>
+                <span class="custom-radio-checkbox__text">****-****-****-<?php echo $tarjeta;?></span>
+              </label>
+            </p>
+          <?php
+          }
+        }
+        ?>
 
-          <img class="pago" src="../assets/paymant.png"  width="24" height="19" alt="Puntos pago" >
-          <!-- Texto -->
-          <span class="custom-radio-checkbox__text">Efectivo en puntos de pago</span>
-      </label>
-  </p>
-    
-      
+        <br><br>
+      <button class="btn btn-bd-primary " onclick="mandarTarjeta()">Agregar nueva tarjeta</button><br><br>
+
+
     </div>
     <div class="col2">
         <h7 class="letra-subtitulo"><b><center>Resumen de compra</center></b></h7>

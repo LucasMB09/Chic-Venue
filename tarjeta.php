@@ -378,12 +378,22 @@ if (isset($_POST['modificar'])) {
         </div>
         <div id="expirationErrorMessage" class="error-message"></div>
       </div>
-      <button class="btn btn-bd-primary btn-lg" id="addCardBtn" onclick="TarjetaRegistrada()">Agregar nueva tarjeta</button><br><br>
+      <?php 
+        if(isset($_GET['r'])){
+          ?>
+          <button class="btn btn-bd-primary btn-lg" id="addCardBtn" onclick="TarjetaRegistrada2()">Agregar nueva tarjeta</button><br><br>
+          <?php
+        }
+        else{
+          ?>
+          <button class="btn btn-bd-primary btn-lg" id="addCardBtn" onclick="TarjetaRegistrada()">Agregar nueva tarjeta</button><br><br>
+          <?php
+        }
+      ?>
     </div>
   </div>
 
   <script src="/js/agregar_tarjeta.js"></script>
-  <script src=""></script>
   <script>
     //Funcion para validar que los datos de la tarjeta no sean incorrectos
     // Validación del CVV

@@ -39,6 +39,10 @@ function TarjetaRegistrada() {
   location.href = "perfil_usuario.php";
 }
 
+function TarjetaRegistrada2() {
+  location.href = "/php/metodoP.php";
+}
+
 function agregarDirec(){
   location.href = "puntoent2.php";
 }

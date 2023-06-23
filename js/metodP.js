@@ -50,3 +50,9 @@ function redirecFiltro() {
 function redirecM() {
     location.href = "../metodo_ent.php";
 }
+
+function mandarTarjeta() {
+    location.href = "../tarjeta.php?r=1";
+  }
+
+  
