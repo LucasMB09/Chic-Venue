@@ -131,6 +131,7 @@ const increaseButtons = document.querySelectorAll('.increase-button');
 const decreaseButtons = document.querySelectorAll('.decrease-button');
 
 const totalElement = document.getElementById('resumen_total');
+const totalEl = document.getElementById('res_total');
 
 // Obtener el costo de envío inicial
 const shippingCost = 50.00;
@@ -142,6 +143,7 @@ function actualizarResumen(subtotal) {
 
   // Actualizar los elementos del resumen del pedido
   totalElement.textContent = 'Total a pagar: $' + total.toFixed(2);
+  totalEl.value = total.toFixed(2);
   return total;
 }
 
@@ -181,11 +183,22 @@ increaseButtons.forEach(button => {
   button.addEventListener('click', () => {
     const targetId = button.getAttribute('data-target');
     const input = document.getElementById(targetId);
+    const stockId = button.getAttribute('data-stock');
+    const stock = document.getElementById(stockId);
+    
+    const target2Id = button.getAttribute('data-target2');
+    const input2 = document.getElementById(target2Id);
+
     if (input) {
       const currentValue = parseInt(input.value);
-      input.value = currentValue + 1;
-      calcularSubtotalPorProducto(input); // Actualiza el subtotal por producto
-      calcularSubtotalTotal(); // Actualiza el subtotal total
+      const currval = parseInt(input2.value);
+      const stack = parseInt(stock.textContent);
+      if(currentValue < stack){
+        input.value = currentValue + 1;
+        input2.value = currval + 1;
+        calcularSubtotalPorProducto(input); // Actualiza el subtotal por producto
+        calcularSubtotalTotal(); // Actualiza el subtotal total
+      }
     }
   });
 });
@@ -195,10 +208,15 @@ decreaseButtons.forEach(button => {
   button.addEventListener('click', () => {
     const targetId = button.getAttribute('data-target');
     const input = document.getElementById(targetId);
+    const target2Id = button.getAttribute('data-target2');
+    const input2 = document.getElementById(target2Id);
+
     if (input) {
       const currentValue = parseInt(input.value);
+      const currval = parseInt(input2.value);
       if (currentValue > 1) {
         input.value = currentValue - 1;
+        input2.value = currval - 1;
         calcularSubtotalPorProducto(input); // Actualiza el subtotal por producto
         calcularSubtotalTotal(); // Actualiza el subtotal total
       }

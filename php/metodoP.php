@@ -523,12 +523,12 @@
           
           <li class="letra-texto">Envio</li>
           <li class="letra-texto">Total</li>
-          <li class="letra-texto">$<?php echo $_POST['total']; $_SESSION['total'] = $_POST['total'];?>.00</li>
+          <li class="letra-texto">$<?php echo $_SESSION['total'];?></li>
         </ul>
         <div class="linea-horizontal" ></div>
         <ul class="lista-dos-columnas-dos">
           <li class="letra-texto">Tu pago</li>
-          <li class="letra-texto">$<?php echo $_POST['total'];?>.00</li>      
+          <li class="letra-texto">$<?php echo $_SESSION['total'];?></li>      
         </ul>
         
 

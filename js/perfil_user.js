@@ -40,6 +40,7 @@ function mandarPHP(codigo)
   parametros = { 'id': codigo };
  
 }
+
 console.log(elim);
 if((elim.textContent).length > 0 ){
     switch (elim.textContent) {
@@ -55,10 +56,34 @@ if((elim.textContent).length > 0 ){
             Swal.fire({
                 title: 'Hecho!',
                 text: 'Cambio de datos exitosamente',
+                icon: 'success',
+                showConfirmButton: 'Aceptar'
+            });
+            break;
+        case "Dir agregada":
+            Swal.fire({
+                title: 'Hecho!',
+                text: 'Dirección agregada exitosamente',
+                icon: 'success',
+                showConfirmButton: 'Aceptar'
+            });
+            break;
+        case "Dir modifi":
+            Swal.fire({
+                title: 'Hecho!',
+                text: 'Dirección modificada exitosamente',
+                icon: 'success',
+                showConfirmButton: 'Aceptar'
+            });
+            break;
+        case "Dir elim":
+            Swal.fire({
+                title: 'Hecho!',
+                text: 'Dirección eliminada exitosamente',
                 icon: 'info',
                 showConfirmButton: 'Aceptar'
             });
-            break;        
+            break;
         default:
             break;
     }

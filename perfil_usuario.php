@@ -407,6 +407,7 @@
           <button class="btn btn-lg nav-link active" id="informacion" data-bs-toggle="pill" data-bs-target="#informacion-tab" type="button" role="tab" aria-controls="v-pills-home" aria-selected="true">MI INFORMACIÓN PERSONAL</button>
           <button class="btn btn-lg nav-link" id="compras" data-bs-toggle="pill" data-bs-target="#compras-tab" type="button" role="tab" aria-controls="v-pills-profile" aria-selected="false">MIS COMPRAS</button>
           <button class="btn btn-lg nav-link" id="tarjetas" data-bs-toggle="pill" data-bs-target="#tarjetas-tab" type="button" role="tab" aria-controls="v-pills-messages" aria-selected="false">TARJETAS</button>
+          <button class="btn btn-lg nav-link" id="direcciones" data-bs-toggle="pill" data-bs-target="#direcciones-tab" type="button" role="tab" aria-controls="v-pills-direcciones" aria-selected="false">DIRECCIONES</button>
           <button class="btn btn-lg nav-link" id="configuracion" data-bs-toggle="pill" data-bs-target="#configuracion-tab" type="button" role="tab" aria-controls="v-pills-settings" aria-selected="false">CONFIGURACIÓN</button>
         </div>
         
@@ -537,7 +538,6 @@
                     </div>
                 </div>
 <!-----------------------------------TARJETAS-------------------------------------->
-<!-----------------------------------TARJETAS-------------------------------------->
 <div class="tab-pane fade" id="tarjetas-tab" role="tabpanel" aria-labelledby="v-pills-messages-tab">
     <div class="container">
         <div class="row">
@@ -598,6 +598,174 @@
                     ?>
                     <div>
                         <button class="btn btn-bd-primary btn-lg" onclick="mandarTarjeta()">Agregar nueva tarjeta</button><br><br>
+                        <!--<button class="btn btn-bd-primary btn-lg" onclick="agregarTarjeta()">Agregar nueva tarjeta</button><br><br>-->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-----------------------------------DIRECCIONES-------------------------------------->
+<div class="tab-pane fade" id="direcciones-tab" role="tabpanel" aria-labelledby="v-pills-direcciones-tab">
+    <div class="container">
+        <div class="row">
+            <div class="jumbotron jumbotron-fluid">
+                <div class="container">
+                    <h1 class="display-4">Direcciones</h1>
+                    <p class="lead"></p>
+                </div>
+            </div>
+        </div>
+        <hr>
+        <div class="row" id="infoDirecciones">
+            <!-- AQUI ENTRAN LA INFORMACIÓN DE LAS DIRECCIONES-->
+            <div class="page-item">
+                <!--CONTENEDOR DE LAS DIRECCIONES-->
+                <div class="container" id="contenedor_direcciones">
+                    <?php
+                    $query_tarjeta = "SELECT nom_punto FROM direccion WHERE id_cliente = '$num_cliente'";
+                    $resul = mysqli_query($conexion,$query_tarjeta);
+                    if($resul){
+                        $nom_pun = mysqli_fetch_all($resul);
+
+                        $query_dest = "SELECT nom_desti FROM direccion WHERE id_cliente = '$num_cliente'";
+                        // Ejecutar consulta
+                        $resultado = mysqli_query($conexion, $query_dest);
+                        if ($resultado) {
+                            $nom_des = mysqli_fetch_all($resultado);
+                        }
+
+                        $query_calle = "SELECT calle FROM direccion WHERE id_cliente = '$num_cliente'";
+                        $result = mysqli_query($conexion,$query_calle);
+                        if($result){
+                            $caye = mysqli_fetch_all($result);
+                        }
+
+                        $query_numero = "SELECT numero FROM direccion WHERE id_cliente = '$num_cliente'";
+                        $result = mysqli_query($conexion,$query_numero);
+                        if($result){
+                            $nume = mysqli_fetch_all($result);
+                        }
+                        
+                        $query_colonia = "SELECT colonia FROM direccion WHERE id_cliente = '$num_cliente'";
+                        $result = mysqli_query($conexion,$query_colonia);
+                        if($result){
+                            $colo = mysqli_fetch_all($result);
+                        }
+                        
+                        $query_ciudad = "SELECT ciudad FROM direccion WHERE id_cliente = '$num_cliente'";
+                        $result = mysqli_query($conexion,$query_ciudad);
+                        if($result){
+                            $ciu = mysqli_fetch_all($result);
+                        }
+                        
+                        $query_estado = "SELECT estado FROM direccion WHERE id_cliente = '$num_cliente'";
+                        $result = mysqli_query($conexion,$query_estado);
+                        if($result){
+                            $est = mysqli_fetch_all($result);
+                        }
+                        
+                        $query_cp = "SELECT cp FROM direccion WHERE id_cliente = '$num_cliente'";
+                        $result = mysqli_query($conexion,$query_cp);
+                        if($result){
+                            $codpos = mysqli_fetch_all($result);
+                        }
+                        
+                        $query_info = "SELECT info_adi FROM direccion WHERE id_cliente = '$num_cliente'";
+                        $result = mysqli_query($conexion,$query_info);
+                        if($result){
+                            $info = mysqli_fetch_all($result);
+                        }
+                        
+                        $query_telefono = "SELECT telefono FROM direccion WHERE id_cliente = '$num_cliente'";
+                        $result = mysqli_query($conexion,$query_telefono);
+                        if(mysqli_num_rows($result) > 0){
+                          $tel = mysqli_fetch_all($result);
+                        }
+                        
+                        $query_correo = "SELECT correo FROM direccion WHERE id_cliente = '$num_cliente'";
+                        $result = mysqli_query($conexion,$query_correo);
+                        if(mysqli_num_rows($result) > 0){
+                            $cor = mysqli_fetch_all($result);
+                        }
+
+
+                        
+                        for ($i=0; $i < count($nom_pun); $i++) {
+                            $nom_punto = $nom_pun[$i][0];
+                            $nom_dest = $nom_des[$i][0];
+                            $calle = $caye[$i][0];
+                            $numero = $nume[$i][0];
+                            $colonia = $colo[$i][0];
+                            $ciudad = $ciu[$i][0];
+                            $estado = $est[$i][0];
+                            $cp = $codpos[$i][0];
+                            $info_adi = $info[$i][0];
+                            if(isset($tel)){
+                              $telefono = $tel[$i][0];
+                            }
+                            if(isset($cor)){
+                              $correo = $cor[$i][0];
+                            }
+                            ?>
+                            <div class="row ">
+                                <div class="col-8">
+                                  <ul>
+                                    <li><h4><?php echo $nom_punto;?></h4></li>
+                                    <h5><?php echo $nom_dest;?></h5>
+                                    <h5><?php echo $calle;?></h5>
+                                    <h5><?php echo $numero;?></h5>
+                                    <h5><?php echo $colonia;?></h5>
+                                    <h5><?php echo $ciudad;?></h5>
+                                    <h5><?php echo $estado;?></h5>
+                                    <h5><?php echo $cp;?></h5>
+                                    <h5><?php echo $info_adi;?></h5>
+                                  </ul>
+                                </div>
+                                <div class="col-1">
+                                    <!--<button class="btn btn-danger btn-lg">Eliminar</button>-->
+                                    <br><br><br>
+                                    <form action="puntoent_modif.php" method="POST" enctype="multipart/form-data" id="form_editar">
+                                      <button class="btn btn-bd-primary btn-lg">Editar</button>
+                                      <input type='hidden' name='id_cliente' value='<?php echo $aidi;?>'>
+                                      <input type='hidden' name='nom_punto' value='<?php echo $nom_punto;?>'>
+                                      <input type='hidden' name='nom_dest' value='<?php echo $nom_dest;?>'>
+                                      <input type='hidden' name='calle' value='<?php echo $calle;?>'>
+                                      <input type='hidden' name='numero' value='<?php echo $numero;?>'>
+                                      <input type='hidden' name='colonia' value='<?php echo $colonia;?>'>
+                                      <input type='hidden' name='ciudad' value='<?php echo $ciudad;?>'>
+                                      <input type='hidden' name='estado' value='<?php echo $estado;?>'>
+                                      <input type='hidden' name='cp' value='<?php echo $cp;?>'>
+                                      <input type='hidden' name='info_adi' value='<?php echo $info_adi;?>'>
+                                      <?php
+                                      if(isset($telefono)){
+                                        ?> 
+                                          <input type='hidden' name='telefono' value='<?php echo $telefono;?>'>
+                                        <?php
+                                      }
+                                      if(isset($correo)){
+                                        ?> 
+                                          <input type='hidden' name='correo' value='<?php echo $correo;?>'>
+                                        <?php
+                                      }
+                                      ?>
+
+                                    </form>
+                                    <br><br><br>
+                                    <form action="elim_direc.php" method="POST" enctype="multipart/form-data" id="form_editar">
+                                      <button class="btn btn-danger btn-lg">Eliminar</button>
+                                      <input type='hidden' name='nom_punto' value='<?php echo $nom_punto;?>'>
+                                      <input type='hidden' name='id_cliente' value='<?php echo $aidi;?>'>
+                                    </form>
+                                </div>
+                            </div>
+                            <hr>
+                            <?php
+                        }
+                    }
+                    ?>
+                    <div>
+                        <button class="btn btn-bd-primary btn-lg" onclick="agregarDirec()">Agregar nueva dirección</button><br><br>
                         <!--<button class="btn btn-bd-primary btn-lg" onclick="agregarTarjeta()">Agregar nueva tarjeta</button><br><br>-->
                     </div>
                 </div>

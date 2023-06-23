@@ -43,7 +43,8 @@
   if($resul){
       $aidi = mysqli_fetch_array($resul);
       $id_cliente = $aidi[0];
-}
+      $_SESSION['aidCliente'] = $id_cliente;
+  }
 
 ?>
 
@@ -357,6 +358,14 @@ if($res){
           $col = mysqli_fetch_array($resul);
           $color = $col[0];
         }
+
+        $query = "SELECT stock FROM articulo WHERE id_articulo = $id_base";
+        $resul = mysqli_query($conexion,$query);
+        if($resul){
+          $sto = mysqli_fetch_array($resul);
+          $stock = $sto[0];
+        }
+
         ?>
                 <tr>
                   <td>
@@ -387,9 +396,11 @@ if($res){
                   <!-- COLUMNA CANTIDAD -->
                   <td>
                     <div class="quantity-control" style=" width: max-content;">
-                      <button class="decrease-button" data-target="quantity-input-<?php echo $id_base?>">-</button>
+                    <p>Stock: <?php echo $stock;?></p>
+                    <h3 style="display: none;"id="stock-input-<?php echo $id_base?>" > <?php echo $stock;?></h3>
+                      <button class="decrease-button" data-target="quantity-input-<?php echo $id_base?>" data-target2="quantity-input2-<?php echo $id_base?>">-</button>
                       <input type="text" data-price="<?php echo $precio;?>" class="quantity-input" id="quantity-input-<?php echo $id_base?>" value="1">
-                      <button class="increase-button" data-target="quantity-input-<?php echo $id_base?>">+</button>
+                      <button class="increase-button" data-target="quantity-input-<?php echo $id_base?>"  data-target2="quantity-input2-<?php echo $id_base?>" data-stock="stock-input-<?php echo $id_base?>">+</button>
                       
                     </div>
                   </td>
@@ -419,10 +430,32 @@ if($res){
       <p id="resumen_subtotal">Subtotal: $0.00</p>
       <p>Costo de envío: $50</p>
       <hr>
-      <p class="total" id="resumen_total">Total a pagar: $50.00</p>
-      <div class="buy-button-container">
-        <button class="buy-button" onclick="enviarDatos();">Comprar</button>
-      </div>
+      <form method="post" enctype="multipart/form-data" id="stock" action="/php/agregarStock.php">
+      
+      <?php
+      for ($i=0; $i < count($ide); $i++) { 
+        $id_bas = $ide[$i][0];
+        $query = "SELECT precio FROM articulo WHERE id_articulo = $id_base";
+        $resul = mysqli_query($conexion,$query);
+        if($resul){
+          $prec = mysqli_fetch_array($resul);
+          $preci = $prec[0];
+        }
+      ?>
+      
+        <input type="hidden" data-price="<?php echo $preci;?>" name="stock-<?php echo $i;?>" id="quantity-input2-<?php echo $id_bas?>" value="1">
+        <input type="hidden" name="prod-<?php echo $i;?>" value="<?php echo $id_bas?>">
+
+      <?php
+      }
+      ?>
+        <input type="hidden" id="res_total" name="total" value="$50.00">
+        <input type="hidden" id="uwu" name="products" value="<?php echo count($ide);?>">
+        <p class="total" id="resumen_total">Total a pagar: $50.00</p>
+        <div class="buy-button-container">
+          <button class="buy-button" type="submit">Comprar</button>
+        </div>
+      </form>
     </div>
     </div>
     <?php

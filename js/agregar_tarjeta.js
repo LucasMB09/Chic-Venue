@@ -32,11 +32,15 @@ function user() {
 }
 
 function mandarTarjeta() {
-    location.href = "tarjeta.php";
+  location.href = "tarjeta.php";
 }
 
 function TarjetaRegistrada() {
-    location.href = "perfil_usuario.php";
+  location.href = "perfil_usuario.php";
+}
+
+function agregarDirec(){
+  location.href = "puntoent2.php";
 }
 
 function agregarTarjeta() {

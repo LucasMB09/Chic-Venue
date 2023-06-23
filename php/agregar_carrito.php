@@ -40,7 +40,7 @@
         echo "Hubo un error";
     }
 
-    $query = "INSERT INTO carrito values ($id_cliente,$id_arti)";
+    $query = "INSERT INTO carrito values ($id_cliente,$id_arti,'1')";
 
     $result = mysqli_query($conexion,$query);
 
