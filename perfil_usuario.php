@@ -517,7 +517,7 @@
                                       <div class="col">
                                           <h3><?php echo $nombre_articulo;?></h3>
                                           <br>
-                                          <h5>Entregado el <?php echo $fecha;?></h5>
+                                          <h5>Comprado el <?php echo $fecha;?></h5>
                                       </div>
                                       <div class="col-sm-1">
                                           <button class="btn btn-bd-primary position-relative" >Ver compra</button>

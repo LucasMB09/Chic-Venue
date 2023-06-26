@@ -40,16 +40,36 @@
         echo "Hubo un error";
     }
 
-    $query = "INSERT INTO carrito values ($id_cliente,$id_arti,'1')";
+    $query_sto = "SELECT stock FROM articulo WHERE id_articulo = '$id_arti'";
+    $r = mysqli_query($conexion,$query_sto);
+    if($r){
+        $sto = mysqli_fetch_array($r);
+        $stock = $sto[0];
+        if($stock > 0){
+            $query = "INSERT INTO carrito values ($id_cliente,$id_arti,'1')";
+        
+            $result = mysqli_query($conexion,$query);
+        
+            if($result){
+                header("Location: ../products.php");
+                // Liberar recursos y cerrar conexión
+                $_SESSION['base'] = "Car";
+                mysqli_free_result($resultado);         
+                mysqli_close($conexion);
+                return;
+            }
 
-    $result = mysqli_query($conexion,$query);
+        }
+        else{
+            $_SESSION['base'] = "No hay stock";
+            header("Location: ../products.php");
+            mysqli_free_result($resultado);         
+            mysqli_close($conexion);
+            return;
+        }
 
-    if($result){
-        header("Location: ../products.php");
-        // Liberar recursos y cerrar conexión
-        $_SESSION['base'] = "Car";
-        mysqli_free_result($resultado);         
-        mysqli_close($conexion);
-        return;
+    }
+    else{
+        echo "Hubo un error";
     }
 ?>

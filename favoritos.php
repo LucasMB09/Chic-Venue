@@ -32,15 +32,16 @@ if (isset($_COOKIE['usuario'])) {
 // $imagen = isset($_POST['imagen']) ? $_POST['imagen'] : '';
   // Genera la estructura HTML con los datos recibidos
 $conexion = mysqli_connect("localhost", "root", "", "chicvenue");
+if($email != ":v" && $user != ":v"){
 
-$quer = "SELECT id_cliente FROM cliente WHERE correo_electronico = '$email'";
+  $quer = "SELECT id_cliente FROM cliente WHERE correo_electronico = '$email'";
 
-$resul = mysqli_query($conexion,$quer);
-if($resul){
-    $aidi = mysqli_fetch_array($resul);
-    $id_cliente = $aidi[0];
+  $resul = mysqli_query($conexion,$quer);
+  if($resul){
+      $aidi = mysqli_fetch_array($resul);
+      $id_cliente = $aidi[0];
+  }
 }
-
 ?>
 
 <!DOCTYPE html>
@@ -78,18 +79,20 @@ if($resul){
            <div class="container-fluid">
           <br><br>
           <?php
-          if($_SESSION['email'] != "No" && $_SESSION['user'] != "No"){
-            ?>
-            <h3 class="text_user" style="display:none;">Hola, <?php echo "$user";?></h1>
-            <?php
-            if($valor == 0 ){
-              if($_GET['valor'] == 0){
-                setcookie('usuario', "", time()-86400, '/');
-                setcookie('email', "", time()-86400, '/');
-                unset($_SESSION['email']);
-                unset($_SESSION['user']);
-                $_SESSION['valor'] = 1;
-                header("Location: products.php?valor=1");
+          if(isset($_SESSION['email'])){
+            if($_SESSION['email'] != "No" && $_SESSION['user'] != "No"){
+              ?>
+              <h3 class="text_user" style="display:none;">Hola, <?php echo "$user";?></h1>
+              <?php
+              if($valor == 0 ){
+                if($_GET['valor'] == 0){
+                  setcookie('usuario', "", time()-86400, '/');
+                  setcookie('email', "", time()-86400, '/');
+                  unset($_SESSION['email']);
+                  unset($_SESSION['user']);
+                  $_SESSION['valor'] = 1;
+                  header("Location: products.php?valor=1");
+                }
               }
             }
           }
@@ -239,7 +242,7 @@ if($resul){
               }
               else{
                 ?>
-                <a class="navbar-brand" href="log-in.php"> <!-- INCIAR SESION -->
+                <a class="navbar-brand" href="login_usuario.php"> <!-- INCIAR SESION -->
                   <img src="assets/usuario.png" alt="inicioSesión" width="30" height="30" class="d-inline-block align-text-top">
                 </a>
                 <?php
@@ -266,75 +269,82 @@ if($resul){
 </header>
 </div>
 <?php 
+if($email != ":v" && $user != ":v"){
 
-$uwu = "SELECT id_articulo FROM favoritos WHERE id_cliente = $id_cliente";
-$res = mysqli_query($conexion,$uwu);
+  $uwu = "SELECT id_articulo FROM favoritos WHERE id_cliente = $id_cliente";
+  $res = mysqli_query($conexion,$uwu);
 
-if($res){
-    $ide = mysqli_fetch_all($res);
-    if(count($ide) == 0){
-      ?>
-      <div class="cont">
-        <center><h3><?php echo "No hay artículos guardados en favoritos";?></h3><br><br></center>
-        <center><button class="btn boton_redirec" onclick="redirecPro();">Regresar a los productos</button></center>
-      </div>
-      <?php
-    }
-    else{
-      for ($i=0; $i < count($ide); $i++) {
-        $id_base = $ide[$i][0];
-        $query = "SELECT imagen FROM articulo WHERE id_articulo = $id_base";
-        $resul = mysqli_query($conexion,$query);
-        if($resul){
-          $ima = mysqli_fetch_array($resul);
-          $imagen = $ima[0];
-        }
-        $query = "SELECT nombre_articulo FROM articulo WHERE id_articulo = $id_base";
-        $resul = mysqli_query($conexion,$query);
-        if($resul){
-          $nom = mysqli_fetch_array($resul);
-          $nombre_articulo = $nom[0];
-        }
-        $query = "SELECT precio FROM articulo WHERE id_articulo = $id_base";
-        $resul = mysqli_query($conexion,$query);
-        if($resul){
-          $prec = mysqli_fetch_array($resul);
-          $precio = $prec[0];
-        }
-        $element = "
-          <section class=\"contenedor\">
-            <div class=\"caja-principal\">
-              <div class=\"imagen\">
-                <img src=\"$imagen\" alt=\"\">
-              </div>
-              <div class=\"texto\">
-                <p class=\"descripcion\">$nombre_articulo</p>
-              </div>
-              <form action=\"/php/agregar_carrito2.php\" id=\"carrito\" method=\"POST\" enctype=\"multipart/form-data\">
-                <div class=\"carrito\">
-                  <button type=\"submit\" data-arti=\"$id_base\" data-cliente=\"$email\" class=\"boton1\" name=\"add\">Añadir al carrito</button>
-                  <input type='hidden' name='id_art' value='$id_base'>
-                  <input type='hidden' name='id_cliente' value='$email'>
-                </div>
-              </form>
-              <form action=\"/php/eliminar_favoritos.php\" id=\"elim_fav\" method=\"POST\" enctype=\"multipart/form-data\">
-                <div class=\"delete\">
-                  <p>$precio</p>
-                  <button type=\"submit\" class=\"link-button\">Eliminar</button>
-                  <input type='hidden' name='id_art' value='$id_base'>
-                  <input type='hidden' name='id_cliente' value='$email'>
-                </div>
-              </form>
-            </div>
-          </section>
-          ";
-        
-        echo $element;
+  if($res){
+      $ide = mysqli_fetch_all($res);
+      if(count($ide) == 0){
+        ?>
+        <div class="cont">
+          <center><h3><?php echo "No hay artículos guardados en favoritos";?></h3><br><br></center>
+          <center><button class="btn boton_redirec" onclick="redirecPro();">Regresar a los productos</button></center>
+        </div>
+        <?php
       }
-    }
+      else{
+        for ($i=0; $i < count($ide); $i++) {
+          $id_base = $ide[$i][0];
+          $query = "SELECT imagen FROM articulo WHERE id_articulo = $id_base";
+          $resul = mysqli_query($conexion,$query);
+          if($resul){
+            $ima = mysqli_fetch_array($resul);
+            $imagen = $ima[0];
+          }
+          $query = "SELECT nombre_articulo FROM articulo WHERE id_articulo = $id_base";
+          $resul = mysqli_query($conexion,$query);
+          if($resul){
+            $nom = mysqli_fetch_array($resul);
+            $nombre_articulo = $nom[0];
+          }
+          $query = "SELECT precio FROM articulo WHERE id_articulo = $id_base";
+          $resul = mysqli_query($conexion,$query);
+          if($resul){
+            $prec = mysqli_fetch_array($resul);
+            $precio = $prec[0];
+          }
+          $element = "
+            <section class=\"contenedor\">
+              <div class=\"caja-principal\">
+                <div class=\"imagen\">
+                  <img src=\"$imagen\" alt=\"\">
+                </div>
+                <div class=\"texto\">
+                  <p class=\"descripcion\">$nombre_articulo</p>
+                </div>
+                <form action=\"/php/agregar_carrito2.php\" id=\"carrito\" method=\"POST\" enctype=\"multipart/form-data\">
+                  <div class=\"carrito\">
+                    <button type=\"submit\" data-arti=\"$id_base\" data-cliente=\"$email\" class=\"boton1\" name=\"add\">Añadir al carrito</button>
+                    <input type='hidden' name='id_art' value='$id_base'>
+                    <input type='hidden' name='id_cliente' value='$email'>
+                  </div>
+                </form>
+                <form action=\"/php/eliminar_favoritos.php\" id=\"elim_fav\" method=\"POST\" enctype=\"multipart/form-data\">
+                  <div class=\"delete\">
+                    <p>$$precio.00</p>
+                    <button type=\"submit\" class=\"link-button\">Eliminar</button>
+                    <input type='hidden' name='id_art' value='$id_base'>
+                    <input type='hidden' name='id_cliente' value='$email'>
+                  </div>
+                </form>
+              </div>
+            </section>
+            ";
+          
+          echo $element;
+        }
+      }
+  }
+  else{
+      echo "Hubo un error";
+  }
 }
 else{
-    echo "Hubo un error";
+?>
+  <center><p>No hay favoritos que mostrar porque no hay una sesión iniciada.</p></center>
+<?php  
 }
 ?>
 

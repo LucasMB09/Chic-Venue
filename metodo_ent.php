@@ -39,6 +39,9 @@
     $num = mysqli_fetch_array($resultado);
     $num_cliente = $num[0];
   }
+
+  $taj_usada = $_POST['pago'];
+  $_SESSION['tar'] = $taj_usada;
 ?>
 
 <!DOCTYPE html>

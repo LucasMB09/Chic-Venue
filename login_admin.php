@@ -64,20 +64,11 @@
         </div>
         <!-- Checkbox Recuerdame y Enlace "Olvidé mi contraseña" -->
         
-          <div class="d-flex align-items-center">
-            <br>
-          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;<a href="contraseña.php" class="font-weight-bold text-decoration-none text-dark">Olvidé mi contraseña</a>
-          </div>
-      
-
-        <!-- <a class="nav-link" href="registro.php"><strong><u>Crea una nueva cuenta</u></strong></a> -->
+        <div class="d-flex align-items-center"></div>
         <br>
         <!-- Botón Iniciar sesión -->
         <button class="w-100 btn btn-lg btn-primary bg-black" type="submit" id="log">Iniciar sesión</button>
         <p class="mt-5 mb-3 text-body-secondary"></p>
-        <!--<div class="formulario_mensaje" id="formulario_mensaje">
-          <p><i class="fas fa-exclamation-triangle"></i> <b>Error: </b>Se deben completar todos los campos obligatorios.</p>
-        </div>-->
         <?php
           if (isset($_SESSION['mensaje'])) {
               $mensaje = $_SESSION['mensaje'];

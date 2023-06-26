@@ -451,14 +451,15 @@
 
   <p class="letra-subtitulo">Hola, <?php echo "$user";?>.</p>
   
-  <div class="caja">
-    <div class="col1">
+  <form action="../metodo_ent.php" method="post">
+    <div class="caja">
+      <div class="col1">
         <div class="barra-gris" >
             <h7 class="letra-subtitulo"><b> Selecciona método de pago</center></b></h7>
         </div>
         <div>
-        <div class="linea-horizontal" ></div>
-        <br>
+          <div class="linea-horizontal" ></div>
+          <br>
         </div>
         <?php
 
@@ -466,40 +467,57 @@
         $resul = mysqli_query($conexion,$query_tarjeta);
         if($resul){
           $tar = mysqli_fetch_all($resul);
+          if(count($tar) > 0){
+            for ($i=0; $i < count($tar) ; $i++) { 
+              $tarjeta = $tar[$i][0];
+              $tarjeta = substr($tarjeta,-4);
+              ?>
+              <p>
+                <label class="custom-radio-checkbox">
+                  <?php
+                    if ($i == 0) {
+                    ?>
+                      <input class="custom-radio-checkbox__input" type="radio" name="pago" value="<?php echo $tar[$i][0];?>" checked>
+                    <?php
+                    }
+                    else {
+                      ?>
+                        <input class="custom-radio-checkbox__input" type="radio" name="pago" value="<?php echo $tar[$i][0];?>">
+                      <?php
+                    }
+                    
 
-          for ($i=0; $i < count($tar) ; $i++) { 
-            $tarjeta = $tar[$i][0];
-            $tarjeta = substr($tarjeta,-4);
+                  ?>
+                  <span class="custom-radio-checkbox__show custom-radio-checkbox__show--radio"></span>
+  
+                  <img class="tarjeta2" src="../assets/Cardm.png"  width="24" height="19" alt="tarejta de debito" >
+              
+                  <span class="custom-radio-checkbox__text">****-****-****-<?php echo $tarjeta;?></span>
+                </label>
+              </p>
+            <?php
+            }
+          }
+          else{
             ?>
-            <p>
-              <label class="custom-radio-checkbox">
-                
-                <input class="custom-radio-checkbox__input" type="radio" name="pago" value="debito">
-                
-                <span class="custom-radio-checkbox__show custom-radio-checkbox__show--radio"></span>
-
-                <img class="tarjeta2" src="../assets/Cardm.png"  width="24" height="19" alt="tarejta de debito" >
-            
-                <span class="custom-radio-checkbox__text">****-****-****-<?php echo $tarjeta;?></span>
-              </label>
-            </p>
-          <?php
+              <p>Por favor agrega una tarjeta de debito/crédito.</p>
+            <?php
           }
         }
         ?>
 
         <br><br>
-      <button class="btn btn-bd-primary " onclick="mandarTarjeta()">Agregar nueva tarjeta</button><br><br>
 
 
-    </div>
-    <div class="col2">
+      </div>
+      <div class="col2">
         <h7 class="letra-subtitulo"><b><center>Resumen de compra</center></b></h7>
         <br>
         <p class="letra-texto"><b>Descripción</b></p>
         <ul class="lista-dos-columnas-dos">
           
           <li class="letra-texto">Envio</li>
+          <li class="letra-texto">$50.00</li>
           <li class="letra-texto">Total</li>
           <li class="letra-texto">$<?php echo $_SESSION['total'];?></li>
         </ul>
@@ -509,12 +527,24 @@
           <li class="letra-texto">$<?php echo $_SESSION['total'];?></li>      
         </ul>
         
-
-        <center><button onclick="redirecM();"><span>Continuar compra</span></button></center>
-    </div>
+        <?php
+        if(count($tar) > 0){
+        ?>
+          <center><button type="submit"><span>Continuar compra</span></button></center>
+        <?php
+        }
+        else{
+        ?>
+          <center><p>Esperando a que se agregue un método de pago...</p></center>
+        <?php
+        }
+        ?>
+      </div>
+      
     
-    
-  </div>      
+    </div>      
+  </form>
+  <button class="btn btn-bd-primary " onclick="mandarTarjeta()">Agregar nueva tarjeta</button><br><br>
 
 
 <!-- Pie de pagina -->

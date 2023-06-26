@@ -36,6 +36,7 @@
   }
   
   $conexion = mysqli_connect("localhost", "root", "", "chicvenue");
+if($email != ":v" && $user != ":v"){
 
   $quer = "SELECT id_cliente FROM cliente WHERE correo_electronico = '$email'";
 
@@ -45,7 +46,7 @@
       $id_cliente = $aidi[0];
       $_SESSION['aidCliente'] = $id_cliente;
   }
-
+}
 ?>
 
 <!DOCTYPE html>
@@ -74,31 +75,33 @@
     <!-- LINEA NEGRA -->
     <nav class="navbar bg-dark" data-bs-theme="dark">
       <div class="container-fluid">
-     <br><br>
-     <?php
-          if($_SESSION['email'] != "No" && $_SESSION['user'] != "No"){
-            ?>
-            <h3 class="text_user" style="display:none;">Hola, <?php echo "$user";?></h1>
-            <?php
-            if($valor == 0 ){
-              if($_GET['valor'] == 0){
-                setcookie('usuario', "", time()-86400, '/');
-                setcookie('email', "", time()-86400, '/');
-                unset($_SESSION['email']);
-                unset($_SESSION['user']);
-                $_SESSION['valor'] = 1;
-                header("Location: products.php?valor=1");
-              }
+      <br><br>
+      <?php
+      if(isset($_SESSION['email'])){
+        if($_SESSION['email'] != "No" && $_SESSION['user'] != "No"){
+          ?>
+          <h3 class="text_user" style="display:none;">Hola, <?php echo "$user";?></h1>
+          <?php
+          if($valor == 0 ){
+            if($_GET['valor'] == 0){
+              setcookie('usuario', "", time()-86400, '/');
+              setcookie('email', "", time()-86400, '/');
+              unset($_SESSION['email']);
+              unset($_SESSION['user']);
+              $_SESSION['valor'] = 1;
+              header("Location: products.php?valor=1");
             }
           }
+        }
 
-          if(isset($_SESSION['mensa'])){
-            $mensa = $_SESSION['mensa'];
-            ?>
-            <h3 class="text_user" id="mensag" style="display:none;"><?php echo "$mensa";unset($_SESSION['mensa']); unset($mensa);?></h3>
-            <?php
-          }
-        ?>
+        if(isset($_SESSION['mensa'])){
+          $mensa = $_SESSION['mensa'];
+          ?>
+          <h3 class="text_user" id="mensag" style="display:none;"><?php echo "$mensa";unset($_SESSION['mensa']); unset($mensa);?></h3>
+          <?php
+        }
+      }
+    ?>
    </div>
    </nav>
    <!--FIN LINEA NEGRA -->
@@ -241,7 +244,7 @@
               }
               else{
                 ?>
-                <a class="navbar-brand" href="log-in.php"> <!-- INCIAR SESION -->
+                <a class="navbar-brand" href="login_usuario.php"> <!-- INCIAR SESION -->
                 <img src="assets/usuario.png" alt="inicioSesión" width="30" height="30" class="d-inline-block align-text-top">
                 </a>
                 <?php
@@ -280,11 +283,11 @@
       <h3 id="base" style="display: none;"><?php echo $_SESSION['base'];unset($_SESSION['base']); ?></h3>
     <?php
     }
+if($email != ":v" && $user != ":v"){
+  $uwu = "SELECT id_articulo FROM carrito WHERE id_cliente = $id_cliente";
+  $res = mysqli_query($conexion,$uwu);
 
-$uwu = "SELECT id_articulo FROM carrito WHERE id_cliente = $id_cliente";
-$res = mysqli_query($conexion,$uwu);
-
-if($res){
+  if($res){
     $ide = mysqli_fetch_all($res);
     if(count($ide)==0){
       ?>
@@ -461,9 +464,13 @@ if($res){
     <?php
     }
   }
-  else{
-  }
-  ?>
+}
+else{
+?>
+  <center><p>No hay carrito que mostrar porque no hay una sesión iniciada.</p></center>
+<?php
+}
+?>
       
   <script src="/js/carrito.js"></script>
 

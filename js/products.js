@@ -108,6 +108,14 @@ if((mensaje.textContent).length > 0 ){
                 showConfirmButton: 'Aceptar'
             });
             break;
+        case "No hay stock":
+            Swal.fire({
+                title: 'Error!',
+                text: 'No hay existencias de ese producto',
+                icon: 'error',
+                showConfirmButton: 'Aceptar'
+            });
+            break;
         default:
             break;
     }
