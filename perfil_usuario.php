@@ -467,7 +467,7 @@
                     <div class="row">
                         <div class="jumbotron jumbotron-fluid">
                             <div class="container">
-                              <h1 class="display-4">Compras</h1>
+                              <h1 class="display-4">Artículos comprados</h1>
                               <p class="lead"></p>
                             </div>
                           </div>
@@ -484,52 +484,72 @@
                                 if($res){
                                   $idArt = mysqli_fetch_all($res);
                                   
-                                  
-                                  for ($i=0; $i < count($idArt); $i++) { 
-                                    $id_Arti = $idArt[$i][0];
-                                    
-                                    $query_nomArt = "SELECT nombre_articulo FROM articulo WHERE id_articulo = '$id_Arti'";
-                                    $resul_nomArt = mysqli_query($conexion,$query_nomArt);
-                                    if($resul_nomArt){
-                                      $nomArt = mysqli_fetch_array($resul_nomArt);
-                                      $nombre_articulo = $nomArt[0];
-                                    }
-
-                                    $query_fecha = "SELECT fecha FROM compra WHERE id_cliente = '$num_cliente' and id_articulo = '$id_Arti'";
-                                    $resul_fecha = mysqli_query($conexion,$query_fecha);
-                                    if($resul_fecha){
-                                      $fech = mysqli_fetch_array($resul_fecha);
-                                      $fecha = $fech[0];
-                                    }           
-                                    
-                                    $query_ima = "SELECT imagen FROM articulo WHERE id_articulo = '$id_Arti'";
-                                    $resul_ima = mysqli_query($conexion,$query_ima);
-                                    if($resul_ima){
-                                      $ima = mysqli_fetch_array($resul_ima);
-                                      $imagen = $ima[0];
-                                    }
-
-
-                                    
-                                    ?>
-                                    <div class="row">
-                                      <div class="col"><img src="<?php echo $imagen;?>"  alt="imagen" width="150" height="150"></div>
-                                      <div class="col">
-                                          <h3><?php echo $nombre_articulo;?></h3>
-                                          <br>
-                                          <h5>Comprado el <?php echo $fecha;?></h5>
+                                  if(count($idArt) > 0){
+                                    for ($i=0; $i < count($idArt); $i++) { 
+                                      $id_Arti = $idArt[$i][0];
+                                      
+                                      $query_nomArt = "SELECT nombre_articulo FROM articulo WHERE id_articulo = '$id_Arti'";
+                                      $resul_nomArt = mysqli_query($conexion,$query_nomArt);
+                                      if($resul_nomArt){
+                                        $nomArt = mysqli_fetch_array($resul_nomArt);
+                                        $nombre_articulo = $nomArt[0];
+                                      }
+  
+                                      $query_fecha = "SELECT fecha FROM compra WHERE id_cliente = '$num_cliente' and id_articulo = '$id_Arti'";
+                                      $resul_fecha = mysqli_query($conexion,$query_fecha);
+                                      if($resul_fecha){
+                                        $fech = mysqli_fetch_array($resul_fecha);
+                                        $fecha = $fech[0];
+                                      }           
+                                      
+                                      $query_ima = "SELECT imagen FROM articulo WHERE id_articulo = '$id_Arti'";
+                                      $resul_ima = mysqli_query($conexion,$query_ima);
+                                      if($resul_ima){
+                                        $ima = mysqli_fetch_array($resul_ima);
+                                        $imagen = $ima[0];
+                                      }
+  
+                                      $query = "SELECT monto FROM compra WHERE id_cliente = '$num_cliente' and id_articulo = '$id_Arti'";
+                                      $r = mysqli_query($conexion,$query);
+                                      if($r){
+                                        $mon = mysqli_fetch_array($r);
+                                        $monto = $mon[0];
+                                      }
+                                      
+                                      $query = "SELECT cantidad FROM compra WHERE id_cliente = '$num_cliente' and id_articulo = '$id_Arti'";
+                                      $r = mysqli_query($conexion,$query);
+                                      if($r){
+                                        $canti = mysqli_fetch_array($r);
+                                        $cantidad = $canti[0];
+                                      }
+                                      
+                                      ?>
+                                      <div class="row">
+                                        <div class="col"><img src="<?php echo $imagen;?>"  alt="imagen" width="150" height="150"></div>
+                                        <div class="col">
+                                            <h3><?php echo $nombre_articulo;?></h3>
+                                            <h6>Precio x producto: <?php echo number_format($monto,'2','.','');?></h6>
+                                            <h6>Cantidad de productos: <?php echo $cantidad;?></h6>
+                                            <h6>Precio sin envio: <?php echo number_format($monto*$cantidad,'2','.','');?></h6>
+                                            <h6>Envio: 50.00</h6>
+                                            <h6>Precio total: <?php echo number_format($monto*$cantidad+50,'2','.','');?></h6>
+                                            <h6>Comprado el <?php echo $fecha;?></h6>
+                                        </div>
+                                        
                                       </div>
-                                      <div class="col-sm-1">
-                                          <button class="btn btn-bd-primary position-relative" >Ver compra</button>
-                                      </div>
-                                    </div>
-                                    <hr>
-                                    <?php
+                                      <hr>
+                                      <?php
+                                    }
+                                  }
+                                  else{
+                                    echo "<br>";
+                                    echo "<h3>No hay artículos comprados.</h3>";
+                                    echo "<br>";
                                   }
                                 }
                             ?>
                             <div>
-                                <button class="btn btn-bd-primary btn-lg" href="/products.php">Agregar nueva compra</button><br><br>
+                                <button class="btn btn-bd-primary btn-lg" onclick="irProd()">Agregar nueva compra</button><br><br>
                             </div>
                             </div>
                         </div>
@@ -820,6 +840,10 @@
                     {
                       parametros = { 'id': codigo };
                      
+                    }
+
+                    function irProd() {
+                        location.href = "products.php";
                     }
                       </script>
 

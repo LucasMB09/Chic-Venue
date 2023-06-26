@@ -18,9 +18,6 @@ function habilitar(){
     if (!regex.test(nombre_articulo)) {
         val++;
     }
-    if (!regex.test(descripcion)) {
-        val++;
-    }
     var regexPrecio = /^\d+(\.\d+)?$/;
     if (!regexPrecio.test(precio)) {
         val++;

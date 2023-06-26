@@ -283,6 +283,7 @@ if($email != ":v" && $user != ":v"){
       <h3 id="base" style="display: none;"><?php echo $_SESSION['base'];unset($_SESSION['base']); ?></h3>
     <?php
     }
+    
 if($email != ":v" && $user != ":v"){
   $uwu = "SELECT id_articulo FROM carrito WHERE id_cliente = $id_cliente";
   $res = mysqli_query($conexion,$uwu);

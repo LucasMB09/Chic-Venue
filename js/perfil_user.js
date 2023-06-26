@@ -41,6 +41,10 @@ function mandarPHP(codigo)
  
 }
 
+function irProd() {
+    location.href = "products.php";
+}
+
 console.log(elim);
 if((elim.textContent).length > 0 ){
     switch (elim.textContent) {

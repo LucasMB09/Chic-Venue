@@ -47,6 +47,10 @@ function agregarDirec(){
   location.href = "puntoent2.php";
 }
 
+function irProd() {
+  location.href = "products.php";
+}
+
 function agregarTarjeta() {
   // Validación del CVV
   var cvvInput = document.getElementById("cvvInput");

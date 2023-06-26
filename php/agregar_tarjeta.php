@@ -25,6 +25,7 @@ $query = "INSERT INTO tarjeta_bancaria (nom_banco, numero_tarjeta, vencimiento, 
 if (mysqli_query($conexion, $query)) {
     // La inserción fue exitosa
     echo json_encode(['success' => true]);
+    $_SESSION['base'] = "Regis";
 } else {
     // Ocurrió un error durante la inserción
     echo json_encode(['success' => false, 'error' => mysqli_error($conexion)]);

@@ -1,5 +1,6 @@
 const usuario = document.getElementById("usuario");
 const email = document.getElementById("correo");
+const men_tarj = document.getElementById("tarj");
 
 function user() {
     const Toast = Swal.mixin({
@@ -56,3 +57,18 @@ function mandarTarjeta() {
   }
 
   
+if((men_tarj.textContent).length > 0 ){
+    switch (men_tarj.textContent) {
+        case "Regis":
+            Swal.fire({
+                title: 'Hecho!',
+                text: 'Tarjeta agregada exitosamente',
+                icon: 'success',
+                showConfirmButton: 'Aceptar'
+            });
+            break;
+        default:
+            break;
+    }
+    
+}

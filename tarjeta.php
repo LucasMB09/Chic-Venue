@@ -454,10 +454,10 @@ if (isset($_POST['modificar'])) {
 
     ownerNameInput.addEventListener('input', function() {
       var ownerName = ownerNameInput.value.trim();
-      var regex = /^[A-Za-z\s]+$/; // Expresión regular para letras y espacios
+      var regex = /^[A-Za-zñáéíóúÁÉÍÓÚ\s]+$/; // Expresión regular para letras y espacios
 
       if (!regex.test(ownerName)) {
-        ownerNameInput.value = ownerName.replace(/[^A-Za-z\s]/g, ''); // Eliminar caracteres no permitidos
+        ownerNameInput.value = ownerName.replace(/[^A-Za-zñáéíóúÁÉÍÓÚ\s]/g, ''); // Eliminar caracteres no permitidos
       }
     });
 

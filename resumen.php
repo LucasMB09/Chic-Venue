@@ -60,6 +60,7 @@
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://getbootstrap.com/docs/5.3/assets/css/docs.css" rel="stylesheet">
+    <link href="/css/formulario.css" rel="stylesheet">
     <link href="/docs/5.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 <script src="/sweetalert/dist/sweetalert2.all.min.js"></script>
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
@@ -275,24 +276,23 @@
             <a class="nav-link active" aria-current="page" href="products.php">Novedades</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="products.php">Rebajas</a>
+            <a class="nav-link" href="/promociones.php">Promociones</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="products.php">Básicos</a>
+            <a class="nav-link" href="/basicos.php">Básicos</a>
           </li>
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
               Ropa
             </a>
             <ul class="dropdown-menu">
-              <li><a class="dropdown-item" href="#">Mezclilla</a></li> <!---->
-              <li><a class="dropdown-item" href="#">Sudaderas</a></li>
-              <li><a class="dropdown-item" href="#">Vestidos</a></li>
-              <li><a class="dropdown-item" href="#">Conjuntos</a></li>
-              <li><a class="dropdown-item" href="#">Ropa de descanso</a></li>
-              <li><hr class="dropdown-divider"></li>
-              <li><a class="dropdown-item" href="#">¡TEMPORADA DE VERANO!</a></li>
-            </ul>
+                <li><a class="dropdown-item" href="Blusas.php">Blusas</a></li>
+                <li><a class="dropdown-item" href="Bluson.php">Bluson</a></li>
+                <li><a class="dropdown-item" href="Vestidos.php">Vestidos</a></li>
+                <li><a class="dropdown-item" href="Conjuntos.php">Conjuntos</a></li>
+                <li><hr class="dropdown-divider"></li>
+                <li><a class="dropdown-item" href="verano.php">¡TEMPORADA DE VERANO!</a></li>
+              </ul>
           </li>
         </ul>
 
@@ -304,15 +304,15 @@
         <ul class="nav">
         <li class="nav-item">
                   &nbsp;&nbsp;&nbsp;&nbsp;
-                 <!--   <a class="navbar-brand" href="#">  ACCEDER AL FILTRO
-                   <img src="/assets/filtro.png" alt="carrito" width="30" height="30" class="d-inline-block align-text-top">
+                <!--   <a class="navbar-brand" href="#">  
+                  <img src="/assets/filtro.png" alt="carrito" width="30" height="30" class="d-inline-block align-text-top">
                   </a> -
                   <button type="button" style="background-image: url('/assets/filtro.png'); width: 10px; height: 10px;" data-toggle="modal" data-target="#exampleModalLong">
                   </button>-->
                   <a class="navbar-brand" href="#" data-toggle="modal" data-target="#exampleModalLong"> 
-                    <img src="/assets/filtro.png" alt="carrito" width="30" height="30" class="d-inline-block align-text-top">
-                   </a> 
-                 <!-- Modal -->
+                    <img src="assets/filtro.png" alt="carrito" width="30" height="30" class="d-inline-block align-text-top">
+                  </a> 
+                <!-- Modal -->
                     <div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
                       <div class="modal-dialog" role="document">
                         <div class="modal-content">
@@ -367,14 +367,13 @@
                                 </div>
                               
                               
-                              <input type="checkbox" id="ofertas">
-                              <label for="ofertas">Mostrar solo ofertas/descuentos</label>
-                              
-                            </form>
+                                <input type="checkbox" id="ofertas">
+                                <label for="ofertas">Mostrar solo ofertas/descuentos</label>
+                              </form>
                             </div>
                           </div>
                           <div class="modal-footer">
-                            <button type="button" id="busqueda_filtro" class="btn btn-primary">Filtrar</button>
+                            <button type="button" id="busqueda_filtro" onclick="redirecFiltro()" class="btn btn-primary">Filtrar</button>
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
                             
                           </div>
@@ -382,7 +381,6 @@
                       </div>
                     </div>
                 </li>
-          
           <li class="nav-item">
           <?php
               if($email != ":v" && $user != ":v"){
@@ -441,6 +439,9 @@
               <?php 
               $uwu = "SELECT id_articulo FROM carrito WHERE id_cliente = $id_cliente";
               $res = mysqli_query($conexion,$uwu);
+              $d = date('d');
+              $m = date('m');
+              $y = date('Y');
               
               if($res){
                   $ide = mysqli_fetch_all($res);
@@ -486,17 +487,37 @@
                       $col = mysqli_fetch_array($resul);
                       $color = $col[0];
                     }
+
+                    $query = "SELECT stock FROM carrito WHERE id_articulo = $id_base AND id_cliente = $id_cliente";
+                    $resul = mysqli_query($conexion,$query);
+                    if($resul){
+                      $cant = mysqli_fetch_array($resul);
+                      $cantidad = $cant[0];
+                    }
                     
                     $query = "DELETE FROM carrito WHERE id_articulo = $id_base AND id_cliente = $id_cliente";
                     $resul = mysqli_query($conexion,$query);
                     if($resul){
-                      $query = "INSERT INTO compra (id_cliente, id_articulo, fecha, monto) VALUES ('$id_cliente', '$id_base', '2023-06-21', '$precio')";
+                      $envi = $_POST['opcion_envio'];
+                      $dir = $_POST['opc_direccion'];
+                      $info =  $_POST['informacion_adicional'];
+                      $query = "INSERT INTO compra (id_cliente, id_articulo, cantidad, fecha, monto, tip_envio, dir, info_adi) VALUES ('$id_cliente', '$id_base', '$cantidad', '$y-$m-$d', '$precio', '$envi', '$dir', '$info')";
                       $resul = mysqli_query($conexion,$query);
                       if($resul){
-                        
-                      }  
+                        $query = "SELECT stock FROM articulo WHERE id_articulo = $id_base ";
+                        $resul = mysqli_query($conexion,$query);
+                        if($resul){
+                          $st = mysqli_fetch_array($resul);
+                          $Stak = $st[0];
+                          $Stak = $Stak - $cantidad;
+                          $query = "UPDATE articulo SET stock = $Stak WHERE id_articulo = $id_base";
+                          $resul = mysqli_query($conexion,$query);
+                          if($resul){
+                            
+                          }  
+                        }  
                     }
-                    
+                  }
               ?>
               <th>
                 <td>
@@ -506,14 +527,17 @@
                   <li class="letra"><?php echo $nombre_articulo;?></li>
                   <li>Color: <?php echo $color;?> | Tela 100% Algodón</li>
                   <li>Talla <?php echo $talla;?></li>
-                  <li>$<?php echo $precio;?> x unidad</li>
+                  <li>$<?php echo $precio;?> x unidad </li>
+                  <li>Cantidad: <?php echo $cantidad?></li>
                 </td>
               </th>
               <?php
             }
+            
 
             if(count($ide)==0){
               ?>
+              <br>
               <h3><?php echo "No hay articulos en el carrito";?></h3>
               <?php
             }
@@ -527,37 +551,59 @@
 <!-- cuadro 2 -->
 <?php 
   $total = $_SESSION['total'];
+  $tar = $_SESSION['pago'];
 ?>
     <div class="row">
       <div class="row ">
-      <div class="col">
-        <div class="card mb-4 rounded-3 shadow-sm">
-          <div class="card-header py-3">
-            <h4 class="my-0 fw-normal">Resumen de compra</h4>
+        <div class="col">
+          <div class="card mb-4 rounded-3 shadow-sm">
+            <div class="card-header py-3">
+              <h4 class="my-0 fw-normal">Resumen de compra</h4>
+            </div>
+            <div class="card-body">
+              <h7><?php echo $d," de ",date('M')," del ", $y?></h7>
+              <br>
+              <br>
+              <ul class="lista-dos-columnas">
+                <li>Descripción del producto</li>
+                <li>Envio: $50.00</li>
+                <li>Subtotal: $<?php echo number_format($total-50.00,2,'.','');?></li>
+              </ul>
+              <div class="linea-horizontal" ></div>
+              <ul class="lista-dos-columnas">
+                <li>Tu pago: $<?php echo $total;?></li>   
+              </ul>
+              <br>
+              <i class="fas fa-check"></i>
+              <h7>Usted solicito una factura correctamente.</h7> 
+            </div>
           </div>
-          <div class="card-body">
-            <h7>21 de Junio| #3453637386</h7>
-            <br>
-            <br>
-            <ul class="lista-dos-columnas">
-              <li>Descripción del producto</li>
-              <li>Envio</li>
-              <li>Subtotal</li>
-              <li>$<?php echo $total;?></li>
-            </ul>
-            <div class="linea-horizontal" ></div>
-            <ul class="lista-dos-columnas">
-              <li>Tu pago</li>
-              <li>$<?php echo $total;?></li>      
-            </ul>
-            <br>
-            <i class="fas fa-check"></i>
-            <h7>Usted solicito una factura correctamente.</h7> 
+        </div>
+
+        <div class="col">
+          <div class="card mb-4 rounded-3 shadow-sm">
+            <div class="card-header py-3">
+              <h4 class="my-0 fw-normal">Descripción del envio</h4>
+            </div>
+            <div class="card-body">
+              <ul class="lista-dos-columnas">
+                <br>
+                <br>
+                <li>Dirección: <?php echo $dir;?></li>
+                <br>
+                <li>Tipo de envio: <?php echo $envi;?></li>
+                <br>
+              </ul>
+              <ul class="lista-dos-columnas">
+                <li>Información adicional:</li>
+                <li><?php echo $info;?></li>      
+              </ul>
+              <br>
+            </div>
           </div>
         </div>
       </div>
     </div>
-
  
 
     <!-- cuadro 3 -->
@@ -567,14 +613,23 @@
             <div class="card-header py-3">
               <h4 class="my-0 fw-normal">Información de pago</h4>
             </div>
-
+            <?php
+              $tarjeta = $_SESSION['tar'];
+              $query = "SELECT nom_banco FROM tarjeta_bancaria WHERE numero_tarjeta = '$tarjeta'";
+              $result =  mysqli_query($conexion,$query);
+              if($result){
+                $ban =  mysqli_fetch_array($result);
+                $banco = $ban[0];
+              }
+              $tarjeta = substr($tarjeta,-4);
+            ?>
             <div class="card-body">
-              <h6 class="card-title pricing-card-title">Nombre de la tarjeta terminada en *345</h6>
-              <div class="contenedor">
+              <h6 class="card-title pricing-card-title">Nombre de la tarjeta terminada en <?php echo $tarjeta;?></h6>
+              <div class="contenedor1">
               <img class="filtro" src="../assets/tarjeta.png"  width="60" height="40" alt="filtro" >
               <ul class="lista">
-                <li>Transacción acreditada por BBVA  </li>
-                <li>Pago #3453637386 del 21 de Junio </li> 
+                <li>Transacción acreditada por <?php echo $banco;?>  </li>
+                <li>Pago #<?php echo mt_rand(1000000000, 9999999999);?> del <?php echo $d," de ",date('M')?></li> 
               </ul>
             
           </div>
@@ -616,6 +671,7 @@
     </div>
   </footer>
 </div>
+<script src="/js/resumen.js"></script>
   </body>
    <!-- FOOTER -->
    <footer class="container">

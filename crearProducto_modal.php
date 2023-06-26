@@ -80,7 +80,7 @@
                 </div>
                 <div class="col-md-4">
                     <label for="recipient-name" class="col-form-label">Descuento</label>
-                    <input type="text" oninvalid="setCustomValidity('Se deben completar todos los campos obligatorios')" class="form-control" id="descuento" name="descuento" pattern="^0+(\.\d+)?$" title="Solo se permiten números flotantes" required>
+                    <input type="text" class="form-control" id="descuento" name="descuento" pattern="^0+(\.\d+)?$" title="Solo se permiten números flotantes" required>
                 </div>
             </div>
 

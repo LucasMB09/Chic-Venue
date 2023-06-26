@@ -276,6 +276,12 @@
           }
         }
       }
+
+      if(isset($_SESSION['base'])){
+        ?>
+        <div><h3 id="tarj" style="display: none;"><?php echo $_SESSION['base']; unset($_SESSION['base']);?></h3></div>
+        <?php
+      }
       ?>
     </div>
     </nav>

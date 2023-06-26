@@ -40,7 +40,14 @@
     $num_cliente = $num[0];
   }
 
-  $taj_usada = $_POST['pago'];
+  if(isset($_POST['pago'])){
+    $taj_usada = $_POST['pago'];
+    $_SESSION['pago'] = $taj_usada;
+  }
+  else{
+    $taj_usada = $_SESSION['pago'];
+  }
+
   $_SESSION['tar'] = $taj_usada;
 ?>
 
@@ -109,26 +116,25 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav me-auto mb-2 mb-lg-0">
             <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="#">Novedades</a>
+              <a class="nav-link active" aria-current="page" href="/products.php">Novedades</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#">Rebajas</a>
+              <a class="nav-link" href="/promociones.php">Promociones</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#">Básicos</a>
+              <a class="nav-link" href="/basicos.php">Básicos</a>
             </li>
             <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                 Ropa
               </a>
               <ul class="dropdown-menu">
-                <li><a class="dropdown-item" href="#">Mezclilla</a></li> <!---->
-                <li><a class="dropdown-item" href="#">Sudaderas</a></li>
-                <li><a class="dropdown-item" href="#">Vestidos</a></li>
-                <li><a class="dropdown-item" href="#">Conjuntos</a></li>
-                <li><a class="dropdown-item" href="#">Ropa de descanso</a></li>
+                <li><a class="dropdown-item" href="Blusas.php">Blusas</a></li>
+                <li><a class="dropdown-item" href="Bluson.php">Bluson</a></li>
+                <li><a class="dropdown-item" href="Vestidos.php">Vestidos</a></li>
+                <li><a class="dropdown-item" href="Conjuntos.php">Conjuntos</a></li>
                 <li><hr class="dropdown-divider"></li>
-                <li><a class="dropdown-item" href="#">¡TEMPORADA DE VERANO!</a></li>
+                <li><a class="dropdown-item" href="verano.php">¡TEMPORADA DE VERANO!</a></li>
               </ul>
             </li>
           </ul>
@@ -225,7 +231,7 @@
                   <h3 id="usuario" style="display:none;"> <?php echo "$user";?></h3>
                   <h3 id="correo" style="display:none;"> <?php echo "$email";?></h3>
                   <a class="navbar-brand" onclick="user()" id="change"> <!-- INCIAR SESION -->
-                    <img src="assets/usuario.png" alt="carrito" width="30" height="30" class="d-inline-block align-text-top">
+                    <img src="assets/usuario.png" alt="iniciar_sesión" width="30" height="30" class="d-inline-block align-text-top">
                   </a>
                   
                   <?php
@@ -235,19 +241,19 @@
               else{
                 ?>
                 <a class="navbar-brand" href="log-in.php"> <!-- INCIAR SESION -->
-                <img src="assets/usuario.png" alt="carrito" width="30" height="30" class="d-inline-block align-text-top">
+                <img src="assets/usuario.png" alt="iniciar_sesión" width="30" height="30" class="d-inline-block align-text-top">
                 </a>
                 <?php
               }
               ?>
             </li>
             <li class="nav-item">
-               <a class="navbar-brand" href="#">
-               <img src="assets/favoritos.JPG" alt="carrito" width="30" height="30" class="d-inline-block align-text-top">
+               <a class="navbar-brand" href="/favoritos.php">
+               <img src="assets/favoritos.JPG" alt="favoritos" width="30" height="30" class="d-inline-block align-text-top">
               </a>
             </li>
             <li class="nav-item">
-              <a class="navbar-brand" href="#">
+              <a class="navbar-brand" href="/carrito.php">
               <img src="assets/carrito.png" alt="carrito" width="30" height="30" class="d-inline-block align-text-top">
              </a>
             </li>
@@ -311,16 +317,6 @@
         <div id="InfoadErrormessage" class="error-message"></div>
         <div class="error"></div>
 
-        <!--Metodo de pago-->
-        <label for="metodo_pago">Método de pago:</label>
-        <select id="metodo_pago" name="metodo_pago">
-          <option value="Selecciona una opción">Seleccione una opción</option>
-          <option value="tarjeta">Tarjeta de crédito</option>
-          <option value="transferencia">Transferencia bancaria</option>
-          <option value="paypal">PayPal</option>
-        </select>
-        <div id="MetpagErrormessage" class="error-message"></div>
-        <br>
         <!--Boton de continuar-->
         <div>
           <center><button type="submit" id="continuarBtn">Continuar</button></center>
